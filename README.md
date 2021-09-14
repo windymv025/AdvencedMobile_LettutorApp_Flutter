@@ -1,4 +1,4 @@
-# Subject: Advenced Mobile
-# Project: LettutorApp
-# Programing Language: Flutter
+# Lettutor App
+Subject: Advenced Mobile
+Programing Language: Flutter
  

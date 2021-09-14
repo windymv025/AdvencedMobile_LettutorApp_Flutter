@@ -1,4 +1,4 @@
 # Lettutor App
-Subject: Advenced Mobile
-Programing Language: Flutter
+- Subject: Advenced Mobile
+- Programing Language: Flutter
  

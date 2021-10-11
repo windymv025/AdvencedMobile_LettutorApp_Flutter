@@ -1,16 +1,18 @@
 import 'package:english_lettutor_app/ui/widget/item_view/circle_avatar_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:english_lettutor_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+import 'page/home_page.dart';
+
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomeScreenState extends State<HomeScreen> {
   int _currentPage = 0;
 
   @override
@@ -22,7 +24,7 @@ class _HomePageState extends State<HomePage> {
           leading: IconButton(
             alignment: AlignmentDirectional.center,
             icon: Expanded(
-              child: Image.asset('assets/large_logo.png'),
+              child: Image.asset('assets/images/large_logo.png'),
             ),
             onPressed: () {
               setState(() {});
@@ -36,12 +38,8 @@ class _HomePageState extends State<HomePage> {
             )
           ],
           title: const Center(
-              child: Text("Home",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  )))),
-      body: Container(),
+              child: Text("Home", style: Constants.pageNameStyle))),
+      body: const HomePage(),
       bottomNavigationBar: MyBottomNavigation(
           index: _currentPage,
           onTap: (index) {

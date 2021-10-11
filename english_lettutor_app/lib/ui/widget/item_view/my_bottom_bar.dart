@@ -14,6 +14,8 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
     return BottomNavigationBar(
       currentIndex: widget.index,
       fixedColor: Colors.blueAccent,
+      selectedFontSize: 12,
+      unselectedFontSize: 10,
       type: BottomNavigationBarType.fixed,
       items: const [
         BottomNavigationBarItem(

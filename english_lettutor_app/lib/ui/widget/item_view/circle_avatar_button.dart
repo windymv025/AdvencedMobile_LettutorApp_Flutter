@@ -16,7 +16,7 @@ class _CircleAvatarButtonState extends State<CircleAvatarButton> {
   Widget build(BuildContext context) {
     ImageProvider? _image = widget.image;
     double _radius = widget.radius?? (double.infinity - 2);
-    _image ??= const AssetImage("assets/user-icon.png");
+    _image ??= const AssetImage("assets/images/user-icon.png");
 
     return IconButton(
         onPressed: widget.onPressed,

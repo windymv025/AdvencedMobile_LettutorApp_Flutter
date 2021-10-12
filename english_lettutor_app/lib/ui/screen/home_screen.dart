@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/ui/widget/item_view/circle_avatar_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
 import 'package:english_lettutor_app/utilities/constants.dart';
+import 'package:english_lettutor_app/utilities/styles.dart';
 import 'package:flutter/material.dart';
 
 import 'page/home_page.dart';
@@ -38,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             )
           ],
           title: const Center(
-              child: Text("Home", style: Constants.pageNameStyle))),
+              child: Text("Home", style: Styles.pageNameStyle))),
       body: const HomePage(),
       bottomNavigationBar: MyBottomNavigation(
           index: _currentPage,

@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/ui/screen/page/no_data_page.dart';
 import 'package:english_lettutor_app/utilities/constants.dart';
+import 'package:english_lettutor_app/utilities/styles.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -21,13 +22,13 @@ class HomePage extends StatelessWidget {
                 children: [
                   const Text(
                     "Welcome to English LetTutor App!",
-                    style: Constants.tileCountDownStyle,
+                    style: Styles.tileCountDownStyle,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
-                    style: Constants.outlineButtonStyle,
+                    style: Styles.outlineButtonStyle,
                     onPressed: () {},
                     child: const Text(
                       'Booking now',
@@ -51,12 +52,12 @@ class HomePage extends StatelessWidget {
               const Expanded(
                   child: Text(
                 "Recommended Tutors",
-                style: Constants.titleStyle,
+                style: Styles.titleStyle,
               )),
               TextButton(
                 onPressed: () {},
                 child: const Text("See all >>"),
-                style: Constants.textButtonStyle,
+                style: Styles.textButtonStyle,
               )
             ],
           )),

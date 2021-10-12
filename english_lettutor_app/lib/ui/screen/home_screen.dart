@@ -1,4 +1,4 @@
-import 'package:english_lettutor_app/ui/widget/item_view/circle_avatar_button.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/avatar/circle_avatar_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
 import 'package:english_lettutor_app/utilities/constants.dart';
 import 'package:english_lettutor_app/utilities/styles.dart';

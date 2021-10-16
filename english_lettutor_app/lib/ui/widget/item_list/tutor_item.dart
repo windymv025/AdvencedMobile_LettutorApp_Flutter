@@ -1,7 +1,7 @@
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/rating.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/tag/tag.dart';
-import 'package:english_lettutor_app/utilities/styles.dart';
+import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class TutorItem extends StatefulWidget {
@@ -65,7 +65,7 @@ class _TutorItemState extends State<TutorItem> {
               children: [
                 Text(
                   widget.name,
-                  style: Styles.titleStyle,
+                  style: titleStyle,
                 ),
                 Rating(
                   rating: 5,
@@ -82,6 +82,7 @@ class _TutorItemState extends State<TutorItem> {
             trailing: IconButton(
               icon: _icon,
               onPressed: onFavoriteClick,
+              iconSize: 30,
             ),
           ),
           SizedBox.fromSize(

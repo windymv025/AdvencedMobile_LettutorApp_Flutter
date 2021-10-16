@@ -1,6 +1,6 @@
 import 'package:english_lettutor_app/ui/widget/item_list/tutor_item.dart';
-import 'package:english_lettutor_app/utilities/constants.dart';
-import 'package:english_lettutor_app/utilities/styles.dart';
+import 'package:english_lettutor_app/utilities/constants/constants.dart';
+import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +33,7 @@ class _HomePageState extends State<HomePage> {
       avatar: AssetImage("assets/images/no_data_found.png"),
       onTap: null,
       name: "Phạm Minh Vương",
-      description:
-          "Good Teacher asds hdka jhsdk ajdaksj dka jdskj ass kjsa hs kajhd kj sah dakjsd hsa khs sdsjk sdbbajs isuhdsai iusahds ishdians iuahsand auidsk iujsn oisjdn kjand ksabndfsj sandkj sdj",
+      description: "Good Teacher asds hdka jhsdk ajdaksj dka jdskj",
       tags: ["English", "ABC", "GTHK"],
     ),
     const TutorItem(
@@ -63,19 +62,18 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   const Text(
                     "Welcome to English LetTutor App!",
-                    style: Styles.tileCountDownStyle,
+                    style: tileCountDownStyle,
                   ),
                   const SizedBox(
                     height: 10,
                   ),
                   ElevatedButton(
-                    style: Styles.outlineButtonStyle,
+                    style: outlineButtonStyle,
                     onPressed: () {},
                     child: const Text(
                       'Booking now',
                       style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: Constants.textSizeButton),
+                          color: Colors.blue, fontSize: textSizeButton),
                     ),
                   ),
                 ],
@@ -99,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     children: const [
                       Text(
                         "Recommended Tutors",
-                        style: Styles.titleStyle,
+                        style: titleStyle,
                       ),
                       SizedBox(
                         width: 165,
@@ -113,7 +111,7 @@ class _HomePageState extends State<HomePage> {
                   TextButton(
                     onPressed: () {},
                     child: const Text("See all >>"),
-                    style: Styles.textButtonStyle,
+                    style: textButtonStyle,
                   )
                 ],
               )),

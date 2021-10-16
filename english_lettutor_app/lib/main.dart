@@ -1,4 +1,7 @@
-import 'package:english_lettutor_app/ui/screen/home_screen.dart';
+import 'package:english_lettutor_app/routes/routes.dart';
+import 'package:english_lettutor_app/ui/screen/sign_up/sign_up_screen.dart';
+import 'package:english_lettutor_app/ui/screen/splash/splash_screen.dart';
+import 'package:english_lettutor_app/utilities/constants/theme.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,12 +16,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'English Lettutor App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const HomeScreen(),
-
+      theme: theme(),
+      home: const SignUpScreen(),
+      routes: routes,
+      initialRoute: SplashScreen.routeName,
     );
   }
 }
-

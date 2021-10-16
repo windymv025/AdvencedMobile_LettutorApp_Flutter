@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class Rating extends StatefulWidget {
-  const Rating({Key? key, required this.onRatingUpdate, required this.rating}) : super(key: key);
+  const Rating({Key? key, required this.onRatingUpdate, required this.rating})
+      : super(key: key);
   final VoidCallback? onRatingUpdate;
   final double rating;
   @override
@@ -27,7 +28,6 @@ class _RatingState extends State<Rating> {
       onRatingUpdate: (rating) {
         widget.onRatingUpdate;
       },
-    );;
+    );
   }
 }
-

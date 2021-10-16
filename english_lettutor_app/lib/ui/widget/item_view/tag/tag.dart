@@ -1,8 +1,12 @@
-import 'package:english_lettutor_app/utilities/styles.dart';
+import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class Tag extends StatefulWidget {
-  const Tag({Key? key, required this.label, this.canPress = false, this.focus = false})
+  const Tag(
+      {Key? key,
+      required this.label,
+      this.canPress = false,
+      this.focus = false})
       : super(key: key);
   final bool canPress;
   final String label;
@@ -13,28 +17,26 @@ class Tag extends StatefulWidget {
 }
 
 class _TagState extends State<Tag> {
-  var _textStyle = Styles.chipStyleOff;
-  var _buttonStyle = Styles.tagButtonStyleOff;
+  var _textStyle = chipStyleOff;
+  var _buttonStyle = tagButtonStyleOff;
   var _isSelected = false;
 
   void onTagPressListener() {
     setState(() {
       if (widget.canPress) {
         _isSelected = !_isSelected;
-        _textStyle = _isSelected ? Styles.chipStyleOn : Styles.chipStyleOff;
-        _buttonStyle =
-            _isSelected ? Styles.tagButtonStyleOn : Styles.tagButtonStyleOff;
+        _textStyle = _isSelected ? chipStyleOn : chipStyleOff;
+        _buttonStyle = _isSelected ? tagButtonStyleOn : tagButtonStyleOff;
       }
-      //TODO
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if(widget.focus){
+    if (widget.focus) {
       _isSelected = true;
-      _textStyle = Styles.chipStyleOn;
-      _buttonStyle = Styles.tagButtonStyleOn;
+      _textStyle = chipStyleOn;
+      _buttonStyle = tagButtonStyleOn;
     }
 
     return Container(
@@ -46,8 +48,8 @@ class _TagState extends State<Tag> {
         ),
         style: _buttonStyle,
       ),
-      padding: const EdgeInsets.all(5),
-      height: 40,
+      padding: const EdgeInsets.only(top: 5, bottom: 5, right: 10),
+      height: 35,
     );
   }
 }

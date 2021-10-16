@@ -1,12 +1,13 @@
+import 'package:english_lettutor_app/ui/screen/home/page/home_page.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/avatar/circle_avatar_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
-import 'package:english_lettutor_app/utilities/constants.dart';
-import 'package:english_lettutor_app/utilities/styles.dart';
+import 'package:english_lettutor_app/utilities/constants/constants.dart';
+import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
-import 'page/home_page.dart';
-
 class HomeScreen extends StatefulWidget {
+  static var routeName = "/home_screen";
+
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -21,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: Colors.white,
-          foregroundColor: Colors.blueAccent,
+          foregroundColor: kMainBlueColor,
           leading: IconButton(
             alignment: AlignmentDirectional.center,
             icon: Expanded(
@@ -38,8 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
               radius: 15,
             )
           ],
-          title: const Center(
-              child: Text("Home", style: Styles.pageNameStyle))),
+          title: const Center(child: Text("Home", style: pageNameStyle))),
       body: const HomePage(),
       bottomNavigationBar: MyBottomNavigation(
           index: _currentPage,

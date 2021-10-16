@@ -1,5 +1,3 @@
-import 'package:english_lettutor_app/ui/widget/item_view/avatar/circle_avatar_button.dart';
-import 'package:english_lettutor_app/utilities/constants.dart';
 import 'package:flutter/material.dart';
 
 class MyListTile extends StatefulWidget {
@@ -24,23 +22,31 @@ class MyListTile extends StatefulWidget {
 class _MyListTileState extends State<MyListTile> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-        onTap: widget.onTap,
-        child: Row(
-          children: [
-            CircleAvatarButton(
-              image: widget.avatar,
-              radius: 50,
-            ),
-            Expanded(
-                child: Column(
-              children: [widget.title, widget.subtitle],
-            )),
-            SizedBox(
-              child: widget.trailing,
-              height: 35,
-            )
-          ],
-        ));
+    return Container(
+      padding: const EdgeInsets.only(top: 15, bottom: 10),
+      child: GestureDetector(
+          onTap: widget.onTap,
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                  backgroundImage: widget.avatar!,
+                  backgroundColor: Colors.white,
+                  radius: 40,
+                ),
+              ),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [widget.title, widget.subtitle],
+              )),
+              Container(
+                child: widget.trailing,
+              ),
+            ],
+          )),
+    );
   }
 }

@@ -1,8 +1,7 @@
+import 'package:english_lettutor_app/ui/screen/home/components/custom_app_bar.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/avatar/circle_avatar_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
+import 'package:english_lettutor_app/utilities/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -15,37 +14,35 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  static const titles = [
+    "Home",
+    "Messenger",
+    "Upcoming",
+    "Teacher",
+    "Settings"
+  ];
+
   int _currentPage = 0;
+  bool _visible = true;
+  String _namePage = titles[0];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.white,
-          foregroundColor: kMainBlueColor,
-          leading: IconButton(
-            alignment: AlignmentDirectional.center,
-            icon: Expanded(
-              child: Image.asset('assets/images/large_logo.png'),
-            ),
-            onPressed: () {
-              setState(() {});
-            },
-          ),
-          actions: const [
-            CircleAvatarButton(
-              image: null,
-              onPressed: null,
-              radius: 15,
-            )
-          ],
-          title: const Center(child: Text("Home", style: pageNameStyle))),
+      appBar:
+          _visible ? CustomAppBar(title: _namePage, imageAvatar: null) : null,
       body: const HomePage(),
       bottomNavigationBar: MyBottomNavigation(
-          index: _currentPage,
+          selectedMenu: MenuState.home,
           onTap: (index) {
             setState(() {
               _currentPage = index;
+              if (index == MenuState.settings.index) {
+                _visible = false;
+              } else {
+                _namePage = titles[index];
+                _visible = true;
+              }
             });
           }),
     );

@@ -48,8 +48,8 @@ class _TagState extends State<Tag> {
         ),
         style: _buttonStyle,
       ),
-      padding: const EdgeInsets.only(top: 5, bottom: 5, right: 10),
-      height: 35,
+      margin: const EdgeInsets.only(top: 5, right: 5),
+      height: 25,
     );
   }
 }

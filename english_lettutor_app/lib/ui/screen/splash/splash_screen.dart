@@ -23,7 +23,7 @@ class SplashScreen extends StatelessWidget {
                 press: () {
                   Navigator.pushNamed(context, SignInScreen.routeName);
                 },
-                text: "Let's Start!!!",
+                text: "Let's Start!",
               ),
             ),
           )

@@ -80,10 +80,9 @@ class _SignInFormState extends State<SignInForm> {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HomeScreen.routeName, (route) => false);
               }
+              Navigator.pushNamedAndRemoveUntil(
+                  context, HomeScreen.routeName, (route) => false);
             },
           ),
         ],

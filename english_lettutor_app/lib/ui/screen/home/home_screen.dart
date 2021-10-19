@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/ui/screen/home/components/custom_app_bar.dart';
-import 'package:english_lettutor_app/ui/screen/home/page/home_page.dart';
+import 'package:english_lettutor_app/ui/screen/home/page/home_page/home_page.dart';
+import 'package:english_lettutor_app/ui/screen/home/page/teacher_page/teacher_page.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
 import 'package:english_lettutor_app/utilities/constants/enums.dart';
 import 'package:flutter/material.dart';
@@ -22,21 +23,42 @@ class _HomeScreenState extends State<HomeScreen> {
     "Settings"
   ];
 
+  // static const Widget homePage = HomePage();
+
   int _currentPage = 0;
   bool _visible = true;
   String _namePage = titles[0];
+
+  Widget page = const HomePage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar:
           _visible ? CustomAppBar(title: _namePage, imageAvatar: null) : null,
-      body: const HomePage(),
+      body: page,
       bottomNavigationBar: MyBottomNavigation(
           selectedMenu: MenuState.home,
           onTap: (index) {
             setState(() {
               _currentPage = index;
+
+              switch (index) {
+                case 0:
+                  page = const HomePage();
+                  break;
+                case 1:
+                  break;
+                case 2:
+                  break;
+                case 3:
+                  page = const TeacherPage();
+                  break;
+                case 4:
+                  break;
+                default:
+              }
+
               if (index == MenuState.settings.index) {
                 _visible = false;
               } else {

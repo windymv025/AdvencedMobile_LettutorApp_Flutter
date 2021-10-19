@@ -6,20 +6,22 @@ import 'constants.dart';
 
 const TextStyle titleStyle = TextStyle(
     color: Colors.black, fontSize: textSizeTitle, fontWeight: FontWeight.w500);
+const TextStyle titleStyleWhite = TextStyle(
+    color: Colors.white, fontSize: textSizeTitle, fontWeight: FontWeight.w500);
 const TextStyle pageNameStyle = TextStyle(
     color: kMainBlueColor,
     fontSize: textSizePageName,
     fontWeight: FontWeight.bold);
 const TextStyle tileCountDownStyle = TextStyle(
-    color: Colors.white, fontSize: textSizeTitle, fontWeight: FontWeight.bold);
+    color: Colors.white,
+    fontSize: textSizePageName,
+    fontWeight: FontWeight.bold);
 
 const chipStyleOn = TextStyle(
-    color: Colors.white, fontSize: textSizeButton, fontWeight: FontWeight.w800);
+    color: Colors.white, fontSize: textSizeTag, fontWeight: FontWeight.w800);
 
 const chipStyleOff = TextStyle(
-    color: kMainBlueColor,
-    fontSize: textSizeButton,
-    fontWeight: FontWeight.w800);
+    color: kMainBlueColor, fontSize: textSizeTag, fontWeight: FontWeight.w800);
 
 final ButtonStyle outlineButtonStyle = ButtonStyle(
     backgroundColor: MaterialStateProperty.all(Colors.white),

@@ -40,4 +40,8 @@ class Assets {
   /// Assets for assetsImagesUserIcon
   /// assets/images/user-icon.png
   static const String assetsImagesUserIcon = "assets/images/user-icon.png";
+
+  /// Assets for assetsImagesWomanReadBook
+  /// assets/images/woman-read_book.png
+  static const String assetsImagesWomanReadBook = "assets/images/woman-read_book.png";
 }

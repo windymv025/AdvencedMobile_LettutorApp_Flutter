@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/ui/screen/home/components/custom_app_bar.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/home_page.dart';
+import 'package:english_lettutor_app/ui/screen/home/page/setting_page/settings_page.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/teacher_page/teacher_page.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
 import 'package:english_lettutor_app/utilities/constants/enums.dart';
@@ -59,7 +60,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     page = dictionaryPage[index]!;
                     break;
                   case 4:
-                    // dictionaryPage[index] = const HomePage();
+                    dictionaryPage[index] = const SettingsPage();
+                    page = dictionaryPage[index]!;
                     break;
                   default:
                 }

@@ -32,44 +32,49 @@ class _WelcomeWithSearchState extends State<WelcomeWithSearch> {
             child: Center(
               child: Container(
                 color: kMainBlueColor,
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                child: (size.height <= kHeightMinDefault ||
+                        size.width <= kWithMinDefault)
+                    ? const SizedBox.square()
+                    : Row(
                         children: [
-                          const Text(
-                            "Welcome to English LetTutor App!",
-                            style: tileCountDownStyle,
-                            softWrap: true,
-                            textAlign: TextAlign.center,
-                          ),
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          ElevatedButton(
-                            style: outlineButtonStyle,
-                            onPressed: () {},
-                            child: const Text(
-                              'Booking now',
-                              style: TextStyle(
-                                  color: Colors.blue, fontSize: textSizeButton),
+                          Expanded(
+                            flex: 3,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const Text(
+                                  "Welcome to English LetTutor App!",
+                                  style: tileCountDownStyle,
+                                  softWrap: true,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                ElevatedButton(
+                                  style: outlineButtonStyle,
+                                  onPressed: () {},
+                                  child: const Text(
+                                    'Booking now',
+                                    style: TextStyle(
+                                        color: Colors.blue,
+                                        fontSize: textSizeButton),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
+                          Expanded(
+                              flex: 2,
+                              child: Container(
+                                margin:
+                                    EdgeInsets.only(top: size.height * 0.01),
+                                child: Image.asset(
+                                    "assets/images/woman-read_book.png"),
+                              ))
                         ],
                       ),
-                    ),
-                    Expanded(
-                        flex: 2,
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 10),
-                          child:
-                              Image.asset("assets/images/woman-read_book.png"),
-                        ))
-                  ],
-                ),
               ),
             ),
           ),

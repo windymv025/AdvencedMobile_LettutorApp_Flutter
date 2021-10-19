@@ -1,8 +1,8 @@
+import 'package:english_lettutor_app/models/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/home/components/custom_grid_view.dart';
-import 'package:english_lettutor_app/ui/screen/home/components/responsive_layout.dart';
-import 'package:english_lettutor_app/ui/widget/item_list/tutor_item.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/search_bar.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
+import 'package:english_lettutor_app/ui/screen/home/components/search_bar_title.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/tag/tag.dart';
+import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -14,104 +14,162 @@ class TeacherPage extends StatefulWidget {
 }
 
 class TeacherPageState extends State<TeacherPage> {
-  final teachers = [
-    const TutorItem(
-      avatar: AssetImage("assets/images/no_data_found.png"),
-      rating: 3,
-      onTap: null,
-      name: "Phạm Minh Vương",
-      description:
-          "Good Teacher asds hdka jhsdk ajdaksj dka jdskj ass kjsa hs kajhd kj sah dakjsd hsa khs sdsjk sdbbajs isuhdsai iusahds ishdians iuahsand auidsk iujsn oisjdn kjand ksabndfsj sandkj sdj",
-      tags: ["English", "ABC", "GTHK"],
-    ),
-    const TutorItem(
-      avatar: AssetImage("assets/images/no_data_found.png"),
-      rating: 5,
-      onTap: null,
-      name:
-          "Phạm Minh Vương widy pro vip strong froc frod product group facevbook manhj me",
-      description:
-          "Good Teacher asds hdka jhsdk ajdaksj dka jdskj ass kjsa hs kajhd kj sah dakjsd hsa khs sdsjk sdbbajs isuhdsai iusahds ishdians iuahsand auidsk iujsn oisjdn kjand ksabndfsj sandkj sdj",
-      tags: ["English", "ABC", "GTHK"],
-    ),
-    const TutorItem(
-      rating: 2,
-      avatar: AssetImage("assets/images/no_data_found.png"),
-      onTap: null,
-      name: "Phạm Minh Vương",
-      description: "Good Teacher asds hdka jhsdk ajdaksj dka jdskj",
-      tags: ["English", "ABC", "GTHK"],
-    ),
-    const TutorItem(
-      rating: 3.5,
-      avatar: AssetImage("assets/images/no_data_found.png"),
-      onTap: null,
-      name: "Phạm Minh Vương",
-      description:
-          "Good Teacher asds hdka jhsdk ajdaksj dka jdskj ass kjsa hs kajhd kj sah dakjsd hsa khs sdsjk sdbbajs isuhdsai iusahds ishdians iuahsand auidsk iujsn oisjdn kjand ksabndfsj sandkj sdj",
-      tags: ["English", "ABC", "GTHK"],
-    ),
-  ];
-
+  final List<Teacher> teachers = [];
   @override
   Widget build(BuildContext context) {
-    int columRatio = 12;
-    return LayoutBuilder(
-      builder: (context, dimens) {
-        if (dimens.maxWidth <= kMobileBreakpoint) {
-          columRatio = 12;
-        } else if (dimens.maxWidth > kMobileBreakpoint &&
-            dimens.maxWidth <= kTabletBreakpoint) {
-          columRatio = 6;
-        } else if (dimens.maxWidth > kTabletBreakpoint &&
-            dimens.maxWidth <= kDesktopBreakPoint) {
-          columRatio = 4;
-        } else {
-          columRatio = 3;
-        }
-        return Column(
-          children: [
-            SizedBox(
-              height: 40,
-              child: Stack(
-                children: [
-                  Container(
-                    padding:
-                        const EdgeInsets.only(left: 25, right: 25, bottom: 20),
-                    height: 40 - 27,
-                    decoration: const BoxDecoration(
-                      color: kMainBlueColor,
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(36),
-                        bottomRight: Radius.circular(36),
-                      ),
-                    ),
-                    child: const SizedBox.shrink(),
-                  ),
-                  Positioned(
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      child: SearchBar(
-                        onIconPressed: () {
-                          setState(() {});
-                        },
-                        onTextChanged: (value) {
-                          setState(() {});
-                        },
-                      )),
-                ],
-              ),
+    Size size = MediaQuery.of(context).size;
+    loadListTeacher();
+    return CustomScrollView(
+      slivers: [
+        // SliverAppBar(
+        //   floating: true,
+        //   snap: true,
+        //   expandedHeight: 120,
+        //   flexibleSpace: FlexibleSpaceBar(
+        //     collapseMode: CollapseMode.none,
+        //     background: SearchBarTitle(
+        //       size: size,
+        //     ),
+        //   ),
+        // ),
+        SliverList(
+            delegate: SliverChildListDelegate([
+          SearchBarTitle(
+            size: size,
+          ),
+          const Padding(
+            padding: EdgeInsets.only(left: 10, top: 10),
+            child: Text(
+              "Find a teacher",
+              style: titleStyle,
             ),
-            Flexible(
-              child: CustomGridView(
-                columnRatio: columRatio,
-                items: teachers,
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 10),
+            child: Wrap(
+              spacing: 5,
+              children: const [
+                Tag(
+                  label: "All",
+                  canPress: true,
+                  focus: true,
+                ),
+                Tag(
+                  label: "English for kids",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "Conversational",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "STARTERS",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "MOVERS",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "FLYERS",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "KET",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "PET",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "IELTS",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "TOEFL",
+                  canPress: true,
+                ),
+                Tag(
+                  label: "TOEIC",
+                  canPress: true,
+                ),
+              ],
             ),
+          )
+        ])),
+        CustomGridView(size: size, items: teachers),
+      ],
+    );
+  }
+
+  loadListTeacher() {
+    //todo
+    teachers.add(
+      Teacher(
+          id: 0,
+          name: "Pham Minh Vuong",
+          uriImage: Assets.assetsImagesNoDataFound,
+          specialties: ["English", "TOEIC"],
+          description:
+              """Hi, I am teacher Nhi. I have been teaching English for 2 years. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with many people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English. As an English teacher, I constantly update my English knowledge to better serve my career and students.""",
+          ratings: 4.5),
+    );
+    teachers.add(
+      Teacher(
+          id: 1,
+          name: "Windy Pham",
+          uriImage: Assets.assetsImagesCloudData,
+          specialties: ["English"],
+          description: "I'm a teacher.",
+          ratings: 3.0),
+    );
+    teachers.add(
+      Teacher(
+          id: 2,
+          name: "nhi lam",
+          uriImage: Assets.assetsImagesUserIcon,
+          specialties: [
+            "English for kids",
+            "Conversational",
+            "English for Business"
           ],
-        );
-      },
+          description:
+              """Hi, I am teacher Nhi. I have been teaching English for 2 years. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with many people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English. As an English teacher, I constantly update my English knowledge to better serve my career and students.""",
+          ratings: 3.5),
+    );
+
+    teachers.add(
+      Teacher(
+          id: 3,
+          name: "Michelle Roque",
+          uriImage: Assets.assetsImagesUserIcon,
+          specialties: ["English", "TOEIC", "English for kids"],
+          description:
+              "I was born in Chester, United Kingdom, but now live in Manila, Philippines. I am a person of varied interests, I love baking, reading, photography and languages. I enjoy teaching English to all ages and levels as I believe it opens the door to global opportunities. I am a fun, talkative person who loves to find out about others cultures and experience.",
+          ratings: 5),
+    );
+
+    teachers.add(
+      Teacher(
+          id: 3,
+          name: "Michelle Roque",
+          uriImage: Assets.assetsImagesLargeLogo,
+          specialties: ["English", "TOEIC", "English for kids"],
+          description:
+              "I was born in Chester, United Kingdom, but now live in Manila, Philippines. I am a person of varied interests, I love baking, reading, photography and languages. I enjoy teaching English to all ages and levels as I believe it opens the door to global opportunities. I am a fun, talkative person who loves to find out about others cultures and experience.",
+          ratings: 5),
+    );
+
+    teachers.add(
+      Teacher(
+          id: 3,
+          name: "Michelle Roque",
+          uriImage: Assets.assetsImagesLargeLogo,
+          specialties: ["English", "TOEIC", "English for kids"],
+          description:
+              "I was born in Chester, United Kingdom, but now live in Manila, Philippines. I am a person of varied interests, I love baking, reading, photography and languages. I enjoy teaching English to all ages and levels as I believe it opens the door to global opportunities. I am a fun, talkative person who loves to find out about others cultures and experience.",
+          ratings: 2),
     );
   }
 }

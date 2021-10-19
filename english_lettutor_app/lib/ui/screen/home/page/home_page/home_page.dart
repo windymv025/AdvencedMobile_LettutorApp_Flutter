@@ -1,9 +1,9 @@
-import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/list_recommended_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/list_your_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/title_and_button.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/welcome_with_search.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
+
+import 'components/list_recommended_teacher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -17,9 +17,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     // int columnRatio = getColumnRatio(size);
-    return SingleChildScrollView(
-      child: Column(
-        children: [
+    return CustomScrollView(
+      slivers: [
+        SliverList(
+            delegate: SliverChildListDelegate([
           // welcome
           WelcomeWithSearch(size: size),
           //your teacher
@@ -34,27 +35,13 @@ class _HomePageState extends State<HomePage> {
             title: "Recommended Teacher",
             textButton: "More",
           ),
-          //gridview
-          const ListRecommendedTeacher(),
-          // const NoDataPage(),
-        ],
-      ),
+          // // const NoDataPage(),
+        ])),
+        //gridview
+        ListRecommendedTeacher(
+          size: size,
+        ),
+      ],
     );
-  }
-
-  int getColumnRatio(Size size) {
-    int columnRatio = 12;
-    if (size.width <= kMobileBreakpoint) {
-      columnRatio = 12;
-    } else if (size.width > kMobileBreakpoint &&
-        size.width <= kTabletBreakpoint) {
-      columnRatio = 6;
-    } else if (size.width > kTabletBreakpoint &&
-        size.width <= kDesktopBreakPoint) {
-      columnRatio = 4;
-    } else {
-      columnRatio = 3;
-    }
-    return columnRatio;
   }
 }

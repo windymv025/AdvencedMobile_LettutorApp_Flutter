@@ -1,12 +1,26 @@
 class Teacher {
-  late int id;
-  late String uriImage;
-  late String name;
-  late String description;
-  late List<String> languages;
-  late String education;
-  late String experience;
-  late List<String> interests;
-  late String profession;
-  late List<String> specialties;
+  int id;
+  String? uriImage;
+  String name;
+  String description;
+  List<String>? languages;
+  String? education;
+  String? experience;
+  List<String>? interests;
+  String? profession;
+  List<String> specialties;
+  double ratings;
+
+  Teacher(
+      {required this.id,
+      required this.name,
+      required this.specialties,
+      this.uriImage,
+      required this.description,
+      this.education,
+      this.experience,
+      this.interests,
+      this.languages,
+      this.profession,
+      this.ratings = 0});
 }

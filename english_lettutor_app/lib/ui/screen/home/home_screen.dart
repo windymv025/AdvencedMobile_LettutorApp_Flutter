@@ -23,13 +23,14 @@ class _HomeScreenState extends State<HomeScreen> {
     "Settings"
   ];
 
+  static Map<int, Widget> dictionaryPage = {0: const HomePage()};
+
   // static const Widget homePage = HomePage();
 
-  int _currentPage = 0;
   bool _visible = true;
   String _namePage = titles[0];
 
-  Widget page = const HomePage();
+  Widget page = dictionaryPage[0] ?? const HomePage();
 
   @override
   Widget build(BuildContext context) {
@@ -41,22 +42,29 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedMenu: MenuState.home,
           onTap: (index) {
             setState(() {
-              _currentPage = index;
-
-              switch (index) {
-                case 0:
-                  page = const HomePage();
-                  break;
-                case 1:
-                  break;
-                case 2:
-                  break;
-                case 3:
-                  page = const TeacherPage();
-                  break;
-                case 4:
-                  break;
-                default:
+              if (!dictionaryPage.containsKey(index)) {
+                switch (index) {
+                  case 0:
+                    dictionaryPage[index] = const HomePage();
+                    page = dictionaryPage[index]!;
+                    break;
+                  case 1:
+                    // dictionaryPage[index] = const HomePage();
+                    break;
+                  case 2:
+                    // dictionaryPage[index] = const HomePage();
+                    break;
+                  case 3:
+                    dictionaryPage[index] = const TeacherPage();
+                    page = dictionaryPage[index]!;
+                    break;
+                  case 4:
+                    // dictionaryPage[index] = const HomePage();
+                    break;
+                  default:
+                }
+              } else {
+                page = dictionaryPage[index]!;
               }
 
               if (index == MenuState.settings.index) {

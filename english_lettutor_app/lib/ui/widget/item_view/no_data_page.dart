@@ -5,10 +5,12 @@ class NoDataPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Expanded(child: Image.asset("assets/images/no_data_found.png")),
-      height: 130,
-      padding: const EdgeInsets.all(10),
+    return Center(
+      child: Container(
+        child: Expanded(child: Image.asset("assets/images/no_data_found.png")),
+        height: 130,
+        padding: const EdgeInsets.all(10),
+      ),
     );
   }
 }

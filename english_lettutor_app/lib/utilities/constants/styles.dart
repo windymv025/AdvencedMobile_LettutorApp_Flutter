@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'constants.dart';
 
 const TextStyle titleStyle = TextStyle(
-    color: Colors.black, fontSize: textSizeTitle, fontWeight: FontWeight.w500);
+    color: Colors.black, fontSize: textSizeTitle, fontWeight: FontWeight.w700);
 const TextStyle titleStyleWhite = TextStyle(
     color: Colors.white, fontSize: textSizeTitle, fontWeight: FontWeight.w500);
 const TextStyle pageNameStyle = TextStyle(

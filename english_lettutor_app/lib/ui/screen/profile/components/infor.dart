@@ -1,18 +1,21 @@
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class Info extends StatelessWidget {
-  const Info({
-    Key? key,
-    required this.name,
-    required this.email,
-    required this.image,
-  }) : super(key: key);
+class Infor extends StatelessWidget {
+  const Infor(
+      {Key? key,
+      required this.name,
+      required this.email,
+      required this.image,
+      required this.defaultSize,
+      this.onTap})
+      : super(key: key);
   final String name, email, image;
+  final double defaultSize;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    double defaultSize = 10;
     // double defaultSize = size.height * 0.25;
     return SizedBox(
       height: defaultSize * 24, // 240
@@ -21,7 +24,7 @@ class Info extends StatelessWidget {
           ClipPath(
             clipper: CustomShape(),
             child: Container(
-              height: defaultSize * 15, //150
+              height: defaultSize * 17, //150
               color: kMainBlueColor,
             ),
           ),
@@ -29,19 +32,22 @@ class Info extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(bottom: defaultSize), //10
-                  height: defaultSize * 14, //140
-                  width: defaultSize * 14,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: Colors.white,
-                      width: defaultSize * 0.8, //8
-                    ),
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(image),
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    margin: EdgeInsets.only(bottom: defaultSize), //10
+                    height: defaultSize * 14, //140
+                    width: defaultSize * 14,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Colors.white,
+                        width: defaultSize * 0.8, //8
+                      ),
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(image),
+                      ),
                     ),
                   ),
                 ),

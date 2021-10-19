@@ -1,9 +1,12 @@
 import 'package:english_lettutor_app/ui/screen/home/components/custom_app_bar.dart';
+import 'package:english_lettutor_app/ui/screen/home/drawer/my_drawer.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/home_page.dart';
-import 'package:english_lettutor_app/ui/screen/home/page/setting_page/settings_page.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/teacher_page/teacher_page.dart';
+import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/my_bottom_bar.dart';
+import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:english_lettutor_app/utilities/constants/enums.dart';
+import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -28,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // static const Widget homePage = HomePage();
 
-  bool _visible = true;
   String _namePage = titles[0];
 
   Widget page = dictionaryPage[0] ?? const HomePage();
@@ -36,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:
-          _visible ? CustomAppBar(title: _namePage, imageAvatar: null) : null,
+      appBar: CustomAppBar(title: _namePage, imageAvatar: null),
+      drawer: const MyDrawer(),
       body: page,
       bottomNavigationBar: MyBottomNavigation(
           selectedMenu: MenuState.home,
@@ -60,20 +62,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     page = dictionaryPage[index]!;
                     break;
                   case 4:
-                    dictionaryPage[index] = const SettingsPage();
-                    page = dictionaryPage[index]!;
+                    // dictionaryPage[index] = const SettingsPage();
+                    // page = dictionaryPage[index]!;
                     break;
                   default:
                 }
               } else {
                 page = dictionaryPage[index]!;
-              }
-
-              if (index == MenuState.settings.index) {
-                _visible = false;
-              } else {
-                _namePage = titles[index];
-                _visible = true;
               }
             });
           }),

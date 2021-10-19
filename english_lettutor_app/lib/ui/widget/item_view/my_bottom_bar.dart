@@ -39,12 +39,12 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
           color: Colors.white,
         ),
         Icon(
-          Icons.book_rounded,
+          Icons.people_alt_rounded,
           size: 30,
           color: Colors.white,
         ),
         Icon(
-          Icons.settings_rounded,
+          Icons.book_rounded,
           size: 30,
           color: Colors.white,
         ),

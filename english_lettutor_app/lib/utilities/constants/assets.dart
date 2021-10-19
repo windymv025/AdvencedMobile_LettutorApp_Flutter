@@ -13,6 +13,10 @@ class Assets {
   /// assets/icons/google-icon.svg
   static const String assetsIconsGoogleIcon = "assets/icons/google-icon.svg";
 
+  /// Assets for assetsIconsTeacher
+  /// assets/icons/teacher.svg
+  static const String assetsIconsTeacher = "assets/icons/teacher.svg";
+
   /// Assets for assetsImagesCloudData
   /// assets/images/cloud-data.png
   static const String assetsImagesCloudData = "assets/images/cloud-data.png";

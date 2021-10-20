@@ -29,10 +29,10 @@ class CustomGridView extends StatelessWidget {
               child: TutorItem(
                   avatar: AssetImage(items![index].uriImage!),
                   onTap: null,
-                  name: items![index].name,
-                  description: items![index].description,
+                  name: items![index].name!,
+                  description: items![index].description!,
                   tags: items![index].specialties,
-                  rating: items![index].ratings),
+                  rating: items![index].ratings!),
             ),
         itemCount: items!.length);
   }

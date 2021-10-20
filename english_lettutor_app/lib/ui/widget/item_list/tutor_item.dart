@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/rating.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/tag/tag.dart';
@@ -72,7 +73,10 @@ class _TutorItemState extends State<TutorItem> {
               // color: kCardColor,
               color: Colors.white,
               avatar: widget.avatar,
-              onTap: widget.onTap,
+              onTap: () {
+                Navigator.pushNamed(context, TeacherDetailScreen.routeName);
+              },
+              // onTap: widget.onTap,
               title: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -108,7 +112,7 @@ class _TutorItemState extends State<TutorItem> {
                 widget.description,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 4,
-                textAlign: TextAlign.justify,
+                // textAlign: TextAlign.justify,
                 style:
                     const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ),

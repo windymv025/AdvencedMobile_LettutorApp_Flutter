@@ -1,5 +1,7 @@
+import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/title_and_button.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/welcome_with_search.dart';
+import 'package:english_lettutor_app/ui/screen/teachers/teachers_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'components/list_recommended_teacher.dart';
@@ -25,7 +27,9 @@ class _HomePageState extends State<HomePage> {
           WelcomeWithSearch(size: size),
           //your teacher
           TitleAndButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, CoursesScreen.routeName);
+            },
             title: "Recommended Course",
             textButton: "More",
           ),
@@ -33,7 +37,9 @@ class _HomePageState extends State<HomePage> {
           const RecommendedCourse(),
           // see all
           TitleAndButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, TeachersScreen.routeName);
+            },
             title: "Recommended Teacher",
             textButton: "More",
           ),

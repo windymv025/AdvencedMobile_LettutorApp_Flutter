@@ -21,17 +21,6 @@ class TeacherPageState extends State<TeacherPage> {
     loadListTeacher();
     return CustomScrollView(
       slivers: [
-        // SliverAppBar(
-        //   floating: true,
-        //   snap: true,
-        //   expandedHeight: 120,
-        //   flexibleSpace: FlexibleSpaceBar(
-        //     collapseMode: CollapseMode.none,
-        //     background: SearchBarTitle(
-        //       size: size,
-        //     ),
-        //   ),
-        // ),
         SliverList(
             delegate: SliverChildListDelegate([
           SearchBarTitle(

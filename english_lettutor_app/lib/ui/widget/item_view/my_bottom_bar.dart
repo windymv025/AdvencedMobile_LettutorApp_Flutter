@@ -1,14 +1,15 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';
+import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
+import 'package:english_lettutor_app/ui/screen/teachers/teachers_screen.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:english_lettutor_app/utilities/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 class MyBottomNavigation extends StatefulWidget {
-  const MyBottomNavigation(
-      {Key? key, required this.selectedMenu, required this.onTap})
+  const MyBottomNavigation({Key? key, required this.selectedMenu})
       : super(key: key);
   final MenuState selectedMenu;
-  final ValueChanged<int>? onTap;
   @override
   _MyBottomNavigationState createState() => _MyBottomNavigationState();
 }
@@ -21,7 +22,24 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
       height: 64,
       color: kMainBlueColor,
       backgroundColor: Colors.white,
-      onTap: widget.onTap,
+      onTap: (index) {
+        switch (index) {
+          case 0:
+            Navigator.pushNamed(context, HomeScreen.routeName);
+            break;
+          case 1:
+            break;
+          case 2:
+            break;
+          case 3:
+            Navigator.pushNamed(context, TeachersScreen.routeName);
+            break;
+          case 4:
+            Navigator.pushNamed(context, CoursesScreen.routeName);
+            break;
+          default:
+        }
+      },
       items: const [
         Icon(
           Icons.home_rounded,
@@ -52,39 +70,3 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
     );
   }
 }
-
-// class _MyBottomNavigationState_v1 extends State<MyBottomNavigation> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return BottomNavigationBar(
-//       currentIndex: widget.selectedMenu.index,
-//       fixedColor: Colors.blueAccent,
-//       selectedFontSize: 12,
-//       unselectedFontSize: 10,
-//       type: BottomNavigationBarType.fixed,
-//       items: const [
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.home_rounded),
-//           label: "Home",
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.message_rounded),
-//           label: "Message",
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.av_timer_rounded),
-//           label: "Upcoming",
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.book_rounded),
-//           label: "Tutors",
-//         ),
-//         BottomNavigationBarItem(
-//           icon: Icon(Icons.settings),
-//           label: "Settings",
-//         ),
-//       ],
-//       onTap: widget.onTap,
-//     );
-//   }
-// }

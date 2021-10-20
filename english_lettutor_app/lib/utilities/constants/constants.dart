@@ -29,3 +29,15 @@ const kDesktopBreakPoint = 1366;
 
 const kWithMinDefault = 315;
 const kHeightMinDefault = 540;
+
+const kLevels = [
+  "Beginner",
+  "Higher Beginner",
+  "Pre-Intermediate",
+  "Intermediate",
+  "Upper-intermediate",
+  "Advanced",
+  "Proficiency"
+];
+
+const kCountries = ["Viet Nam", "Uzbekistan", "United States of America"];

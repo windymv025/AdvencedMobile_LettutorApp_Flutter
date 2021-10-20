@@ -2,11 +2,15 @@ import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class TitleAndButton extends StatelessWidget {
-  const TitleAndButton(
-      {Key? key, required this.title, required this.textButton})
-      : super(key: key);
+  const TitleAndButton({
+    Key? key,
+    required this.title,
+    required this.textButton,
+    required this.onPressed,
+  }) : super(key: key);
   final String title;
   final String textButton;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class TitleAndButton extends StatelessWidget {
             SizedBox(
               height: 30,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: onPressed,
                   child: Text(
                     textButton,
                     style: const TextStyle(

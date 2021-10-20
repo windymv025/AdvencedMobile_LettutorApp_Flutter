@@ -1,5 +1,4 @@
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class SettingsButton extends StatelessWidget {

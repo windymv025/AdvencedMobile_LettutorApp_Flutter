@@ -32,6 +32,11 @@ InputDecorationTheme inputDecorationTheme() {
     borderSide: const BorderSide(color: Colors.red),
     gapPadding: 10,
   );
+  OutlineInputBorder disabledOutlineInputBorder = OutlineInputBorder(
+    borderRadius: BorderRadius.circular(28),
+    borderSide: const BorderSide(color: Colors.grey),
+    gapPadding: 10,
+  );
   return InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 40,
@@ -39,6 +44,7 @@ InputDecorationTheme inputDecorationTheme() {
       ),
       enabledBorder: outlineInputBorder,
       errorBorder: errorOutlineInputBorder,
+      disabledBorder: disabledOutlineInputBorder,
       focusedErrorBorder: errorOutlineInputBorder,
       focusedBorder: outlineInputBorder,
       focusColor: kMainBlueColor);

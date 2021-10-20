@@ -1,9 +1,9 @@
-import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/list_your_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/title_and_button.dart';
 import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/welcome_with_search.dart';
 import 'package:flutter/material.dart';
 
 import 'components/list_recommended_teacher.dart';
+import 'components/recommended_courses.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,14 +24,16 @@ class _HomePageState extends State<HomePage> {
           // welcome
           WelcomeWithSearch(size: size),
           //your teacher
-          const TitleAndButton(
-            title: "Your Teacher",
+          TitleAndButton(
+            onPressed: () {},
+            title: "Recommended Course",
             textButton: "More",
           ),
           //listView
-          const ListYourTeacher(),
+          const RecommendedCourse(),
           // see all
-          const TitleAndButton(
+          TitleAndButton(
+            onPressed: () {},
             title: "Recommended Teacher",
             textButton: "More",
           ),

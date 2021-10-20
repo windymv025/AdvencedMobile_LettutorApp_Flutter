@@ -1,10 +1,11 @@
-import 'package:english_lettutor_app/ui/screen/home/drawer/settings_button.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
 import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import 'settings_button.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class MyDrawer extends StatelessWidget {
           ),
           Infor(
               onTap: () =>
-                  Navigator.pushNamed(context, ProfileScreen.routeName),
+                  Navigator.popAndPushNamed(context, ProfileScreen.routeName),
               defaultSize: 10,
               name: "Pham Minh Vuong",
               email: "windymv@gmail.com",

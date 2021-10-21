@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
 import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
@@ -21,4 +22,5 @@ final Map<String, WidgetBuilder> routes = {
   CoursesScreen.routeName: (context) => const CoursesScreen(),
   TeachersScreen.routeName: (context) => const TeachersScreen(),
   TeacherDetailScreen.routeName: (context) => const TeacherDetailScreen(),
+  CourseDetailScreen.routeName: (context) => const CourseDetailScreen(),
 };

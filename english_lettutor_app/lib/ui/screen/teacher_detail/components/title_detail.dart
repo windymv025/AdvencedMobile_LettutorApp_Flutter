@@ -2,8 +2,11 @@ import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class TitleDetail extends StatelessWidget {
-  const TitleDetail({Key? key, required this.title}) : super(key: key);
+  const TitleDetail(
+      {Key? key, required this.title, this.textStyle = titleStyle})
+      : super(key: key);
   final String title;
+  final TextStyle textStyle;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,10 +16,11 @@ class TitleDetail extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Text(
-            title,
-            style: titleBlueStyle,
-          ),
+          Text(title,
+              style: textStyle,
+              overflow: TextOverflow.clip,
+              softWrap: true,
+              textAlign: TextAlign.justify),
         ],
       ),
     );

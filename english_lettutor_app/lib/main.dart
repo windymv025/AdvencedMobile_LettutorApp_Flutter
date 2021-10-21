@@ -1,5 +1,5 @@
 import 'package:english_lettutor_app/routes/routes.dart';
-import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
+import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/screen/splash/splash_screen.dart';
 import 'package:english_lettutor_app/utilities/constants/theme.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'English Lettutor App',
       theme: theme(),
-      // home: const HomeScreen(),
+      home: const SignInScreen(),
       routes: routes,
       initialRoute: SplashScreen.routeName,
     );

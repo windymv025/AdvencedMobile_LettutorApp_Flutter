@@ -57,69 +57,71 @@ class _TutorItemState extends State<TutorItem> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            color: kPrimaryColor.withOpacity(0.25),
-          ),
-        ],
-      ),
-      child: Card(
-        child: Column(
-          children: [
-            MyListTile(
-              // color: kCardColor,
-              color: Colors.white,
-              avatar: widget.avatar,
-              onTap: () {
-                Navigator.pushNamed(context, TeacherDetailScreen.routeName);
-              },
-              // onTap: widget.onTap,
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.name,
-                    style: titleStyle,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  Rating(
-                    rating: widget.rating,
-                    onRatingUpdate: () {},
-                  ),
-                ],
-              ),
-              subtitle: Wrap(
-                children: generateListTags(),
-              ),
-              trailing: IconButton(
-                icon: _icon,
-                onPressed: onFavoriteClick,
-                iconSize: 30,
-              ),
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, TeacherDetailScreen.routeName);
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 5,
+              color: kPrimaryColor.withOpacity(0.25),
             ),
-            const Divider(
-              endIndent: 5,
-              indent: 5,
-              height: 3,
-              color: kPrimaryColor,
-            ),
-            Container(
-              child: Text(
-                widget.description,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 4,
-                // textAlign: TextAlign.justify,
-                style:
-                    const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-              ),
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 5, bottom: 15),
-            )
           ],
+        ),
+        child: Card(
+          child: Column(
+            children: [
+              MyListTile(
+                // color: kCardColor,
+                color: Colors.white,
+                avatar: widget.avatar,
+                onTap: widget.onTap,
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      widget.name,
+                      style: titleStyle,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    Rating(
+                      rating: widget.rating,
+                      onRatingUpdate: () {},
+                    ),
+                  ],
+                ),
+                subtitle: Wrap(
+                  children: generateListTags(),
+                ),
+                trailing: IconButton(
+                  icon: _icon,
+                  onPressed: onFavoriteClick,
+                  iconSize: 30,
+                ),
+              ),
+              const Divider(
+                endIndent: 5,
+                indent: 5,
+                height: 3,
+                color: kPrimaryColor,
+              ),
+              Container(
+                child: Text(
+                  widget.description,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 4,
+                  // textAlign: TextAlign.justify,
+                  style: const TextStyle(
+                      fontSize: 14, fontWeight: FontWeight.w400),
+                ),
+                padding: const EdgeInsets.only(
+                    left: 20, right: 20, top: 5, bottom: 15),
+              )
+            ],
+          ),
         ),
       ),
     );

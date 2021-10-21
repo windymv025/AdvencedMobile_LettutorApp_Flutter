@@ -1,6 +1,6 @@
 import 'package:english_lettutor_app/routes/routes.dart';
+import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/screen/splash/splash_screen.dart';
-import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/utilities/constants/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'English Lettutor App',
       theme: theme(),
-      home: const TeacherDetailScreen(),
+      home: const HomeScreen(),
       routes: routes,
       initialRoute: SplashScreen.routeName,
     );

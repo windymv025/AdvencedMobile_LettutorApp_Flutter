@@ -32,7 +32,7 @@ class Infor extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
-                GestureDetector(
+                InkWell(
                   onTap: onTap,
                   child: Container(
                     margin: EdgeInsets.only(bottom: defaultSize), //10

@@ -32,15 +32,14 @@ class _InforAndChangeImageState extends State<InforAndChangeImage> {
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GestureDetector(
-                onTap: widget.onTap,
-                child: Container(
-                  margin: const EdgeInsets.fromLTRB(100, 140, 0, 0),
-                  padding: const EdgeInsets.all(3),
-                  decoration: const BoxDecoration(
-                      shape: BoxShape.circle, color: Colors.white),
-                  child: const Icon(Icons.camera_alt_rounded),
-                ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(100, 140, 0, 0),
+                padding: const EdgeInsets.all(3),
+                decoration: const BoxDecoration(
+                    shape: BoxShape.circle, color: Colors.white),
+                child: InkWell(
+                    onTap: widget.onTap,
+                    child: const Icon(Icons.camera_alt_rounded)),
               )
             ],
           ),

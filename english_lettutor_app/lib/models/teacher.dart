@@ -16,6 +16,7 @@ class Teacher {
   List<String>? specialties;
   double? ratings;
   List<RatingComment>? ratingComments;
+  List<DateTime>? freeDate;
 
   Teacher(
       {required this.id,
@@ -28,6 +29,7 @@ class Teacher {
       this.interests,
       this.languages,
       this.profession,
+      this.freeDate,
       this.ratings = 0});
 
   Teacher.getDefault() {
@@ -61,6 +63,14 @@ class Teacher {
       RatingComment.getDefault(),
       RatingComment.getDefault(),
       RatingComment.getDefault()
+    ];
+
+    freeDate = [
+      DateTime.now(),
+      DateTime.now(),
+      DateTime.utc(2021, 10, 25),
+      DateTime(2021),
+      DateTime(2020)
     ];
   }
 }

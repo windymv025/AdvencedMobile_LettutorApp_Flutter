@@ -1,8 +1,8 @@
 import 'package:english_lettutor_app/models/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/dialog/report_button.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/bottom_sheet.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
 import 'package:flutter/material.dart';
 
 class TeacherDetailAction extends StatelessWidget {
@@ -18,7 +18,9 @@ class TeacherDetailAction extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: DefaultButton(
             text: "Booking",
-            press: () {},
+            press: () {
+              showDateTimeBottomSheet(context, teacher.freeDate);
+            },
           ),
         ),
         const SizedBox(
@@ -27,6 +29,7 @@ class TeacherDetailAction extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            //Messager
             IconButton(
                 iconSize: 35,
                 onPressed: () {},
@@ -43,16 +46,5 @@ class TeacherDetailAction extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  showDialogReport(BuildContext context) {
-    return showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-              title: Text(
-                "Report ${teacher.name}",
-                style: titleStyle,
-              ),
-            ));
   }
 }

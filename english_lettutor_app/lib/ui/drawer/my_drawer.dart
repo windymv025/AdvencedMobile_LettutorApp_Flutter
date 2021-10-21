@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
+import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
@@ -55,7 +56,10 @@ class MyDrawer extends StatelessWidget {
               ),
               title: "Language"),
           SettingsButton(
-              onPress: () {},
+              onPress: () {
+                Navigator.restorablePopAndPushNamed(
+                    context, SignInScreen.routeName);
+              },
               icon: const Icon(
                 Icons.logout_rounded,
                 color: kMainBlueColor,

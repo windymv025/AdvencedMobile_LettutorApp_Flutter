@@ -36,14 +36,15 @@ final ButtonStyle outlineButtonStyle = ButtonStyle(
         }
         if (states.contains(MaterialState.focused) ||
             states.contains(MaterialState.pressed)) {
-          return Colors.blue.withOpacity(0.12);
+          return kMainBlueColor.withOpacity(0.12);
         }
         return null; // Defer to the widget's default.
       },
     ),
-    foregroundColor: MaterialStateProperty.all(Colors.blue),
-    shape: MaterialStateProperty.all(
-        RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))));
+    foregroundColor: MaterialStateProperty.all(kMainBlueColor),
+    shape: MaterialStateProperty.all(RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(18),
+    )));
 
 final textButtonStyle =
     TextButton.styleFrom(textStyle: const TextStyle(fontSize: textSizeButton));

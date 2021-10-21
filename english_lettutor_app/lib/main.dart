@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'English Lettutor App',
       theme: theme(),
-      home: const HomeScreen(),
+      // home: const HomeScreen(),
       routes: routes,
       initialRoute: SplashScreen.routeName,
     );

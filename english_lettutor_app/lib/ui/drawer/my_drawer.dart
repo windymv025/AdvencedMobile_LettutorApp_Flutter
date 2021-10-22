@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
@@ -45,7 +46,10 @@ class MyDrawer extends StatelessWidget {
               ),
               title: "Schedule history"),
           SettingsButton(
-              onPress: () {},
+              onPress: () {
+                Navigator.popAndPushNamed(
+                    context, BecomeTeacherScreen.routeName);
+              },
               icon: SvgPicture.asset(
                 Assets.assetsIconsTeacher,
                 color: kMainBlueColor,

@@ -33,6 +33,10 @@ class Assets {
   /// assets/images/no_data_found.png
   static const String assetsImagesNoDataFound = "assets/images/no_data_found.png";
 
+  /// Assets for assetsImagesStep1
+  /// assets/images/step1.png
+  static const String assetsImagesStep1 = "assets/images/step1.png";
+
   /// Assets for assetsImagesTextLogo
   /// assets/images/text_logo.png
   static const String assetsImagesTextLogo = "assets/images/text_logo.png";

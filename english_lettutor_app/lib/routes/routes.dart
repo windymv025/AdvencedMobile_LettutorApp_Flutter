@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
 import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
@@ -29,4 +30,5 @@ final Map<String, WidgetBuilder> routes = {
   ScheduleScreen.routeName: (context) => const ScheduleScreen(),
   SettingLanguageScreen.routeName: (context) => const SettingLanguageScreen(),
   ScheduleHistoryScreen.routeName: (context) => const ScheduleHistoryScreen(),
+  BecomeTeacherScreen.routeName: (context) => const BecomeTeacherScreen(),
 };

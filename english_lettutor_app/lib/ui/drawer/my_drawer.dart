@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
 import 'package:english_lettutor_app/ui/screen/settings_language/setting_language_screen.dart';
@@ -34,7 +35,10 @@ class MyDrawer extends StatelessWidget {
             height: 25,
           ),
           SettingsButton(
-              onPress: () {},
+              onPress: () {
+                Navigator.popAndPushNamed(
+                    context, ScheduleHistoryScreen.routeName);
+              },
               icon: const Icon(
                 Icons.history_edu_rounded,
                 color: kMainBlueColor,

@@ -29,11 +29,17 @@ class CourseDetailBody extends StatelessWidget {
             textStyle: pageNameStyle,
           ),
 
-          Row(
-            children: const [
-              Icon(Icons.help_rounded),
-              TitleDetail(title: "Why take this course?"),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: const [
+                Icon(
+                  Icons.help_rounded,
+                  color: Colors.red,
+                ),
+                TitleDetail(title: "Why take this course?"),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -43,11 +49,14 @@ class CourseDetailBody extends StatelessWidget {
                 textAlign: TextAlign.justify),
           ),
 
-          Row(
-            children: const [
-              Icon(Icons.help_rounded),
-              TitleDetail(title: "What will you be able to do?"),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: const [
+                Icon(Icons.help_rounded, color: Colors.red),
+                TitleDetail(title: "What will you be able to do?"),
+              ],
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -61,28 +70,42 @@ class CourseDetailBody extends StatelessWidget {
             title: "Experience Level",
             textStyle: pageNameStyle,
           ),
-          Row(
-            children: [
-              const Icon(Icons.people_alt_rounded),
-              Text(course.level!,
-                  overflow: TextOverflow.clip,
-                  softWrap: true,
-                  textAlign: TextAlign.justify),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: [
+                const Icon(Icons.people_alt_rounded, color: Colors.deepOrange),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(course.level!,
+                    style: titleStyle,
+                    overflow: TextOverflow.clip,
+                    softWrap: true,
+                    textAlign: TextAlign.justify),
+              ],
+            ),
           ),
 
           const TitleDetail(
             title: "Course Length",
             textStyle: pageNameStyle,
           ),
-          Row(
-            children: [
-              const Icon(Icons.book_rounded),
-              Text(course.lessons.toString(),
-                  overflow: TextOverflow.clip,
-                  softWrap: true,
-                  textAlign: TextAlign.justify),
-            ],
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Row(
+              children: [
+                const Icon(Icons.book_rounded, color: Colors.deepOrange),
+                const SizedBox(
+                  width: 5,
+                ),
+                Text(course.lessons.toString(),
+                    style: titleStyle,
+                    overflow: TextOverflow.clip,
+                    softWrap: true,
+                    textAlign: TextAlign.justify),
+              ],
+            ),
           ),
 
           const TitleDetail(

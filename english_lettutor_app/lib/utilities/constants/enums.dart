@@ -1,1 +1,1 @@
-enum MenuState { home, messenger, upcoming, teacher, course }
+enum MenuState { home, messenger, schedule, teacher, course }

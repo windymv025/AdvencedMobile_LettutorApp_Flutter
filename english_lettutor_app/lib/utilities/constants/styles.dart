@@ -21,6 +21,9 @@ const TextStyle tileCountDownStyle = TextStyle(
     fontSize: textSizePageName,
     fontWeight: FontWeight.bold);
 
+const TextStyle subTileCountDownStyle = TextStyle(
+    color: Colors.white, fontSize: textSizeTitle, fontWeight: FontWeight.bold);
+
 const chipStyleOn = TextStyle(
     color: Colors.white, fontSize: textSizeTag, fontWeight: FontWeight.w800);
 
@@ -104,3 +107,36 @@ final defaultButtonStyle = ButtonStyle(
     foregroundColor: MaterialStateProperty.all(kPrimaryColor),
     shape: MaterialStateProperty.all(
         RoundedRectangleBorder(borderRadius: BorderRadius.circular(18))));
+
+final defaultColorButtonStyle = ButtonStyle(
+  backgroundColor: MaterialStateProperty.all(kPrimaryColor),
+  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.hovered)) {
+        return Colors.white.withOpacity(0.04);
+      }
+      if (states.contains(MaterialState.focused) ||
+          states.contains(MaterialState.pressed)) {
+        return Colors.white.withOpacity(0.12);
+      }
+      return null; // Defer to the widget's default.
+    },
+  ),
+  foregroundColor: MaterialStateProperty.all(Colors.white),
+);
+
+final ButtonStyle outlineColorButtonStyle = ButtonStyle(
+  backgroundColor: MaterialStateProperty.all(Colors.white),
+  overlayColor: MaterialStateProperty.resolveWith<Color?>(
+    (Set<MaterialState> states) {
+      if (states.contains(MaterialState.hovered)) {
+        return Colors.blue.withOpacity(0.04);
+      }
+      if (states.contains(MaterialState.focused) ||
+          states.contains(MaterialState.pressed)) {
+        return Colors.blue.withOpacity(0.12);
+      }
+      return null; // Defer to the widget's default.
+    },
+  ),
+);

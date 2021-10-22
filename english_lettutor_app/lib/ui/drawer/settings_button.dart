@@ -16,8 +16,8 @@ class SettingsButton extends StatelessWidget {
       onTap: onPress,
       child: Container(
         color: kMainBlueColor.withOpacity(0.05),
-        padding: EdgeInsets.symmetric(
-            horizontal: defaultSize * 2, vertical: defaultSize * 1.5),
+        padding: EdgeInsets.fromLTRB(
+            defaultSize * 2, defaultSize, defaultSize * 2, defaultSize),
         child: SafeArea(
           child: Row(
             children: <Widget>[

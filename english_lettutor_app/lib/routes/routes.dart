@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
 import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';

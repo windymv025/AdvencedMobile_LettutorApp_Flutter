@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/models/schedule.dart';
 import 'package:english_lettutor_app/ui/screen/home/components/search_bar_title.dart';
+import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
 import 'package:english_lettutor_app/ui/screen/schedule/components/custom_gridview_schedule.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:english_lettutor_app/utilities/design/styles.dart';
@@ -36,6 +37,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                   "Total lesson time is $hours hours $minutes minutes",
                   style: tileCountDownStyle,
                   overflow: TextOverflow.clip,
+                  textAlign: TextAlign.center,
                 ),
                 const SizedBox(
                   height: 10,
@@ -73,7 +75,9 @@ class _ScheduleBodyState extends State<ScheduleBody> {
                 ),
                 ElevatedButton(
                   style: outlineButtonStyle,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context, LessonScreen.routeName);
+                  },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Wrap(

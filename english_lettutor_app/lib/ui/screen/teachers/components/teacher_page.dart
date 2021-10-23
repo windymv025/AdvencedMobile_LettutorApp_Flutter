@@ -1,9 +1,9 @@
 import 'package:english_lettutor_app/models/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/home/components/custom_grid_view.dart';
 import 'package:english_lettutor_app/ui/screen/home/components/search_bar_title.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/tag/tag.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/components/tag.dart';
 import 'package:english_lettutor_app/utilities/constants/assets.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
+import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class TeacherPage extends StatefulWidget {

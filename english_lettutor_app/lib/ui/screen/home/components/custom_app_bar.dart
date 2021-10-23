@@ -1,5 +1,5 @@
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/avatar/circle_avatar_button.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/button/circle_avatar_button.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 

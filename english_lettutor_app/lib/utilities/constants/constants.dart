@@ -41,3 +41,18 @@ const kLevels = [
 ];
 
 const kCountries = ["Viet Nam", "Uzbekistan", "United States of America"];
+
+const String sep1Content =
+    """Your tutor profile is your chance to market yourself to students on Tutoring. You can make edits later on your profile settings page.
+
+New students may browse tutor profiles to find a tutor that fits their learning goals and personality. Returning students may use the tutor profiles to find tutors they've had great experiences with already.""";
+
+const String step2Content =
+    "Let students know what they can expect from a lesson with you by recording a video highlighting your teaching style, expertise and personality. Students can be nervous to speak with a foreigner, so it really helps to have a friendly video that introduces yourself and invites students to call you.";
+
+const String videoTips = """A few helpful tips:
+1. Find a clean and quiet space
+2. Smile and look at the camera
+3. Dress smart
+4. Speak for 1-3 minutes
+5. Brand yourself and have fun!""";

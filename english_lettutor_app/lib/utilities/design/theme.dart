@@ -1,7 +1,6 @@
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
+import 'package:english_lettutor_app/utilities/constants/constants.dart';
+import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
-
-import 'constants.dart';
 
 ThemeData theme() {
   return ThemeData(
@@ -40,7 +39,7 @@ InputDecorationTheme inputDecorationTheme() {
   return InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(
         horizontal: 40,
-        vertical: 0,
+        vertical: 20,
       ),
       enabledBorder: outlineInputBorder,
       errorBorder: errorOutlineInputBorder,

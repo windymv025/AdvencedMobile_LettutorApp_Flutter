@@ -1,5 +1,5 @@
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/tag/tag.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/components/tag.dart';
 import 'package:flutter/material.dart';
 
 class TitleAndTags extends StatelessWidget {

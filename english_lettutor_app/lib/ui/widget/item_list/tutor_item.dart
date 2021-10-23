@@ -1,9 +1,9 @@
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/rating.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/tag/tag.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/components/tag.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
+import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class TutorItem extends StatefulWidget {

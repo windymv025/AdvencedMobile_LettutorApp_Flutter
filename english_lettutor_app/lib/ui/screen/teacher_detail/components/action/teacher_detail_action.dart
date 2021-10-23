@@ -1,7 +1,7 @@
 import 'package:english_lettutor_app/models/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/dialog/report_button.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/bottom_sheet.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/components/bottom_sheet.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,8 @@
-import 'package:english_lettutor_app/ui/screen/become_teacher/components/step1_page.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1_page.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step2_page.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step3_page.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
+import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class BecomeTeacherBody extends StatefulWidget {
@@ -16,6 +19,39 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
   Widget build(BuildContext context) {
     return Stepper(
       currentStep: _index,
+      controlsBuilder: (context, {onStepCancel, onStepContinue}) {
+        return Row(
+          mainAxisAlignment:
+              (_index == 2) ? MainAxisAlignment.center : MainAxisAlignment.end,
+          children: [
+            (_index == 2)
+                ? const SizedBox.shrink()
+                : SizedBox(
+                    width: 100,
+                    child: OutlinedButton(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: Text(_index == 0 ? "Cancel" : "Back"),
+                      ),
+                      style: outlineButtonStyle,
+                      onPressed: onStepCancel,
+                    )),
+            SizedBox(
+                width: 100,
+                child: DefaultButton(
+                  press: onStepContinue,
+                  text: _index < 2 ? "Continue" : "Finish",
+                )),
+          ],
+        );
+      },
+      onStepTapped: (index) {
+        if (index < _index) {
+          setState(() {
+            _index = index;
+          });
+        }
+      },
       onStepCancel: () {
         if (_index > 0) {
           setState(() {
@@ -36,25 +72,28 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
       },
       steps: [
         Step(
+          isActive: _index >= 0,
           title: const Text(
             "Complete profile",
             style: titleStyle,
           ),
-          content: Step1Page(),
+          content: const Step1Page(),
         ),
         Step(
+          isActive: _index >= 1,
           title: const Text(
             "Video introduction",
             style: titleStyle,
           ),
-          content: Container(),
+          content: const Step2Page(),
         ),
         Step(
+          isActive: _index >= 2,
           title: const Text(
             "Approval",
             style: titleStyle,
           ),
-          content: Container(),
+          content: const Step3Page(),
         ),
       ],
     );

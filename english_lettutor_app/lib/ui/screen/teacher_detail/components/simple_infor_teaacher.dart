@@ -1,7 +1,7 @@
 import 'package:english_lettutor_app/models/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/rating.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
+import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class SimpleInforTeacher extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:english_lettutor_app/ui/widget/continue_with_component/continue_with_component.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/components/continue_with_component.dart';
 import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:flutter/material.dart';
 

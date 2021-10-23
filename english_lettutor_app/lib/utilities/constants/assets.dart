@@ -1,6 +1,10 @@
 class Assets {
   Assets._();
   
+  /// Assets for assetsIconsDone
+  /// assets/icons/done.svg
+  static const String assetsIconsDone = "assets/icons/done.svg";
+
   /// Assets for assetsIconsError
   /// assets/icons/error.svg
   static const String assetsIconsError = "assets/icons/error.svg";

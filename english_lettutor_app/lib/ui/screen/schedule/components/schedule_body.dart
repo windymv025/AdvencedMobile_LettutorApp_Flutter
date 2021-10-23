@@ -2,7 +2,7 @@ import 'package:english_lettutor_app/models/schedule.dart';
 import 'package:english_lettutor_app/ui/screen/home/components/search_bar_title.dart';
 import 'package:english_lettutor_app/ui/screen/schedule/components/custom_gridview_schedule.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/styles.dart';
+import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

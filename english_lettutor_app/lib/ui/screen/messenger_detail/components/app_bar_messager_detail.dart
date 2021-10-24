@@ -62,26 +62,6 @@ class _AppBarMessagerDetailState extends State<AppBarMessagerDetail> {
           )
         ],
       ),
-      // ListTile(
-      //   tileColor: kMainBlueColor,
-      //   title: Text(
-      //     widget.teacher.name!,
-      //     style: const TextStyle(
-      //         color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
-      //   ),
-      //   subtitle: Text(
-      //     widget.teacher.isOnline! ? "Online" : "Offline",
-      //     style: const TextStyle(
-      //         color: Colors.white, fontSize: 13, fontStyle: FontStyle.italic),
-      //   ),
-      //   leading: CircleAvatarButton(
-      //     image: const AssetImage(Assets.assetsImagesUserIcon),
-      //     isOnline: true,
-      //     onPressed: () {
-      //       Navigator.pushNamed(context, TeacherDetailScreen.routeName);
-      //     },
-      //   ),
-      // ),
       actions: [
         PopupMenuButton(
           icon: const Icon(Icons.more_vert_rounded),

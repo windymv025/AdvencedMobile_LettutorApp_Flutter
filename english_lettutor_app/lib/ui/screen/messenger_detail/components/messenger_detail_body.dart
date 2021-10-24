@@ -31,24 +31,37 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
         children: [
           Expanded(
             child: LiveList(
+              showItemInterval: const Duration(milliseconds: 100),
+              showItemDuration: const Duration(milliseconds: 200),
               controller: _scrollController,
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
               itemBuilder: (BuildContext context, int index,
                   Animation<double> animation) {
                 bool isMe = messages[index].id == 0;
                 if (isMe) {
-                  return ItemMessageSender(
-                    size: size,
-                    message: messages[index],
-                  );
+                  return FadeTransition(
+                      opacity: Tween<double>(
+                        begin: 0,
+                        end: 1,
+                      ).animate(animation),
+                      child: ItemMessageSender(
+                        size: size,
+                        message: messages[index],
+                      ));
                 } else {
-                  return ItemMessageReceiver(
-                    size: size,
-                    message: messages[index],
-                  );
+                  return FadeTransition(
+                      opacity: Tween<double>(
+                        begin: 0,
+                        end: 1,
+                      ).animate(animation),
+                      child: ItemMessageReceiver(
+                        size: size,
+                        message: messages[index],
+                      ));
                 }
               },
               itemCount: widget.conversation.messages.length,
+              reAnimateOnVisibility: true,
             ),
           ),
           Align(
@@ -76,6 +89,7 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
                           }
                         });
                       },
+                      onTap: scrollDDown,
                       decoration: InputDecoration(
                         hintText: "Type a message",
                         suffixIcon: IconButton(
@@ -95,5 +109,10 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
         ],
       ),
     );
+  }
+
+  void scrollDDown() {
+    final double end = _scrollController.position.maxScrollExtent;
+    _scrollController.jumpTo(end);
   }
 }

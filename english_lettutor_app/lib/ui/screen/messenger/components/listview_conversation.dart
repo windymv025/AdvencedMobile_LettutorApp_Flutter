@@ -16,8 +16,8 @@ class ListviewConversation extends StatelessWidget {
 
     return LiveSliverList(
       controller: ScrollController(),
-      showItemInterval: const Duration(milliseconds: 250),
-      showItemDuration: const Duration(milliseconds: 300),
+      showItemInterval: const Duration(milliseconds: 100),
+      showItemDuration: const Duration(milliseconds: 200),
       itemCount: conversations.length,
       itemBuilder: (context, index, animation) {
         return FadeTransition(
@@ -28,6 +28,7 @@ class ListviewConversation extends StatelessWidget {
           child: CardChatItem(conversation: conversations[index]),
         );
       },
+      reAnimateOnVisibility: true,
     );
   }
 }

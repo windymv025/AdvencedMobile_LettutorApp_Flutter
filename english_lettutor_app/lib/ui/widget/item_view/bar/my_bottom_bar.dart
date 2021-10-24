@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
+import 'package:english_lettutor_app/ui/screen/messenger/messenger_screen.dart';
 import 'package:english_lettutor_app/ui/screen/schedule/schedule_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teachers/teachers_screen.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
@@ -29,6 +30,7 @@ class _MyBottomNavigationState extends State<MyBottomNavigation> {
             Navigator.pushNamed(context, HomeScreen.routeName);
             break;
           case 1:
+            Navigator.pushNamed(context, MessengerScreen.routeName);
             break;
           case 2:
             Navigator.pushNamed(context, ScheduleScreen.routeName);

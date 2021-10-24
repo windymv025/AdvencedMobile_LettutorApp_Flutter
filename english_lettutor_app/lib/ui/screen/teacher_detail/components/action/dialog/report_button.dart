@@ -12,8 +12,14 @@ class ReportButton extends StatefulWidget {
 }
 
 class _ReportButtonState extends State<ReportButton> {
+  final List<String> _checkBoxSelected = [];
+
+  final TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    for (var item in _checkBoxSelected) {
+      _controller.text += item;
+    }
     return //Report
         IconButton(
             iconSize: 35,
@@ -58,23 +64,63 @@ class _ReportButtonState extends State<ReportButton> {
                                 ],
                               ),
                             ),
-                            CheckboxListTile(
-                              value: false,
-                              onChanged: (value) {},
-                              title: const Text("This tutor is annoying me"),
+                            ListTile(
+                              title: const Text('This tutor is annoying me'),
+                              leading: Checkbox(
+                                value: _checkBoxSelected
+                                    .contains("This tutor is annoying me"),
+                                onChanged: (value) {
+                                  setState(() {
+                                    if (!value!) {
+                                      _checkBoxSelected
+                                          .remove("This tutor is annoying me");
+                                    } else {
+                                      _checkBoxSelected
+                                          .add("This tutor is annoying me");
+                                    }
+                                  });
+                                },
+                              ),
                             ),
-                            CheckboxListTile(
-                              value: false,
-                              onChanged: (value) {},
+                            ListTile(
                               title: const Text(
-                                  "This profile is pretending be someone or is fake"),
+                                  'This profile is pretending be someone or is fake'),
+                              leading: Checkbox(
+                                value: _checkBoxSelected.contains(
+                                    "This profile is pretending be someone or is fake"),
+                                onChanged: (value) {
+                                  setState(() {
+                                    if (!value!) {
+                                      _checkBoxSelected.remove(
+                                          "This profile is pretending be someone or is fake");
+                                    } else {
+                                      _checkBoxSelected.add(
+                                          "This profile is pretending be someone or is fake");
+                                    }
+                                  });
+                                },
+                              ),
                             ),
-                            CheckboxListTile(
-                              value: false,
-                              onChanged: (value) {},
-                              title: const Text("Inappropriate profile photo"),
+                            ListTile(
+                              title: const Text('Inappropriate profile photo'),
+                              leading: Checkbox(
+                                value: _checkBoxSelected
+                                    .contains("Inappropriate profile photo"),
+                                onChanged: (value) {
+                                  setState(() {
+                                    if (!value!) {
+                                      _checkBoxSelected.remove(
+                                          "Inappropriate profile photo");
+                                    } else {
+                                      _checkBoxSelected
+                                          .add("Inappropriate profile photo");
+                                    }
+                                  });
+                                },
+                              ),
                             ),
                             TextFormField(
+                              controller: _controller,
                               keyboardType: TextInputType.multiline,
                               autofocus: true,
                               maxLines: null,

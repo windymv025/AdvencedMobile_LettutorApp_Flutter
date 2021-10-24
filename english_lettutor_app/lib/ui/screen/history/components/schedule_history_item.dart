@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/models/schedule_history.dart';
+import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
@@ -107,7 +108,10 @@ class ScheduleHistoryItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(
+                          context, MessengerDetailScreen.routeName);
+                    },
                     child: const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Text(

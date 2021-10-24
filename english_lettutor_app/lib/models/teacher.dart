@@ -17,6 +17,7 @@ class Teacher {
   double? ratings;
   List<RatingComment>? ratingComments;
   List<DateTime>? freeDate;
+  bool? isOnline;
 
   Teacher(
       {required this.id,
@@ -30,7 +31,8 @@ class Teacher {
       this.languages,
       this.profession,
       this.freeDate,
-      this.ratings = 0});
+      this.ratings = 0,
+      this.isOnline});
 
   Teacher.getDefault() {
     id = 1;
@@ -72,5 +74,6 @@ class Teacher {
       DateTime(2021),
       DateTime(2020)
     ];
+    isOnline = true;
   }
 }

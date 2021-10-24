@@ -56,3 +56,5 @@ const String videoTips = """A few helpful tips:
 3. Dress smart
 4. Speak for 1-3 minutes
 5. Brand yourself and have fun!""";
+
+const String dot = " • ";

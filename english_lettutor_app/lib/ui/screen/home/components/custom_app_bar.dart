@@ -33,7 +33,6 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             image: imageAvatar,
             onPressed: () =>
                 Navigator.pushNamed(context, ProfileScreen.routeName),
-            radius: 15,
           )
         ],
         title: Text(title));

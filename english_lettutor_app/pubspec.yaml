@@ -41,6 +41,7 @@ dependencies:
   curved_navigation_bar: ^1.0.1 # navigation
   country_picker: ^2.0.8 #countries
   intl: ^0.17.0
+  auto_animated: ^3.0.1
 
 dev_dependencies:
   flutter_test:

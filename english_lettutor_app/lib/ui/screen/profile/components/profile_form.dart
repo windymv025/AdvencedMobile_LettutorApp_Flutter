@@ -6,7 +6,6 @@ import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_country
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_date_field.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class ProfileForm extends StatefulWidget {
   const ProfileForm({Key? key}) : super(key: key);

@@ -29,10 +29,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           );
         }),
         actions: [
-          CircleAvatarButton(
-            image: imageAvatar,
-            onPressed: () =>
-                Navigator.pushNamed(context, ProfileScreen.routeName),
+          Center(
+            child: CircleAvatarButton(
+              image: imageAvatar,
+              onPressed: () =>
+                  Navigator.pushNamed(context, ProfileScreen.routeName),
+            ),
           )
         ],
         title: Text(title));

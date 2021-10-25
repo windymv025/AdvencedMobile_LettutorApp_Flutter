@@ -2,7 +2,7 @@
     package="com.windymv.english_lettutor_app">
    <application
         android:label="English LetTutor App"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/large_logo">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

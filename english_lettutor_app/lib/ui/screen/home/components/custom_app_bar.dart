@@ -18,9 +18,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         leading: Builder(builder: (context) {
           return IconButton(
             alignment: AlignmentDirectional.center,
-            icon: Expanded(
-              child: Image.asset('assets/images/large_logo.png'),
-            ),
+            icon: Image.asset('assets/images/large_logo.png'),
             onPressed: () {
               // Navigator.pushNamed(context, HomeScreen.routeName);
               Scaffold.of(context).openDrawer();

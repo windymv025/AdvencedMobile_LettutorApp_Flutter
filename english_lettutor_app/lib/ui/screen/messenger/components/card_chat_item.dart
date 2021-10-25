@@ -40,11 +40,9 @@ class _CardChatItemState extends State<CardChatItem> {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: ListTile(
-              leading: Expanded(
-                child: CircleAvatarButton(
-                  image: AssetImage(teacher.uriImage!),
-                  isOnline: true,
-                ),
+              leading: CircleAvatarButton(
+                image: AssetImage(teacher.uriImage!),
+                isOnline: true,
               ),
               title: Text(
                 widget.conversation.teacher.name!,

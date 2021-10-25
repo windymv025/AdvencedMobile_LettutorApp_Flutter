@@ -45,11 +45,9 @@ class _CircleAvatarButtonState extends State<CircleAvatarButton> {
               shape: BoxShape.circle,
               color: _color,
             ),
-            child: Expanded(
-              child: CircleAvatar(
-                backgroundColor: Colors.white,
-                backgroundImage: _image,
-              ),
+            child: CircleAvatar(
+              backgroundColor: Colors.white,
+              backgroundImage: _image,
             ),
           ),
           widget.isOnline == null

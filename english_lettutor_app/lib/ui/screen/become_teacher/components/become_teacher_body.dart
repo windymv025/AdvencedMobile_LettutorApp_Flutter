@@ -19,7 +19,8 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
   Widget build(BuildContext context) {
     return Stepper(
       currentStep: _index,
-      controlsBuilder: (context, {onStepCancel, onStepContinue}) {
+      type: StepperType.horizontal,
+      controlsBuilder: (context, controlsDetails) {
         return Row(
           mainAxisAlignment:
               (_index == 2) ? MainAxisAlignment.center : MainAxisAlignment.end,
@@ -34,12 +35,12 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
                         child: Text(_index == 0 ? "Cancel" : "Back"),
                       ),
                       style: outlineButtonStyle,
-                      onPressed: onStepCancel,
+                      onPressed: controlsDetails.onStepCancel,
                     )),
             SizedBox(
                 width: 100,
                 child: DefaultButton(
-                  press: onStepContinue,
+                  press: controlsDetails.onStepContinue,
                   text: _index < 2 ? "Continue" : "Finish",
                 )),
           ],

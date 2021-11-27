@@ -16,8 +16,8 @@ class ListviewConversation extends StatelessWidget {
 
     return LiveSliverList(
       controller: ScrollController(),
-      showItemInterval: const Duration(milliseconds: 100),
-      showItemDuration: const Duration(milliseconds: 200),
+      showItemInterval: const Duration(milliseconds: 30),
+      showItemDuration: const Duration(milliseconds: 50),
       itemCount: conversations.length,
       itemBuilder: (context, index, animation) {
         return FadeTransition(

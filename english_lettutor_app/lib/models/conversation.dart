@@ -61,5 +61,10 @@ class Conversation {
         id: 0,
         message: "you so cute",
         time: DateTime(2021, 10, 23, 17, 55, 50)));
+    messages.add(Message(
+        id: 1,
+        message:
+            "What are you going tonight? Have you free time for me? I want to tell you about a important story.",
+        time: DateTime(2021, 10, 23, 17, 35, 50)));
   }
 }

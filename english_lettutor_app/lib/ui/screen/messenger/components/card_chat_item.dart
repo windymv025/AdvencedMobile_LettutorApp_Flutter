@@ -4,7 +4,6 @@ import 'package:english_lettutor_app/models/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/circle_avatar_button.dart';
 import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/enums.dart';
 import 'package:english_lettutor_app/utilities/helper/function_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:english_lettutor_app/utilities/design/styles.dart';
@@ -60,23 +59,23 @@ class _CardChatItemState extends State<CardChatItem> {
                   Text("$dot${getStringTime(lastMessage.time)}")
                 ],
               ),
-              trailing: PopupMenuButton(
-                icon: const Icon(Icons.more_vert_rounded),
-                onSelected: (value) {},
-                itemBuilder: (context) {
-                  return [
-                    PopupMenuItem(
-                      value: MenuSettingMessage.delete,
-                      child: Row(
-                        children: const [
-                          Text("Delete"),
-                          Icon(Icons.delete_forever_rounded, color: Colors.red)
-                        ],
-                      ),
-                    )
-                  ];
-                },
-              ),
+              // trailing: PopupMenuButton(
+              //   icon: const Icon(Icons.more_vert_rounded),
+              //   onSelected: (value) {},
+              //   itemBuilder: (context) {
+              //     return [
+              //       PopupMenuItem(
+              //         value: MenuSettingMessage.delete,
+              //         child: Row(
+              //           children: const [
+              //             Text("Delete"),
+              //             Icon(Icons.delete_forever_rounded, color: Colors.red)
+              //           ],
+              //         ),
+              //       )
+              //     ];
+              //   },
+              // ),
             )),
       ),
     );

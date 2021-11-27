@@ -33,9 +33,11 @@ class _SearchBarState extends State<SearchBar> {
       child: Row(
         children: <Widget>[
           Expanded(
-            child: TextField(
+            child: TextFormField(
               onChanged: widget.onTextChanged,
               decoration: InputDecoration(
+                contentPadding:
+                    const EdgeInsets.symmetric(vertical: 0, horizontal: 25),
                 hintText: "Search",
                 hintStyle: TextStyle(
                   color: kPrimaryColor.withOpacity(0.5),

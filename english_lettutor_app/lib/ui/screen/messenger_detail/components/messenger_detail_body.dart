@@ -28,16 +28,20 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
       width: size.width,
       height: size.height,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Expanded(
             child: LiveList(
-              showItemInterval: const Duration(milliseconds: 100),
-              showItemDuration: const Duration(milliseconds: 200),
+              showItemInterval: const Duration(milliseconds: 30),
+              showItemDuration: const Duration(milliseconds: 50),
               controller: _scrollController,
+              reverse: true,
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 20),
               itemBuilder: (BuildContext context, int index,
                   Animation<double> animation) {
-                bool isMe = messages[index].id == 0;
+                final Message message = messages[messages.length - index - 1];
+                bool isMe = message.id == 0;
+
                 if (isMe) {
                   return FadeTransition(
                       opacity: Tween<double>(
@@ -46,7 +50,7 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
                       ).animate(animation),
                       child: ItemMessageSender(
                         size: size,
-                        message: messages[index],
+                        message: message,
                       ));
                 } else {
                   return FadeTransition(
@@ -56,7 +60,7 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
                       ).animate(animation),
                       child: ItemMessageReceiver(
                         size: size,
-                        message: messages[index],
+                        message: message,
                       ));
                 }
               },
@@ -97,7 +101,11 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
                             Icons.send_rounded,
                             color: isSend ? kPrimaryColor : Colors.grey,
                           ),
-                          onPressed: isSend ? () {} : null,
+                          onPressed: isSend
+                              ? () {
+                                  sendMessage();
+                                }
+                              : null,
                         ),
                       ),
                     ),
@@ -112,7 +120,17 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
   }
 
   void scrollDDown() {
-    final double end = _scrollController.position.maxScrollExtent;
-    _scrollController.jumpTo(end);
+    setState(() {
+      final double end = _scrollController.position.minScrollExtent;
+      _scrollController.jumpTo(end);
+    });
+  }
+
+  void sendMessage() {
+    setState(() {
+      //add message
+      _controller.clear();
+      isSend = false;
+    });
   }
 }

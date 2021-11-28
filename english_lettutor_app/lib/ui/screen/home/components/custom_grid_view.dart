@@ -8,7 +8,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 class CustomGridView extends StatelessWidget {
   const CustomGridView({Key? key, required this.size, required this.items})
       : super(key: key);
-
   final List<Teacher>? items;
   final Size size;
 

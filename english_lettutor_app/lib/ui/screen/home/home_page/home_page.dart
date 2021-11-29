@@ -1,11 +1,11 @@
 import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';
-import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/title_and_button.dart';
-import 'package:english_lettutor_app/ui/screen/home/page/home_page/components/welcome_with_search.dart';
 import 'package:english_lettutor_app/ui/screen/teachers/teachers_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'components/list_recommended_teacher.dart';
 import 'components/recommended_courses.dart';
+import 'components/title_and_button.dart';
+import 'components/welcome_with_search.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

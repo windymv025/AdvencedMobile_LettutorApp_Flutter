@@ -1,4 +1,4 @@
-import 'package:english_lettutor_app/models/profile.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 
 class RatingComment {
   double? rating;

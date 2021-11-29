@@ -1,5 +1,5 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/continue_with_component.dart';
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:flutter/material.dart';
 
 import 'reset_password_form.dart';

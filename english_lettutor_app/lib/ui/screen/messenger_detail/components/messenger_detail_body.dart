@@ -1,9 +1,9 @@
 import 'package:auto_animated/auto_animated.dart';
-import 'package:english_lettutor_app/models/conversation.dart';
-import 'package:english_lettutor_app/models/message.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/models/messager/conversation.dart';
+import 'package:english_lettutor_app/models/messager/message.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/components/item_message_receiver.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/components/item_message_sender.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class MessengerDetailBody extends StatefulWidget {

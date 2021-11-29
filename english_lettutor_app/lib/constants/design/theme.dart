@@ -1,9 +1,11 @@
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
+
+import '../constants.dart';
+import 'styles.dart';
 
 ThemeData theme() {
   return ThemeData(
+    brightness: Brightness.light,
     scaffoldBackgroundColor: Colors.white,
     inputDecorationTheme: inputDecorationTheme(),
     visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -48,3 +50,11 @@ InputDecorationTheme inputDecorationTheme() {
       focusedBorder: outlineInputBorder,
       focusColor: kMainBlueColor);
 }
+
+final ThemeData themeDataDark = ThemeData(
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: Colors.white,
+  inputDecorationTheme: inputDecorationTheme(),
+  visualDensity: VisualDensity.adaptivePlatformDensity,
+  appBarTheme: appBarTheme(),
+);

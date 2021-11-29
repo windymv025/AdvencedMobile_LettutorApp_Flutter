@@ -1,9 +1,9 @@
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/enums.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/circle_avatar_button.dart';
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/enums.dart';
 import 'package:flutter/material.dart';
 
 class AppBarMessagerDetail extends StatefulWidget

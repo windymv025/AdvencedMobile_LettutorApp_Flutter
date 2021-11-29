@@ -1,6 +1,6 @@
-import 'package:english_lettutor_app/models/message.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/helper/function_helper.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/helper/function_helper.dart';
+import 'package:english_lettutor_app/models/messager/message.dart';
 import 'package:flutter/material.dart';
 
 class ItemMessageSender extends StatelessWidget {

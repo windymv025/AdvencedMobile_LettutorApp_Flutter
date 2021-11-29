@@ -1,5 +1,5 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {

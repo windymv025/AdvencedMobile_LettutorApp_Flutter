@@ -1,12 +1,12 @@
+import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/constants/enums.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/check_box_specialties.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/multiline_text_field.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_country_field.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_date_field.dart';
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/constants/enums.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class Step1Page extends StatefulWidget {

@@ -1,11 +1,11 @@
+import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
 import 'package:english_lettutor_app/ui/screen/settings_language/setting_language_screen.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

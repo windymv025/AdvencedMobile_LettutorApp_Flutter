@@ -1,5 +1,5 @@
-import 'package:english_lettutor_app/models/conversation.dart';
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/models/messager/conversation.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/components/messenger_detail_body.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,6 @@
-import 'package:english_lettutor_app/models/conversation.dart';
-import 'package:english_lettutor_app/ui/screen/home/components/search_bar_title.dart';
+import 'package:english_lettutor_app/models/messager/conversation.dart';
 import 'package:english_lettutor_app/ui/screen/messenger/components/listview_conversation.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:flutter/material.dart';
 
 class MessengerBody extends StatefulWidget {

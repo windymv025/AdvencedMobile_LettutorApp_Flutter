@@ -1,7 +1,8 @@
 import 'dart:ui';
 
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../constants.dart';
 
 const TextStyle titleStyle = TextStyle(
     color: Colors.black, fontSize: textSizeTitle, fontWeight: FontWeight.w700);

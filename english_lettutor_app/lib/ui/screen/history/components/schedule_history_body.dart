@@ -1,6 +1,6 @@
-import 'package:english_lettutor_app/models/schedule_history.dart';
+import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
 import 'package:english_lettutor_app/ui/screen/history/components/custom_gridview_history.dart';
-import 'package:english_lettutor_app/ui/screen/home/components/search_bar_title.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:flutter/material.dart';
 
 class ScheduleHistoryBody extends StatefulWidget {

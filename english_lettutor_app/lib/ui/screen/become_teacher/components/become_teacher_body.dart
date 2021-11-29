@@ -1,8 +1,8 @@
+import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1_page.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step2_page.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step3_page.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class BecomeTeacherBody extends StatefulWidget {

@@ -1,7 +1,7 @@
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/tutor_item.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/no_data_page.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 

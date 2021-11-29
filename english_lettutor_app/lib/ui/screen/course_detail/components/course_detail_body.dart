@@ -1,7 +1,7 @@
-import 'package:english_lettutor_app/models/course.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/course_item.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class CourseDetailBody extends StatelessWidget {

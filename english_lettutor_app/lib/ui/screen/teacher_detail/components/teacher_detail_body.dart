@@ -1,4 +1,4 @@
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/teacher_detail_action.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/simple_infor_teaacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/rating_and_comment.dart';

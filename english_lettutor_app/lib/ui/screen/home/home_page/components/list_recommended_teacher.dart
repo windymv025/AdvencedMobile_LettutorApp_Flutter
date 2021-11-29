@@ -1,6 +1,6 @@
-import 'package:english_lettutor_app/models/teacher.dart';
-import 'package:english_lettutor_app/ui/screen/home/components/custom_grid_view.dart';
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
+import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
+import 'package:english_lettutor_app/ui/screen/home/home_page/components/custom_grid_view.dart';
 import 'package:flutter/material.dart';
 
 class ListRecommendedTeacher extends StatefulWidget {

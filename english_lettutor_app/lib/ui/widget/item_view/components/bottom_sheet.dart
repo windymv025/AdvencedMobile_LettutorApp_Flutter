@@ -1,5 +1,5 @@
+import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/bottom_sheet/booking_grid_view.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

@@ -1,5 +1,6 @@
-import 'package:english_lettutor_app/models/rating_comment.dart';
-import 'package:english_lettutor_app/models/schedule.dart';
+import 'package:english_lettutor_app/models/teacher/rating_comment.dart';
+
+import 'schedule.dart';
 
 class ScheduleHistory {
   late Schedule schedule;

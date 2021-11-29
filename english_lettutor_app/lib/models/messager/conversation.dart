@@ -1,5 +1,5 @@
-import 'package:english_lettutor_app/models/message.dart';
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/models/messager/message.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 
 class Conversation {
   late Teacher teacher;

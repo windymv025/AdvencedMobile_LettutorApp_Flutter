@@ -1,4 +1,4 @@
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
+import 'package:english_lettutor_app/constants/assets.dart';
 
 import 'rating_comment.dart';
 

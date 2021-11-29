@@ -1,9 +1,9 @@
-import 'package:english_lettutor_app/models/course.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/screen/courses/components/custom_gridview_course.dart';
-import 'package:english_lettutor_app/ui/screen/home/components/search_bar_title.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/custom_drop_down.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:flutter/material.dart';
 
 class CoursesBody extends StatefulWidget {

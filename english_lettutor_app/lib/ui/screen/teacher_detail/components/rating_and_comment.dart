@@ -1,5 +1,5 @@
-import 'package:english_lettutor_app/models/rating_comment.dart';
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/models/teacher/rating_comment.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
 import 'package:flutter/material.dart';

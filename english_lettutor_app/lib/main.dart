@@ -1,9 +1,9 @@
-import 'package:english_lettutor_app/routes/routes.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-import 'utilities/design/theme.dart';
+import 'constants/design/theme.dart';
+import 'utilities/routes/routes.dart';
 
 void main() {
   runApp(const MyApp());

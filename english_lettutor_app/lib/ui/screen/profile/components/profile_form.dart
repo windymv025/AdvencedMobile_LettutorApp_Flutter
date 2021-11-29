@@ -1,10 +1,10 @@
-import 'package:english_lettutor_app/models/profile.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/custom_drop_down.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_country_field.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_date_field.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class ProfileForm extends StatefulWidget {

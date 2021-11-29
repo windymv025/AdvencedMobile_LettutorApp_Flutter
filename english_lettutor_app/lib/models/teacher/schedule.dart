@@ -1,4 +1,4 @@
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'teacher.dart';
 
 class Schedule {
   late Teacher teacher;

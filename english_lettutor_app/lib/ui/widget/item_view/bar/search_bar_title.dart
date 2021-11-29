@@ -1,5 +1,5 @@
+import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarTitle extends StatefulWidget {

@@ -1,12 +1,12 @@
-import 'package:english_lettutor_app/models/conversation.dart';
-import 'package:english_lettutor_app/models/message.dart';
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/constants/helper/function_helper.dart';
+import 'package:english_lettutor_app/models/messager/conversation.dart';
+import 'package:english_lettutor_app/models/messager/message.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/circle_avatar_button.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/helper/function_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 
 class CardChatItem extends StatefulWidget {
   const CardChatItem({Key? key, required this.conversation}) : super(key: key);

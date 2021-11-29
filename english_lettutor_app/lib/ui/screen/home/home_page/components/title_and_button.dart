@@ -22,7 +22,7 @@ class TitleAndButton extends StatelessWidget {
           children: [
             Text(
               title,
-              style: titleStyle,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             const Spacer(),
             SizedBox(

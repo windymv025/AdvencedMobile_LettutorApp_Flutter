@@ -20,18 +20,23 @@ class CourseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, CourseDetailScreen.routeName);
       },
       child: Container(
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, 10),
-            blurRadius: 20,
-            color: kPrimaryColor.withOpacity(0.23),
-          ),
-        ]),
+        decoration: BoxDecoration(
+            boxShadow: isDark
+                ? null
+                : [
+                    BoxShadow(
+                      offset: const Offset(0, 10),
+                      blurRadius: 20,
+                      color: kPrimaryColor.withOpacity(0.23),
+                    ),
+                  ]),
         height: 250,
         child: Card(
           child: Column(

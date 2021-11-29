@@ -21,6 +21,8 @@ class _CardChatItemState extends State<CardChatItem> {
   Widget build(BuildContext context) {
     Teacher teacher = widget.conversation.teacher;
     Message lastMessage = widget.conversation.messages.last;
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, MessengerDetailScreen.routeName);
@@ -28,12 +30,14 @@ class _CardChatItemState extends State<CardChatItem> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          boxShadow: [
-            BoxShadow(
-              blurRadius: 10,
-              color: kPrimaryColor.withOpacity(0.10),
-            ),
-          ],
+          boxShadow: isDark
+              ? null
+              : [
+                  BoxShadow(
+                    blurRadius: 10,
+                    color: kPrimaryColor.withOpacity(0.10),
+                  ),
+                ],
         ),
         child: Card(
             shape:

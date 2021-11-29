@@ -15,8 +15,11 @@ class BoderInput extends StatefulWidget {
 
 class _BoderInputState extends State<BoderInput> {
   Color _color = Colors.grey;
+  bool _isDark = false;
+
   @override
   Widget build(BuildContext context) {
+    _isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onForcePressEnd: (forcus) {
         setState(() {
@@ -54,7 +57,7 @@ class _BoderInputState extends State<BoderInput> {
             ),
           ),
           Container(
-            color: Colors.white,
+            color: _isDark ? kDarkColor : Colors.white,
             margin: const EdgeInsets.only(left: 30),
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: Text(widget.title,

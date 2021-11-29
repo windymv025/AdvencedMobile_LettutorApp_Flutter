@@ -17,13 +17,16 @@ class MyBottomNavigation extends StatefulWidget {
 }
 
 class _MyBottomNavigationState extends State<MyBottomNavigation> {
+  bool _isDark = false;
   @override
   Widget build(BuildContext context) {
+    _isDark = Theme.of(context).brightness == Brightness.dark;
     return CurvedNavigationBar(
       index: widget.selectedMenu.index,
       height: 64,
-      color: kMainBlueColor,
-      backgroundColor: Colors.white,
+      color: _isDark ? kDarkColor : kMainBlueColor,
+      backgroundColor:
+          _isDark ? Colors.grey.withOpacity(0.1) : Colors.white.withOpacity(0),
       onTap: (index) {
         switch (index) {
           case 0:

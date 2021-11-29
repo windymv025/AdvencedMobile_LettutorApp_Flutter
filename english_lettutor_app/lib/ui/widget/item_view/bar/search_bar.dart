@@ -49,7 +49,10 @@ class _SearchBarState extends State<SearchBar> {
           ),
           IconButton(
               onPressed: widget.onIconPressed,
-              icon: const Icon(Icons.search_rounded)),
+              icon: const Icon(
+                Icons.search_rounded,
+                color: Colors.black26,
+              )),
         ],
       ),
     );

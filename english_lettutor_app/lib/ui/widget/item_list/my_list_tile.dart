@@ -25,7 +25,7 @@ class _MyListTileState extends State<MyListTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.color,
+      // color: widget.color,
       padding: const EdgeInsets.only(top: 15, bottom: 10),
       child: GestureDetector(
           onTap: widget.onTap,

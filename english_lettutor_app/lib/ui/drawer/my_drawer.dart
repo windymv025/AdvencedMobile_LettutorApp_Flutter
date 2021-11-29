@@ -1,15 +1,15 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/ui/drawer/components/setting_dropdown_button.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
-import 'package:english_lettutor_app/ui/screen/settings_language/setting_language_screen.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'settings_button.dart';
+import 'components/settings_button.dart';
 
 class MyDrawer extends StatelessWidget {
   const MyDrawer({Key? key}) : super(key: key);
@@ -35,6 +35,22 @@ class MyDrawer extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
+          const SettingsButton(
+              onPress: null,
+              icon: Icon(
+                Icons.language_rounded,
+                color: kMainBlueColor,
+              ),
+              title: "Language",
+              child: SettingLanguageDropdownButton()),
+          const SettingsButton(
+              onPress: null,
+              icon: Icon(
+                Icons.language_rounded,
+                color: kMainBlueColor,
+              ),
+              title: "Theme",
+              child: SettingThemeDropdownButton()),
           SettingsButton(
               onPress: () {
                 Navigator.popAndPushNamed(
@@ -59,16 +75,6 @@ class MyDrawer extends StatelessWidget {
               title: "Become a teacher"),
           SettingsButton(
               onPress: () {
-                Navigator.popAndPushNamed(
-                    context, SettingLanguageScreen.routeName);
-              },
-              icon: const Icon(
-                Icons.language_rounded,
-                color: kMainBlueColor,
-              ),
-              title: "Language"),
-          SettingsButton(
-              onPress: () {
                 Navigator.restorablePopAndPushNamed(
                     context, SignInScreen.routeName);
               },
@@ -76,7 +82,10 @@ class MyDrawer extends StatelessWidget {
                 Icons.logout_rounded,
                 color: kMainBlueColor,
               ),
-              title: "Logout")
+              title: "Logout"),
+          const SizedBox(
+            height: 25,
+          ),
         ],
       ),
     );

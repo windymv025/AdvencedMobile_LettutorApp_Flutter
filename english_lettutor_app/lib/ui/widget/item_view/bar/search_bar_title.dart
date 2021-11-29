@@ -17,7 +17,9 @@ class _SearchBarTitleState extends State<SearchBarTitle> {
   Widget build(BuildContext context) {
     Size size = widget.size;
     double height =
-        widget.child == null ? size.height * 0.15 : size.height * 0.35;
+        widget.child == null ? size.height * 0.1 : size.height * 0.35;
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    var backgroundColor = isDark ? kDarkColor : kMainBlueColor;
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       height: height,
@@ -26,15 +28,15 @@ class _SearchBarTitleState extends State<SearchBarTitle> {
           Container(
             padding: const EdgeInsets.only(left: 25, right: 25, bottom: 20),
             height: height - 25,
-            decoration: const BoxDecoration(
-              color: kMainBlueColor,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(36),
                 bottomRight: Radius.circular(36),
               ),
             ),
             child: Container(
-              color: kMainBlueColor,
+              color: backgroundColor,
               child: widget.child,
             ),
           ),

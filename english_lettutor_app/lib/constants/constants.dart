@@ -20,6 +20,7 @@ const kMainBlueColor = Color(0xff248EEF);
 const kPrimaryColor = Color(0xff1B67D9);
 const kCardTeacherColor = Color(0xff127A90);
 const kCardColor = Color(0xff128190);
+const kDarkColor = Color(0xff222222);
 
 //size screen
 
@@ -29,6 +30,10 @@ const kDesktopBreakPoint = 1366;
 
 const kWithMinDefault = 315;
 const kHeightMinDefault = 540;
+
+const kStringDarkTheme = "Dark";
+const kStringLightTheme = "Light";
+const kThemes = [kStringDarkTheme, kStringLightTheme];
 
 const kLevels = [
   "Beginner",

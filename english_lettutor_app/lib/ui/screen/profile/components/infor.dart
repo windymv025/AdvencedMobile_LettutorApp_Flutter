@@ -55,7 +55,6 @@ class Infor extends StatelessWidget {
                   name,
                   style: TextStyle(
                     fontSize: defaultSize * 2.2, // 22
-                    color: Colors.black,
                   ),
                 ),
                 SizedBox(height: defaultSize / 2), //5

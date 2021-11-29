@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-const TextStyle titleStyle = TextStyle(
-    color: Colors.black, fontSize: textSizeTitle, fontWeight: FontWeight.w700);
+const TextStyle titleStyle =
+    TextStyle(fontSize: textSizeTitle, fontWeight: FontWeight.w700);
 const TextStyle titleBlueStyle = TextStyle(
     color: kMainBlueColor,
     fontSize: textSizeTitle,
@@ -18,6 +18,10 @@ const TextStyle pageNameStyle = TextStyle(
     fontWeight: FontWeight.bold);
 const TextStyle tileCountDownStyle = TextStyle(
     color: Colors.white,
+    fontSize: textSizePageName,
+    fontWeight: FontWeight.bold);
+const TextStyle tileCountDownDarkStyle = TextStyle(
+    color: Colors.black,
     fontSize: textSizePageName,
     fontWeight: FontWeight.bold);
 

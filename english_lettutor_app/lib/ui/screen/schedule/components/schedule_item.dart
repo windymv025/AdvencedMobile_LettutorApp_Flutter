@@ -12,14 +12,17 @@ class ScheduleItem extends StatelessWidget {
   final Schedule schedule;
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            color: kPrimaryColor.withOpacity(0.25),
-          ),
-        ],
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  blurRadius: 5,
+                  color: kPrimaryColor.withOpacity(0.25),
+                ),
+              ],
       ),
       child: Card(
         child: Column(

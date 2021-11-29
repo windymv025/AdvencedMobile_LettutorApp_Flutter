@@ -21,6 +21,14 @@ class Assets {
   /// assets/icons/teacher.svg
   static const String assetsIconsTeacher = "assets/icons/teacher.svg";
 
+  /// Assets for assetsIconsUk
+  /// assets/icons/uk.svg
+  static const String assetsIconsUk = "assets/icons/uk.svg";
+
+  /// Assets for assetsIconsVn
+  /// assets/icons/vn.svg
+  static const String assetsIconsVn = "assets/icons/vn.svg";
+
   /// Assets for assetsImagesCloudData
   /// assets/images/cloud-data.png
   static const String assetsImagesCloudData = "assets/images/cloud-data.png";
@@ -49,11 +57,23 @@ class Assets {
   /// assets/images/text_logo2.png
   static const String assetsImagesTextLogo2 = "assets/images/text_logo2.png";
 
+  /// Assets for assetsImagesUnitedKingdom
+  /// assets/images/united-kingdom.png
+  static const String assetsImagesUnitedKingdom = "assets/images/united-kingdom.png";
+
   /// Assets for assetsImagesUserIcon
   /// assets/images/user-icon.png
   static const String assetsImagesUserIcon = "assets/images/user-icon.png";
 
+  /// Assets for assetsImagesVietnam
+  /// assets/images/vietnam.png
+  static const String assetsImagesVietnam = "assets/images/vietnam.png";
+
   /// Assets for assetsImagesWomanReadBook
   /// assets/images/woman-read_book.png
   static const String assetsImagesWomanReadBook = "assets/images/woman-read_book.png";
+
+  /// Assets for assetsLangEn
+  /// assets/lang/en.json
+  static const String assetsLangEn = "assets/lang/en.json";
 }

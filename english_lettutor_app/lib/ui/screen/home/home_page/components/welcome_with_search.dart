@@ -14,6 +14,9 @@ class _WelcomeWithSearchState extends State<WelcomeWithSearch> {
   @override
   Widget build(BuildContext context) {
     Size size = widget.size;
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    var backgroundColor = isDark ? kDarkColor : kMainBlueColor;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 10),
       height: size.height * 0.25,
@@ -22,16 +25,16 @@ class _WelcomeWithSearchState extends State<WelcomeWithSearch> {
           Container(
             padding: const EdgeInsets.only(left: 25, right: 25, bottom: 20),
             height: size.height * 0.25 - 27,
-            decoration: const BoxDecoration(
-              color: kMainBlueColor,
-              borderRadius: BorderRadius.only(
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(36),
                 bottomRight: Radius.circular(36),
               ),
             ),
             child: Center(
               child: Container(
-                color: kMainBlueColor,
+                color: backgroundColor,
                 child: (size.height <= kHeightMinDefault ||
                         size.width <= kWithMinDefault)
                     ? const SizedBox.square()

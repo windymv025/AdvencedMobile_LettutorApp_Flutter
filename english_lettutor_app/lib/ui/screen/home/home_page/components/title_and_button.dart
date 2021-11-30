@@ -22,6 +22,8 @@ class TitleAndButton extends StatelessWidget {
           children: [
             Text(
               title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.bodyText1,
             ),
             const Spacer(),

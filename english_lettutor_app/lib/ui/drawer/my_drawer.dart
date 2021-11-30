@@ -1,10 +1,10 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
-import 'package:english_lettutor_app/ui/drawer/components/setting_dropdown_button.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
+import 'package:english_lettutor_app/ui/screen/setting/setting_screen.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -26,31 +26,13 @@ class MyDrawer extends StatelessWidget {
             height: 5,
           ),
           Infor(
-              onTap: () =>
-                  Navigator.popAndPushNamed(context, ProfileScreen.routeName),
-              defaultSize: 10,
-              name: "Pham Minh Vuong",
-              email: "windymv@gmail.com",
-              image: Assets.assetsImagesUserIcon),
+            onTap: () =>
+                Navigator.popAndPushNamed(context, ProfileScreen.routeName),
+            defaultSize: 10,
+          ),
           const SizedBox(
             height: 25,
           ),
-          const SettingsButton(
-              onPress: null,
-              icon: Icon(
-                Icons.language_rounded,
-                color: kMainBlueColor,
-              ),
-              title: "Language",
-              child: SettingLanguageDropdownButton()),
-          const SettingsButton(
-              onPress: null,
-              icon: Icon(
-                Icons.language_rounded,
-                color: kMainBlueColor,
-              ),
-              title: "Theme",
-              child: SettingThemeDropdownButton()),
           SettingsButton(
               onPress: () {
                 Navigator.popAndPushNamed(
@@ -73,6 +55,15 @@ class MyDrawer extends StatelessWidget {
                 width: 18,
               ),
               title: "Become a teacher"),
+          SettingsButton(
+              onPress: () {
+                Navigator.popAndPushNamed(context, SettingScreen.routeName);
+              },
+              icon: const Icon(
+                Icons.settings_rounded,
+                color: kMainBlueColor,
+              ),
+              title: "Setting"),
           SettingsButton(
               onPress: () {
                 Navigator.restorablePopAndPushNamed(

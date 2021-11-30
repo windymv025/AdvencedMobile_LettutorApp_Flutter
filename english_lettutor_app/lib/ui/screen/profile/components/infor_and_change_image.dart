@@ -22,11 +22,9 @@ class _InforAndChangeImageState extends State<InforAndChangeImage> {
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Infor(
-            defaultSize: 10,
-            name: widget.name,
-            email: widget.email,
-            image: widget.image),
+        const Infor(
+          defaultSize: 10,
+        ),
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,

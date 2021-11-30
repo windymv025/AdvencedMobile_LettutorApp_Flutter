@@ -1,11 +1,14 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/data/local_data_test.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class SignInForm extends StatefulWidget {
   const SignInForm({Key? key}) : super(key: key);
@@ -38,6 +41,8 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
+    final Profile profile = context.read<Profile>();
+
     return Form(
       key: _formKey,
       child: Column(
@@ -76,12 +81,20 @@ class _SignInFormState extends State<SignInForm> {
           DefaultButton(
             text: "Sign In",
             press: () {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, HomeScreen.routeName, (route) => false);
+              profile.fullName = kProfile.fullName;
+              profile.email = kProfile.email;
+              profile.phone = kProfile.phone;
+              profile.image = kProfile.image;
+              profile.birthday = kProfile.birthday;
+              profile.country = kProfile.country;
+              profile.level = kProfile.level;
+              profile.wantToLearn = kProfile.wantToLearn;
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HomeScreen.routeName, (route) => false);
               }
             },
           ),

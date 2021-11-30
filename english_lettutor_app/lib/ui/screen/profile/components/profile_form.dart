@@ -6,6 +6,8 @@ import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffi
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_country_field.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_date_field.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ProfileForm extends StatefulWidget {
   const ProfileForm({Key? key}) : super(key: key);
@@ -15,151 +17,159 @@ class ProfileForm extends StatefulWidget {
 }
 
 class _ProfileFormState extends State<ProfileForm> {
-  Profile profile = Profile.getDefault();
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _country = TextEditingController();
   final TextEditingController _birthday = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Column(
-        children: [
-          // fullname
-          Container(
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: TextFormField(
-              initialValue: profile.fullName,
-              keyboardType: TextInputType.name,
-              onSaved: (newValue) => profile.fullName = newValue,
-              onChanged: (value) {
-                return;
-              },
-              decoration: const InputDecoration(
-                label: Text("Full name"),
-                hintText: "Enter your name",
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon:
-                    CustomSurffixIcon(icon: Icons.person_outline_rounded),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 15,
-          ),
-          //Email
-          Container(
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: TextFormField(
-              readOnly: true,
-              enabled: false,
-              initialValue: profile.email,
-              keyboardType: TextInputType.emailAddress,
-              onSaved: (newValue) => profile.email = newValue,
-              onChanged: (value) {},
-              validator: (value) {
-                return null;
-              },
-              decoration: const InputDecoration(
-                label: Text("Email"),
-                hintText: "Enter your email",
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: CustomSurffixIcon(icon: Icons.mail_outline_rounded),
-              ),
-            ),
-          ),
-          // phone number
-          const SizedBox(
-            height: 15,
-          ),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: TextFormField(
-              initialValue: profile.phone,
-              keyboardType: TextInputType.phone,
-              onSaved: (newValue) => profile.phone = newValue,
-              onChanged: (value) {},
-              validator: (value) {
-                return null;
-              },
-              decoration: const InputDecoration(
-                label: Text("Phone number"),
-                hintText: "Enter your phone number",
-                floatingLabelBehavior: FloatingLabelBehavior.always,
-                suffixIcon: CustomSurffixIcon(icon: Icons.phone_rounded),
-              ),
-            ),
-          ),
-          //Birthday
-          const SizedBox(
-            height: 15,
-          ),
-          PickDateField(
-            controller: _birthday,
-            icon: Icons.date_range_outlined,
-            label: "Birthday",
-            hint: "Select your birthday",
-          ),
-          //Country
-          const SizedBox(
-            height: 15,
-          ),
-          PickCountryField(controller: _country),
-
-          //My level
-          const SizedBox(
-            height: 10,
-          ),
-          Container(
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: CustomDropDown(
-                icon: Icons.format_list_numbered_rounded,
-                onChanged: (newValue) {
-                  setState(() {
-                    profile.level = newValue;
-                  });
+    return Consumer<Profile>(builder: (context, profile, _) {
+      if (profile.birthday != null) {
+        _birthday.text = DateFormat("dd/MM/yyyy").format(profile.birthday!);
+      }
+      if (profile.country != null) {
+        _country.text = profile.country!;
+      }
+      return Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            // fullname
+            Container(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: TextFormField(
+                initialValue: profile.fullName,
+                keyboardType: TextInputType.name,
+                onSaved: (newValue) => profile.fullName = newValue!,
+                onChanged: (value) {
+                  return;
                 },
-                hint: "Choose your level",
-                value: profile.level,
-                title: "My level",
-                items: kLevels),
-          ),
-
-          //Want to learn
-          const SizedBox(
-            height: 10,
-          ),
-
-          Container(
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: const CustomDropDown(
-                icon: Icons.list_alt_rounded,
-                hint: "What do you want to learn",
-                value: null,
-                title: "Want to learn",
-                items: kCountries),
-          ),
-
-          //save
-          const SizedBox(
-            height: 20,
-          ),
-          Container(
-            width: 120,
-            constraints: const BoxConstraints(maxWidth: 500),
-            child: DefaultButton(
-              text: "Save changes",
-              press: () {},
+                decoration: const InputDecoration(
+                  label: Text("Full name"),
+                  hintText: "Enter your name",
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  suffixIcon:
+                      CustomSurffixIcon(icon: Icons.person_outline_rounded),
+                ),
+              ),
             ),
-          ),
+            const SizedBox(
+              height: 15,
+            ),
+            //Email
+            Container(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: TextFormField(
+                readOnly: true,
+                enabled: false,
+                initialValue: profile.email,
+                keyboardType: TextInputType.emailAddress,
+                onChanged: (value) {},
+                validator: (value) {
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  label: Text("Email"),
+                  hintText: "Enter your email",
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  suffixIcon:
+                      CustomSurffixIcon(icon: Icons.mail_outline_rounded),
+                ),
+              ),
+            ),
+            // phone number
+            const SizedBox(
+              height: 15,
+            ),
+            Container(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: TextFormField(
+                initialValue: profile.phone,
+                keyboardType: TextInputType.phone,
+                onSaved: (newValue) => profile.phone = newValue,
+                onChanged: (value) {},
+                validator: (value) {
+                  return null;
+                },
+                decoration: const InputDecoration(
+                  label: Text("Phone number"),
+                  hintText: "Enter your phone number",
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                  suffixIcon: CustomSurffixIcon(icon: Icons.phone_rounded),
+                ),
+              ),
+            ),
+            //Birthday
+            const SizedBox(
+              height: 15,
+            ),
+            PickDateField(
+              controller: _birthday,
+              icon: Icons.date_range_outlined,
+              label: "Birthday",
+              hint: "Select your birthday",
+              initDate: profile.birthday,
+            ),
+            //Country
+            const SizedBox(
+              height: 15,
+            ),
+            PickCountryField(controller: _country),
 
-          //
-          const SizedBox(
-            height: 20,
-          ),
-        ],
-      ),
-    );
+            //My level
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: CustomDropDown(
+                  icon: Icons.format_list_numbered_rounded,
+                  onChanged: (newValue) {
+                    setState(() {
+                      profile.level = newValue;
+                    });
+                  },
+                  hint: "Choose your level",
+                  value: profile.level,
+                  title: "My level",
+                  items: kLevels),
+            ),
+
+            //Want to learn
+            const SizedBox(
+              height: 10,
+            ),
+
+            Container(
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: const CustomDropDown(
+                  icon: Icons.list_alt_rounded,
+                  hint: "What do you want to learn",
+                  value: null,
+                  title: "Want to learn",
+                  items: kCountries),
+            ),
+
+            //save
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: 120,
+              constraints: const BoxConstraints(maxWidth: 500),
+              child: DefaultButton(
+                text: "Save changes",
+                press: () {},
+              ),
+            ),
+
+            //
+            const SizedBox(
+              height: 20,
+            ),
+          ],
+        ),
+      );
+    });
   }
 }

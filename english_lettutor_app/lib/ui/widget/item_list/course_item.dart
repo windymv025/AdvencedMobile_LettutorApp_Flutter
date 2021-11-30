@@ -74,9 +74,18 @@ class CourseItem extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(level),
+                          Expanded(
+                            child: Text(
+                              level,
+                              overflow: TextOverflow.fade,
+                            ),
+                          ),
                           const Text(" • "),
-                          Text("$lessons Lessons")
+                          Text(
+                            "$lessons Lessons",
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          )
                         ],
                       ),
                     )

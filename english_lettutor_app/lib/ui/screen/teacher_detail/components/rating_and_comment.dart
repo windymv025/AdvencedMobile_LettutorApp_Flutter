@@ -38,7 +38,7 @@ class RatingAndComment extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                item.student!.fullName!,
+                item.student!.fullName,
                 style: titleStyle,
               ),
               Rating(onRatingUpdate: null, rating: item.rating!),

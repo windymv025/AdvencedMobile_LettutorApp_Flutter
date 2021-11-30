@@ -1,10 +1,12 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/screen/courses/components/custom_gridview_course.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/custom_drop_down.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class CoursesBody extends StatefulWidget {
   const CoursesBody({Key? key}) : super(key: key);
@@ -19,7 +21,8 @@ class _CoursesBodyState extends State<CoursesBody> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    loadListCourse();
+    final CourseDTO courseDTO = context.watch<CourseDTO>();
+    coures = courseDTO.items;
     return CustomScrollView(
       slivers: [
         SliverList(
@@ -32,6 +35,8 @@ class _CoursesBodyState extends State<CoursesBody> {
               padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
               child: Text(
                 "Filter courses",
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
                 style: titleStyle,
               ),
             ),
@@ -56,23 +61,5 @@ class _CoursesBodyState extends State<CoursesBody> {
         CustomGridViewCourse(size: size, items: coures),
       ],
     );
-  }
-
-  loadListCourse() {
-    //todo
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
-    coures.add(Course.getDefault());
   }
 }

@@ -1,4 +1,7 @@
+import 'package:english_lettutor_app/data/provider/course_dto.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/data/sharedpref/shared_preference_helper.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +28,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   SharedPreferenceHelper? sharedPreferenceHelper;
+  Profile profile = Profile();
 
   @override
   void initState() {
@@ -39,20 +43,20 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeModel>(
-      builder: (context, themeModel, child) => MultiProvider(
-        providers: [
-          Provider(create: (context) => sharedPreferenceHelper),
-        ],
-        child: MaterialApp(
-          title: 'English Lettutor App',
-          theme: themeModel.themeMode,
-          darkTheme: themeDataDark,
-          themeMode: ThemeMode.system,
-          home: const SignInScreen(),
-          routes: routes,
-          initialRoute: SplashScreen.routeName,
-        ),
+    ThemeModel themeModel = Provider.of<ThemeModel>(context);
+    return MultiProvider(
+      providers: [
+        Provider(create: (context) => sharedPreferenceHelper),
+        ChangeNotifierProvider(create: (context) => profile),
+      ],
+      child: MaterialApp(
+        title: 'English Lettutor App',
+        theme: themeModel.themeMode,
+        darkTheme: themeDataDark,
+        themeMode: ThemeMode.system,
+        home: const SignInScreen(),
+        routes: routes,
+        initialRoute: SplashScreen.routeName,
       ),
     );
   }

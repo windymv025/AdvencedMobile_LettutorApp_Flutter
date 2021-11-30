@@ -8,9 +8,11 @@ class PickDateField extends StatefulWidget {
       required this.controller,
       required this.icon,
       required this.label,
-      required this.hint})
+      required this.hint,
+      this.initDate})
       : super(key: key);
   final TextEditingController controller;
+  final DateTime? initDate;
   final IconData? icon;
   final String label;
   final String hint;
@@ -40,7 +42,10 @@ class _PickDateFieldState extends State<PickDateField> {
   }
 
   Future pickDate(BuildContext context) async {
-    final initialDate = DateTime.now();
+    DateTime initialDate = DateTime.now();
+    if (widget.initDate != null) {
+      initialDate = widget.initDate!;
+    }
     final newDate = await showDatePicker(
       context: context,
       initialDate: initialDate,

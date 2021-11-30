@@ -1,7 +1,10 @@
-import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/data/provider/course_dto.dart';
+import 'package:english_lettutor_app/models/course/course.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/course_item.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class RecommendedCourse extends StatefulWidget {
   const RecommendedCourse({Key? key}) : super(key: key);
@@ -11,66 +14,29 @@ class RecommendedCourse extends StatefulWidget {
 }
 
 class _RecommendedCourseState extends State<RecommendedCourse> {
-  final List<Widget> teachers = [
-    SizedBox(
-      width: 200,
-      child: CourseItem(
-        image: Image.asset(Assets.assetsImagesTextLogo),
-        name: "Basic Conversation: ABC DEF GHT",
-        subTitile: "Gain confidence speaking about familiar topics",
-        level: kLevels[0],
-        lessons: 10,
-      ),
-    ),
-    SizedBox(
-      width: 200,
-      child: CourseItem(
-        image: Image.asset(Assets.assetsImagesCloudData),
-        name: "Basic Conversation",
-        subTitile: "Gain confidence speaking about familiar topics",
-        level: kLevels[0],
-        lessons: 10,
-      ),
-    ),
-    SizedBox(
-      width: 200,
-      child: CourseItem(
-        image: Image.asset(Assets.assetsImagesNoDataFound),
-        name: "Basic Conversation",
-        subTitile: "Gain confidence speaking about familiar topics",
-        level: kLevels[0],
-        lessons: 10,
-      ),
-    ),
-    SizedBox(
-      width: 200,
-      child: CourseItem(
-        image: Image.asset(Assets.assetsImagesNoDataFound),
-        name: "Basic Conversation",
-        subTitile: "Gain confidence speaking about familiar topics",
-        level: kLevels[0],
-        lessons: 10,
-      ),
-    ),
-    SizedBox(
-      width: 200,
-      child: CourseItem(
-        image: Image.asset(Assets.assetsImagesNoDataFound),
-        name: "Basic Conversation",
-        subTitile: "Gain confidence speaking about familiar topics",
-        level: kLevels[0],
-        lessons: 10,
-      ),
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final courseDTO = context.watch<CourseDTO>();
+    final profile = context.watch<Profile>();
+    final courses = courseDTO.getRecommentList(profile.level ?? kLevels[0]);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       physics: const ScrollPhysics(),
       primary: false,
-      child: Row(children: teachers),
+      child: Row(children: courses.map((e) => buildCourseItem(e)).toList()),
+    );
+  }
+
+  Widget buildCourseItem(Course course) {
+    return SizedBox(
+      width: 200,
+      child: CourseItem(
+        image: Image.asset(course.image!),
+        name: course.name!,
+        subTitile: course.subtitle!,
+        level: course.level!,
+        lessons: course.lessons,
+      ),
     );
   }
 }

@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants/design/theme.dart';
+import 'data/local_data_test.dart';
+import 'data/provider/schedule_dto.dart';
 import 'models/Theme/theme_model.dart';
 import 'utilities/routes/routes.dart';
 
@@ -27,18 +29,29 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  SharedPreferenceHelper? sharedPreferenceHelper;
+  // SharedPreferenceHelper? sharedPreferenceHelper;
   Profile profile = Profile();
+  CourseDTO courseDTO = CourseDTO();
+  TeacherDTO teacherDTO = TeacherDTO();
+  ScheduleDTO scheduleDTO = ScheduleDTO();
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     loadData();
   }
 
-  void loadData() async {
-    var sharedPreferences = await SharedPreferences.getInstance();
-    sharedPreferenceHelper = SharedPreferenceHelper(sharedPreferences);
+  void loadData() {
+    // var sharedPreferences = await SharedPreferences.getInstance();
+    // sharedPreferenceHelper = SharedPreferenceHelper(sharedPreferences);
+    courseDTO.addAll(courseList);
+    teacherDTO.addAll(teacherList);
+    scheduleDTO.addAll(scheduleList);
   }
 
   @override
@@ -46,8 +59,11 @@ class _MyAppState extends State<MyApp> {
     ThemeModel themeModel = Provider.of<ThemeModel>(context);
     return MultiProvider(
       providers: [
-        Provider(create: (context) => sharedPreferenceHelper),
+        // Provider(create: (context) => sharedPreferenceHelper),
         ChangeNotifierProvider(create: (context) => profile),
+        ChangeNotifierProvider(create: (context) => courseDTO),
+        ChangeNotifierProvider(create: (context) => teacherDTO),
+        ChangeNotifierProvider(create: (context) => scheduleDTO),
       ],
       child: MaterialApp(
         title: 'English Lettutor App',

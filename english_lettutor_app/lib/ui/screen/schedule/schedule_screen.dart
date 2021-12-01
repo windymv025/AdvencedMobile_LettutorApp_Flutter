@@ -13,7 +13,7 @@ class ScheduleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(title: "Schedule", imageAvatar: null),
+      appBar: CustomAppBar(title: "Schedule"),
       body: ScheduleBody(),
       bottomNavigationBar: MyBottomNavigation(selectedMenu: MenuState.schedule),
       drawer: MyDrawer(),

@@ -12,7 +12,7 @@ class MessengerScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(title: "Messenger", imageAvatar: null),
+      appBar: CustomAppBar(title: "Messenger"),
       drawer: MyDrawer(),
       body: MessengerBody(),
       bottomNavigationBar:

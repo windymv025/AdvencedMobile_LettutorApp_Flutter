@@ -13,7 +13,7 @@ class CoursesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(title: "Courses", imageAvatar: null),
+      appBar: CustomAppBar(title: "Courses"),
       body: CoursesBody(),
       drawer: MyDrawer(),
       bottomNavigationBar: MyBottomNavigation(selectedMenu: MenuState.course),

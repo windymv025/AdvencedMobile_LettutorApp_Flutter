@@ -1,29 +1,21 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/tag.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TutorItem extends StatefulWidget {
-  const TutorItem(
-      {Key? key,
-      required this.avatar,
-      required this.onTap,
-      required this.name,
-      required this.description,
-      required this.tags,
-      required this.rating,
-      this.isFavorite = false})
-      : super(key: key);
-  final ImageProvider? avatar;
-  final GestureTapCallback? onTap;
-  final String name;
-  final bool isFavorite;
-  final String description;
-  final double rating;
-  final List<String>? tags;
+  const TutorItem({
+    Key? key,
+    required this.teacher,
+  }) : super(key: key);
+
+  final Teacher teacher;
 
   @override
   _TutorItemState createState() => _TutorItemState();
@@ -34,21 +26,22 @@ class _TutorItemState extends State<TutorItem> {
     const Icon(Icons.favorite_border_rounded, color: Colors.red),
     const Icon(Icons.favorite_rounded, color: Colors.red)
   ];
-
+  late TeacherDTO _teacherDTO;
   var _icon = _listIcons[0];
 
   void onFavoriteClick() {
     setState(() {
       _icon = _icon == _listIcons[0] ? _listIcons[1] : _listIcons[0];
+      _teacherDTO.updateFavorite(widget.teacher);
     });
   }
 
   List<Widget> generateListTags() {
-    if (widget.tags == null) {
+    if (widget.teacher.specialties == null) {
       return [];
     } else {
       List<Tag> tags = [];
-      for (var i in widget.tags!) {
+      for (var i in widget.teacher.specialties!) {
         tags.add(Tag(label: i));
       }
       return tags;
@@ -58,6 +51,8 @@ class _TutorItemState extends State<TutorItem> {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
+    _icon = widget.teacher.isFavorite ? _listIcons[1] : _listIcons[0];
+    _teacherDTO = Provider.of<TeacherDTO>(context);
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, TeacherDetailScreen.routeName);
@@ -79,19 +74,21 @@ class _TutorItemState extends State<TutorItem> {
               MyListTile(
                 // color: kCardColor,
                 color: Colors.white,
-                avatar: widget.avatar,
-                onTap: widget.onTap,
+                avatar: widget.teacher.uriImage != null
+                    ? AssetImage(widget.teacher.uriImage!)
+                    : null,
+                onTap: null,
                 title: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.name,
+                      widget.teacher.name!,
                       style: titleStyle,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
                     Rating(
-                      rating: widget.rating,
+                      rating: widget.teacher.ratings!,
                       onRatingUpdate: () {},
                     ),
                   ],
@@ -113,7 +110,7 @@ class _TutorItemState extends State<TutorItem> {
               ),
               Container(
                 child: Text(
-                  widget.description,
+                  widget.teacher.description!,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 4,
                   // textAlign: TextAlign.justify,

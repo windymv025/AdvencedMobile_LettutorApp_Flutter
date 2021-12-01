@@ -12,7 +12,7 @@ class TeachersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: CustomAppBar(title: "Teacher", imageAvatar: null),
+      appBar: CustomAppBar(title: "Teacher"),
       body: TeacherPage(),
       drawer: MyDrawer(),
       bottomNavigationBar: MyBottomNavigation(selectedMenu: MenuState.teacher),

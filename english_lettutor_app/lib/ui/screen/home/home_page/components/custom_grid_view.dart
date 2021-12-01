@@ -26,12 +26,8 @@ class CustomGridView extends StatelessWidget {
         itemBuilder: (context, index) => Container(
               margin: const EdgeInsets.all(4),
               child: TutorItem(
-                  avatar: AssetImage(items![index].uriImage!),
-                  onTap: null,
-                  name: items![index].name!,
-                  description: items![index].description!,
-                  tags: items![index].specialties,
-                  rating: items![index].ratings!),
+                teacher: items![index],
+              ),
             ),
         itemCount: items!.length);
   }

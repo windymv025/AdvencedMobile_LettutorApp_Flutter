@@ -18,21 +18,24 @@ class Teacher {
   List<RatingComment>? ratingComments;
   List<DateTime>? freeDate;
   bool? isOnline;
+  bool isFavorite = false;
 
-  Teacher(
-      {required this.id,
-      required this.name,
-      required this.specialties,
-      this.uriImage,
-      required this.description,
-      this.education,
-      this.experience,
-      this.interests,
-      this.languages,
-      this.profession,
-      this.freeDate,
-      this.ratings = 0,
-      this.isOnline});
+  Teacher({
+    required this.id,
+    required this.name,
+    required this.specialties,
+    this.uriImage,
+    required this.description,
+    this.education,
+    this.experience,
+    this.interests,
+    this.languages,
+    this.profession,
+    this.freeDate,
+    this.ratings = 0,
+    this.isOnline,
+    this.isFavorite = false,
+  });
 
   Teacher.getDefault() {
     id = 1;
@@ -75,6 +78,7 @@ class Teacher {
       DateTime(2020)
     ];
     isOnline = true;
+    isFavorite = false;
   }
 
   Teacher.getDefault2() {
@@ -114,6 +118,7 @@ class Teacher {
       DateTime(2020)
     ];
     isOnline = false;
+    isFavorite = true;
   }
 
   Teacher.getDefault3() {
@@ -196,5 +201,6 @@ class Teacher {
       DateTime(2020)
     ];
     isOnline = true;
+    isFavorite = true;
   }
 }

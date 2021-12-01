@@ -16,7 +16,7 @@ class UpcomingLessionSearch extends StatefulWidget {
       : super(key: key);
   final Size size;
   final int totalHours, totalMinutes;
-  final Schedule schedule;
+  final Schedule? schedule;
 
   @override
   _UpcomingLessionSearchState createState() => _UpcomingLessionSearchState();
@@ -25,7 +25,7 @@ class UpcomingLessionSearch extends StatefulWidget {
 class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
   @override
   Widget build(BuildContext context) {
-    Schedule schedule = widget.schedule;
+    Schedule? schedule = widget.schedule;
 
     return SearchBarTitle(
       size: widget.size,
@@ -50,25 +50,28 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
           const SizedBox(
             height: 10,
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                DateFormat("EEE, dd MMM yy HH:mm").format((schedule.fromTime)),
-                style: subTileCountDownStyle,
-                overflow: TextOverflow.clip,
-              ),
-              const Text(
-                " - ",
-                style: subTileCountDownStyle,
-              ),
-              Text(
-                DateFormat("HH:mm").format((schedule.toTime)),
-                style: subTileCountDownStyle,
-              )
-            ],
-          ),
+          schedule != null
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      DateFormat("EEE, dd MMM yy HH:mm")
+                          .format((schedule.fromTime)),
+                      style: subTileCountDownStyle,
+                      overflow: TextOverflow.clip,
+                    ),
+                    const Text(
+                      " - ",
+                      style: subTileCountDownStyle,
+                    ),
+                    Text(
+                      DateFormat("HH:mm").format((schedule.toTime)),
+                      style: subTileCountDownStyle,
+                    )
+                  ],
+                )
+              : Container(),
           const SizedBox(
             height: 10,
           ),

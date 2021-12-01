@@ -1,14 +1,10 @@
-import 'package:english_lettutor_app/constants/constants.dart';
-import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
-import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
-import 'package:english_lettutor_app/ui/screen/schedule/components/custom_gridview_schedule.dart';
-import 'package:english_lettutor_app/ui/screen/schedule/components/upcoming_lession_search.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+
+import 'components/custom_gridview_schedule.dart';
+import 'components/upcoming_lession_search.dart';
 
 class ScheduleBody extends StatefulWidget {
   const ScheduleBody({Key? key}) : super(key: key);
@@ -26,21 +22,23 @@ class _ScheduleBodyState extends State<ScheduleBody> {
     int minutes = 0;
     loadScheduleList();
 
+    final ScheduleDTO scheduleDTO = ScheduleDTO();
+
     return CustomScrollView(
       slivers: [
         SliverList(
             delegate: SliverChildListDelegate([
           UpcomingLessionSearch(
-              size: size,
-              totalHours: hours,
-              totalMinutes: minutes,
-              // TODO: filter schedule
-              schedule: Schedule.getDefault()),
+            size: size,
+            totalHours: hours,
+            totalMinutes: minutes,
+            schedule: scheduleDTO.getUpcomingLessionSchedule(),
+          ),
           const SizedBox(
             height: 25,
           )
         ])),
-        CustomGridViewSchedule(size: size, items: schedules)
+        CustomGridViewSchedule(size: size, items: scheduleDTO.items)
       ],
     );
   }

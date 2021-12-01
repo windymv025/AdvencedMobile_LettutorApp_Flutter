@@ -1,7 +1,8 @@
 import 'package:english_lettutor_app/models/messager/conversation.dart';
-import 'package:english_lettutor_app/ui/screen/messenger/components/listview_conversation.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:flutter/material.dart';
+
+import 'components/listview_conversation.dart';
 
 class MessengerBody extends StatefulWidget {
   const MessengerBody({Key? key}) : super(key: key);

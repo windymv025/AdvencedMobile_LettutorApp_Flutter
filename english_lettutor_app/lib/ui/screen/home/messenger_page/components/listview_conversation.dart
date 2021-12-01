@@ -1,8 +1,9 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:english_lettutor_app/models/messager/conversation.dart';
-import 'package:english_lettutor_app/ui/screen/messenger/components/card_chat_item.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/no_data_page.dart';
 import 'package:flutter/material.dart';
+
+import 'card_chat_item.dart';
 
 class ListviewConversation extends StatelessWidget {
   const ListviewConversation({Key? key, required this.conversations})

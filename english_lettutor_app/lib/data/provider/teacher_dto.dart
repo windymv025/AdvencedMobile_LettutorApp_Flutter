@@ -3,6 +3,18 @@ import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'base_dto.dart';
 
 class TeacherDTO extends BaseDTO<Teacher> {
+  final List<String> _specialities = [];
+
+  void addSpeciality(String speciality) {
+    _specialities.add(speciality);
+    notifyListeners();
+  }
+
+  void removeSpeciality(String speciality) {
+    _specialities.remove(speciality);
+    notifyListeners();
+  }
+
   @override
   List<Teacher> get items {
     super.items.sort((a, b) {
@@ -28,6 +40,24 @@ class TeacherDTO extends BaseDTO<Teacher> {
     }
 
     return result;
+  }
+
+  List<Teacher> getFavoriteTeachers() {
+    return items.where((teacher) => teacher.isFavorite).toList();
+  }
+
+  List<Teacher> getTeachersByspecialities() {
+    if (_specialities.isEmpty) {
+      return items;
+    }
+    return items.where((teacher) {
+      for (var speciality in _specialities) {
+        if (teacher.specialties!.contains(speciality)) {
+          return true;
+        }
+      }
+      return false;
+    }).toList();
   }
 
   void sortListTeachers() {

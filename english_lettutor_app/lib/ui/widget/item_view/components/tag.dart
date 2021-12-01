@@ -1,5 +1,7 @@
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Tag extends StatefulWidget {
   const Tag(
@@ -20,6 +22,13 @@ class _TagState extends State<Tag> {
   var _textStyle = chipStyleOff;
   var _buttonStyle = tagButtonStyleOff;
   var _isSelected = false;
+  late TeacherDTO teacherDTO;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    teacherDTO = Provider.of<TeacherDTO>(context);
+  }
 
   void onTagPressListener() {
     setState(() {
@@ -27,6 +36,7 @@ class _TagState extends State<Tag> {
         _isSelected = !_isSelected;
         _textStyle = _isSelected ? chipStyleOn : chipStyleOff;
         _buttonStyle = _isSelected ? tagButtonStyleOn : tagButtonStyleOff;
+        teacherDTO.addSpeciality(widget.label);
       }
     });
   }
@@ -38,7 +48,6 @@ class _TagState extends State<Tag> {
       _textStyle = chipStyleOn;
       _buttonStyle = tagButtonStyleOn;
     }
-
     return Container(
       child: ElevatedButton(
         onPressed: onTagPressListener,

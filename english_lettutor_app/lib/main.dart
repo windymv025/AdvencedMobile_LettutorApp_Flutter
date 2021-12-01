@@ -1,15 +1,14 @@
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
-import 'package:english_lettutor_app/data/sharedpref/shared_preference_helper.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'constants/design/theme.dart';
 import 'data/local_data_test.dart';
+import 'data/provider/home_state.dart';
 import 'data/provider/schedule_dto.dart';
 import 'models/Theme/theme_model.dart';
 import 'utilities/routes/routes.dart';
@@ -47,8 +46,6 @@ class _MyAppState extends State<MyApp> {
   }
 
   void loadData() {
-    // var sharedPreferences = await SharedPreferences.getInstance();
-    // sharedPreferenceHelper = SharedPreferenceHelper(sharedPreferences);
     courseDTO.addAll(courseList);
     teacherDTO.addAll(teacherList);
     scheduleDTO.addAll(scheduleList);
@@ -59,11 +56,11 @@ class _MyAppState extends State<MyApp> {
     ThemeModel themeModel = Provider.of<ThemeModel>(context);
     return MultiProvider(
       providers: [
-        // Provider(create: (context) => sharedPreferenceHelper),
         ChangeNotifierProvider(create: (context) => profile),
         ChangeNotifierProvider(create: (context) => courseDTO),
         ChangeNotifierProvider(create: (context) => teacherDTO),
         ChangeNotifierProvider(create: (context) => scheduleDTO),
+        ChangeNotifierProvider(create: (context) => HomeState())
       ],
       child: MaterialApp(
         title: 'English Lettutor App',

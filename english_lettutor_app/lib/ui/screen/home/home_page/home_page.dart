@@ -1,6 +1,6 @@
-import 'package:english_lettutor_app/ui/screen/courses/courses_screen.dart';
-import 'package:english_lettutor_app/ui/screen/teachers/teachers_screen.dart';
+import 'package:english_lettutor_app/data/provider/home_state.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'components/list_recommended_teacher.dart';
 import 'components/recommended_courses.dart';
@@ -19,37 +19,41 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     // int columnRatio = getColumnRatio(size);
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-            delegate: SliverChildListDelegate([
-          // welcome
-          WelcomeWithSearch(size: size),
-          //your teacher
-          TitleAndButton(
-            onPressed: () {
-              Navigator.pushNamed(context, CoursesScreen.routeName);
-            },
-            title: "Recommended Course",
-            textButton: "More",
+    return Consumer<HomeState>(builder: (context, homeState, _) {
+      return CustomScrollView(
+        slivers: [
+          SliverList(
+              delegate: SliverChildListDelegate([
+            // welcome
+            WelcomeWithSearch(size: size),
+            //your teacher
+            TitleAndButton(
+              onPressed: () {
+                // Navigator.pushNamed(context, CoursesScreen.routeName);
+                homeState.pageIndex = 4;
+              },
+              title: "Recommended Course",
+              textButton: "More",
+            ),
+            //listView
+            const RecommendedCourse(),
+            // see all
+            TitleAndButton(
+              onPressed: () {
+                // Navigator.pushNamed(context, TeachersScreen.routeName);
+                homeState.pageIndex = 3;
+              },
+              title: "Recommended Teacher",
+              textButton: "More",
+            ),
+            // const NoDataPage(),
+          ])),
+          //gridview
+          ListRecommendedTeacher(
+            size: size,
           ),
-          //listView
-          const RecommendedCourse(),
-          // see all
-          TitleAndButton(
-            onPressed: () {
-              Navigator.pushNamed(context, TeachersScreen.routeName);
-            },
-            title: "Recommended Teacher",
-            textButton: "More",
-          ),
-          // const NoDataPage(),
-        ])),
-        //gridview
-        ListRecommendedTeacher(
-          size: size,
-        ),
-      ],
-    );
+        ],
+      );
+    });
   }
 }

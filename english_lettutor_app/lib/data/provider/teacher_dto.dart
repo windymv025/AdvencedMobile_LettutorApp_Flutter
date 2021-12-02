@@ -93,4 +93,21 @@ class TeacherDTO extends BaseDTO<Teacher> {
     teacher.isFavorite = !teacher.isFavorite;
     notifyListeners();
   }
+
+  void search(String value) {
+    if (value.isEmpty) {
+      clearSearch();
+      return;
+    }
+
+    var result = items.where((element) {
+      return element.name!.toLowerCase().contains(value.toLowerCase()) ||
+          element.country.toLowerCase().contains(value.toLowerCase());
+    }).toList();
+
+    pagingInfo = PagingInfo(10, result.length);
+
+    super.items = result;
+    notifyListeners();
+  }
 }

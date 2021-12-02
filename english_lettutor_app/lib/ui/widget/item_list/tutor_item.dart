@@ -87,6 +87,9 @@ class _TutorItemState extends State<TutorItem> {
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
+                    Text(widget.teacher.country,
+                        style: const TextStyle(
+                            fontSize: 14, fontStyle: FontStyle.italic)),
                     Rating(
                       rating: widget.teacher.ratings!,
                       onRatingUpdate: () {},

@@ -18,13 +18,12 @@ class TeacherPage extends StatefulWidget {
 
 class TeacherPageState extends State<TeacherPage> {
   late TeacherDTO teacherDTO;
-  List<Teacher> _teachers = [];
+  final _textEditingController = TextEditingController();
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     teacherDTO = Provider.of<TeacherDTO>(context, listen: true);
-    _teachers = teacherDTO.items;
   }
 
   void reload() {
@@ -38,7 +37,12 @@ class TeacherPageState extends State<TeacherPage> {
       slivers: [
         SliverList(
             delegate: SliverChildListDelegate([
-          const SearchBarTitle(),
+          SearchBarTitle(
+            onTextChanged: (value) {
+              teacherDTO.search(value);
+            },
+            textEditingController: _textEditingController,
+          ),
           const Padding(
             padding: EdgeInsets.only(left: 12, top: 15),
             child: Text(
@@ -65,30 +69,37 @@ class TeacherPageState extends State<TeacherPage> {
         ),
         SliverList(
           delegate: SliverChildListDelegate([
-            Container(
-                margin: const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    PageButton(
-                        onPressed: () {
-                          teacherDTO.prevPage();
-                        },
-                        text: '<'),
-                    PageButton(
-                        onPressed: () {
-                          teacherDTO.prevPage();
-                        },
-                        text:
-                            '${teacherDTO.currentPage} -- ${teacherDTO.totalPage}'),
-                    PageButton(
-                        onPressed: () {
-                          teacherDTO.nextPage();
-                        },
-                        text: '>')
-                  ],
-                ))
+            teacherDTO.totalPage == 0
+                ? Container()
+                : Container(
+                    margin:
+                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        teacherDTO.totalPage == 1
+                            ? Container()
+                            : PageButton(
+                                onPressed: () {
+                                  teacherDTO.prevPage();
+                                },
+                                text: '<'),
+                        PageButton(
+                            onPressed: () {
+                              teacherDTO.prevPage();
+                            },
+                            text:
+                                '${teacherDTO.currentPage} -- ${teacherDTO.totalPage}'),
+                        teacherDTO.totalPage == 1
+                            ? Container()
+                            : PageButton(
+                                onPressed: () {
+                                  teacherDTO.nextPage();
+                                },
+                                text: '>')
+                      ],
+                    ))
           ]),
         )
       ],

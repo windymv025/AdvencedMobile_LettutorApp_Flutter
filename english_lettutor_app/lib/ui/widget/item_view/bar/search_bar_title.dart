@@ -3,8 +3,12 @@ import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar.dart';
 import 'package:flutter/material.dart';
 
 class SearchBarTitle extends StatefulWidget {
-  const SearchBarTitle({Key? key, this.child}) : super(key: key);
+  const SearchBarTitle(
+      {Key? key, this.child, this.onTextChanged, this.textEditingController})
+      : super(key: key);
   final Widget? child;
+  final ValueChanged<String>? onTextChanged;
+  final TextEditingController? textEditingController;
 
   @override
   _SearchBarTitleState createState() => _SearchBarTitleState();
@@ -41,9 +45,8 @@ class _SearchBarTitleState extends State<SearchBarTitle> {
               onIconPressed: () {
                 setState(() {});
               },
-              onTextChanged: (value) {
-                setState(() {});
-              },
+              onTextChanged: widget.onTextChanged,
+              textEditingController: widget.textEditingController,
             )),
       ],
     );

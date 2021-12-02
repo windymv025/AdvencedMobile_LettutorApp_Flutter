@@ -19,11 +19,13 @@ class Teacher {
   List<DateTime>? freeDate;
   bool? isOnline;
   bool isFavorite = false;
+  String country = '';
 
   Teacher({
     required this.id,
     required this.name,
     required this.specialties,
+    required this.country,
     this.uriImage,
     required this.description,
     this.education,
@@ -79,6 +81,7 @@ class Teacher {
     ];
     isOnline = true;
     isFavorite = false;
+    country = "Vietnam";
   }
 
   Teacher.getDefault2() {
@@ -113,6 +116,7 @@ class Teacher {
     ];
     isOnline = false;
     isFavorite = true;
+    country = "USA";
   }
 
   Teacher.getDefault3() {
@@ -153,6 +157,7 @@ class Teacher {
       DateTime(2020)
     ];
     isOnline = true;
+    country = "Campuchia";
   }
 
   Teacher.getDefault4() {
@@ -196,5 +201,6 @@ class Teacher {
     ];
     isOnline = true;
     isFavorite = true;
+    country = "USA";
   }
 }

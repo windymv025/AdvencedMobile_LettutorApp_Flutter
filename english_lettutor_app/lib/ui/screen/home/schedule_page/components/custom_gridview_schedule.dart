@@ -21,7 +21,11 @@ class CustomGridViewSchedule extends StatelessWidget {
     int columnRatio = getColumRatio(context, dimens);
 
     if (items == null || items!.isEmpty) {
-      return const NoDataPage();
+      return SliverList(
+        delegate: SliverChildListDelegate([
+          const NoDataPage(),
+        ]),
+      );
     }
     return SliverStaggeredGrid.countBuilder(
         crossAxisCount: 12,

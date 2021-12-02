@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/socal_card.dart';
 import 'package:flutter/material.dart';
 
@@ -23,11 +24,17 @@ class ContinueWithComponent extends StatelessWidget {
           children: [
             SocalCard(
               icon: Assets.assetsIconsGoogleIcon,
-              press: () {},
+              press: () {
+                //TODO: implement google sign in
+                Navigator.pushNamed(context, HomeScreen.routeName);
+              },
             ),
             SocalCard(
               icon: Assets.assetsIconsFacebook2,
-              press: () {},
+              press: () {
+                //TODO: implement facebook sign in
+                Navigator.pushNamed(context, HomeScreen.routeName);
+              },
             ),
           ],
         )

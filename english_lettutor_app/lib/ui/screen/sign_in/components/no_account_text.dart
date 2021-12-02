@@ -15,7 +15,7 @@ class NoAccountText extends StatelessWidget {
           "Don’t have an account? ",
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
-        GestureDetector(
+        InkWell(
           onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
           child: const Text(
             "Sign Up",

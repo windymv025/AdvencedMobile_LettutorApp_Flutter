@@ -22,25 +22,24 @@ class _ScheduleBodyState extends State<ScheduleBody> {
     int minutes = 0;
     loadScheduleList();
 
-    final ScheduleDTO scheduleDTO = ScheduleDTO();
+    // final ScheduleDTO scheduleDTO = context.watch<ScheduleDTO>();
 
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-            delegate: SliverChildListDelegate([
-          UpcomingLessionSearch(
-            size: size,
-            totalHours: hours,
-            totalMinutes: minutes,
-            schedule: scheduleDTO.getUpcomingLessionSchedule(),
-          ),
-          const SizedBox(
-            height: 25,
-          )
-        ])),
-        CustomGridViewSchedule(size: size, items: scheduleDTO.items)
-      ],
-    );
+    return Consumer<ScheduleDTO>(builder: (context, scheduleDTO, _) {
+      return CustomScrollView(
+        slivers: [
+          SliverList(
+              delegate: SliverChildListDelegate([
+            UpcomingLessionSearch(
+              schedule: scheduleDTO.getUpcomingLessionSchedule(),
+            ),
+            const SizedBox(
+              height: 25,
+            )
+          ])),
+          CustomGridViewSchedule(size: size, items: scheduleDTO.items)
+        ],
+      );
+    });
   }
 
   loadScheduleList() {

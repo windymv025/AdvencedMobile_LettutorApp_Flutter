@@ -1,5 +1,8 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
+import 'package:english_lettutor_app/ui/screen/otp_screen/otp_screen.dart';
+import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
@@ -63,8 +66,12 @@ class _SignUpFormState extends State<SignUpForm> {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                child: GestureDetector(
-                  onTap: () {},
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(
+                        context, ForgotPasswordScreen.routeName);
+                  },
                   child: const Text(
                     "Forgot Password?",
                     style: TextStyle(
@@ -90,6 +97,8 @@ class _SignUpFormState extends State<SignUpForm> {
                 // Navigator.pushNamedAndRemoveUntil(
                 //     context, SignInScreen.routeName, (route) => false);
                 Navigator.pop(context);
+                Navigator.pushNamed(context, OTPScreen.routeName,
+                    arguments: SignInScreen.routeName);
               }
             },
           ),

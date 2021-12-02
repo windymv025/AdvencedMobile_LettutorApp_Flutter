@@ -20,7 +20,7 @@ class _ScheduleHistoryBodyState extends State<ScheduleHistoryBody> {
       slivers: [
         SliverList(
             delegate: SliverChildListDelegate([
-          SearchBarTitle(size: size),
+          const SearchBarTitle(),
           const SizedBox(
             height: 20,
           ),

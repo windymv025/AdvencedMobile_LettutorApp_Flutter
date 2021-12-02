@@ -25,9 +25,7 @@ class _CoursesBodyState extends State<CoursesBody> {
         SliverList(
             delegate: SliverChildListDelegate(
           [
-            SearchBarTitle(
-              size: size,
-            ),
+            const SearchBarTitle(),
             const Padding(
               padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
               child: Text(

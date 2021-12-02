@@ -35,7 +35,16 @@ class Profile extends ChangeNotifier {
 
   late List<String>? wantToLearn;
 
-  Profile();
+  Profile() {
+    _fullName = "";
+    _image = null;
+    email = "";
+    country = "";
+    phone = "";
+    birthday = null;
+    _level = null;
+    wantToLearn = null;
+  }
 
   Profile.getDefault() {
     fullName = "Pham Minh Vuong";

@@ -22,7 +22,7 @@ class _MessengerBodyState extends State<MessengerBody> {
       slivers: [
         SliverList(
             delegate: SliverChildListDelegate([
-          SearchBarTitle(size: size),
+          const SearchBarTitle(),
           const SizedBox(
             height: 10,
           ),

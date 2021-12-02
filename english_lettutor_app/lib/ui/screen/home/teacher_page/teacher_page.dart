@@ -33,9 +33,7 @@ class TeacherPageState extends State<TeacherPage> {
       slivers: [
         SliverList(
             delegate: SliverChildListDelegate([
-          SearchBarTitle(
-            size: size,
-          ),
+          const SearchBarTitle(),
           const Padding(
             padding: EdgeInsets.only(left: 10, top: 10),
             child: Text(

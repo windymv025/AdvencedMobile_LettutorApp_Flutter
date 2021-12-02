@@ -16,7 +16,6 @@ class _MessengerBodyState extends State<MessengerBody> {
   @override
   Widget build(BuildContext context) {
     loadListConversation();
-    Size size = MediaQuery.of(context).size;
 
     return CustomScrollView(
       slivers: [

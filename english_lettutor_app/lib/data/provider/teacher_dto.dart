@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/models/page/paging_info.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 
 import 'base_dto.dart';
@@ -5,13 +6,25 @@ import 'base_dto.dart';
 class TeacherDTO extends BaseDTO<Teacher> {
   final List<String> _specialities = [];
 
+  List<String> getSpecialities() => _specialities;
+
   void addSpeciality(String speciality) {
     _specialities.add(speciality);
+    items = getTeachersByspecialities();
     notifyListeners();
   }
 
   void removeSpeciality(String speciality) {
     _specialities.remove(speciality);
+    clearSearch();
+    items = getTeachersByspecialities();
+
+    notifyListeners();
+  }
+
+  void clearSpecialities() {
+    _specialities.clear();
+    clearSearch();
     notifyListeners();
   }
 
@@ -42,22 +55,24 @@ class TeacherDTO extends BaseDTO<Teacher> {
     return result;
   }
 
-  List<Teacher> getFavoriteTeachers() {
-    return items.where((teacher) => teacher.isFavorite).toList();
-  }
-
   List<Teacher> getTeachersByspecialities() {
     if (_specialities.isEmpty) {
+      clearSearch();
       return items;
     }
-    return items.where((teacher) {
+
+    var result = items.where((element) {
       for (var speciality in _specialities) {
-        if (teacher.specialties!.contains(speciality)) {
-          return true;
+        if (!element.specialties!.contains(speciality)) {
+          return false;
         }
       }
-      return false;
+      return true;
     }).toList();
+
+    pagingInfo = PagingInfo(10, result.length);
+
+    return result;
   }
 
   void sortListTeachers() {

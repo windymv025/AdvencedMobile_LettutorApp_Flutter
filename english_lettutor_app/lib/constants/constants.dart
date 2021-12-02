@@ -47,6 +47,23 @@ const kLevels = [
   "Proficiency"
 ];
 
+const kSpecialities = [
+  kAllTeachers,
+  "English for kids",
+  "English for Business",
+  "Conversational",
+  "STARTERS",
+  "MOVERS",
+  "FLYERS",
+  "KET",
+  "PET",
+  "IELTS",
+  "TOEFL",
+  "TOEIC",
+];
+
+const kAllTeachers = "All";
+
 const kCountries = ["Viet Nam", "Uzbekistan", "United States of America"];
 
 const String sep1Content =

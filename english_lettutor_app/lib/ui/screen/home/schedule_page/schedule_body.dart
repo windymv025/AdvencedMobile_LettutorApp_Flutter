@@ -1,5 +1,4 @@
 import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
-import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,13 +13,9 @@ class ScheduleBody extends StatefulWidget {
 }
 
 class _ScheduleBodyState extends State<ScheduleBody> {
-  List<Schedule> schedules = [];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    int hours = 12;
-    int minutes = 0;
-    loadScheduleList();
 
     // final ScheduleDTO scheduleDTO = context.watch<ScheduleDTO>();
 
@@ -40,20 +35,5 @@ class _ScheduleBodyState extends State<ScheduleBody> {
         ],
       );
     });
-  }
-
-  loadScheduleList() {
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
-    schedules.add(Schedule.getDefault());
   }
 }

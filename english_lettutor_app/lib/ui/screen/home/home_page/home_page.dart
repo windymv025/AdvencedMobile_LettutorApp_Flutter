@@ -36,7 +36,10 @@ class _HomePageState extends State<HomePage> {
               textButton: "More",
             ),
             //listView
-            const RecommendedCourse(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: RecommendedCourse(),
+            ),
             // see all
             TitleAndButton(
               onPressed: () {
@@ -49,8 +52,11 @@ class _HomePageState extends State<HomePage> {
             // const NoDataPage(),
           ])),
           //gridview
-          ListRecommendedTeacher(
-            size: size,
+          SliverPadding(
+            padding: const EdgeInsets.only(left: 5, right: 5, bottom: 12),
+            sliver: ListRecommendedTeacher(
+              size: size,
+            ),
           ),
         ],
       );

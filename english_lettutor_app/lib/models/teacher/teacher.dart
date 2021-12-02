@@ -58,7 +58,7 @@ class Teacher {
       "English for kids",
       "English for Business",
       "Conversational",
-      "TOIEC",
+      "TOEIC",
       "STARTERS"
     ];
 
@@ -99,13 +99,7 @@ class Teacher {
         "Listening to music , Watching English movies, Gardening, Baking, Cooking ,craft making , Adult coloring, Go hiking with my family ,swimming and fishing.";
     profession = "Teaching Assistant at ILA Vietnam";
 
-    specialties = [
-      "English for kids",
-      "English for Business",
-      "Conversational",
-      "TOIEC",
-      "STARTERS"
-    ];
+    specialties = ["English for kids", "Conversational", "TOEIC", "STARTERS"];
 
     ratings = 3.0;
 
@@ -182,7 +176,7 @@ class Teacher {
       "English for kids",
       "English for Business",
       "Conversational",
-      "TOIEC",
+      "TOEIC",
       "STARTERS"
     ];
 

@@ -1,6 +1,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/home_state.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/ui/drawer/my_drawer.dart';
 import 'package:english_lettutor_app/ui/screen/home/messenger_page/messenger_body.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/custom_app_bar.dart';
@@ -40,6 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     bool _isDark = Theme.of(context).brightness == Brightness.dark;
     HomeState homeState = Provider.of<HomeState>(context);
+    TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -53,10 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
         color: _isDark ? kDarkColor : kMainBlueColor,
         backgroundColor: _isDark
             ? Colors.grey.withOpacity(0.1)
-            : Colors.white.withOpacity(0),
+            : Colors.transparent.withOpacity(0),
         onTap: (index) {
           loadPage(index);
           homeState.pageIndex = index;
+          teacherDTO.clearSpecialities();
         },
         items: const [
           Icon(

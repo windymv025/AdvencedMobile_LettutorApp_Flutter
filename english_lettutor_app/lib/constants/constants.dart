@@ -14,6 +14,8 @@ const String kPassNullError = "Please Enter your password";
 const String kShortPassError = "Password is too short";
 const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
+const String kOTPNullError = "Please Enter OTP in your email";
+const String kOTPError = "OTP is Invalid, please try again";
 
 // const kMainBlueColor = Color(0xff18A9FB);
 const kMainBlueColor = Color(0xff248EEF);

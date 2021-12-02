@@ -5,6 +5,7 @@ import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.d
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
+import 'package:english_lettutor_app/ui/screen/otp_screen/otp_screen.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
 import 'package:english_lettutor_app/ui/screen/reset_password_screen/reset_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/setting/setting_screen.dart';
@@ -29,4 +30,5 @@ final Map<String, WidgetBuilder> routes = {
   BecomeTeacherScreen.routeName: (context) => const BecomeTeacherScreen(),
   LessonScreen.routeName: (context) => const LessonScreen(),
   MessengerDetailScreen.routeName: (context) => const MessengerDetailScreen(),
+  OTPScreen.routeName: (context) => const OTPScreen(),
 };

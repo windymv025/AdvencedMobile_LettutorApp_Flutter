@@ -1,13 +1,17 @@
 import 'package:english_lettutor_app/constants/assets.dart';
-import 'package:english_lettutor_app/ui/screen/sign_in/components/no_account_text.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/components/continue_with_component.dart';
 import 'package:flutter/material.dart';
 
-import 'forgot_password_form.dart';
+import 'otp_form.dart';
 
-class Body extends StatelessWidget {
-  const Body({Key? key}) : super(key: key);
+class OTPBody extends StatefulWidget {
+  const OTPBody({Key? key, required this.routeName}) : super(key: key);
+  final String routeName;
 
+  @override
+  _OTPBodyState createState() => _OTPBodyState();
+}
+
+class _OTPBodyState extends State<OTPBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -25,7 +29,7 @@ class Body extends StatelessWidget {
                 const Padding(
                   padding: EdgeInsets.only(top: 10, left: 30, right: 30),
                   child: Text(
-                    "Enter your email address and we’ll send you a OTP code to reset your password",
+                    "Check your email then enter the OTP code below",
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 13),
                   ),
@@ -33,15 +37,9 @@ class Body extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                const ForgotPasswordForm(),
-                const SizedBox(
-                  height: 15,
+                OTPForm(
+                  routeName: widget.routeName,
                 ),
-                const ContinueWithComponent(),
-                const SizedBox(
-                  height: 10,
-                ),
-                const NoAccountText(),
                 const SizedBox(
                   height: 15,
                 ),

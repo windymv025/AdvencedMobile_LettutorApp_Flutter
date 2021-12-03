@@ -49,7 +49,9 @@ dependencies:
   shared_preferences: ^2.0.9
   fuzzy: ^0.4.0-nullsafety.0 #search
   flutter_slidable: ^1.1.0 #swip to delete
-
+  image_picker: ^0.8.4+4 #image and video picker
+  multi_select_flutter: ^4.0.0 #multi select item
+  video_player: ^2.2.7 #video player
 
 dev_dependencies:
   flutter_test:

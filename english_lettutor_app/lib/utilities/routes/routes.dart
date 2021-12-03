@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
+import 'package:english_lettutor_app/ui/screen/favorite_teacher/favorite_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
@@ -31,4 +32,5 @@ final Map<String, WidgetBuilder> routes = {
   LessonScreen.routeName: (context) => const LessonScreen(),
   MessengerDetailScreen.routeName: (context) => const MessengerDetailScreen(),
   OTPScreen.routeName: (context) => const OTPScreen(),
+  FavoriteTeacher.routeName: (context) => const FavoriteTeacher(),
 };

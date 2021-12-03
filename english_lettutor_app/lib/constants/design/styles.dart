@@ -34,6 +34,9 @@ const chipStyleOn = TextStyle(
 const chipStyleOff = TextStyle(
     color: kMainBlueColor, fontSize: textSizeTag, fontWeight: FontWeight.w800);
 
+const chipStyleOffBlack = TextStyle(
+    color: Colors.black87, fontSize: textSizeTag, fontWeight: FontWeight.w800);
+
 final ButtonStyle outlineButtonStyle = ButtonStyle(
     backgroundColor: MaterialStateProperty.all(Colors.white),
     overlayColor: MaterialStateProperty.resolveWith<Color?>(

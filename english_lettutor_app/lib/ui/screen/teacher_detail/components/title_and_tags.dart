@@ -13,9 +13,9 @@ class TitleAndTags extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const TitleDetail(title: "Specialties"),
+        TitleDetail(title: title),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
+          padding: const EdgeInsets.only(left: 25, bottom: 10),
           child: Wrap(
             children: buildTagsFromList(tags),
           ),

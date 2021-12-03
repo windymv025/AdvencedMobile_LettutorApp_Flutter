@@ -1,7 +1,8 @@
+import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
-import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1_page.dart';
-import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step2_page.dart';
-import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step3_page.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1/step1_page.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step2/step2_page.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step3/step3_page.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:flutter/material.dart';
 
@@ -17,9 +18,12 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Stepper(
       currentStep: _index,
-      type: StepperType.horizontal,
+      type: size.width > kMobileBreakpoint
+          ? StepperType.horizontal
+          : StepperType.vertical,
       controlsBuilder: (context, controlsDetails) {
         return Row(
           mainAxisAlignment:
@@ -77,6 +81,8 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
           title: const Text(
             "Complete profile",
             style: titleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           content: const Step1Page(),
         ),
@@ -85,6 +91,8 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
           title: const Text(
             "Video introduction",
             style: titleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           content: const Step2Page(),
         ),
@@ -93,6 +101,8 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
           title: const Text(
             "Approval",
             style: titleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           content: const Step3Page(),
         ),

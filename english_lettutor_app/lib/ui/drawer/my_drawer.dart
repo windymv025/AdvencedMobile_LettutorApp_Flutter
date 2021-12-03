@@ -1,6 +1,8 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
+import 'package:english_lettutor_app/ui/screen/favorite_teacher/favorite_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/infor.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
@@ -8,6 +10,7 @@ import 'package:english_lettutor_app/ui/screen/setting/setting_screen.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import 'components/settings_button.dart';
 
@@ -17,6 +20,8 @@ class MyDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // return Container();
+    TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
+
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
@@ -43,6 +48,16 @@ class MyDrawer extends StatelessWidget {
                 color: kMainBlueColor,
               ),
               title: "Schedule history"),
+          SettingsButton(
+              onPress: () {
+                teacherDTO.clearSpecialities();
+                Navigator.popAndPushNamed(context, FavoriteTeacher.routeName);
+              },
+              icon: const Icon(
+                Icons.favorite_rounded,
+                color: kMainBlueColor,
+              ),
+              title: "Favorite Teacher"),
           SettingsButton(
               onPress: () {
                 Navigator.popAndPushNamed(

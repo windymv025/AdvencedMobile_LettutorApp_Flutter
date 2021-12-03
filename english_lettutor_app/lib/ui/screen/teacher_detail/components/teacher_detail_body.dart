@@ -5,34 +5,35 @@ import 'package:english_lettutor_app/ui/screen/teacher_detail/components/rating_
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_and_tags.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/video_introduce.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/media/video_network_widget.dart';
 import 'package:flutter/material.dart';
 
 class TeacherDetailBody extends StatefulWidget {
-  const TeacherDetailBody({Key? key}) : super(key: key);
+  const TeacherDetailBody({Key? key, required this.teacher}) : super(key: key);
+  final Teacher teacher;
 
   @override
   _TeacherDetailBodyState createState() => _TeacherDetailBodyState();
 }
 
 class _TeacherDetailBodyState extends State<TeacherDetailBody> {
-  Teacher teacher = Teacher.getDefault();
   @override
   Widget build(BuildContext context) {
+    Teacher teacher = widget.teacher;
+
     return SingleChildScrollView(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Video
-          VideoIntroduce(uri: teacher.uriVideo!),
+          // VideoIntroduce(uri: teacher.uriVideo!),
+          VideoNetworkWidget(teacher.uriVideo!),
           // image and simple infor teacher
           SimpleInforTeacher(teacher: teacher),
           //Booking, message, report
           TeacherDetailAction(
             teacher: teacher,
-          ),
-          const SizedBox(
-            height: 10,
           ),
 
           //Languages

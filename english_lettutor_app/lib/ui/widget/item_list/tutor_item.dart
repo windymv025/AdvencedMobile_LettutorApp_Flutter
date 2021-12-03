@@ -55,7 +55,8 @@ class _TutorItemState extends State<TutorItem> {
     _teacherDTO = Provider.of<TeacherDTO>(context);
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, TeacherDetailScreen.routeName);
+        Navigator.pushNamed(context, TeacherDetailScreen.routeName,
+            arguments: widget.teacher);
       },
       child: Container(
         decoration: BoxDecoration(

@@ -1,6 +1,12 @@
+import 'dart:io';
+
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/sheet/bottom_sheet.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/media/video_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class Step2Page extends StatefulWidget {
   const Step2Page({Key? key}) : super(key: key);
@@ -10,6 +16,23 @@ class Step2Page extends StatefulWidget {
 }
 
 class _Step2PageState extends State<Step2Page> {
+  File? _videoFile;
+
+  Future pickMedia(ImageSource imageSource) async {
+    try {
+      final file = await ImagePicker().pickVideo(source: imageSource);
+      if (file == null) return;
+
+      final imageTemp = File(file.path);
+      setState(() {
+        _videoFile = imageTemp;
+      });
+    } on PlatformException catch (e) {
+      // ignore: avoid_print
+      print('Failed to pick video: ${e.message}');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -67,11 +90,29 @@ class _Step2PageState extends State<Step2Page> {
           ],
         ),
 
+        _videoFile == null ? Container() : VideoWidget(_videoFile!),
+
+        const SizedBox(height: 10),
         Center(
-          child: OutlinedButton(
-            child: const Text("Choose video"),
-            onPressed: () {},
-            style: outlineColorButtonStyle,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              OutlinedButton(
+                child: const Text("Pick a video"),
+                onPressed: () {
+                  pickMedia(ImageSource.gallery);
+                },
+                style: outlineColorButtonStyle,
+              ),
+              const SizedBox(width: 10),
+              OutlinedButton(
+                child: const Text("Take a video"),
+                onPressed: () {
+                  pickMedia(ImageSource.camera);
+                },
+                style: outlineColorButtonStyle,
+              ),
+            ],
           ),
         ),
 

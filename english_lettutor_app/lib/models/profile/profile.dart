@@ -2,6 +2,7 @@ import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:flutter/cupertino.dart';
 
 class Profile extends ChangeNotifier {
+  int id = 0;
   late String _fullName;
   String get fullName => _fullName;
   set fullName(String value) {

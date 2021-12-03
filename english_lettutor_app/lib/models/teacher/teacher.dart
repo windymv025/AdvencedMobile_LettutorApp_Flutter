@@ -1,4 +1,6 @@
 import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/constants/enums.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 
 import 'rating_comment.dart';
 
@@ -20,6 +22,9 @@ class Teacher {
   bool? isOnline;
   bool isFavorite = false;
   String country = '';
+  DateTime? birthday;
+
+  String? level;
 
   Teacher({
     required this.id,
@@ -39,11 +44,21 @@ class Teacher {
     this.isFavorite = false,
   });
 
+  Teacher.toProfile(Profile profile) {
+    id = profile.id;
+    name = profile.fullName;
+    country = profile.country ?? '';
+    birthday = profile.birthday;
+    languages = [];
+    specialties = [];
+  }
+
   Teacher.getDefault() {
     id = 1;
     name = "Pham Minh Vuong";
     uriImage = Assets.assetsImagesLargeLogo;
-    uriVideo = "https://youtu.be/xkmlW_wZa7Q";
+    uriVideo =
+        "https://www.youtube.com/watch?v=BAgLOAGga2o&ab_channel=JohannesMilke";
     description =
         "Hi, I am teacher Nhi. I have been teaching English for 2 years. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with many people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English. As an English teacher, I constantly update my English knowledge to better serve my career and students.";
     languages = ["English", "French"];
@@ -89,7 +104,8 @@ class Teacher {
     name = "Windy Pham";
     uriImage = Assets.assetsImagesCloudData;
     specialties = ["English"];
-    uriVideo = "https://youtu.be/xkmlW_wZa7Q";
+    uriVideo =
+        "https://www.youtube.com/watch?v=BAgLOAGga2o&ab_channel=JohannesMilke";
     description =
         "Hi, I am teacher Nhi. I have been teaching English for 2 years. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with many people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English. As an English teacher, I constantly update my English knowledge to better serve my career and students.";
     languages = ["English", "French"];
@@ -123,7 +139,8 @@ class Teacher {
     id = 3;
     name = "nhi lam";
     uriImage = Assets.assetsImagesLargeLogo;
-    uriVideo = "https://youtu.be/xkmlW_wZa7Q";
+    uriVideo =
+        "https://www.youtube.com/watch?v=BAgLOAGga2o&ab_channel=JohannesMilke";
     description =
         "Hi, I am teacher Nhi. I have been teaching English for 2 years. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with many people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English. As an English teacher, I constantly update my English knowledge to better serve my career and students.";
     languages = ["English", "French"];
@@ -164,7 +181,8 @@ class Teacher {
     id = 4;
     name = "Michelle Roque";
     uriImage = Assets.assetsImagesLargeLogo;
-    uriVideo = "https://youtu.be/xkmlW_wZa7Q";
+    uriVideo =
+        "https://www.youtube.com/watch?v=BAgLOAGga2o&ab_channel=JohannesMilke";
     description =
         "Hi, I am teacher Nhi. I have been teaching English for 2 years. I used to study abroad in Sydney for 7 years. During my time as an overseas student, I had spoken with many people from diverse cultural backgrounds; therefore, I have strong listening and speaking skills. I love teaching English and I will devote to helping you improve your English skills if you book my class. I am also patient and understanding because I know for many people, English is a tough language to master. In my class, I will help you correct your pronunciation and deliver the lessons in a way that is easy for you to understand. If you book my class, you will have many chances to practice your speaking skills and also improve your pronunciation and grammatical knowledge. Besides that, if you need me to, I will share my personal tips to study English more effectively with you and show you the importance of having fun and practice while learning English. As an English teacher, I constantly update my English knowledge to better serve my career and students.";
     languages = ["English", "French"];

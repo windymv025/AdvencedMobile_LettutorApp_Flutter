@@ -1,6 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/components/bottom_sheet.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/sheet/bottom_sheet.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/no_data_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

@@ -1,8 +1,10 @@
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class SimpleInforTeacher extends StatefulWidget {
   const SimpleInforTeacher({Key? key, required this.teacher}) : super(key: key);
@@ -28,13 +30,25 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
   @override
   Widget build(BuildContext context) {
     Teacher teacher = widget.teacher;
+    TeacherDTO teacherDTO = context.watch<TeacherDTO>();
+    _icon = teacher.isFavorite ? _listIcons[1] : _listIcons[0];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: MyListTile(
           avatar: AssetImage(teacher.uriImage!),
-          title: Text(
-            teacher.name!,
-            style: titleStyle,
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                teacher.name!,
+                style: titleStyle,
+                overflow: TextOverflow.clip,
+              ),
+              Text(widget.teacher.country,
+                  style: const TextStyle(
+                      fontSize: 14, fontStyle: FontStyle.italic)),
+            ],
           ),
           subtitle: Rating(
             rating: teacher.ratings!,
@@ -42,7 +56,10 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
           ),
           trailing: IconButton(
             icon: _icon,
-            onPressed: onFavoriteClick,
+            onPressed: () {
+              onFavoriteClick();
+              teacherDTO.updateFavorite(teacher);
+            },
             iconSize: 30,
           ),
           onTap: null,

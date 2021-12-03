@@ -1,6 +1,8 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class PickCountryField extends StatefulWidget {
   const PickCountryField({Key? key, required this.controller})
@@ -12,6 +14,14 @@ class PickCountryField extends StatefulWidget {
 }
 
 class _PickCountryFieldState extends State<PickCountryField> {
+  late Teacher teacher;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    teacher = Provider.of<Teacher>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +43,9 @@ class _PickCountryFieldState extends State<PickCountryField> {
     showCountryPicker(
       context: context,
       onSelect: (Country country) {
-        widget.controller.text = country.displayNameNoCountryCode;
+        String _country = country.name;
+        widget.controller.text = _country;
+        teacher.country = _country;
       },
     );
   }

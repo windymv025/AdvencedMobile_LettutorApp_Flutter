@@ -1,6 +1,8 @@
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class PickDateField extends StatefulWidget {
   const PickDateField(
@@ -22,6 +24,14 @@ class PickDateField extends StatefulWidget {
 }
 
 class _PickDateFieldState extends State<PickDateField> {
+  late Teacher teacher;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    teacher = Provider.of<Teacher>(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -56,6 +66,7 @@ class _PickDateFieldState extends State<PickDateField> {
     if (newDate == null) return;
     setState(() {
       widget.controller.text = DateFormat("dd/MM/yyyy").format(newDate);
+      teacher.birthday = newDate;
     });
   }
 }

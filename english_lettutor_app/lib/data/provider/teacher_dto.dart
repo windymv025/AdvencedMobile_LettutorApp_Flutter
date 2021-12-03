@@ -11,6 +11,7 @@ class TeacherDTO extends BaseDTO<Teacher> {
   void addSpeciality(String speciality) {
     _specialities.add(speciality);
     items = getTeachersByspecialities();
+
     notifyListeners();
   }
 
@@ -18,6 +19,7 @@ class TeacherDTO extends BaseDTO<Teacher> {
     _specialities.remove(speciality);
     clearSearch();
     items = getTeachersByspecialities();
+    sortListTeachers();
 
     notifyListeners();
   }
@@ -25,6 +27,8 @@ class TeacherDTO extends BaseDTO<Teacher> {
   void clearSpecialities() {
     _specialities.clear();
     clearSearch();
+    sortListTeachers();
+
     notifyListeners();
   }
 
@@ -58,6 +62,7 @@ class TeacherDTO extends BaseDTO<Teacher> {
   List<Teacher> getTeachersByspecialities() {
     if (_specialities.isEmpty) {
       clearSearch();
+
       return items;
     }
 
@@ -109,5 +114,9 @@ class TeacherDTO extends BaseDTO<Teacher> {
 
     super.items = result;
     notifyListeners();
+  }
+
+  List<Teacher> getFavoriteTeachers() {
+    return items.where((element) => element.isFavorite).toList();
   }
 }

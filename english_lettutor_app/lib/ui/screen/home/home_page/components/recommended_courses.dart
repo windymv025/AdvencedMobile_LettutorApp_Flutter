@@ -1,7 +1,7 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/course_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
@@ -17,7 +17,7 @@ class _RecommendedCourseState extends State<RecommendedCourse> {
   @override
   Widget build(BuildContext context) {
     final courseDTO = context.watch<CourseDTO>();
-    final profile = context.watch<Profile>();
+    final profile = context.watch<ProfileProvider>();
     final courses = courseDTO.getRecommentList(profile.level ?? kLevels[0]);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

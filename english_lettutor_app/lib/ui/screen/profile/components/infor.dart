@@ -1,5 +1,5 @@
 import 'package:english_lettutor_app/constants/constants.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,7 @@ class Infor extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // double defaultSize = size.height * 0.25;
-    return Consumer<Profile>(builder: (context, profile, child) {
+    return Consumer<ProfileProvider>(builder: (context, profile, child) {
       return SizedBox(
         height: defaultSize * 24, // 240
         child: Stack(

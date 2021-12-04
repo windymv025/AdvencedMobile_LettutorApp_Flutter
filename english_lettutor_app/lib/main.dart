@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   // SharedPreferenceHelper? sharedPreferenceHelper;
-  Profile profile = Profile();
+  ProfileProvider profile = ProfileProvider();
   CourseDTO courseDTO = CourseDTO();
   TeacherDTO teacherDTO = TeacherDTO();
   ScheduleDTO scheduleDTO = ScheduleDTO();

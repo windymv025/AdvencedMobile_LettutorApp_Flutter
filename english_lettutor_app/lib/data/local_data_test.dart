@@ -43,4 +43,4 @@ final List<ScheduleHistory> scheduleHistoryList = [
   ScheduleHistory.getDefault()
 ];
 
-final Profile kProfile = Profile.getDefault();
+final Profile kProfile = Profile.getDefault2();

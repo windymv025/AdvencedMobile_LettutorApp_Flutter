@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
 import 'package:english_lettutor_app/data/local_data_test.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
@@ -41,7 +42,7 @@ class _SignInFormState extends State<SignInForm> {
 
   @override
   Widget build(BuildContext context) {
-    final Profile profile = context.read<Profile>();
+    final ProfileProvider profile = context.read<ProfileProvider>();
 
     return Form(
       key: _formKey,
@@ -83,14 +84,8 @@ class _SignInFormState extends State<SignInForm> {
             press: () {
               Navigator.pushNamedAndRemoveUntil(
                   context, HomeScreen.routeName, (route) => false);
-              profile.fullName = kProfile.fullName;
-              profile.email = kProfile.email;
-              profile.phone = kProfile.phone;
-              profile.image = kProfile.image;
-              profile.birthday = kProfile.birthday;
-              profile.country = kProfile.country;
-              profile.level = kProfile.level;
-              profile.wantToLearn = kProfile.wantToLearn;
+              profile.copyProfile(kProfile);
+
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen

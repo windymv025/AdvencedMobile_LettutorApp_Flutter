@@ -1,4 +1,3 @@
-import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -7,42 +6,44 @@ import 'package:provider/provider.dart';
 class PickDateField extends StatefulWidget {
   const PickDateField(
       {Key? key,
-      required this.controller,
       required this.icon,
       required this.label,
       required this.hint,
+      this.controller,
+      this.initialValue,
       this.initDate,
-      this.onChanged})
+      this.onChanged,
+      this.onSaved})
       : super(key: key);
-  final TextEditingController controller;
+  final String? initialValue;
+  final TextEditingController? controller;
   final DateTime? initDate;
   final IconData? icon;
   final String label;
   final String hint;
   final ValueChanged<String>? onChanged;
+  final FormFieldSetter<String>? onSaved;
 
   @override
   _PickDateFieldState createState() => _PickDateFieldState();
 }
 
 class _PickDateFieldState extends State<PickDateField> {
-  // late Teacher teacher;
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    // teacher = Provider.of<Teacher>(context);
-  }
+  String? _value;
 
   @override
   Widget build(BuildContext context) {
+    _value = widget.initialValue;
     return Container(
         constraints: const BoxConstraints(maxWidth: 500),
         child: TextFormField(
           controller: widget.controller,
+          initialValue: _value,
           readOnly: true,
           onChanged: widget.onChanged,
           onTap: () => pickDate(context),
+          onSaved: widget.onSaved,
+          validator: (value) => value!.isEmpty ? 'Please choose a date' : null,
           decoration: InputDecoration(
             label: Text(widget.label),
             hintText: widget.hint,
@@ -68,8 +69,8 @@ class _PickDateFieldState extends State<PickDateField> {
 
     if (newDate == null) return;
     setState(() {
-      widget.controller.text = DateFormat("dd/MM/yyyy").format(newDate);
-      // teacher.birthday = newDate;
+      widget.controller?.text = DateFormat("dd/MM/yyyy").format(newDate);
+      _value = DateFormat("dd/MM/yyyy").format(newDate);
     });
   }
 }

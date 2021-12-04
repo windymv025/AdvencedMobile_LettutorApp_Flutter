@@ -1,48 +1,80 @@
+import 'dart:io';
+
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  bool _isChanged = false;
-  bool get isChanged => _isChanged;
-  set isChanged(value) {
-    _isChanged = value;
+  final Profile _profile = Profile();
+  final Profile backupProfile = Profile();
+
+  void copyProfile(Profile profile) {
+    _profile.fromJson(profile.toJson());
+    backupProfile.fromJson(profile.toJson());
+  }
+
+  void updateProfile() {
+    _profile.fromJson(backupProfile.toJson());
     notifyListeners();
   }
 
-  late String _fullName;
-  String get fullName => _fullName;
+  void clearChanges() {
+    backupProfile.fromJson(_profile.toJson());
+    notifyListeners();
+  }
+
+  int get id => _profile.id;
+  set id(int value) {
+    backupProfile.id = value;
+    notifyListeners();
+  }
+
+  String get fullName => _profile.fullName;
   set fullName(String value) {
-    _fullName = value;
+    backupProfile.fullName = value;
     notifyListeners();
   }
 
-  late String? _country;
-  String? get country => _country;
+  String? get image => _profile.image;
+  set image(String? value) {
+    backupProfile.image = value;
+    notifyListeners();
+  }
+
+  String get email => _profile.email;
+
+  String? get country => _profile.country;
   set country(String? value) {
-    _country = value;
+    backupProfile.country = value;
     notifyListeners();
   }
 
-  late String? _phone;
-  String? get phone => _phone;
+  String? get phone => _profile.phone;
   set phone(String? value) {
-    _phone = value;
+    backupProfile.phone = value;
     notifyListeners();
   }
 
-  late DateTime? _birthday;
-  DateTime? get birthday => _birthday;
+  DateTime? get birthday => _profile.birthday;
   set birthday(DateTime? value) {
-    _birthday = value;
+    backupProfile.birthday = value;
     notifyListeners();
   }
 
-  String? _level;
-  String? get level => _level;
+  String? get level => _profile.level;
   set level(String? value) {
-    _level = value;
+    backupProfile.level = value;
     notifyListeners();
   }
 
-  List<String> wantToLearn = [];
+  List<String> get wantToLearn => _profile.wantToLearn;
+  set wantToLearn(List<String> value) {
+    backupProfile.wantToLearn = value;
+    notifyListeners();
+  }
+
+  File? get imageFile => _profile.imageFile;
+  set imageFile(File? value) {
+    backupProfile.imageFile = value;
+    notifyListeners();
+  }
 }

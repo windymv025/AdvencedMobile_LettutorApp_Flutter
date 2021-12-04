@@ -1,6 +1,6 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/ui/screen/profile/profile_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/circle_avatar_button.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<Profile>(builder: (context, profile, child) {
+    return Consumer<ProfileProvider>(builder: (context, profile, child) {
       return AppBar(
           centerTitle: true,
           foregroundColor: kMainBlueColor,
@@ -43,7 +43,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => AppBar().preferredSize;
 
-  ImageProvider? getImage(Profile profile) {
+  ImageProvider? getImage(ProfileProvider profile) {
     if (profile.imageFile != null) {
       return FileImage(profile.imageFile!);
     } else if (profile.image != null) {

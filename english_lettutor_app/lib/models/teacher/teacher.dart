@@ -1,5 +1,4 @@
 import 'package:english_lettutor_app/constants/assets.dart';
-import 'package:english_lettutor_app/constants/enums.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 
 import 'rating_comment.dart';

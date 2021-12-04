@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1/components/basic_infor.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1/components/cv_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1/components/subtitile_step1.dart';

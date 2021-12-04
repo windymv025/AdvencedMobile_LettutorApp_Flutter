@@ -90,8 +90,10 @@ class VideoNetworkWidgetState extends State<VideoNetworkWidget> {
 
 class FadeAnimation extends StatefulWidget {
   const FadeAnimation(
-      {required this.child,
-      this.duration = const Duration(milliseconds: 1000)});
+      {Key? key,
+      required this.child,
+      this.duration = const Duration(milliseconds: 1000)})
+      : super(key: key);
 
   final Widget child;
   final Duration? duration;

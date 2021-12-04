@@ -4,7 +4,6 @@ import 'package:english_lettutor_app/ui/screen/teacher_detail/components/simple_
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/rating_and_comment.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_and_tags.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
-import 'package:english_lettutor_app/ui/screen/teacher_detail/components/video_introduce.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/media/video_network_widget.dart';
 import 'package:flutter/material.dart';
 

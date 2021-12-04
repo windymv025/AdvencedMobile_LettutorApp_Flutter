@@ -32,7 +32,8 @@ class _AppBarMessagerDetailState extends State<AppBarMessagerDetail> {
             image: const AssetImage(Assets.assetsImagesUserIcon),
             isOnline: true,
             onPressed: () {
-              Navigator.pushNamed(context, TeacherDetailScreen.routeName);
+              Navigator.pushNamed(context, TeacherDetailScreen.routeName,
+                  arguments: widget.teacher);
             },
           ),
           const SizedBox(width: 10),

@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/favorite_teacher/favorite_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
@@ -21,6 +22,7 @@ class MyDrawer extends StatelessWidget {
   Widget build(BuildContext context) {
     // return Container();
     TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
+    Profile profile = Provider.of<Profile>(context);
 
     return Drawer(
       child: ListView(
@@ -31,6 +33,7 @@ class MyDrawer extends StatelessWidget {
             height: 5,
           ),
           Infor(
+            image: _buildProfileImage(profile),
             onTap: () =>
                 Navigator.popAndPushNamed(context, ProfileScreen.routeName),
             defaultSize: 10,
@@ -94,6 +97,27 @@ class MyDrawer extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  DecorationImage _buildProfileImage(Profile profile) {
+    if (profile.imageFile != null) {
+      return DecorationImage(
+        fit: BoxFit.cover,
+        colorFilter: const ColorFilter.mode(
+          Colors.white,
+          BlendMode.dstATop,
+        ),
+        image: FileImage(profile.imageFile!),
+      );
+    }
+    return DecorationImage(
+      fit: BoxFit.cover,
+      colorFilter: const ColorFilter.mode(
+        Colors.white,
+        BlendMode.dstATop,
+      ),
+      image: AssetImage((profile.image ?? Assets.assetsImagesUserIcon)),
     );
   }
 }

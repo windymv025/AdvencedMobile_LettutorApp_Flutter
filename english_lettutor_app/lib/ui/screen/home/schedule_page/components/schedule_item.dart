@@ -75,7 +75,8 @@ class ScheduleItem extends StatelessWidget {
                 ),
                 trailing: Container(),
                 onTap: () {
-                  Navigator.pushNamed(context, TeacherDetailScreen.routeName);
+                  Navigator.pushNamed(context, TeacherDetailScreen.routeName,
+                      arguments: schedule.teacher);
                 },
                 color: Colors.white),
             Row(

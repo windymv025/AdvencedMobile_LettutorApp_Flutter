@@ -30,8 +30,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           actions: [
             Center(
               child: CircleAvatarButton(
-                image:
-                    profile.image != null ? AssetImage(profile.image!) : null,
+                image: getImage(profile),
                 onPressed: () =>
                     Navigator.pushNamed(context, ProfileScreen.routeName),
               ),
@@ -43,4 +42,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize => AppBar().preferredSize;
+
+  ImageProvider? getImage(Profile profile) {
+    if (profile.imageFile != null) {
+      return FileImage(profile.imageFile!);
+    } else if (profile.image != null) {
+      return AssetImage(profile.image!);
+    }
+    return null;
+  }
 }

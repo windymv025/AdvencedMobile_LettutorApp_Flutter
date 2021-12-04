@@ -11,25 +11,27 @@ class PickDateField extends StatefulWidget {
       required this.icon,
       required this.label,
       required this.hint,
-      this.initDate})
+      this.initDate,
+      this.onChanged})
       : super(key: key);
   final TextEditingController controller;
   final DateTime? initDate;
   final IconData? icon;
   final String label;
   final String hint;
+  final ValueChanged<String>? onChanged;
 
   @override
   _PickDateFieldState createState() => _PickDateFieldState();
 }
 
 class _PickDateFieldState extends State<PickDateField> {
-  late Teacher teacher;
+  // late Teacher teacher;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    teacher = Provider.of<Teacher>(context);
+    // teacher = Provider.of<Teacher>(context);
   }
 
   @override
@@ -39,6 +41,7 @@ class _PickDateFieldState extends State<PickDateField> {
         child: TextFormField(
           controller: widget.controller,
           readOnly: true,
+          onChanged: widget.onChanged,
           onTap: () => pickDate(context),
           decoration: InputDecoration(
             label: Text(widget.label),
@@ -66,7 +69,7 @@ class _PickDateFieldState extends State<PickDateField> {
     if (newDate == null) return;
     setState(() {
       widget.controller.text = DateFormat("dd/MM/yyyy").format(newDate);
-      teacher.birthday = newDate;
+      // teacher.birthday = newDate;
     });
   }
 }

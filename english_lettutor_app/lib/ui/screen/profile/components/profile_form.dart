@@ -3,6 +3,7 @@ import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/custom_drop_down.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/edit_field/multi_item_select_field.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_country_field.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_date_field.dart';
 import 'package:flutter/material.dart';
@@ -53,30 +54,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            //Email
-            Container(
-              constraints: const BoxConstraints(maxWidth: 500),
-              child: TextFormField(
-                readOnly: true,
-                enabled: false,
-                initialValue: profile.email,
-                keyboardType: TextInputType.emailAddress,
-                onChanged: (value) {},
-                validator: (value) {
-                  return null;
-                },
-                decoration: const InputDecoration(
-                  label: Text("Email"),
-                  hintText: "Enter your email",
-                  floatingLabelBehavior: FloatingLabelBehavior.always,
-                  suffixIcon:
-                      CustomSurffixIcon(icon: Icons.mail_outline_rounded),
-                ),
-              ),
-            ),
+
             // phone number
             const SizedBox(
               height: 15,
@@ -140,14 +118,13 @@ class _ProfileFormState extends State<ProfileForm> {
               height: 10,
             ),
 
-            Container(
-              constraints: const BoxConstraints(maxWidth: 500),
-              child: const CustomDropDown(
-                  icon: Icons.list_alt_rounded,
-                  hint: "What do you want to learn",
-                  value: null,
-                  title: "Want to learn",
-                  items: kCountries),
+            MultiItemSelectField(
+              items: kSpecialities.sublist(1),
+              onConfirm: (values) {},
+              onTap: (value) {},
+              icon: Icons.format_list_numbered_rounded,
+              buttonText: "What do you want to learn",
+              title: "Choose Specialities",
             ),
 
             //save
@@ -155,7 +132,6 @@ class _ProfileFormState extends State<ProfileForm> {
               height: 20,
             ),
             Container(
-              width: 120,
               constraints: const BoxConstraints(maxWidth: 500),
               child: DefaultButton(
                 text: "Save changes",

@@ -1,14 +1,15 @@
-import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class Infor extends StatelessWidget {
-  const Infor({Key? key, required this.defaultSize, this.onTap})
+  const Infor(
+      {Key? key, required this.image, required this.defaultSize, this.onTap})
       : super(key: key);
   final double defaultSize;
   final GestureTapCallback? onTap;
+  final DecorationImage image;
 
   @override
   Widget build(BuildContext context) {
@@ -41,15 +42,7 @@ class Infor extends StatelessWidget {
                           color: Colors.white,
                           width: defaultSize * 0.8, //8
                         ),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          colorFilter: const ColorFilter.mode(
-                            Colors.white,
-                            BlendMode.dstATop,
-                          ),
-                          image: AssetImage(
-                              profile.image ?? Assets.assetsImagesUserIcon),
-                        ),
+                        image: image,
                       ),
                     ),
                   ),

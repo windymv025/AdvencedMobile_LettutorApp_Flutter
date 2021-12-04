@@ -104,7 +104,8 @@ class ScheduleHistoryItem extends StatelessWidget {
                 ),
                 trailing: Container(),
                 onTap: () {
-                  Navigator.pushNamed(context, TeacherDetailScreen.routeName);
+                  Navigator.pushNamed(context, TeacherDetailScreen.routeName,
+                      arguments: scheduleHistory.schedule.teacher);
                 },
                 color: Colors.white),
             Row(

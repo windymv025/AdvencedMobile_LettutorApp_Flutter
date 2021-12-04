@@ -34,7 +34,8 @@ class TeacherDetailAction extends StatelessWidget {
             IconButton(
                 iconSize: 35,
                 onPressed: () {
-                  Navigator.pushNamed(context, MessengerDetailScreen.routeName);
+                  Navigator.pushNamed(context, MessengerDetailScreen.routeName,
+                      arguments: teacher);
                 },
                 icon: const Icon(
                   Icons.message_rounded,

@@ -131,13 +131,21 @@ class _BasicInforState extends State<BasicInfor> {
           icon: Icons.date_range_outlined,
           label: "Birthday",
           hint: "Select your birthday",
+          onChanged: (value) {
+            teacher.birthday = DateTime.parse(value);
+          },
         ),
 
         //Country
         const SizedBox(
           height: 15,
         ),
-        PickCountryField(controller: _country),
+        PickCountryField(
+          controller: _country,
+          onChanged: (value) {
+            teacher.country = value;
+          },
+        ),
         const SizedBox(
           height: 15,
         ),

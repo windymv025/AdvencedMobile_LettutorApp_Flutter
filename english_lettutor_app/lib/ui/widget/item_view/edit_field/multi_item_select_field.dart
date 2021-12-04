@@ -9,11 +9,13 @@ class MultiItemSelectField extends StatefulWidget {
       required this.items,
       required this.onConfirm,
       required this.icon,
+      this.initialValue,
       this.onTap,
       this.title,
       this.buttonText})
       : super(key: key);
   final List<String> items;
+  final List<String>? initialValue;
   final void Function(List<Object?>) onConfirm;
   final dynamic Function(Object?)? onTap;
   final String? title;
@@ -30,7 +32,7 @@ class _MultiItemSelectFieldState extends State<MultiItemSelectField> {
       padding: const EdgeInsets.only(left: 10, top: 10, right: 10, bottom: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
-        border: Border.all(color: Colors.black54),
+        border: Border.all(color: kMainBlueColor),
       ),
       child: MultiSelectBottomSheetField(
         decoration: BoxDecoration(
@@ -51,6 +53,7 @@ class _MultiItemSelectFieldState extends State<MultiItemSelectField> {
           widget.icon,
           color: Colors.grey,
         ),
+        initialValue: widget.initialValue,
         items: widget.items.map((e) => MultiSelectItem<String>(e, e)).toList(),
         onConfirm: widget.onConfirm,
         cancelText: const Text("Cancel"),

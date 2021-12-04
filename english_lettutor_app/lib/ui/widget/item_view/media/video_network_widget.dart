@@ -23,7 +23,7 @@ class VideoNetworkWidgetState extends State<VideoNetworkWidget> {
 
     videoStatusAnimation = Container();
 
-    _controller = VideoPlayerController.network(widget.ulr)
+    _controller = VideoPlayerController.network(widget.ulr.trim())
       ..addListener(() {
         final bool isPlaying = _controller.value.isPlaying;
         if (isPlaying != _isPlaying) {
@@ -51,7 +51,16 @@ class VideoNetworkWidgetState extends State<VideoNetworkWidget> {
   @override
   Widget build(BuildContext context) => AspectRatio(
         aspectRatio: 16 / 9,
-        child: _controller.value.isInitialized ? videoPlayer() : Container(),
+        child: _controller.value.isInitialized
+            ? videoPlayer()
+            : Container(
+                height: 200,
+                color: Colors.black,
+                child: const Center(
+                    child: CircularProgressIndicator(
+                  color: Colors.white,
+                )),
+              ),
       );
 
   Widget videoPlayer() => Stack(

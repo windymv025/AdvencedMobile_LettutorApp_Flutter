@@ -119,4 +119,8 @@ class TeacherDTO extends BaseDTO<Teacher> {
   List<Teacher> getFavoriteTeachers() {
     return items.where((element) => element.isFavorite).toList();
   }
+
+  Teacher getTeacher(int iDTeacher) {
+    return items.firstWhere((element) => element.id == iDTeacher);
+  }
 }

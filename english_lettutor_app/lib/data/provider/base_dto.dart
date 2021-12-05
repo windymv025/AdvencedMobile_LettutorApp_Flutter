@@ -25,6 +25,7 @@ abstract class BaseDTO<T> extends ChangeNotifier {
   void addAll(List<T> items) {
     _items.clear();
     _items.addAll(items);
+    sort();
 
     if (_itemsBackup.isEmpty) {
       _itemsBackup.addAll(items);
@@ -86,4 +87,6 @@ abstract class BaseDTO<T> extends ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void sort() {}
 }

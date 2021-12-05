@@ -1,11 +1,14 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ScheduleItem extends StatelessWidget {
   const ScheduleItem({Key? key, required this.schedule}) : super(key: key);
@@ -13,6 +16,8 @@ class ScheduleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
+    TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
+    Teacher teacher = teacherDTO.getTeacher(schedule.iDTeacher);
     return Container(
       decoration: BoxDecoration(
         boxShadow: isDark
@@ -28,9 +33,11 @@ class ScheduleItem extends StatelessWidget {
         child: Column(
           children: [
             MyListTile(
-                avatar: AssetImage(schedule.teacher.uriImage!),
+                avatar: teacher.uriImage != null
+                    ? AssetImage(teacher.uriImage!)
+                    : null,
                 title: Text(
-                  schedule.teacher.name!,
+                  teacher.name!,
                   style: titleStyle,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -40,7 +47,7 @@ class ScheduleItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Text(
-                      DateFormat("yyyy-MM-dd").format(schedule.fromTime),
+                      DateFormat("yyyy-MM-dd").format(schedule.time.start),
                       style: const TextStyle(fontWeight: FontWeight.w800),
                     ),
                     Container(
@@ -52,7 +59,7 @@ class ScheduleItem extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(7)),
                       ),
                       child: Text(
-                        DateFormat("HH:mm").format(schedule.fromTime),
+                        DateFormat("HH:mm").format(schedule.time.start),
                         style: const TextStyle(color: kMainBlueColor),
                       ),
                     ),
@@ -68,7 +75,7 @@ class ScheduleItem extends StatelessWidget {
                             const BorderRadius.all(Radius.circular(7)),
                       ),
                       padding: const EdgeInsets.all(4),
-                      child: Text(DateFormat("HH:mm").format(schedule.toTime),
+                      child: Text(DateFormat("HH:mm").format(schedule.time.end),
                           style: const TextStyle(color: Colors.red)),
                     ),
                   ],
@@ -76,7 +83,7 @@ class ScheduleItem extends StatelessWidget {
                 trailing: Container(),
                 onTap: () {
                   Navigator.pushNamed(context, TeacherDetailScreen.routeName,
-                      arguments: schedule.teacher);
+                      arguments: teacher);
                 },
                 color: Colors.white),
             Row(

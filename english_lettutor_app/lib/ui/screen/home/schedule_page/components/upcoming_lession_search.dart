@@ -52,7 +52,7 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
                     children: [
                       Text(
                         DateFormat("EEE, dd MMM yy HH:mm")
-                            .format((schedule.fromTime)),
+                            .format((schedule.time.start)),
                         style: subTileCountDownStyle,
                         overflow: TextOverflow.clip,
                       ),
@@ -61,7 +61,7 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
                         style: subTileCountDownStyle,
                       ),
                       Text(
-                        DateFormat("HH:mm").format((schedule.toTime)),
+                        DateFormat("HH:mm").format((schedule.time.end)),
                         style: subTileCountDownStyle,
                       )
                     ],

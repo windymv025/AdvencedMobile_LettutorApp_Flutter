@@ -27,11 +27,12 @@ class _ScheduleBodyState extends State<ScheduleBody> {
             UpcomingLessionSearch(
               schedule: scheduleDTO.getUpcomingLessionSchedule(),
             ),
-            const SizedBox(
-              height: 25,
-            )
           ])),
-          CustomGridViewSchedule(size: size, items: scheduleDTO.items)
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20),
+            sliver: CustomGridViewSchedule(
+                size: size, items: scheduleDTO.getAvailableSchedule()),
+          )
         ],
       );
     });

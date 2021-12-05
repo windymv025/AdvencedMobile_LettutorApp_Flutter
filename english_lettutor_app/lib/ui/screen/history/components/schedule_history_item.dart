@@ -1,12 +1,15 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class ScheduleHistoryItem extends StatelessWidget {
   const ScheduleHistoryItem({Key? key, required this.scheduleHistory})
@@ -16,6 +19,8 @@ class ScheduleHistoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
+    TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
+    Teacher teacher = teacherDTO.getTeacher(scheduleHistory.schedule.iDTeacher);
     return Container(
       decoration: BoxDecoration(
         boxShadow: isDark
@@ -31,9 +36,9 @@ class ScheduleHistoryItem extends StatelessWidget {
         child: Column(
           children: [
             MyListTile(
-                avatar: AssetImage(scheduleHistory.schedule.teacher.uriImage!),
+                avatar: AssetImage(teacher.uriImage!),
                 title: Text(
-                  scheduleHistory.schedule.teacher.name!,
+                  teacher.name!,
                   style: titleStyle,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -54,7 +59,7 @@ class ScheduleHistoryItem extends StatelessWidget {
                         const SizedBox(width: 15),
                         Text(
                           DateFormat("EEE, dd-MM-yyyy HH:mm:ss")
-                              .format(scheduleHistory.schedule.fromTime),
+                              .format(scheduleHistory.schedule.time.start),
                           style: const TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ],
@@ -105,7 +110,7 @@ class ScheduleHistoryItem extends StatelessWidget {
                 trailing: Container(),
                 onTap: () {
                   Navigator.pushNamed(context, TeacherDetailScreen.routeName,
-                      arguments: scheduleHistory.schedule.teacher);
+                      arguments: teacher);
                 },
                 color: Colors.white),
             Row(

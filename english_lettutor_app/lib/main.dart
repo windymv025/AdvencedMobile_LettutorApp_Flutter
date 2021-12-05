@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
+import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
@@ -34,6 +35,7 @@ class _MyAppState extends State<MyApp> {
   CourseDTO courseDTO = CourseDTO();
   TeacherDTO teacherDTO = TeacherDTO();
   ScheduleDTO scheduleDTO = ScheduleDTO();
+  ScheduleHistoryDTO scheduleHistoryDTO = ScheduleHistoryDTO();
 
   @override
   void initState() {
@@ -50,6 +52,7 @@ class _MyAppState extends State<MyApp> {
     courseDTO.addAll(courseList);
     teacherDTO.addAll(teacherList);
     scheduleDTO.addAll(scheduleList);
+    scheduleHistoryDTO.addAll(scheduleHistoryList);
   }
 
   @override
@@ -61,7 +64,8 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(create: (context) => courseDTO),
         ChangeNotifierProvider(create: (context) => teacherDTO),
         ChangeNotifierProvider(create: (context) => scheduleDTO),
-        ChangeNotifierProvider(create: (context) => HomeState())
+        ChangeNotifierProvider(create: (context) => HomeState()),
+        ChangeNotifierProvider(create: (context) => scheduleHistoryDTO),
       ],
       child: MaterialApp(
         title: 'English Lettutor App',

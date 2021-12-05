@@ -1,16 +1,16 @@
-import 'teacher.dart';
+import 'package:flutter/material.dart';
 
 class Schedule {
-  late Teacher teacher;
-  late DateTime fromTime;
-  late DateTime toTime;
+  late int iDTeacher;
+  late int? iDStudent;
+  late DateTimeRange time;
 
-  Schedule(
-      {required this.teacher, required this.fromTime, required this.toTime});
+  Schedule({required this.iDTeacher, required this.time, this.iDStudent});
 
   Schedule.getDefault() {
-    teacher = Teacher.getDefault();
-    fromTime = DateTime(2021, 10, 20, 15);
-    toTime = DateTime(2021, 10, 20, 15, 30);
+    iDTeacher = 1;
+    iDStudent = 1;
+    time = DateTimeRange(
+        start: DateTime(2021, 10, 20, 15), end: DateTime(2021, 10, 20, 15, 35));
   }
 }

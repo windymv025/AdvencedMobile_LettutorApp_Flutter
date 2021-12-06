@@ -3,6 +3,7 @@ import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/custom_drop_down.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/button/page_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 import 'components/custom_gridview_course.dart';
@@ -15,7 +16,9 @@ class CoursesBody extends StatefulWidget {
 }
 
 class _CoursesBodyState extends State<CoursesBody> {
-  String? _level;
+  String? _level = "All";
+  final _textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -25,7 +28,12 @@ class _CoursesBodyState extends State<CoursesBody> {
         SliverList(
             delegate: SliverChildListDelegate(
           [
-            const SearchBarTitle(),
+            SearchBarTitle(
+              onTextChanged: (value) {
+                courseDTO.search(value);
+              },
+              textEditingController: _textEditingController,
+            ),
             const Padding(
               padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
               child: Text(
@@ -37,23 +45,59 @@ class _CoursesBodyState extends State<CoursesBody> {
             ),
             //Filter
             Container(
-              // constraints: const BoxConstraints(maxWidth: 100),
               margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
               child: CustomDropDown(
                   icon: Icons.format_list_numbered_rounded,
                   onChanged: (newValue) {
                     setState(() {
                       _level = newValue;
+                      courseDTO.getCourseListByLevel(_level!);
                     });
                   },
                   hint: "Choose your level",
                   value: _level,
                   title: "My level",
-                  items: kLevels),
+                  items: ["All"] + kLevels),
             ),
           ],
         )),
-        CustomGridViewCourse(size: size, items: courseDTO.items),
+        CustomGridViewCourse(
+            size: size, items: courseDTO.getItemInCurrentPage()),
+        SliverList(
+          delegate: SliverChildListDelegate([
+            courseDTO.totalPage == 0
+                ? Container()
+                : Container(
+                    margin:
+                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        courseDTO.totalPage == 1
+                            ? Container()
+                            : PageButton(
+                                onPressed: () {
+                                  courseDTO.prevPage();
+                                },
+                                text: '<'),
+                        PageButton(
+                            onPressed: () {
+                              courseDTO.prevPage();
+                            },
+                            text:
+                                '${courseDTO.currentPage} -- ${courseDTO.totalPage}'),
+                        courseDTO.totalPage == 1
+                            ? Container()
+                            : PageButton(
+                                onPressed: () {
+                                  courseDTO.nextPage();
+                                },
+                                text: '>')
+                      ],
+                    ))
+          ]),
+        )
       ],
     );
   }

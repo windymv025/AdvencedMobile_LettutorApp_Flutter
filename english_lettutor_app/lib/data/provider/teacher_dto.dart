@@ -75,7 +75,7 @@ class TeacherDTO extends BaseDTO<Teacher> {
       return true;
     }).toList();
 
-    pagingInfo = PagingInfo(10, result.length);
+    pagingInfo = PagingInfo(12, result.length);
 
     return result;
   }

@@ -21,7 +21,11 @@ class CustomGridViewCourse extends StatelessWidget {
     int columnRatio = getColumRatio(context, dimens);
 
     if (items == null || items!.isEmpty) {
-      return const NoDataPage();
+      return SliverList(
+        delegate: SliverChildListDelegate([
+          const NoDataPage(),
+        ]),
+      );
     }
     return SliverStaggeredGrid.countBuilder(
         crossAxisCount: 12,
@@ -29,11 +33,7 @@ class CustomGridViewCourse extends StatelessWidget {
         itemBuilder: (context, index) => Container(
             margin: const EdgeInsets.all(4),
             child: CourseItem(
-              image: getImage(items![index].image),
-              name: items![index].name!,
-              subTitile: items![index].subtitle!,
-              lessons: items![index].lessons,
-              level: items![index].level!,
+              course: items![index],
             )),
         itemCount: items!.length);
   }

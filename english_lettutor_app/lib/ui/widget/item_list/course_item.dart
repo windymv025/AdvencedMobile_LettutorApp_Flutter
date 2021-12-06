@@ -1,22 +1,16 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class CourseItem extends StatelessWidget {
-  const CourseItem(
-      {Key? key,
-      required this.image,
-      required this.name,
-      required this.subTitile,
-      required this.level,
-      required this.lessons})
-      : super(key: key);
-  final Image image;
-  final String name;
-  final String subTitile;
-  final String level;
-  final int lessons;
+  const CourseItem({
+    Key? key,
+    required this.course,
+  }) : super(key: key);
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +18,8 @@ class CourseItem extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, CourseDetailScreen.routeName);
+        Navigator.pushNamed(context, CourseDetailScreen.routeName,
+            arguments: course);
       },
       child: Container(
         decoration: BoxDecoration(
@@ -42,7 +37,7 @@ class CourseItem extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: image, //image
+                child: getImage(course.image), //image
               ),
               Container(
                 constraints: const BoxConstraints(maxWidth: 400),
@@ -51,7 +46,7 @@ class CourseItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
                       child: Text(
-                        name,
+                        course.name ?? '',
                         style: titleStyle,
                         maxLines: 2,
                         softWrap: true,
@@ -61,7 +56,7 @@ class CourseItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        subTitile,
+                        course.subtitle ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -76,16 +71,11 @@ class CourseItem extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              level,
-                              overflow: TextOverflow.fade,
+                              '${course.level ?? ''} • ${course.lessons} Lessons',
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.center,
                             ),
                           ),
-                          const Text(" • "),
-                          Text(
-                            "$lessons Lessons",
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          )
                         ],
                       ),
                     )
@@ -96,6 +86,17 @@ class CourseItem extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Image getImage(String? ulr) {
+    if (ulr == null) {
+      return Image.asset(
+        Assets.assetsImagesCourseImage,
+      );
+    }
+    return Image.asset(
+      ulr,
     );
   }
 }

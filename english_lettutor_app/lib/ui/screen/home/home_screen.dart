@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/home_state.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/ui/drawer/my_drawer.dart';
@@ -42,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
     bool _isDark = Theme.of(context).brightness == Brightness.dark;
     HomeState homeState = Provider.of<HomeState>(context);
     TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
+    CourseDTO courseDTO = Provider.of<CourseDTO>(context);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -60,6 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
           loadPage(index);
           homeState.pageIndex = index;
           teacherDTO.clearSpecialities();
+          courseDTO.clearSearch();
         },
         items: const [
           Icon(

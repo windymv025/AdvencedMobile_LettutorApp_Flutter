@@ -9,7 +9,7 @@ class CourseDetailBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Course course = Course.getDefault();
+    final Course course = ModalRoute.of(context)!.settings.arguments as Course;
 
     return SingleChildScrollView(
       child: Column(
@@ -17,11 +17,8 @@ class CourseDetailBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
             child: CourseItem(
-                image: Image.asset(course.image!),
-                name: course.name!,
-                subTitile: course.subtitle!,
-                level: course.level!,
-                lessons: course.lessons),
+              course: course,
+            ),
           ),
           //Overview
           const TitleDetail(
@@ -43,7 +40,7 @@ class CourseDetailBody extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(course.whyTakeCourse!,
+            child: Text(course.whyTakeCourse ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),
@@ -60,7 +57,7 @@ class CourseDetailBody extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(course.whatBeAbleToDo!,
+            child: Text(course.whatBeAbleToDo ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),

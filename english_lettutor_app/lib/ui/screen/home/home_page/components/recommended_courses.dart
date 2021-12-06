@@ -32,23 +32,8 @@ class _RecommendedCourseState extends State<RecommendedCourse> {
     return SizedBox(
       width: 200,
       child: CourseItem(
-        image: getImage(course.image),
-        name: course.name!,
-        subTitile: course.subtitle!,
-        level: course.level!,
-        lessons: course.lessons,
+        course: course,
       ),
-    );
-  }
-
-  Image getImage(String? ulr) {
-    if (ulr == null) {
-      return Image.asset(
-        Assets.assetsImagesCourseImage,
-      );
-    }
-    return Image.asset(
-      ulr,
     );
   }
 }

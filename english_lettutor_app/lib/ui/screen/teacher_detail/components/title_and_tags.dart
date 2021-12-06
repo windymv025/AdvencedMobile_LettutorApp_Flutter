@@ -6,7 +6,7 @@ class TitleAndTags extends StatelessWidget {
   const TitleAndTags({Key? key, required this.tags, required this.title})
       : super(key: key);
   final String title;
-  final List<String> tags;
+  final List<String>? tags;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class TitleAndTags extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 25, bottom: 10),
           child: Wrap(
-            children: buildTagsFromList(tags),
+            children: tags != null ? buildTagsFromList(tags!) : List.empty(),
           ),
         ),
       ],
@@ -26,6 +26,7 @@ class TitleAndTags extends StatelessWidget {
 
   List<Tag> buildTagsFromList(List<String> list) {
     List<Tag> items = [];
+
     for (var item in list) {
       items.add(Tag(
         label: item,

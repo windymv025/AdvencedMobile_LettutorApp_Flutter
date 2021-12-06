@@ -1,4 +1,6 @@
 import 'package:english_lettutor_app/data/provider/home_state.dart';
+import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
+import 'package:english_lettutor_app/ui/screen/home/schedule_page/components/upcoming_lession_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,14 +20,19 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    // int columnRatio = getColumnRatio(size);
+
+    ScheduleDTO scheduleDTO = Provider.of<ScheduleDTO>(context);
+
     return Consumer<HomeState>(builder: (context, homeState, _) {
       return CustomScrollView(
         slivers: [
           SliverList(
               delegate: SliverChildListDelegate([
             // welcome
-            WelcomeWithSearch(size: size),
+            scheduleDTO.items.isEmpty
+                ? WelcomeWithSearch(size: size)
+                : UpcomingLessionSearch(
+                    schedule: scheduleDTO.getUpcomingLessionSchedule()),
             //your teacher
             TitleAndButton(
               onPressed: () {

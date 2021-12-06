@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
@@ -36,7 +37,9 @@ class ScheduleHistoryItem extends StatelessWidget {
         child: Column(
           children: [
             MyListTile(
-                avatar: AssetImage(teacher.uriImage!),
+                avatar: AssetImage(teacher.uriImage != null
+                    ? teacher.uriImage!
+                    : Assets.assetsImagesUserIcon),
                 title: Text(
                   teacher.name!,
                   style: titleStyle,
@@ -87,24 +90,27 @@ class ScheduleHistoryItem extends StatelessWidget {
                     const SizedBox(
                       height: 10,
                     ),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Rating(
-                            onRatingUpdate: null,
-                            rating: scheduleHistory.ratingComment.rating ?? 0),
-                        (scheduleHistory.ratingComment.comment == null)
-                            ? const SizedBox.square()
-                            : Text(
-                                scheduleHistory.ratingComment.comment!,
-                                overflow: TextOverflow.clip,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w800),
-                              ),
-                      ],
-                    ),
+                    scheduleHistory.ratingComment != null
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Rating(
+                                  onRatingUpdate: null,
+                                  rating:
+                                      scheduleHistory.ratingComment!.rating ??
+                                          0),
+                              (scheduleHistory.ratingComment!.comment == null)
+                                  ? const SizedBox.square()
+                                  : Text(
+                                      scheduleHistory.ratingComment!.comment!,
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w800),
+                                    ),
+                            ],
+                          )
+                        : Container(),
                   ],
                 ),
                 trailing: Container(),

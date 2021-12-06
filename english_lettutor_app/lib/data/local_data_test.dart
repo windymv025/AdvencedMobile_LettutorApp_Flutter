@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/models/messager/conversation.dart';
@@ -12,66 +14,6 @@ final teacherList = [
   Teacher.getDefault2(),
   Teacher.getDefault3(),
   Teacher.getDefault4(),
-  Teacher(
-      id: 5,
-      name: 'Teacher 5',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 6,
-      name: 'Teacher 6',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 7,
-      name: 'Teacher 7',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 8,
-      name: 'Teacher 8',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 9,
-      name: 'Teacher 9',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 10,
-      name: 'Teacher 10',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 11,
-      name: 'Teacher 11',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 12,
-      name: 'Teacher 12',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 13,
-      name: 'Teacher 13',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
-  Teacher(
-      id: 14,
-      name: 'Teacher 14',
-      specialties: kSpecialities.sublist(3, 5),
-      country: "Viet nam",
-      description: ""),
 ];
 
 final conversationList = [
@@ -82,82 +24,10 @@ final courseList = [
   Course.getDefault(),
   Course.getDefault1(),
   Course.getDefault2(),
-  Course.getDefault1(),
-  Course.getDefault2(),
-  Course.getDefault(),
 ];
 
 final List<Schedule> scheduleList = [
   Schedule.getDefault(),
-  Schedule(
-      iDTeacher: 1,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 1)),
-          end: DateTime.now().add(const Duration(days: 1, minutes: 30)))),
-  Schedule(
-      iDTeacher: 2,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 1, hours: 1)),
-          end: DateTime.now()
-              .add(const Duration(days: 1, hours: 1, minutes: 30)))),
-  Schedule(
-      iDTeacher: 2,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 1, hours: 2)),
-          end: DateTime.now()
-              .add(const Duration(days: 1, hours: 2, minutes: 30)))),
-  Schedule(
-      iDTeacher: 3,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 2, hours: 1)),
-          end: DateTime.now()
-              .add(const Duration(days: 2, hours: 1, minutes: 30)))),
-  Schedule(
-      iDTeacher: 3,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 2, hours: 2)),
-          end: DateTime.now()
-              .add(const Duration(days: 2, hours: 2, minutes: 30)))),
-  Schedule(
-      iDTeacher: 4,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 3, hours: 1)),
-          end: DateTime.now()
-              .add(const Duration(days: 3, hours: 1, minutes: 30)))),
-  Schedule(
-      iDTeacher: 4,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 3, hours: 3)),
-          end: DateTime.now()
-              .add(const Duration(days: 3, hours: 3, minutes: 30)))),
-  Schedule(
-      iDTeacher: 2,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 4, hours: 1)),
-          end: DateTime.now()
-              .add(const Duration(days: 4, hours: 1, minutes: 30)))),
-  Schedule(
-      iDTeacher: 5,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 5, hours: 1)),
-          end: DateTime.now()
-              .add(const Duration(days: 5, hours: 1, minutes: 30)))),
-  Schedule(
-      iDTeacher: 4,
-      iDStudent: 1,
-      time: DateTimeRange(
-          start: DateTime.now().add(const Duration(days: 6, hours: 1)),
-          end: DateTime.now()
-              .add(const Duration(days: 6, hours: 1, minutes: 30)))),
 ];
 
 final List<ScheduleHistory> scheduleHistoryList = [
@@ -165,3 +35,65 @@ final List<ScheduleHistory> scheduleHistoryList = [
 ];
 
 final Profile kProfile = Profile.getDefault2();
+
+void randomData() {
+  var rd = Random.secure();
+
+  for (int i = 5; i <= 50; i++) {
+    int a = rd.nextInt(kSpecialities.length - 1) + 1;
+    int b = rd.nextInt(kSpecialities.length - 1) + 1;
+    teacherList.add(Teacher(
+        id: i,
+        name: 'Teacher ${rd.nextInt(100)}',
+        specialties: kSpecialities.sublist(min(a, b), max(a, b)),
+        country: "Viet nam",
+        description: ""));
+  }
+
+  for (int i = 0; i < 20; i++) {
+    int day = rd.nextInt(60);
+    int hour = rd.nextInt(24);
+    scheduleList.add(Schedule(
+        iDTeacher: rd.nextInt(50) + 1,
+        iDStudent: 1,
+        time: DateTimeRange(
+            start: DateTime.now().add(Duration(days: day, hours: hour)),
+            end: DateTime.now()
+                .add(Duration(days: day, hours: hour, minutes: 30)))));
+
+    scheduleList.add(Schedule(
+        iDTeacher: rd.nextInt(50) + 1,
+        iDStudent: 1,
+        time: DateTimeRange(
+            start: DateTime.now().add(Duration(days: day, hours: hour)),
+            end: DateTime.now().add(Duration(
+                days: day, hours: hour, minutes: rd.nextInt(60 + 1))))));
+  }
+
+  for (int i = 0; i < 30; i++) {
+    int day = rd.nextInt(365);
+    scheduleHistoryList.add(ScheduleHistory(
+        schedule: Schedule(
+            iDTeacher: rd.nextInt(50) + 1,
+            iDStudent: 1,
+            time: DateTimeRange(
+                start: DateTime.now().subtract(Duration(days: day, hours: 1)),
+                end: DateTime.now()
+                    .add(Duration(days: day, hours: 1, minutes: 30)))),
+        countTime: rd.nextInt(30000),
+        ratingComment: null));
+  }
+
+  for (int i = 0; i < 30; i++) {
+    courseList.add(
+      Course(
+        image: null,
+        name: "Course $i",
+        subtitle: "Course $i subtitle",
+        level: kLevels[rd.nextInt(kLevels.length)],
+        lessons: rd.nextInt(20) + 1,
+        topics: [for (int i = 1; i < rd.nextInt(20) + 1; i++) 'Topic $i'],
+      ),
+    );
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
@@ -36,7 +37,7 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: MyListTile(
-          avatar: AssetImage(teacher.uriImage!),
+          avatar: AssetImage(teacher.uriImage ?? Assets.assetsImagesUserIcon),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -51,7 +52,7 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
             ],
           ),
           subtitle: Rating(
-            rating: teacher.ratings!,
+            rating: teacher.ratings ?? 0,
             onRatingUpdate: () {},
           ),
           trailing: IconButton(

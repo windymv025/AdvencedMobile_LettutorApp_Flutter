@@ -5,7 +5,7 @@ import 'package:video_player/video_player.dart';
 
 class VideoNetworkWidget extends StatefulWidget {
   const VideoNetworkWidget(this.ulr, {Key? key}) : super(key: key);
-  final String ulr;
+  final String? ulr;
 
   @override
   VideoNetworkWidgetState createState() => VideoNetworkWidgetState();
@@ -23,7 +23,9 @@ class VideoNetworkWidgetState extends State<VideoNetworkWidget> {
 
     videoStatusAnimation = Container();
 
-    _controller = VideoPlayerController.network(widget.ulr.trim())
+    _controller = VideoPlayerController.network(widget.ulr != null
+        ? widget.ulr!.trim()
+        : 'https://www.abc.com/video.mp4')
       ..addListener(() {
         final bool isPlaying = _controller.value.isPlaying;
         if (isPlaying != _isPlaying) {

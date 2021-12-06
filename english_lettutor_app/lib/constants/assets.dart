@@ -33,6 +33,10 @@ class Assets {
   /// assets/images/cloud-data.png
   static const String assetsImagesCloudData = "assets/images/cloud-data.png";
 
+  /// Assets for assetsImagesCourseImage
+  /// assets/images/course-image.png
+  static const String assetsImagesCourseImage = "assets/images/course-image.png";
+
   /// Assets for assetsImagesImageLogo
   /// assets/images/image_logo.png
   static const String assetsImagesImageLogo = "assets/images/image_logo.png";

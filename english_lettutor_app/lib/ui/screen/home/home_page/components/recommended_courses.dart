@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
@@ -31,12 +32,23 @@ class _RecommendedCourseState extends State<RecommendedCourse> {
     return SizedBox(
       width: 200,
       child: CourseItem(
-        image: Image.asset(course.image!),
+        image: getImage(course.image),
         name: course.name!,
         subTitile: course.subtitle!,
         level: course.level!,
         lessons: course.lessons,
       ),
+    );
+  }
+
+  Image getImage(String? ulr) {
+    if (ulr == null) {
+      return Image.asset(
+        Assets.assetsImagesCourseImage,
+      );
+    }
+    return Image.asset(
+      ulr,
     );
   }
 }

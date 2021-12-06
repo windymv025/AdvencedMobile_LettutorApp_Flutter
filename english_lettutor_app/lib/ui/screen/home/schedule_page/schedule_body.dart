@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
+import 'package:english_lettutor_app/ui/widget/item_view/button/page_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,10 +16,6 @@ class ScheduleBody extends StatefulWidget {
 class _ScheduleBodyState extends State<ScheduleBody> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-
-    // final ScheduleDTO scheduleDTO = context.watch<ScheduleDTO>();
-
     return Consumer<ScheduleDTO>(builder: (context, scheduleDTO, _) {
       return CustomScrollView(
         slivers: [
@@ -29,9 +26,44 @@ class _ScheduleBodyState extends State<ScheduleBody> {
             ),
           ])),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 20),
-            sliver: CustomGridViewSchedule(
-                size: size, items: scheduleDTO.getAvailableSchedule()),
+            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 20),
+            sliver:
+                CustomGridViewSchedule(items: scheduleDTO.getScheduleByDay()),
+          ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              scheduleDTO.totalPage == 0
+                  ? Container()
+                  : Container(
+                      margin: const EdgeInsets.only(
+                          bottom: 20, left: 15, right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          scheduleDTO.totalPage == 1
+                              ? Container()
+                              : PageButton(
+                                  onPressed: () {
+                                    scheduleDTO.prevPage();
+                                  },
+                                  text: '<'),
+                          PageButton(
+                              onPressed: () {
+                                scheduleDTO.prevPage();
+                              },
+                              text:
+                                  '${scheduleDTO.currentPage} -- ${scheduleDTO.totalPage}'),
+                          scheduleDTO.totalPage == 1
+                              ? Container()
+                              : PageButton(
+                                  onPressed: () {
+                                    scheduleDTO.nextPage();
+                                  },
+                                  text: '>')
+                        ],
+                      ))
+            ]),
           )
         ],
       );

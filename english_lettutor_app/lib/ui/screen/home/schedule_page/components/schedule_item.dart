@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
@@ -17,7 +18,9 @@ class ScheduleItem extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
     TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
+    ScheduleDTO scheduleDTO = Provider.of<ScheduleDTO>(context);
     Teacher teacher = teacherDTO.getTeacher(schedule.iDTeacher);
+
     return Container(
       decoration: BoxDecoration(
         boxShadow: isDark
@@ -31,6 +34,7 @@ class ScheduleItem extends StatelessWidget {
       ),
       child: Card(
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
             MyListTile(
                 avatar: teacher.uriImage != null
@@ -42,9 +46,8 @@ class ScheduleItem extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
-                subtitle: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
+                subtitle: Wrap(
+                  crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     Text(
                       DateFormat("yyyy-MM-dd").format(schedule.time.start),
@@ -90,7 +93,9 @@ class ScheduleItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: OutlinedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      scheduleDTO.remove(schedule);
+                    },
                     child: const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),
                       child: Text(
@@ -104,7 +109,8 @@ class ScheduleItem extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, LessonScreen.routeName);
+                      Navigator.pushNamed(context, LessonScreen.routeName,
+                          arguments: schedule);
                     },
                     child: const Padding(
                       padding: EdgeInsets.symmetric(vertical: 10),

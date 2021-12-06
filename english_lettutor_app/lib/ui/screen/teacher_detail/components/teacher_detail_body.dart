@@ -27,7 +27,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
         children: [
           //Video
           // VideoIntroduce(uri: teacher.uriVideo!),
-          VideoNetworkWidget(teacher.uriVideo!),
+          VideoNetworkWidget(teacher.uriVideo),
           // image and simple infor teacher
           SimpleInforTeacher(teacher: teacher),
           //Booking, message, report
@@ -36,13 +36,13 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           ),
 
           //Languages
-          TitleAndTags(tags: teacher.languages!, title: "Languages"),
+          TitleAndTags(tags: teacher.languages, title: "Languages"),
 
           //Education
           const TitleDetail(title: "Education"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(teacher.education!,
+            child: Text(teacher.education ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),
@@ -53,7 +53,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Text(
-              teacher.experience!,
+              teacher.experience ?? "",
               overflow: TextOverflow.clip,
               textAlign: TextAlign.justify,
             ),
@@ -63,7 +63,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           const TitleDetail(title: "Interests"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(teacher.interests!,
+            child: Text(teacher.interests ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),
@@ -73,7 +73,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           const TitleDetail(title: "Profession"),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(teacher.profession!,
+            child: Text(teacher.profession ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),

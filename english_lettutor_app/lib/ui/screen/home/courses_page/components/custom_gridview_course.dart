@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/course_item.dart';
@@ -28,7 +29,7 @@ class CustomGridViewCourse extends StatelessWidget {
         itemBuilder: (context, index) => Container(
             margin: const EdgeInsets.all(4),
             child: CourseItem(
-              image: Image.asset(items![index].image!),
+              image: getImage(items![index].image),
               name: items![index].name!,
               subTitile: items![index].subtitle!,
               lessons: items![index].lessons,
@@ -51,5 +52,18 @@ class CustomGridViewCourse extends StatelessWidget {
       columRatio = 2;
     }
     return columRatio;
+  }
+
+  Image getImage(String? ulr) {
+    if (ulr == null) {
+      return Image.asset(
+        Assets.assetsImagesCourseImage,
+        fit: BoxFit.cover,
+      );
+    }
+    return Image.asset(
+      ulr,
+      fit: BoxFit.cover,
+    );
   }
 }

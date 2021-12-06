@@ -5,7 +5,7 @@ import 'schedule.dart';
 class ScheduleHistory {
   late Schedule schedule;
   late int countTime;
-  late RatingComment ratingComment;
+  late RatingComment? ratingComment;
 
   ScheduleHistory(
       {required this.schedule,

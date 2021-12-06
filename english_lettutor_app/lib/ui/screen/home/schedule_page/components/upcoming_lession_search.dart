@@ -1,6 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
-import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
+import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
@@ -21,14 +21,15 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
   @override
   Widget build(BuildContext context) {
     Schedule? schedule = widget.schedule;
-    final ScheduleDTO scheduleDTO = context.watch<ScheduleDTO>();
+    final ScheduleHistoryDTO scheduleHistoryDTO =
+        context.watch<ScheduleHistoryDTO>();
     return SearchBarTitle(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Total lesson time is ${scheduleDTO.getTotalTimeStudy()}",
+            "Total lesson time is ${scheduleHistoryDTO.getTotalTimeStudy()}",
             style: tileCountDownStyle,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
@@ -75,7 +76,8 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
               ? ElevatedButton(
                   style: outlineButtonStyle,
                   onPressed: () {
-                    Navigator.pushNamed(context, LessonScreen.routeName);
+                    Navigator.pushNamed(context, LessonScreen.routeName,
+                        arguments: schedule);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),

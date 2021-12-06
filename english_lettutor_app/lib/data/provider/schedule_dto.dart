@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/data/provider/base_dto.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
+import 'package:intl/intl.dart';
 
 class ScheduleDTO extends BaseDTO<Schedule> {
   @override
@@ -7,10 +8,24 @@ class ScheduleDTO extends BaseDTO<Schedule> {
     items.sort((a, b) => a.time.start.compareTo(b.time.start));
   }
 
-  List<Schedule> getAvailableSchedule() {
-    return items
+  @override
+  void getAvailableItems() {
+    items = items
         .where((schedule) => schedule.time.end.isAfter(DateTime.now()))
         .toList();
+  }
+
+  Map<String, List<Schedule>> getScheduleByDay() {
+    var result = <String, List<Schedule>>{};
+    for (var schedule in getItemInCurrentPage()) {
+      var date = schedule.time.start.toLocal();
+      var strDate = DateFormat('EEEE, dd MMMM yyyy').format(date);
+      if (result[strDate] == null) {
+        result[strDate] = [];
+      }
+      result[strDate]?.add(schedule);
+    }
+    return result;
   }
 
   Schedule? getUpcomingLessionSchedule() {
@@ -29,20 +44,5 @@ class ScheduleDTO extends BaseDTO<Schedule> {
     }
 
     return result;
-  }
-
-  String getTotalTimeStudy() {
-    if (items.isEmpty) return "0 minutes";
-
-    int totalMinutes = 0;
-    for (var schedule in items) {
-      totalMinutes += schedule.time.duration.inMinutes;
-    }
-
-    if (totalMinutes % 60 > 0) {
-      return "$totalMinutes minutes";
-    } else {
-      return "${totalMinutes ~/ 60} hours ${totalMinutes % 60} minutes";
-    }
   }
 }

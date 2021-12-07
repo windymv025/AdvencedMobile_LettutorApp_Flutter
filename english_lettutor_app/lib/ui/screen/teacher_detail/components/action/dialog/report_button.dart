@@ -1,7 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';

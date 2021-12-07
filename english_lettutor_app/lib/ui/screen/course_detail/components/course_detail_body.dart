@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
+import 'package:english_lettutor_app/ui/pdf_viewer/pdf_viewer_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/course_item.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +113,7 @@ class CourseDetailBody extends StatelessWidget {
 
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: buildListTopics(course.topics!),
+            children: buildListTopics(context, course.topics!),
           ),
 
           const SizedBox(
@@ -123,11 +124,15 @@ class CourseDetailBody extends StatelessWidget {
     );
   }
 
-  List<Widget> buildListTopics(List<String> topics) {
+  List<Widget> buildListTopics(BuildContext context, List<String> topics) {
     List<Widget> result = [];
     for (var i = 0; i < topics.length; i++) {
       result.add(
-        TitleDetail(title: "${i + 1} ${topics[i]}"),
+        InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, PDFViewScreen.routeName);
+            },
+            child: TitleDetail(title: "${i + 1} ${topics[i]}")),
       );
     }
 

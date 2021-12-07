@@ -2,7 +2,6 @@ import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/favorite_teacher/favorite_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';

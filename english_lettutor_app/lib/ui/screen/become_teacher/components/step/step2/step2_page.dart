@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/sheet/bottom_sheet.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/media/video_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

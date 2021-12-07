@@ -1,4 +1,3 @@
-import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';

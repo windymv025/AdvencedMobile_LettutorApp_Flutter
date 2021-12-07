@@ -1,7 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
-import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_page/components/custom_grid_view.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/page_button.dart';

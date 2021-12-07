@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/ui/pdf_viewer/pdf_viewer_screen.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
 import 'package:english_lettutor_app/ui/screen/favorite_teacher/favorite_teacher.dart';
@@ -33,4 +34,5 @@ final Map<String, WidgetBuilder> routes = {
   MessengerDetailScreen.routeName: (context) => const MessengerDetailScreen(),
   OTPScreen.routeName: (context) => const OTPScreen(),
   FavoriteTeacher.routeName: (context) => const FavoriteTeacher(),
+  PDFViewScreen.routeName: (context) => const PDFViewScreen(),
 };

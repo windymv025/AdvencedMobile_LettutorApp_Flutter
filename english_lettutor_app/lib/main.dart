@@ -2,7 +2,6 @@ import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/screen/splash/splash_screen.dart';
 import 'package:flutter/material.dart';

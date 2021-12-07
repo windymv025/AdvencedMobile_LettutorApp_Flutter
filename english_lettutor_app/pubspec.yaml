@@ -39,19 +39,27 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_rating_bar: ^4.0.0
-  flutter_staggered_grid_view: ^0.4.1
-  flutter_svg: ^0.23.0 # help us to use SVG in our app
   provider: ^6.0.1 # for State management
-  curved_navigation_bar: ^1.0.1 # navigation
-  country_picker: ^2.0.8 #countries
   intl: ^0.17.0
-  auto_animated: ^3.0.1
   shared_preferences: ^2.0.9
   fuzzy: ^0.4.0-nullsafety.0 #search
+  auto_animated: ^3.0.1
+
+
+  flutter_staggered_grid_view: ^0.4.1 #grid respose
+  curved_navigation_bar: ^1.0.1 # navigation
+  country_picker: ^2.0.8 #countries
   flutter_slidable: ^1.1.0 #swip to delete
-  image_picker: ^0.8.4+4 #image and video picker
   multi_select_flutter: ^4.0.0 #multi select item
+
+  flutter_svg: ^0.23.0 # help us to use SVG in our app
+  image_picker: ^0.8.4+4 #image and video picker
   video_player: ^2.2.7 #video player
+
+  # view pdf
+  syncfusion_flutter_pdfviewer: ^19.3.56-beta
+  # download PDF
+  http: ^0.13.4
 
 dev_dependencies:
   flutter_test:

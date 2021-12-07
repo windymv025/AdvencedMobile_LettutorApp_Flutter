@@ -2,7 +2,6 @@ import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
 import 'package:english_lettutor_app/data/local_data_test.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';

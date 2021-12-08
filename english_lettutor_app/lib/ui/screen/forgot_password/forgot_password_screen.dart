@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'components/body.dart';
@@ -10,7 +11,7 @@ class ForgotPasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Forgot Password"),
+        title: Text(S.current.forgot_password),
       ),
       body: const Body(),
     );

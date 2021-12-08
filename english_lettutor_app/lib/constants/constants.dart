@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 
 const double textSizeButton = 14;
@@ -8,14 +9,6 @@ const double textSizePageName = 18;
 // Form Error
 final RegExp emailValidatorRegExp =
     RegExp(r"^[a-zA-Z0-9.]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
-const String kEmailNullError = "Please Enter your email";
-const String kInvalidEmailError = "Please Enter Valid Email";
-const String kPassNullError = "Please Enter your password";
-const String kShortPassError = "Password is too short";
-const String kMatchPassError = "Passwords don't match";
-const String kNamelNullError = "Please Enter your name";
-const String kOTPNullError = "Please Enter OTP in your email";
-const String kOTPError = "OTP is Invalid, please try again";
 
 // const kMainBlueColor = Color(0xff18A9FB);
 const kMainBlueColor = Color(0xff248EEF);
@@ -35,7 +28,7 @@ const kHeightMinDefault = 540;
 
 const kStringDarkTheme = "Dark";
 const kStringLightTheme = "Light";
-const kThemes = [kStringDarkTheme, kStringLightTheme];
+final kThemes = [kStringDarkTheme, kStringLightTheme];
 
 const kLevels = [
   "Beginner",
@@ -44,10 +37,10 @@ const kLevels = [
   "Intermediate",
   "Upper-intermediate",
   "Advanced",
-  "Proficiency"
+  "Proficiency",
 ];
 
-const kSpecialities = [
+final kSpecialities = [
   kAllTeachers,
   "English for kids",
   "English for Business",
@@ -158,8 +151,6 @@ const kLanguages = [
 
 const kAllTeachers = "All";
 
-const kCountries = ["Viet Nam", "Uzbekistan", "United States of America"];
-
 const String sep1Content =
     """Your tutor profile is your chance to market yourself to students on Tutoring. You can make edits later on your profile settings page.
 
@@ -168,11 +159,6 @@ New students may browse tutor profiles to find a tutor that fits their learning 
 const String step2Content =
     "Let students know what they can expect from a lesson with you by recording a video highlighting your teaching style, expertise and personality. Students can be nervous to speak with a foreigner, so it really helps to have a friendly video that introduces yourself and invites students to call you.";
 
-const String videoTips = """A few helpful tips:
-1. Find a clean and quiet space
-2. Smile and look at the camera
-3. Dress smart
-4. Speak for 1-3 minutes
-5. Brand yourself and have fun!""";
+final String videoTips = S.current.video_tips;
 
 const String dot = " • ";

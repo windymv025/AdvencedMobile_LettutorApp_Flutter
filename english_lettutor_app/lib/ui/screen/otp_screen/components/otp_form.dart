@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
@@ -46,8 +47,8 @@ class _OTPFormState extends State<OTPForm> {
           ),
           Row(
             children: [
-              const Text(
-                "Not received OTP?",
+              Text(
+                S.current.Not_received_OTP,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -77,7 +78,7 @@ class _OTPFormState extends State<OTPForm> {
             height: 10,
           ),
           DefaultButton(
-            text: "Submit",
+            text: S.current.submit,
             press: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
@@ -98,26 +99,26 @@ class _OTPFormState extends State<OTPForm> {
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kOTPNullError);
+          removeError(S.current.please_enter_otp);
         } else if (value.length == 6) {
-          removeError(kOTPError);
+          removeError(S.current.otp_is_invalid);
         }
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kOTPNullError);
+          addError(S.current.please_enter_otp);
           return "";
         } else if (value.length != 6) {
-          addError(kOTPError);
+          addError(S.current.otp_is_invalid);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("OTP"),
-        hintText: "Enter OTP in your email",
+      decoration: InputDecoration(
+        label: const Text("OTP"),
+        hintText: S.current.enter_OTP,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.code_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.code_rounded),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/components/no_account_text.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/continue_with_component.dart';
 import 'package:flutter/material.dart';
@@ -22,12 +23,12 @@ class Body extends StatelessWidget {
                 SizedBox(
                     height: 150,
                     child: Image.asset(Assets.assetsImagesLargeLogo)),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10, left: 30, right: 30),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
                   child: Text(
-                    "Enter your email address and we’ll send you a OTP code to reset your password",
+                    S.current.enter_email_to_reset,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 13),
                   ),
                 ),
                 const SizedBox(

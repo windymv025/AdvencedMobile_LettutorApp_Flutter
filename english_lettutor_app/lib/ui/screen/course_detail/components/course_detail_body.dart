@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/pdf_viewer/pdf_viewer_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
@@ -22,20 +23,20 @@ class CourseDetailBody extends StatelessWidget {
             ),
           ),
           //Overview
-          const TitleDetail(
-            title: "Overview",
+          TitleDetail(
+            title: S.current.overview,
             textStyle: pageNameStyle,
           ),
 
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Row(
-              children: const [
-                Icon(
+              children: [
+                const Icon(
                   Icons.help_rounded,
                   color: Colors.red,
                 ),
-                TitleDetail(title: "Why take this course?"),
+                TitleDetail(title: S.current.why_take_this_course),
               ],
             ),
           ),
@@ -50,9 +51,9 @@ class CourseDetailBody extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Row(
-              children: const [
-                Icon(Icons.help_rounded, color: Colors.red),
-                TitleDetail(title: "What will you be able to do?"),
+              children: [
+                const Icon(Icons.help_rounded, color: Colors.red),
+                TitleDetail(title: S.current.what_be_able_to_do),
               ],
             ),
           ),
@@ -64,8 +65,8 @@ class CourseDetailBody extends StatelessWidget {
                 textAlign: TextAlign.justify),
           ),
 
-          const TitleDetail(
-            title: "Experience Level",
+          TitleDetail(
+            title: S.current.experience_level,
             textStyle: pageNameStyle,
           ),
           Padding(
@@ -85,8 +86,8 @@ class CourseDetailBody extends StatelessWidget {
             ),
           ),
 
-          const TitleDetail(
-            title: "Course Length",
+          TitleDetail(
+            title: S.current.course_length,
             textStyle: pageNameStyle,
           ),
           Padding(
@@ -106,8 +107,8 @@ class CourseDetailBody extends StatelessWidget {
             ),
           ),
 
-          const TitleDetail(
-            title: "List Topics",
+          TitleDetail(
+            title: S.current.list_topics,
             textStyle: pageNameStyle,
           ),
 

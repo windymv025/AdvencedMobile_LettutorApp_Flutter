@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/constants/enums.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/multi_item_select_field.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/multiline_text_field.dart';
@@ -26,9 +27,9 @@ class _TeachingInforState extends State<TeachingInfor> {
       children: [
         //Languages I speak
         Row(
-          children: const [
-            Text("Languages I speak", style: titleBlueStyle),
-            Spacer()
+          children: [
+            Text(S.current.languages_speak, style: titleBlueStyle),
+            const Spacer()
           ],
         ),
         //Languages
@@ -42,8 +43,8 @@ class _TeachingInforState extends State<TeachingInfor> {
           onConfirm: (values) {
             teacher.languages = values.cast<String>();
           },
-          title: "Choose Languages",
-          buttonText: "Languages",
+          title: S.current.choose_language,
+          buttonText: S.current.languages,
           onTap: (value) {
             setState(() {
               teacher.languages!.remove(value);
@@ -60,15 +61,15 @@ class _TeachingInforState extends State<TeachingInfor> {
         ),
         //Who I teach
         Row(
-          children: const [
-            Text("Who I teach", style: titleBlueStyle),
-            Spacer()
+          children: [
+            Text(S.current.who_i_teach, style: titleBlueStyle),
+            const Spacer()
           ],
         ),
 
         //Introduction
         MultilineTextField(
-            label: "Introduction",
+            label: S.current.introduction,
             hint:
                 "Example: I was a doctor for 35 years and can help you practice business or medical English.",
             controller: _introduction,
@@ -79,12 +80,12 @@ class _TeachingInforState extends State<TeachingInfor> {
           height: 15,
         ),
         Row(
-          children: const [
+          children: [
             Text(
-              "My specialties are",
+              S.current.my_specialties_are,
               style: titleBlueStyle,
             ),
-            Spacer()
+            const Spacer()
           ],
         ),
         const SizedBox(
@@ -93,8 +94,8 @@ class _TeachingInforState extends State<TeachingInfor> {
         MultiItemSelectField(
             items: kSpecialities.sublist(1),
             icon: Icons.bookmark_border_rounded,
-            title: "Choose specialties",
-            buttonText: "My specialties are",
+            title: S.current.Choose_Specialities,
+            buttonText: S.current.my_specialties_are,
             onConfirm: (values) {
               teacher.specialties = values.cast<String>();
             },
@@ -109,10 +110,10 @@ class _TeachingInforState extends State<TeachingInfor> {
           height: 15,
         ),
         Row(
-          children: const [
+          children: [
             Expanded(
               child: Text(
-                "I am best at teaching students who are",
+                S.current.i_best_teaching_who,
                 style: titleBlueStyle,
                 overflow: TextOverflow.clip,
               ),

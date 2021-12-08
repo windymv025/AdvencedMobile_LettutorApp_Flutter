@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class SubtitleStep1 extends StatelessWidget {
@@ -10,12 +11,12 @@ class SubtitleStep1 extends StatelessWidget {
     return Column(
       children: [
         Row(
-          children: const [
+          children: [
             Text(
-              "Set up your tutor profile",
+              S.current.set_up_profile,
               style: pageNameStyle,
             ),
-            Spacer()
+            const Spacer()
           ],
         ),
         const Padding(

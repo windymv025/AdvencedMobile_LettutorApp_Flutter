@@ -63,23 +63,6 @@ class _CardChatItemState extends State<CardChatItem> {
                   Text("$dot${getStringTime(lastMessage.time)}")
                 ],
               ),
-              // trailing: PopupMenuButton(
-              //   icon: const Icon(Icons.more_vert_rounded),
-              //   onSelected: (value) {},
-              //   itemBuilder: (context) {
-              //     return [
-              //       PopupMenuItem(
-              //         value: MenuSettingMessage.delete,
-              //         child: Row(
-              //           children: const [
-              //             Text("Delete"),
-              //             Icon(Icons.delete_forever_rounded, color: Colors.red)
-              //           ],
-              //         ),
-              //       )
-              //     ];
-              //   },
-              // ),
             )),
       ),
     );

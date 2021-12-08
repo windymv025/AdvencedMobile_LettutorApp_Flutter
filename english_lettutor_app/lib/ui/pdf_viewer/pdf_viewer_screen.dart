@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/pdf_viewer/components/pdf_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -36,8 +37,8 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
             ? TextField(
                 controller: _textEditingController,
                 autofocus: true,
-                decoration: const InputDecoration(
-                  hintText: 'Search',
+                decoration: InputDecoration(
+                  hintText: S.current.search,
                   border: InputBorder.none,
                   contentPadding: EdgeInsets.all(7),
                   enabledBorder: InputBorder.none,
@@ -52,7 +53,7 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
           Visibility(
             visible: !_isSearching,
             child: IconButton(
-              tooltip: 'Search',
+              tooltip: S.current.search,
               icon: const Icon(Icons.search_rounded),
               onPressed: () {
                 setState(() {
@@ -64,7 +65,7 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
           Visibility(
             visible: _isSearching,
             child: IconButton(
-              tooltip: 'Cancel',
+              tooltip: S.current.cancel,
               icon: const Icon(
                 Icons.clear_rounded,
               ),
@@ -79,7 +80,7 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
           Visibility(
             visible: _searchResult?.hasResult ?? false,
             child: IconButton(
-              tooltip: 'Previous',
+              tooltip: S.current.previous,
               icon: const Icon(
                 Icons.keyboard_arrow_up_rounded,
               ),
@@ -91,7 +92,7 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
           Visibility(
             visible: _searchResult?.hasResult ?? false,
             child: IconButton(
-              tooltip: "Next",
+              tooltip: S.current.next,
               icon: const Icon(
                 Icons.keyboard_arrow_down_rounded,
               ),

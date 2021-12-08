@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
@@ -74,27 +75,27 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kPassNullError);
+          removeError(S.current.please_enter_password);
         } else if (value.length >= 8) {
-          removeError(kShortPassError);
+          removeError(S.current.please_enter_password_min);
         }
         password = value;
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
-          addError(kPassNullError);
+          addError(S.current.please_enter_password);
           return "";
         } else if (value.length < 8) {
-          addError(kShortPassError);
+          addError(S.current.please_enter_password_min);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Password"),
-        hintText: "Enter your password",
+      decoration: InputDecoration(
+        label: Text(S.current.password),
+        hintText: S.current.enter_password,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.lock_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
   }
@@ -105,27 +106,27 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
       onSaved: (newValue) => conformPassword = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kPassNullError);
+          removeError(S.current.please_enter_password);
         } else if (value.isNotEmpty && password == conformPassword) {
-          removeError(kMatchPassError);
+          removeError(S.current.password_dont_match);
         }
         conformPassword = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kPassNullError);
+          addError(S.current.please_enter_password);
           return "";
         } else if ((password != value)) {
-          addError(kMatchPassError);
+          addError(S.current.password_dont_match);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        labelText: "Confirm Password",
-        hintText: "Re-enter your password",
+      decoration: InputDecoration(
+        labelText: S.current.confirm_password,
+        hintText: S.current.re_enter_your_password,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.lock_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
   }

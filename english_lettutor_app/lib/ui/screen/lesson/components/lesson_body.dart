@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:english_lettutor_app/constants/assets.dart';
-import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -32,7 +32,7 @@ class _LessonBodyState extends State<LessonBody> {
         days * 24 * 60 * 60 -
         hours * 60 * 60 -
         minutes * 60;
-    return "$days Days $hours Hours $minutes Minutes $seconds Seconds";
+    return "$days ${S.current.Days} $hours ${S.current.Hours} $minutes ${S.current.Minutes} $seconds ${S.current.Seconds}";
   }
 
   @override
@@ -58,7 +58,7 @@ class _LessonBodyState extends State<LessonBody> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "$strTimeUntil\n until lesson start (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
+                      "$strTimeUntil\n ${S.current.until_lesson_starts} (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
                       textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.white, fontSize: 20),
                       overflow: TextOverflow.clip,

@@ -34,7 +34,6 @@ dependencies:
     sdk: flutter
   flutter_cupertino_localizations: ^1.0.1
 
-
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
@@ -44,7 +43,6 @@ dependencies:
   shared_preferences: ^2.0.9
   fuzzy: ^0.4.0-nullsafety.0 #search
   auto_animated: ^3.0.1
-
 
   flutter_staggered_grid_view: ^0.4.1 #grid respose
   curved_navigation_bar: ^1.0.1 # navigation
@@ -76,9 +74,7 @@ flutter_icons:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
-
 flutter_assets:
   assets_path: assets/
   output_path: lib/constants/
@@ -93,20 +89,16 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-   - assets/
-   - assets/images/
-   - assets/icons/
-   - assets/lang/
-
+    - assets/
+    - assets/images/
+    - assets/icons/
+    - assets/lang/
   #   - assets/a_dot_burr.jpeg
   #   - assets/a_dot_ham.jpeg
-
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
-
   # For details regarding adding assets from package dependencies, see
   # https://flutter.dev/assets-and-images/#from-packages
-
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
@@ -126,3 +118,5 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+flutter_intl:
+  enabled: true

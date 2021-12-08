@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/socal_card.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +11,10 @@ class ContinueWithComponent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Center(
+        Center(
           child: Text(
-            "Or continue with",
-            style: TextStyle(fontWeight: FontWeight.w600),
+            S.current.continue_with,
+            style: const TextStyle(fontWeight: FontWeight.w600),
           ),
         ),
         const SizedBox(

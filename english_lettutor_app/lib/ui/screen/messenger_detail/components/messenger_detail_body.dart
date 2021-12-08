@@ -1,5 +1,6 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/messager/conversation.dart';
 import 'package:english_lettutor_app/models/messager/message.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/components/item_message_receiver.dart';
@@ -95,7 +96,7 @@ class _MessengerDetailBodyState extends State<MessengerDetailBody> {
                       },
                       onTap: scrollDDown,
                       decoration: InputDecoration(
-                        hintText: "Type a message",
+                        hintText: S.current.type_message,
                         suffixIcon: IconButton(
                           icon: Icon(
                             Icons.send_rounded,

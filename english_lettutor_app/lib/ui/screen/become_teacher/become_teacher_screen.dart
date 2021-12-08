@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class BecomeTeacherScreen extends StatelessWidget {
       create: (context) => Teacher.toProfile(profile),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Become a Teacher"),
+          title: Text(S.current.become_teacher),
         ),
         body: const BecomeTeacherBody(),
       ),

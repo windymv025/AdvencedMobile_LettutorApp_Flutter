@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/favorite_teacher/components/favorite_teacher_body.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _FavoriteTeacherState extends State<FavoriteTeacher> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Favorite Teacher'),
+        title: Text(S.current.favorite_teachers),
       ),
       body: const FavoriteTeacherBody(),
     );

@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:multi_select_flutter/multi_select_flutter.dart';
 
@@ -59,7 +60,7 @@ class _MultiItemSelectFieldState extends State<MultiItemSelectField> {
         initialValue: widget.initialValue,
         items: widget.items.map((e) => MultiSelectItem<String>(e, e)).toList(),
         onConfirm: widget.onConfirm,
-        cancelText: const Text("Cancel"),
+        cancelText: Text(S.current.cancel),
         confirmText: const Text("OK"),
         chipDisplay: MultiSelectChipDisplay(
           chipColor: kMainBlueColor,

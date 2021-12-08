@@ -1,12 +1,18 @@
+import 'dart:ffi';
+
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/data/provider/language_profile.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/Theme/theme_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class SettingLanguageDropdownButton extends StatefulWidget {
-  const SettingLanguageDropdownButton({Key? key}) : super(key: key);
+  const SettingLanguageDropdownButton({
+    Key? key,
+  }) : super(key: key);
 
   @override
   _SettingLanguageDropdownButtonState createState() =>
@@ -18,6 +24,14 @@ class _SettingLanguageDropdownButtonState
   String _selectedLanguage = 'English';
   @override
   Widget build(BuildContext context) {
+    final LanguageProfile languageProfile =
+        Provider.of<LanguageProfile>(context);
+
+    if (languageProfile.locale.languageCode == LanguageProfile.codeEN) {
+      _selectedLanguage = 'English';
+    } else {
+      _selectedLanguage = "Tiếng Việt";
+    }
     return DropdownButton(
       alignment: Alignment.centerRight,
       icon: Container(),
@@ -25,6 +39,12 @@ class _SettingLanguageDropdownButtonState
       onChanged: (value) {
         setState(() {
           _selectedLanguage = value as String;
+          if (value == 'English') {
+            languageProfile.changeLanguage(LanguageProfile.codeEN);
+          } else if (value == "Tiếng Việt") {
+            languageProfile.changeLanguage(LanguageProfile.codeVN);
+          }
+          S.delegate.load(languageProfile.locale);
         });
       },
       underline: Container(),

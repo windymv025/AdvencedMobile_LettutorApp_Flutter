@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -13,21 +14,21 @@ class Step3Page extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         SizedBox(height: 170, child: SvgPicture.asset(Assets.assetsIconsDone)),
-        const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10),
           child: Text(
-            "You have done all the steps",
+            S.current.you_have_done_all_steps,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
-            style: TextStyle(
+            style: const TextStyle(
                 fontSize: textSizePageName, fontWeight: FontWeight.w700),
           ),
         ),
-        const Text(
-          "Please, wait for the operator's approval",
+        Text(
+          S.current.please_wait_accept,
           overflow: TextOverflow.clip,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
               fontSize: textSizePageName, fontWeight: FontWeight.w700),
         ),
         const SizedBox(

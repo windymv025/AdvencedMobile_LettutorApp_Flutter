@@ -2,6 +2,7 @@ import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/become_teacher/become_teacher_screen.dart';
 import 'package:english_lettutor_app/ui/screen/favorite_teacher/favorite_teacher.dart';
 import 'package:english_lettutor_app/ui/screen/history/schedule_history_screen.dart';
@@ -50,7 +51,7 @@ class MyDrawer extends StatelessWidget {
                 Icons.history_edu_rounded,
                 color: kMainBlueColor,
               ),
-              title: "Schedule history"),
+              title: S.current.schedule_history),
           SettingsButton(
               onPress: () {
                 teacherDTO.clearSpecialities();
@@ -60,7 +61,7 @@ class MyDrawer extends StatelessWidget {
                 Icons.favorite_rounded,
                 color: kMainBlueColor,
               ),
-              title: "Favorite Teacher"),
+              title: S.current.favorite_teachers),
           SettingsButton(
               onPress: () {
                 Navigator.popAndPushNamed(
@@ -72,7 +73,7 @@ class MyDrawer extends StatelessWidget {
                 height: 24,
                 width: 18,
               ),
-              title: "Become a teacher"),
+              title: S.current.become_teacher),
           SettingsButton(
               onPress: () {
                 Navigator.popAndPushNamed(context, SettingScreen.routeName);
@@ -81,7 +82,7 @@ class MyDrawer extends StatelessWidget {
                 Icons.settings_rounded,
                 color: kMainBlueColor,
               ),
-              title: "Setting"),
+              title: S.current.setting),
           SettingsButton(
               onPress: () {
                 Navigator.restorablePopAndPushNamed(
@@ -91,7 +92,7 @@ class MyDrawer extends StatelessWidget {
                 Icons.logout_rounded,
                 color: kMainBlueColor,
               ),
-              title: "Logout"),
+              title: S.current.logout),
           const SizedBox(
             height: 25,
           ),

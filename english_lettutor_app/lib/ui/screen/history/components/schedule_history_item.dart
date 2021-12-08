@@ -2,6 +2,7 @@ import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
@@ -127,11 +128,11 @@ class ScheduleHistoryItem extends StatelessWidget {
                       Navigator.pushNamed(
                           context, MessengerDetailScreen.routeName);
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        "Send message",
-                        style: TextStyle(fontSize: textSizeButton),
+                        S.current.send_message,
+                        style: const TextStyle(fontSize: textSizeButton),
                       ),
                     ),
                     style: outlineColorButtonStyle,
@@ -140,11 +141,11 @@ class ScheduleHistoryItem extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        "Give Feedback",
-                        style: TextStyle(fontSize: textSizeButton),
+                        S.current.give_feedback,
+                        style: const TextStyle(fontSize: textSizeButton),
                       ),
                     ),
                     style: defaultColorButtonStyle,

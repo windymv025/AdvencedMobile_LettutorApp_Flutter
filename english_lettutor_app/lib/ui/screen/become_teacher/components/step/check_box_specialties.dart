@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class CheckBoxSpecialties extends StatefulWidget {
@@ -23,12 +24,12 @@ class _CheckBoxSpecialtiesState extends State<CheckBoxSpecialties> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          children: const [
+          children: [
             Text(
-              "My specialties are",
+              S.current.my_specialties_are,
               style: titleBlueStyle,
             ),
-            Spacer()
+            const Spacer()
           ],
         ),
         Column(

@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class CourseItem extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              '${course.level ?? ''} • ${course.lessons} Lessons',
+                              '${course.level ?? ''} • ${course.lessons} ${S.current.lessons}',
                               overflow: TextOverflow.clip,
                               textAlign: TextAlign.center,
                             ),

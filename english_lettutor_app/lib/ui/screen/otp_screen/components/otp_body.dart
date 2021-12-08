@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 import 'otp_form.dart';
@@ -26,12 +27,12 @@ class _OTPBodyState extends State<OTPBody> {
                 SizedBox(
                     height: 150,
                     child: Image.asset(Assets.assetsImagesLargeLogo)),
-                const Padding(
-                  padding: EdgeInsets.only(top: 10, left: 30, right: 30),
+                Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 30, right: 30),
                   child: Text(
-                    "Check your email then enter the OTP code below",
+                    S.current.check_email_str,
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 13),
                   ),
                 ),
                 const SizedBox(

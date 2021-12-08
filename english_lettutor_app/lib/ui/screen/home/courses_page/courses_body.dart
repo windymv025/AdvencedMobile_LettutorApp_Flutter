@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/custom_drop_down.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/page_button.dart';
@@ -34,10 +35,10 @@ class _CoursesBodyState extends State<CoursesBody> {
               },
               textEditingController: _textEditingController,
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 10, top: 10, bottom: 10),
+            Padding(
+              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
               child: Text(
-                "Filter courses",
+                S.current.filter_courses,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: titleStyle,
@@ -54,9 +55,9 @@ class _CoursesBodyState extends State<CoursesBody> {
                       courseDTO.getCourseListByLevel(_level!);
                     });
                   },
-                  hint: "Choose your level",
+                  hint: S.current.choose_your_level,
                   value: _level,
-                  title: "My level",
+                  title: S.current.mylevel,
                   items: ["All"] + kLevels),
             ),
           ],

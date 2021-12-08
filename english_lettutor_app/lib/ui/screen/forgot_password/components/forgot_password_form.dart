@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/otp_screen/otp_screen.dart';
 import 'package:english_lettutor_app/ui/screen/reset_password_screen/reset_password_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
@@ -50,7 +51,7 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             height: 10,
           ),
           DefaultButton(
-            text: "Send",
+            text: S.current.send,
             press: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
@@ -72,26 +73,26 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kEmailNullError);
+          removeError(S.current.please_enter_email);
         } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(kInvalidEmailError);
+          removeError(S.current.please_enter_email_valid);
         }
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kEmailNullError);
+          addError(S.current.please_enter_email);
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(kInvalidEmailError);
+          addError(S.current.please_enter_email_valid);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Email"),
-        hintText: "Enter your email",
+      decoration: InputDecoration(
+        label: const Text("Email"),
+        hintText: S.current.enter_email,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.mail_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.mail_outline_rounded),
       ),
     );
   }

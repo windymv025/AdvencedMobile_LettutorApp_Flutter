@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/data/provider/home_state.dart';
 import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/home/schedule_page/components/upcoming_lession_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -39,8 +40,8 @@ class _HomePageState extends State<HomePage> {
                 // Navigator.pushNamed(context, CoursesScreen.routeName);
                 homeState.pageIndex = 4;
               },
-              title: "Recommended Course",
-              textButton: "More",
+              title: S.current.Recommended_Course,
+              textButton: S.current.More,
             ),
             //listView
             const Padding(
@@ -53,8 +54,8 @@ class _HomePageState extends State<HomePage> {
                 // Navigator.pushNamed(context, TeachersScreen.routeName);
                 homeState.pageIndex = 3;
               },
-              title: "Recommended Teacher",
-              textButton: "More",
+              title: S.current.Recommended_Teacher,
+              textButton: S.current.More,
             ),
             // const NoDataPage(),
           ])),

@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/home_state.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -49,8 +50,8 @@ class _WelcomeWithSearchState extends State<WelcomeWithSearch> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const Text(
-                                    "Welcome to English LetTutor App!",
+                                  Text(
+                                    S.current.wellcome_lettutor,
                                     style: tileCountDownStyle,
                                     softWrap: true,
                                     textAlign: TextAlign.center,
@@ -63,9 +64,9 @@ class _WelcomeWithSearchState extends State<WelcomeWithSearch> {
                                     onPressed: () {
                                       homeState.pageIndex = 3;
                                     },
-                                    child: const Text(
-                                      'Booking now',
-                                      style: TextStyle(
+                                    child: Text(
+                                      S.current.booking_now,
+                                      style: const TextStyle(
                                           color: Colors.blue,
                                           fontSize: textSizeButton),
                                     ),

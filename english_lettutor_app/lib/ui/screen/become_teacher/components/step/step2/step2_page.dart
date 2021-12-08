@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/media/video_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -37,12 +38,12 @@ class _Step2PageState extends State<Step2Page> {
     return Column(
       children: [
         Row(
-          children: const [
+          children: [
             Text(
-              "Introduce yourself",
+              S.current.introduce_yourself,
               style: pageNameStyle,
             ),
-            Spacer()
+            const Spacer()
           ],
         ),
         const Padding(
@@ -66,9 +67,9 @@ class _Step2PageState extends State<Step2Page> {
 
         //Basic info
         Row(
-          children: const [
-            Text("Introduction video", style: titleBlueStyle),
-            Spacer(),
+          children: [
+            Text(S.current.introduction_video, style: titleBlueStyle),
+            const Spacer(),
           ],
         ),
 
@@ -79,9 +80,9 @@ class _Step2PageState extends State<Step2Page> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 margin: const EdgeInsets.symmetric(vertical: 20),
-                child: const Text(
-                  videoTips,
-                  style: TextStyle(fontStyle: FontStyle.italic),
+                child: Text(
+                  S.current.video_tips,
+                  style: const TextStyle(fontStyle: FontStyle.italic),
                 ),
                 color: kMainBlueColor.withOpacity(0.2),
               ),
@@ -97,7 +98,7 @@ class _Step2PageState extends State<Step2Page> {
             mainAxisSize: MainAxisSize.min,
             children: [
               OutlinedButton(
-                child: const Text("Pick a video"),
+                child: Text(S.current.pick_a_video),
                 onPressed: () {
                   pickMedia(ImageSource.gallery);
                 },
@@ -105,7 +106,7 @@ class _Step2PageState extends State<Step2Page> {
               ),
               const SizedBox(width: 10),
               OutlinedButton(
-                child: const Text("Take a video"),
+                child: Text(S.current.take_video),
                 onPressed: () {
                   pickMedia(ImageSource.camera);
                 },

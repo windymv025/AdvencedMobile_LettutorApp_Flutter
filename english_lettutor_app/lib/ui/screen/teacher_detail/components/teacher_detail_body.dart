@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/teacher_detail_action.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/simple_infor_teaacher.dart';
@@ -36,10 +37,10 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           ),
 
           //Languages
-          TitleAndTags(tags: teacher.languages, title: "Languages"),
+          TitleAndTags(tags: teacher.languages, title: S.current.languages),
 
           //Education
-          const TitleDetail(title: "Education"),
+          TitleDetail(title: S.current.education),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Text(teacher.education ?? "",
@@ -49,7 +50,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           ),
 
           //Experience
-          const TitleDetail(title: "Experience"),
+          TitleDetail(title: S.current.experience),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Text(
@@ -60,7 +61,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           ),
 
           //Interests
-          const TitleDetail(title: "Interests"),
+          TitleDetail(title: S.current.interests),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Text(teacher.interests ?? "",
@@ -70,7 +71,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           ),
 
           //Profession
-          const TitleDetail(title: "Profession"),
+          TitleDetail(title: S.current.profession),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Text(teacher.profession ?? "",
@@ -80,7 +81,8 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           ),
 
           //Specialties
-          TitleAndTags(tags: teacher.specialties!, title: "Specialties"),
+          TitleAndTags(
+              tags: teacher.specialties!, title: S.current.specialties),
 
           //Rating and Comment
           RatingAndComment(teacher: teacher),

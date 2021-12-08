@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/otp_screen/otp_screen.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
@@ -72,9 +73,9 @@ class _SignUpFormState extends State<SignUpForm> {
                     Navigator.pushNamed(
                         context, ForgotPasswordScreen.routeName);
                   },
-                  child: const Text(
-                    "Forgot Password?",
-                    style: TextStyle(
+                  child: Text(
+                    S.current.forgot_password,
+                    style: const TextStyle(
                         color: Color(0xff248EEF),
                         fontSize: 14,
                         fontWeight: FontWeight.w700),
@@ -88,7 +89,7 @@ class _SignUpFormState extends State<SignUpForm> {
             height: 10,
           ),
           DefaultButton(
-            text: "Sign Up",
+            text: S.current.sign_up,
             press: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
@@ -113,22 +114,22 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => fullName = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kNamelNullError);
+          removeError(S.current.please_enter_your_name);
         }
         fullName = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kNamelNullError);
+          addError(S.current.please_enter_your_name);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Full name"),
-        hintText: "Enter your name",
+      decoration: InputDecoration(
+        label: Text(S.current.full_name),
+        hintText: S.current.enter_your_name,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.person_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.person_outline_rounded),
       ),
     );
   }
@@ -139,27 +140,27 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kEmailNullError);
+          removeError(S.current.please_enter_email);
         } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(kInvalidEmailError);
+          removeError(S.current.please_enter_email_valid);
         }
         email = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kEmailNullError);
+          addError(S.current.please_enter_email);
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(kInvalidEmailError);
+          addError(S.current.please_enter_email_valid);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Email"),
-        hintText: "Enter your email",
+      decoration: InputDecoration(
+        label: const Text("Email"),
+        hintText: S.current.enter_email,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.mail_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.mail_outline_rounded),
       ),
     );
   }
@@ -170,27 +171,27 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kPassNullError);
+          removeError(S.current.please_enter_password);
         } else if (value.length >= 8) {
-          removeError(kShortPassError);
+          removeError(S.current.please_enter_password_min);
         }
         password = value;
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
-          addError(kPassNullError);
+          addError(S.current.please_enter_password);
           return "";
         } else if (value.length < 8) {
-          addError(kShortPassError);
+          addError(S.current.please_enter_password_min);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Password"),
-        hintText: "Enter your password",
+      decoration: InputDecoration(
+        label: Text(S.current.password),
+        hintText: S.current.enter_password,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.lock_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
   }
@@ -201,27 +202,27 @@ class _SignUpFormState extends State<SignUpForm> {
       onSaved: (newValue) => conformPassword = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kPassNullError);
+          removeError(S.current.please_enter_password);
         } else if (value.isNotEmpty && password == conformPassword) {
-          removeError(kMatchPassError);
+          removeError(S.current.password_dont_match);
         }
         conformPassword = value;
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kPassNullError);
+          addError(S.current.please_enter_password);
           return "";
         } else if ((password != value)) {
-          addError(kMatchPassError);
+          addError(S.current.password_dont_match);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        labelText: "Confirm Password",
-        hintText: "Re-enter your password",
+      decoration: InputDecoration(
+        labelText: S.current.confirm_password,
+        hintText: S.current.re_enter_your_password,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.lock_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
   }

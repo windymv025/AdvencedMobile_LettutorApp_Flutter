@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/multiline_text_field.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class _CVTeacherState extends State<CVTeacher> {
 
         //Interests
         MultilineTextField(
-          label: "Interests",
+          label: S.current.interests,
           hint:
               "Interests, hobbies, memorable life experiences, or anything else your'd like to share!",
           controller: _interests,
@@ -39,7 +40,7 @@ class _CVTeacherState extends State<CVTeacher> {
 
         //Education
         MultilineTextField(
-            label: "Education",
+            label: S.current.education,
             hint:
                 "Interests, hobbies, memorable life experiences, or anything else your'd like to share!",
             controller: _education,
@@ -47,14 +48,14 @@ class _CVTeacherState extends State<CVTeacher> {
 
         //Experience
         MultilineTextField(
-            label: "Experience",
+            label: S.current.experience,
             hint: "Enter your Experience",
             controller: _experience,
             onChanged: (value) => teacher.experience = value),
 
         //Current or Previous Profession
         MultilineTextField(
-            label: "Profession",
+            label: S.current.profession,
             hint: "Current or Previous Profession",
             controller: _profession,
             onChanged: (value) => teacher.profession = value),

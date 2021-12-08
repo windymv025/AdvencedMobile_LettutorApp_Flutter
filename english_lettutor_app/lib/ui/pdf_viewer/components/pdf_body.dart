@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
@@ -28,7 +29,7 @@ class _PDFBodyState extends State<PDFBody> {
     } on Exception {
       return Center(
         child: Text(
-          'Error loading PDF',
+          S.current.error_loading_PDF,
           style: Theme.of(context).textTheme.headline6,
         ),
       );

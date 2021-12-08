@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
@@ -29,7 +30,7 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
-            "Total lesson time is ${scheduleHistoryDTO.getTotalTimeStudy()}",
+            "${S.current.total_lesson_time} ${scheduleHistoryDTO.getTotalTimeStudy()}",
             style: tileCountDownStyle,
             overflow: TextOverflow.clip,
             textAlign: TextAlign.center,
@@ -37,8 +38,8 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
           schedule != null
               ? Container(
                   margin: const EdgeInsets.only(top: 10),
-                  child: const Text(
-                    "Upcoming lesson",
+                  child: Text(
+                    S.current.upcoming_lesson,
                     style: subTileCountDownStyle,
                     overflow: TextOverflow.clip,
                   ),
@@ -84,14 +85,14 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
                     child: Wrap(
                       spacing: 10,
                       crossAxisAlignment: WrapCrossAlignment.center,
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.video_call_rounded,
                           color: kMainBlueColor,
                         ),
                         Text(
-                          'Enter lesson room',
-                          style: TextStyle(
+                          S.current.enter_lesson_room,
+                          style: const TextStyle(
                               color: Colors.blue,
                               fontSize: textSizeButton,
                               fontWeight: FontWeight.w500),

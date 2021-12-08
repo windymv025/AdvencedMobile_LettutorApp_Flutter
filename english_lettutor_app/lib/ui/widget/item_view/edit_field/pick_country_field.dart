@@ -1,4 +1,5 @@
 import 'package:country_picker/country_picker.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -32,13 +33,14 @@ class _PickCountryFieldState extends State<PickCountryField> {
           readOnly: true,
           onChanged: widget.onChanged,
           onTap: () => pickCountry(context),
-          validator: (value) => value!.isEmpty ? 'Please select country' : null,
+          validator: (value) =>
+              value!.isEmpty ? S.current.please_select_country : null,
           onSaved: widget.onSaved,
-          decoration: const InputDecoration(
-            label: Text("Country"),
-            hintText: "Select your Country",
+          decoration: InputDecoration(
+            label: Text(S.current.country),
+            hintText: S.current.Select_your_country,
             floatingLabelBehavior: FloatingLabelBehavior.always,
-            suffixIcon: CustomSurffixIcon(icon: Icons.flag_rounded),
+            suffixIcon: const CustomSurffixIcon(icon: Icons.flag_rounded),
           ),
         ));
   }

@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/enums.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/circle_avatar_button.dart';
@@ -72,9 +73,9 @@ class _AppBarMessagerDetailState extends State<AppBarMessagerDetail> {
               PopupMenuItem(
                 value: MenuSettingMessage.delete,
                 child: Row(
-                  children: const [
-                    Text("Delete"),
-                    Icon(Icons.delete_forever_rounded, color: Colors.red)
+                  children: [
+                    Text(S.current.delete),
+                    const Icon(Icons.delete_forever_rounded, color: Colors.red)
                   ],
                 ),
               )

@@ -2,6 +2,7 @@ import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
 import 'package:english_lettutor_app/data/local_data_test.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
@@ -63,9 +64,9 @@ class _SignInFormState extends State<SignInForm> {
                 child: GestureDetector(
                   onTap: () => Navigator.pushNamed(
                       context, ForgotPasswordScreen.routeName),
-                  child: const Text(
-                    "Forgot Password?",
-                    style: TextStyle(
+                  child: Text(
+                    S.current.forgot_password,
+                    style: const TextStyle(
                         color: Color(0xff248EEF),
                         fontSize: 14,
                         fontWeight: FontWeight.w700),
@@ -79,16 +80,15 @@ class _SignInFormState extends State<SignInForm> {
             height: 10,
           ),
           DefaultButton(
-            text: "Sign In",
+            text: S.current.sign_in,
             press: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, HomeScreen.routeName, (route) => false);
-              profile.copyProfile(kProfile);
-
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
+                Navigator.pushNamedAndRemoveUntil(
+                    context, HomeScreen.routeName, (route) => false);
+                profile.copyProfile(kProfile);
               }
             },
           ),
@@ -103,26 +103,26 @@ class _SignInFormState extends State<SignInForm> {
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kEmailNullError);
+          removeError(S.current.please_enter_email);
         } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(kInvalidEmailError);
+          removeError(S.current.please_enter_email_valid);
         }
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kEmailNullError);
+          addError(S.current.please_enter_email);
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(kInvalidEmailError);
+          addError(S.current.please_enter_email_valid);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Email"),
-        hintText: "Enter your email",
+      decoration: InputDecoration(
+        label: const Text("Email"),
+        hintText: S.current.enter_email,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.mail_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.mail_outline_rounded),
       ),
     );
   }
@@ -133,27 +133,27 @@ class _SignInFormState extends State<SignInForm> {
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kPassNullError);
+          removeError(S.current.please_enter_password);
         } else if (value.length >= 8) {
-          removeError(kShortPassError);
+          removeError(S.current.please_enter_password_min);
         }
         return;
       },
       validator: (value) {
         if (value == null || value.isEmpty) {
-          addError(kPassNullError);
+          addError(S.current.please_enter_password);
           return "";
         } else if (value.length < 8) {
-          addError(kShortPassError);
+          addError(S.current.please_enter_password_min);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Password"),
-        hintText: "Enter your password",
+      decoration: InputDecoration(
+        label: Text(S.current.password),
+        hintText: S.current.enter_password,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.lock_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
   }

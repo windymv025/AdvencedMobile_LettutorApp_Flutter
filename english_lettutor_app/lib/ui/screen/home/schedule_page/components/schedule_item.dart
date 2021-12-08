@@ -2,6 +2,7 @@ import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
@@ -96,11 +97,11 @@ class ScheduleItem extends StatelessWidget {
                     onPressed: () {
                       scheduleDTO.remove(schedule);
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        "Cancel",
-                        style: TextStyle(fontSize: textSizeButton),
+                        S.current.cancel,
+                        style: const TextStyle(fontSize: textSizeButton),
                       ),
                     ),
                     style: outlineColorButtonStyle,
@@ -112,11 +113,11 @@ class ScheduleItem extends StatelessWidget {
                       Navigator.pushNamed(context, LessonScreen.routeName,
                           arguments: schedule);
                     },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        "Go to Meeting",
-                        style: TextStyle(fontSize: textSizeButton),
+                        S.current.enter_lesson_room,
+                        style: const TextStyle(fontSize: textSizeButton),
                       ),
                     ),
                     style: defaultColorButtonStyle,

@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/profile/components/custom_drop_down.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
@@ -49,25 +50,22 @@ class _ProfileFormState extends State<ProfileForm> {
                 },
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return 'Please enter your full name';
+                    return S.current.please_enter_your_name;
                   }
                   if (value.length < 3) {
-                    return 'Your full name must be at least 3 characters long';
-                  }
-                  if (value.length > 50) {
-                    return 'Your full name must be less than 50 characters long';
+                    return S.current.err_name_short;
                   }
                   if (!RegExp(r'^[a-zA-Z ]+$').hasMatch(value)) {
-                    return 'Your full name must contain only letters';
+                    return S.current.err_name_invalid;
                   }
                   return null;
                 },
-                decoration: const InputDecoration(
-                  label: Text("Full name"),
-                  hintText: "Enter your name",
+                decoration: InputDecoration(
+                  label: Text(S.current.full_name),
+                  hintText: S.current.please_enter_your_name,
                   floatingLabelBehavior: FloatingLabelBehavior.always,
-                  suffixIcon:
-                      CustomSurffixIcon(icon: Icons.person_outline_rounded),
+                  suffixIcon: const CustomSurffixIcon(
+                      icon: Icons.person_outline_rounded),
                 ),
               ),
             ),
@@ -85,24 +83,20 @@ class _ProfileFormState extends State<ProfileForm> {
                 onChanged: (value) {},
                 validator: (value) {
                   if (value!.isEmpty) {
-                    return "Phone number is required";
+                    return S.current.err_null_phone;
                   }
-                  if (value.length < 10) {
-                    return "Phone number must be at least 10 characters";
-                  }
-                  if (value.length > 15) {
-                    return "Phone number must be less than 15 characters";
-                  }
-                  if (!RegExp(r'^[0-9]+$').hasMatch(value)) {
-                    return "Phone number must contain only numbers";
+                  if (value.length < 10 ||
+                      !RegExp(r'^[0-9]+$').hasMatch(value)) {
+                    return S.current.err_phone_invalid;
                   }
                   return null;
                 },
-                decoration: const InputDecoration(
-                  label: Text("Phone number"),
-                  hintText: "Enter your phone number",
+                decoration: InputDecoration(
+                  label: Text(S.current.phone_number),
+                  hintText: S.current.enter_phone,
                   floatingLabelBehavior: FloatingLabelBehavior.always,
-                  suffixIcon: CustomSurffixIcon(icon: Icons.phone_rounded),
+                  suffixIcon:
+                      const CustomSurffixIcon(icon: Icons.phone_rounded),
                 ),
               ),
             ),
@@ -113,8 +107,8 @@ class _ProfileFormState extends State<ProfileForm> {
             PickDateField(
               controller: _birthday,
               icon: Icons.date_range_outlined,
-              label: "Birthday",
-              hint: "Select your birthday",
+              label: S.current.birthday,
+              hint: S.current.select_your_birthday,
               onSaved: (newValue) => newValue != null
                   ? profile.birthday = DateFormat("dd/MM/yyyy").parse(newValue)
                   : null,
@@ -141,9 +135,9 @@ class _ProfileFormState extends State<ProfileForm> {
                       profile.level = newValue;
                     });
                   },
-                  hint: "Choose your level",
+                  hint: S.current.choose_your_level,
                   value: profile.backupProfile.level,
-                  title: "My level",
+                  title: S.current.mylevel,
                   items: kLevels),
             ),
 
@@ -156,12 +150,10 @@ class _ProfileFormState extends State<ProfileForm> {
               items: kSpecialities.sublist(1),
               initialValue: profile.wantToLearn,
               validator: (value) {
-                if (value!.isEmpty) {
-                  return 'Please select at least one item';
+                if (value!.isEmpty || _selectedSpecialities.isEmpty) {
+                  return S.current.err_choose_short;
                 }
-                if (_selectedSpecialities.isEmpty) {
-                  return 'Please select at least one item';
-                }
+
                 return null;
               },
               onConfirm: (values) {
@@ -177,8 +169,8 @@ class _ProfileFormState extends State<ProfileForm> {
                 });
               },
               icon: Icons.book_rounded,
-              buttonText: "What do you want to learn?",
-              title: "Choose Specialities",
+              buttonText: S.current.want_to_learn,
+              title: S.current.Choose_Specialities,
             ),
 
             //save
@@ -188,19 +180,19 @@ class _ProfileFormState extends State<ProfileForm> {
             Container(
               constraints: const BoxConstraints(maxWidth: 500),
               child: DefaultButton(
-                text: "Save changes",
+                text: S.current.save_changes,
                 press: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
                     profile.backupProfile.wantToLearn.clear();
                     profile.wantToLearn.addAll(_selectedSpecialities);
                     widget.onSubmit();
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Profile updated"),
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(S.current.Profile_updated),
                     ));
                   } else {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Text("Please fill all fields"),
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(S.current.err_fill_all),
                     ));
                   }
                 },

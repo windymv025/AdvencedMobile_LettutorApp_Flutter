@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -43,7 +44,8 @@ class _PickDateFieldState extends State<PickDateField> {
           onChanged: widget.onChanged,
           onTap: () => pickDate(context),
           onSaved: widget.onSaved,
-          validator: (value) => value!.isEmpty ? 'Please choose a date' : null,
+          validator: (value) =>
+              value!.isEmpty ? S.current.please_choose_a_date : null,
           decoration: InputDecoration(
             label: Text(widget.label),
             hintText: widget.hint,

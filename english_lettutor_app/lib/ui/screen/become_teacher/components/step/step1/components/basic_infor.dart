@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/edit_field/pick_country_field.dart';
@@ -53,9 +54,9 @@ class _BasicInforState extends State<BasicInfor> {
       children: [
         //Basic info
         Row(
-          children: const [
-            Text("Basic info", style: titleBlueStyle),
-            Spacer(),
+          children: [
+            Text(S.current.basic_info, style: titleBlueStyle),
+            const Spacer(),
           ],
         ),
         Row(
@@ -88,15 +89,15 @@ class _BasicInforState extends State<BasicInfor> {
                 ),
               ),
             ),
-            const Expanded(
+            Expanded(
               child: SizedBox(
                 width: 100,
                 child: Text(
-                  "Please upload your professional photo.\nSee guidelines",
+                  S.current.please_upload_photo_guidelines,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.clip,
                   softWrap: true,
-                  style: TextStyle(color: kPrimaryColor),
+                  style: const TextStyle(color: kPrimaryColor),
                 ),
               ),
             ),
@@ -113,11 +114,12 @@ class _BasicInforState extends State<BasicInfor> {
             onChanged: (value) {
               teacher.name = value;
             },
-            decoration: const InputDecoration(
-              label: Text("Full name"),
-              hintText: "Enter your name",
+            decoration: InputDecoration(
+              label: Text(S.current.full_name),
+              hintText: S.current.enter_your_name,
               floatingLabelBehavior: FloatingLabelBehavior.always,
-              suffixIcon: CustomSurffixIcon(icon: Icons.person_outline_rounded),
+              suffixIcon:
+                  const CustomSurffixIcon(icon: Icons.person_outline_rounded),
             ),
           ),
         ),
@@ -129,8 +131,8 @@ class _BasicInforState extends State<BasicInfor> {
         PickDateField(
           controller: _birthday,
           icon: Icons.date_range_outlined,
-          label: "Birthday",
-          hint: "Select your birthday",
+          label: S.current.birthday,
+          hint: S.current.select_your_birthday,
           onChanged: (value) {
             teacher.birthday = DateTime.parse(value);
           },

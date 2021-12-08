@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/rating_comment.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
@@ -18,7 +19,7 @@ class RatingAndComment extends StatelessWidget {
         teacher.ratingComments != null ? teacher.ratingComments!.length : 0;
     return Column(
       children: [
-        TitleDetail(title: "Rating and Comment ($totalRating)"),
+        TitleDetail(title: "${S.current.rating_and_comments} ($totalRating)"),
         teacher.ratingComments != null
             ? Column(
                 children: buildCommentItems(teacher.ratingComments!),

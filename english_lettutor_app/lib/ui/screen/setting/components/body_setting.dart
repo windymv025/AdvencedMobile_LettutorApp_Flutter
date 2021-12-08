@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/drawer/components/setting_dropdown_button.dart';
 import 'package:english_lettutor_app/ui/drawer/components/settings_button.dart';
 import 'package:flutter/material.dart';
@@ -14,23 +15,23 @@ class _BodySettingState extends State<BodySetting> {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: const [
+      children: [
         SettingsButton(
             onPress: null,
-            icon: Icon(
+            icon: const Icon(
               Icons.language_rounded,
               color: kMainBlueColor,
             ),
-            title: "Language",
-            child: SettingLanguageDropdownButton()),
+            title: S.of(context).languages,
+            child: const SettingLanguageDropdownButton()),
         SettingsButton(
             onPress: null,
-            icon: Icon(
+            icon: const Icon(
               Icons.light_sharp,
               color: kMainBlueColor,
             ),
-            title: "Theme",
-            child: SettingThemeDropdownButton()),
+            title: S.of(context).theme,
+            child: const SettingThemeDropdownButton()),
       ],
     );
   }

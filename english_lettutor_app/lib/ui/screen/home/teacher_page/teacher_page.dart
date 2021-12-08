@@ -1,6 +1,7 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_page/components/custom_grid_view.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/page_button.dart';
@@ -42,10 +43,10 @@ class TeacherPageState extends State<TeacherPage> {
             },
             textEditingController: _textEditingController,
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 12, top: 15),
+          Padding(
+            padding: const EdgeInsets.only(left: 12, top: 15),
             child: Text(
-              "Filter teachers by Specialization",
+              S.current.filter_teachers,
               style: titleStyle,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,

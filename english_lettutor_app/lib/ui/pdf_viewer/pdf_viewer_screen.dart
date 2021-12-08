@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
@@ -40,7 +38,7 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
                 decoration: InputDecoration(
                   hintText: S.current.search,
                   border: InputBorder.none,
-                  contentPadding: EdgeInsets.all(7),
+                  contentPadding: const EdgeInsets.all(7),
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
                   errorBorder: InputBorder.none,

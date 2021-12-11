@@ -15,7 +15,7 @@ class CustomGridView extends StatelessWidget {
   Widget build(BuildContext context) {
     BoxConstraints dimens =
         BoxConstraints(maxHeight: size.height, maxWidth: size.width);
-    int columnRatio = getColumRatio(context, dimens);
+    int columnRatio = getColumnRatio(context, dimens);
 
     if (items == null || items!.isEmpty) {
       return SliverList(
@@ -36,19 +36,19 @@ class CustomGridView extends StatelessWidget {
         itemCount: items!.length);
   }
 
-  int getColumRatio(context, dimens) {
-    int columRatio = 12;
+  int getColumnRatio(context, dimens) {
+    int columnRatio = 12;
     if (dimens.maxWidth <= kMobileBreakpoint) {
-      columRatio = 12;
+      columnRatio = 12;
     } else if (dimens.maxWidth > kMobileBreakpoint &&
         dimens.maxWidth <= kTabletBreakpoint) {
-      columRatio = 6;
+      columnRatio = 6;
     } else if (dimens.maxWidth > kTabletBreakpoint &&
         dimens.maxWidth <= kDesktopBreakPoint) {
-      columRatio = 4;
+      columnRatio = 4;
     } else {
-      columRatio = 3;
+      columnRatio = 3;
     }
-    return columRatio;
+    return columnRatio;
   }
 }

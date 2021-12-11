@@ -27,8 +27,8 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String url = 'https://www.dropbox.com/s/qjvqjqjvqjvqjvqj/test.pdf?dl=1';
-    // 'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf';
+    String url =
+        'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf';
     return Scaffold(
       appBar: AppBar(
         title: _isSearching

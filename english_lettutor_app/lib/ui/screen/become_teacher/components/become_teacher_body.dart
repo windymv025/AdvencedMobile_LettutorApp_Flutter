@@ -8,7 +8,7 @@ import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.d
 import 'package:flutter/material.dart';
 
 class BecomeTeacherBody extends StatefulWidget {
-  const BecomeTeacherBody({Key? key}) : super(key: key);
+  const  BecomeTeacherBody({Key? key}) : super(key: key);
 
   @override
   _BecomeTeacherBodyState createState() => _BecomeTeacherBodyState();

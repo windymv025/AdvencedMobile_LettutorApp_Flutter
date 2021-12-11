@@ -1,5 +1,5 @@
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -12,9 +12,9 @@ class BecomeTeacherScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Profile profile = Provider.of<Profile>(context);
+    final ProfileProvider profile = Provider.of<ProfileProvider>(context);
     return Provider(
-      create: (context) => Teacher.toProfile(profile),
+      create: (context) => Teacher.toProfile(profile.backupProfile),
       child: Scaffold(
         appBar: AppBar(
           title: Text(S.current.become_teacher),

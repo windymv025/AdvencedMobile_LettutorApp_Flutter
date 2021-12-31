@@ -71,7 +71,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "dark": MessageLookupByLibrary.simpleMessage("Tối"),
         "delete": MessageLookupByLibrary.simpleMessage("Xóa"),
         "dont_have_account":
-            MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+            MessageLookupByLibrary.simpleMessage("Chưa có tài khoản?"),
         "education": MessageLookupByLibrary.simpleMessage("Học vấn"),
         "enter_OTP": MessageLookupByLibrary.simpleMessage(
             "Nhập mã OTP trong email của bạn"),
@@ -144,7 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no_reviews_yet":
             MessageLookupByLibrary.simpleMessage("Chưa có đánh giá"),
         "or_continue_with":
-            MessageLookupByLibrary.simpleMessage("Or continue with"),
+            MessageLookupByLibrary.simpleMessage("Hoặc tiếp tục với"),
         "otp_is_invalid": MessageLookupByLibrary.simpleMessage(
             "OTP không hợp lệ, xin vui lòng thử lại"),
         "overview": MessageLookupByLibrary.simpleMessage("Tổng quan"),

@@ -13,7 +13,7 @@ class NoAccountText extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
-          S.current.dont_have_account,
+          "${S.current.dont_have_account} ",
           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
         InkWell(

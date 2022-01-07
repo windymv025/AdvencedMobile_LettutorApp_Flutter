@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:flutter/material.dart';
@@ -71,9 +72,7 @@ class _ReportButtonState extends State<ReportButton> {
                             textCapitalization: TextCapitalization.sentences,
                             decoration: const InputDecoration(
                               label: Text("Report content"),
-                              hintText: "Enter report content",
-                              floatingLabelBehavior:
-                                  FloatingLabelBehavior.always,
+                              floatingLabelBehavior: FloatingLabelBehavior.auto,
                               suffixIcon: CustomSurffixIcon(
                                   icon: Icons.report_gmailerrorred_rounded),
                             ),
@@ -85,12 +84,12 @@ class _ReportButtonState extends State<ReportButton> {
                     actions: <Widget>[
                       OutlinedButton(
                         onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text('Cancel'),
+                        child: Text(S.current.cancel),
                         style: outlineButtonStyle,
                       ),
                       ElevatedButton(
                         onPressed: () => Navigator.pop(context, 'Submit'),
-                        child: const Text('Submit', style: chipStyleOn),
+                        child: Text(S.current.submit, style: chipStyleOn),
                         style: defaultButtonStyle,
                       ),
                     ],

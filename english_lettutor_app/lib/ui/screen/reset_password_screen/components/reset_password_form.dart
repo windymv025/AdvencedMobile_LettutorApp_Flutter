@@ -1,7 +1,6 @@
-import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
-import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
+import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
@@ -60,7 +59,7 @@ class _ResetPasswordFormState extends State<ResetPasswordForm> {
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
                 Navigator.pushNamedAndRemoveUntil(
-                    context, HomeScreen.routeName, (route) => false);
+                    context, SignInScreen.routeName, (route) => false);
               }
             },
           ),

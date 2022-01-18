@@ -152,5 +152,6 @@
     "invalid_email_or_password" : "Tài khoản, mật khẩu không đúng hoặc chưa được kích hoạt",
     "please_enter_conform_password":"Hãy nhập lại mật khẩu",
     "email_is_already_in_use":"Email đã được sử dụng",
-    "registor_success":"Đăng ký thành công, vui lòng kiểm tra email để kích hoạt tài khoản"
+    "registor_success":"Đăng ký thành công, vui lòng kiểm tra email để kích hoạt tài khoản",
+    "email_not_found":"Email không tồn tại"
 }

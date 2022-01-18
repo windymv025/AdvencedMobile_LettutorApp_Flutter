@@ -137,9 +137,7 @@ class ProfileProvider extends ChangeNotifier {
   }
 
   Future<bool> signInWithFacebook() async {
-    var fbAuth = await FacebookAuth.i.login(
-      permissions: ['email', 'public_profile'],
-    );
+    var fbAuth = await FacebookAuth.instance.login();
 
     if (fbAuth.status != LoginStatus.success) return false;
 
@@ -154,5 +152,13 @@ class ProfileProvider extends ChangeNotifier {
       return true;
     }
     return false;
+  }
+
+  Future<bool> fogotPassword(String email) async {
+    final result = await _authApi.fogotPassword(email);
+    if (result['statusCode'] != null) {
+      return false;
+    }
+    return true;
   }
 }

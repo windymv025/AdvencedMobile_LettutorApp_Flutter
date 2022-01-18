@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "education": MessageLookupByLibrary.simpleMessage("Education"),
         "email_is_already_in_use":
             MessageLookupByLibrary.simpleMessage("Email is already in use"),
+        "email_not_found":
+            MessageLookupByLibrary.simpleMessage("Email not found"),
         "enter_OTP":
             MessageLookupByLibrary.simpleMessage("Enter OTP in your email"),
         "enter_email": MessageLookupByLibrary.simpleMessage("Enter your email"),

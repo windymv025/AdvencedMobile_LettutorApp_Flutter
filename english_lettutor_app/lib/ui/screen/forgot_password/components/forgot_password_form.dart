@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/otp_screen/otp_screen.dart';
 import 'package:english_lettutor_app/ui/screen/reset_password_screen/reset_password_screen.dart';
@@ -7,6 +8,7 @@ import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.d
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({Key? key}) : super(key: key);
@@ -38,6 +40,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
+    ProfileProvider profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
     return Form(
       key: _formKey,
       child: Column(
@@ -57,8 +61,13 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, OTPScreen.routeName,
-                    arguments: ResetPasswordScreen.routename);
+                profileProvider.fogotPassword(email!).then((value) {
+                  if (value) {
+                    Navigator.pushNamed(context, ResetPasswordScreen.routename);
+                  } else {
+                    addError(S.current.email_not_found);
+                  }
+                });
               }
             },
           ),

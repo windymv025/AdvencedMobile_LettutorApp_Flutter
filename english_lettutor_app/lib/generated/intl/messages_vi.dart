@@ -75,6 +75,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "education": MessageLookupByLibrary.simpleMessage("Học vấn"),
         "email_is_already_in_use":
             MessageLookupByLibrary.simpleMessage("Email đã được sử dụng"),
+        "email_not_found":
+            MessageLookupByLibrary.simpleMessage("Email không tồn tại"),
         "enter_OTP": MessageLookupByLibrary.simpleMessage(
             "Nhập mã OTP trong email của bạn"),
         "enter_email":

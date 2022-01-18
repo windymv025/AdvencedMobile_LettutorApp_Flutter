@@ -1379,6 +1379,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Email not found`
+  String get email_not_found {
+    return Intl.message(
+      'Email not found',
+      name: 'email_not_found',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

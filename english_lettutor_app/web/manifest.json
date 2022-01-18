@@ -1,6 +1,6 @@
 {
-    "name": "english_lettutor_app",
-    "short_name": "english_lettutor_app",
+    "name": "English LetTutor Web",
+    "short_name": "English LetTutor",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

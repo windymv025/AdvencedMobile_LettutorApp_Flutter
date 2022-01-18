@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 
 const double textSizeButton = 14;
@@ -40,6 +41,16 @@ const kLevels = [
   "Proficiency",
 ];
 
+final kMapLevels = {
+  "BEGINNER": "Beginner",
+  "HIGHER_BEGINNER": "Higher Beginner",
+  "PRE_INTERMEDIATE": "Pre-Intermediate",
+  "INTERMEDIATE": "Intermediate",
+  "UPPER_INTERMEDIATE": "Upper-intermediate",
+  "Advanced".toUpperCase(): "Advanced",
+  "Proficiency".toUpperCase(): "Proficiency",
+};
+
 final kSpecialities = [
   kAllTeachers,
   "English for kids",
@@ -53,6 +64,24 @@ final kSpecialities = [
   "IELTS",
   "TOEFL",
   "TOEIC",
+];
+
+final kLearnTopics = [
+  LearnTopic(id: 1, key: "starters", name: "STARTERS"),
+  LearnTopic(id: 2, key: "movers", name: "MOVERS"),
+  LearnTopic(id: 3, key: "flyers", name: "FLYERS"),
+  LearnTopic(id: 4, key: "ket", name: "KET"),
+  LearnTopic(id: 5, key: "pet", name: "PET"),
+  LearnTopic(id: 6, key: "ielts", name: "IELTS"),
+  LearnTopic(id: 7, key: "toefl", name: "TOEFL"),
+  LearnTopic(id: 8, key: "toeic", name: "TOEIC"),
+];
+
+final kTestPractices = [
+  LearnTopic(id: 3, key: "english-for-kids", name: "English for Kids"),
+  LearnTopic(id: 4, key: "business-english", name: "Business English"),
+  LearnTopic(
+      id: 5, key: "conversational-english", name: "Conversational English"),
 ];
 
 const kLanguages = [

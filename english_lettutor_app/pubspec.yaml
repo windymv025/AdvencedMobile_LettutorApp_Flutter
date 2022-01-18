@@ -59,6 +59,13 @@ dependencies:
   # download PDF
   http: ^0.13.4
 
+  #firebase
+  firebase_auth: ^3.3.5
+  google_sign_in: ^5.2.3
+
+  #facebook
+  flutter_facebook_auth: ^4.0.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

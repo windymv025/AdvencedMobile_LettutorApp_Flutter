@@ -1,80 +1,158 @@
 import 'dart:io';
 
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/data/network/apis/authentication/auth-api.dart';
+import 'package:english_lettutor_app/data/sharedpref/shared_preference_helper.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class ProfileProvider extends ChangeNotifier {
-  final Profile _profile = Profile();
-  final Profile backupProfile = Profile();
+  Profile profile = Profile();
+  Profile backupProfile = Profile();
+  final AuthApi _authApi = AuthApi();
+  String? emailSave, passwordSave;
 
-  void copyProfile(Profile profile) {
-    _profile.fromJson(profile.toJson());
-    backupProfile.fromJson(profile.toJson());
-  }
+  File? _imageFile;
 
   void updateProfile() {
-    _profile.fromJson(backupProfile.toJson());
+    // profile.fromJson(backupProfile.toJson());
     notifyListeners();
   }
 
-  void clearChanges() {
-    backupProfile.fromJson(_profile.toJson());
-    notifyListeners();
-  }
-
-  int get id => _profile.id;
-  set id(int value) {
+  String get id => profile.id!;
+  set id(String value) {
     backupProfile.id = value;
     notifyListeners();
   }
 
-  String get fullName => _profile.fullName;
+  String get fullName => profile.name!;
   set fullName(String value) {
-    backupProfile.fullName = value;
+    backupProfile.name = value;
     notifyListeners();
   }
 
-  String? get image => _profile.image;
+  String? get image => profile.avatar;
   set image(String? value) {
-    backupProfile.image = value;
+    backupProfile.avatar = value;
     notifyListeners();
   }
 
-  String get email => _profile.email;
+  String get email => profile.email!;
 
-  String? get country => _profile.country;
+  String? get country => profile.country;
   set country(String? value) {
     backupProfile.country = value;
     notifyListeners();
   }
 
-  String? get phone => _profile.phone;
+  String? get phone => profile.phone;
   set phone(String? value) {
     backupProfile.phone = value;
     notifyListeners();
   }
 
-  DateTime? get birthday => _profile.birthday;
+  DateTime? get birthday => profile.birthday;
   set birthday(DateTime? value) {
     backupProfile.birthday = value;
     notifyListeners();
   }
 
-  String? get level => _profile.level;
+  String? get level => profile.level;
   set level(String? value) {
     backupProfile.level = value;
     notifyListeners();
   }
 
-  List<String> get wantToLearn => _profile.wantToLearn;
+  List<String> get wantToLearn =>
+      profile.learnTopics!.map((e) => e.name).toList();
   set wantToLearn(List<String> value) {
-    backupProfile.wantToLearn = value;
+    backupProfile.learnTopics =
+        kLearnTopics.where((e) => value.contains(e.name)).toList();
     notifyListeners();
   }
 
-  File? get imageFile => _profile.imageFile;
-  set imageFile(File? value) {
-    backupProfile.imageFile = value;
+  List<String> get testPreparations =>
+      profile.testPreparations!.map((e) => e.name).toList();
+  set testPreparations(List<String> value) {
+    backupProfile.learnTopics =
+        kTestPractices.where((e) => value.contains(e.name)).toList();
     notifyListeners();
+  }
+
+  File? get imageFile => _imageFile;
+  set imageFile(File? value) {
+    notifyListeners();
+  }
+
+  // API:--------------------------------------------------------
+  Future<bool> signIn(String email, String password) async {
+    final result = await _authApi.login(email, password);
+    if (result['user'] != null) {
+      profile = Profile.fromMap(result["user"]);
+      // copyProfile(profile);
+      backupProfile = Profile.fromMap(result["user"]);
+      saveTokens(result['tokens']!);
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> signUp(String email, String password) async {
+    final result = await _authApi.register(email, password);
+    if (result['user'] != null) {
+      emailSave = email;
+      passwordSave = password;
+      notifyListeners();
+      return true;
+    }
+    return false;
+  }
+
+  void saveTokens(Map<String, dynamic> tokens) {
+    final prefs = SharedPreferenceHelper.instance;
+    String accessToken = tokens['access']!['token']!;
+    String refreshToken = tokens['refresh']!['token']!;
+    prefs.saveAuthToken(accessToken);
+    prefs.saveRefreshToken(refreshToken);
+  }
+
+  Future<bool> signInWithGoogle() async {
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    final googleUser = await googleSignIn.signIn();
+    if (googleUser == null) return false;
+
+    var googleAuth = await googleUser.authentication;
+    String token = googleAuth.accessToken ?? "";
+    final result = await _authApi.loginByGoogle(token);
+    if (result['user'] != null) {
+      profile = Profile.fromMap(result["user"]);
+      // copyProfile(profile);
+      backupProfile = Profile.fromMap(result["user"]);
+      saveTokens(result['tokens']!);
+      return true;
+    }
+    return false;
+  }
+
+  Future<bool> signInWithFacebook() async {
+    var fbAuth = await FacebookAuth.i.login(
+      permissions: ['email', 'public_profile'],
+    );
+
+    if (fbAuth.status != LoginStatus.success) return false;
+
+    var accessToken = fbAuth.accessToken;
+    String token = accessToken?.token ?? "";
+    final result = await _authApi.loginByFacebook(token);
+    if (result['user'] != null) {
+      profile = Profile.fromMap(result["user"]);
+      // copyProfile(profile);
+      backupProfile = Profile.fromMap(result["user"]);
+      saveTokens(result['tokens']!);
+      return true;
+    }
+    return false;
   }
 }

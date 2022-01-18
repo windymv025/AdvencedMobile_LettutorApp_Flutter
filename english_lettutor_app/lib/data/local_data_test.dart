@@ -34,7 +34,7 @@ final List<ScheduleHistory> scheduleHistoryList = [
   ScheduleHistory.getDefault()
 ];
 
-final Profile kProfile = Profile.getDefault2();
+// final Profile kProfile = Profile.getDefault2();
 
 void randomData() {
   var rd = Random.secure();

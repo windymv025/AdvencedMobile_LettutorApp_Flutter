@@ -36,12 +36,12 @@ class RatingAndComment extends StatelessWidget {
     List<Widget> items = [];
     for (var item in list) {
       items.add(MyListTile(
-          avatar: AssetImage(item.student!.image!),
+          avatar: AssetImage(item.student!.avatar!),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                item.student!.fullName,
+                item.student!.name!,
                 style: titleStyle,
               ),
               Rating(onRatingUpdate: null, rating: item.rating!),

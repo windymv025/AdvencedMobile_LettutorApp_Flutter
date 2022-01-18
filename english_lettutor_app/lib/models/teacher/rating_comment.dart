@@ -16,6 +16,6 @@ class RatingComment {
     rating = 4;
     comment = "He is best teacher";
     time = DateTime.now();
-    student = Profile.getDefault();
+    // student = Profile.getDefault();
   }
 }

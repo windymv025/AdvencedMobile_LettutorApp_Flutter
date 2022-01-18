@@ -44,10 +44,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   Size get preferredSize => AppBar().preferredSize;
 
   ImageProvider? getImage(ProfileProvider profile) {
-    if (profile.imageFile != null) {
-      return FileImage(profile.imageFile!);
-    } else if (profile.image != null) {
-      return AssetImage(profile.image!);
+    try {
+      if (profile.imageFile != null) {
+        return FileImage(profile.imageFile!);
+      } else if (profile.image != null) {
+        return NetworkImage(profile.image!);
+      }
+    } catch (e) {
+      print(e);
     }
     return null;
   }

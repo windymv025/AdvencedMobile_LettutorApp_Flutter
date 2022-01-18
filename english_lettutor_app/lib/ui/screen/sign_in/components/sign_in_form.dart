@@ -1,6 +1,5 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
-import 'package:english_lettutor_app/data/local_data_test.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
@@ -24,6 +23,8 @@ class _SignInFormState extends State<SignInForm> {
   String? password;
   List<String> errors = [];
 
+  bool isLoading = false;
+
   void addError(String error) {
     if (!errors.contains(error)) {
       setState(() {
@@ -43,7 +44,8 @@ class _SignInFormState extends State<SignInForm> {
   @override
   Widget build(BuildContext context) {
     final ProfileProvider profile = context.read<ProfileProvider>();
-
+    email = profile.emailSave;
+    password = profile.passwordSave;
     return Form(
       key: _formKey,
       child: Column(
@@ -79,19 +81,36 @@ class _SignInFormState extends State<SignInForm> {
           const SizedBox(
             height: 10,
           ),
-          DefaultButton(
-            text: S.current.sign_in,
-            press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamedAndRemoveUntil(
-                    context, HomeScreen.routeName, (route) => false);
-                profile.copyProfile(kProfile);
-              }
-            },
-          ),
+          isLoading
+              ? CircularProgressIndicator(
+                  valueColor: const AlwaysStoppedAnimation(kMainBlueColor),
+                  backgroundColor: Colors.grey[200],
+                )
+              : DefaultButton(
+                  text: S.current.sign_in,
+                  press: () {
+                    if (_formKey.currentState!.validate()) {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      _formKey.currentState!.save();
+                      removeError(S.current.invalid_email_or_password);
+                      // if all are valid then go to success screen
+                      KeyboardUtil.hideKeyboard(context);
+                      profile.signIn(email!, password!).then((value) {
+                        if (value) {
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, HomeScreen.routeName, (route) => false);
+                        } else {
+                          addError(S.current.invalid_email_or_password);
+                        }
+                        setState(() {
+                          isLoading = false;
+                        });
+                      });
+                    }
+                  },
+                ),
         ],
       ),
     );
@@ -100,23 +119,13 @@ class _SignInFormState extends State<SignInForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
+      initialValue: email,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(S.current.please_enter_email);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(S.current.please_enter_email_valid);
-        }
+        checkEmail(value);
       },
       validator: (value) {
-        if (value!.isEmpty) {
-          addError(S.current.please_enter_email);
-          return "";
-        } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(S.current.please_enter_email_valid);
-          return "";
-        }
-        return null;
+        return value == null ? null : checkEmail(value);
       },
       decoration: InputDecoration(
         label: const Text("Email"),
@@ -129,25 +138,14 @@ class _SignInFormState extends State<SignInForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      initialValue: password,
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(S.current.please_enter_password);
-        } else if (value.length >= 8) {
-          removeError(S.current.please_enter_password_min);
-        }
-        return;
+        checkPassword(value);
       },
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          addError(S.current.please_enter_password);
-          return "";
-        } else if (value.length < 8) {
-          addError(S.current.please_enter_password_min);
-          return "";
-        }
-        return null;
+        return value == null ? null : checkPassword(value);
       },
       decoration: InputDecoration(
         label: Text(S.current.password),
@@ -156,5 +154,43 @@ class _SignInFormState extends State<SignInForm> {
         suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
+  }
+
+  String? checkEmail(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_email);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_email);
+      isError = true;
+    }
+    if (emailValidatorRegExp.hasMatch(value) || value.isEmpty) {
+      removeError(S.current.please_enter_email_valid);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_email_valid);
+      isError = true;
+    }
+    return isError ? "" : null;
+  }
+
+  String? checkPassword(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_password);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_password);
+      isError = true;
+    }
+    if (value.length >= 6 || value.isEmpty) {
+      removeError(S.current.please_enter_password_min);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_password_min);
+      isError = true;
+    }
+    return isError ? "" : null;
   }
 }

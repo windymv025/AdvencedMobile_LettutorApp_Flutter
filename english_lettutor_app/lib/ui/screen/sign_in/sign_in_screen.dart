@@ -1,6 +1,5 @@
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/sign_in/components/body.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SignInScreen extends StatelessWidget {

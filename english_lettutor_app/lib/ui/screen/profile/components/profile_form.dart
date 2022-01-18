@@ -136,7 +136,7 @@ class _ProfileFormState extends State<ProfileForm> {
                     });
                   },
                   hint: S.current.choose_your_level,
-                  value: profile.backupProfile.level,
+                  value: kMapLevels[profile.backupProfile.level],
                   title: S.current.mylevel,
                   items: kLevels),
             ),
@@ -184,7 +184,7 @@ class _ProfileFormState extends State<ProfileForm> {
                 press: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    profile.backupProfile.wantToLearn.clear();
+                    profile.backupProfile.learnTopics!.clear();
                     profile.wantToLearn.addAll(_selectedSpecialities);
                     widget.onSubmit();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(

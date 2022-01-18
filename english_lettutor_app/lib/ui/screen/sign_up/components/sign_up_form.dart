@@ -1,14 +1,13 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
-import 'package:english_lettutor_app/ui/screen/otp_screen/otp_screen.dart';
-import 'package:english_lettutor_app/ui/screen/sign_in/sign_in_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -23,8 +22,8 @@ class _SignUpFormState extends State<SignUpForm> {
   String? password;
   List<String> errors = [];
 
-  String? fullName;
   String? conformPassword;
+  bool isLoading = false;
 
   void addError(String error) {
     if (!errors.contains(error)) {
@@ -44,14 +43,11 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
+    ProfileProvider profileProvider = context.read<ProfileProvider>();
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          buildFullNameFormField(),
-          const SizedBox(
-            height: 20,
-          ),
           buildEmailFormField(),
           const SizedBox(
             height: 20,
@@ -88,48 +84,45 @@ class _SignUpFormState extends State<SignUpForm> {
           const SizedBox(
             height: 10,
           ),
-          DefaultButton(
-            text: S.current.sign_up,
-            press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                KeyboardUtil.hideKeyboard(context);
-                // Navigator.pushNamedAndRemoveUntil(
-                //     context, SignInScreen.routeName, (route) => false);
-                Navigator.pop(context);
-                Navigator.pushNamed(context, OTPScreen.routeName,
-                    arguments: SignInScreen.routeName);
-              }
-            },
-          ),
+          isLoading
+              ? CircularProgressIndicator(
+                  valueColor: const AlwaysStoppedAnimation(kMainBlueColor),
+                  backgroundColor: Colors.grey[200],
+                )
+              : DefaultButton(
+                  text: S.current.sign_up,
+                  press: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      // if all are valid then go to success screen
+                      KeyboardUtil.hideKeyboard(context);
+                      if (email != null &&
+                          email!.isNotEmpty &&
+                          password != null &&
+                          password!.isNotEmpty &&
+                          conformPassword != null &&
+                          conformPassword!.isNotEmpty) {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        profileProvider.signUp(email!, password!).then((value) {
+                          if (value) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(S.current.registor_success),
+                            ));
+                            Navigator.pop(context);
+                          } else {
+                            addError(S.current.email_is_already_in_use);
+                          }
+                          setState(() {
+                            isLoading = false;
+                          });
+                        });
+                      }
+                    }
+                  },
+                ),
         ],
-      ),
-    );
-  }
-
-  TextFormField buildFullNameFormField() {
-    return TextFormField(
-      keyboardType: TextInputType.name,
-      onSaved: (newValue) => fullName = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(S.current.please_enter_your_name);
-        }
-        fullName = value;
-      },
-      validator: (value) {
-        if (value!.isEmpty) {
-          addError(S.current.please_enter_your_name);
-          return "";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        label: Text(S.current.full_name),
-        hintText: S.current.enter_your_name,
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: const CustomSurffixIcon(icon: Icons.person_outline_rounded),
       ),
     );
   }
@@ -139,22 +132,11 @@ class _SignUpFormState extends State<SignUpForm> {
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(S.current.please_enter_email);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(S.current.please_enter_email_valid);
-        }
         email = value;
+        checkEmail(value);
       },
       validator: (value) {
-        if (value!.isEmpty) {
-          addError(S.current.please_enter_email);
-          return "";
-        } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(S.current.please_enter_email_valid);
-          return "";
-        }
-        return null;
+        return value == null ? "" : checkEmail(value);
       },
       decoration: InputDecoration(
         label: const Text("Email"),
@@ -170,22 +152,11 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(S.current.please_enter_password);
-        } else if (value.length >= 8) {
-          removeError(S.current.please_enter_password_min);
-        }
         password = value;
+        checkPassword(value);
       },
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          addError(S.current.please_enter_password);
-          return "";
-        } else if (value.length < 8) {
-          addError(S.current.please_enter_password_min);
-          return "";
-        }
-        return null;
+        return value == null ? "" : checkPassword(value);
       },
       decoration: InputDecoration(
         label: Text(S.current.password),
@@ -201,22 +172,11 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       onSaved: (newValue) => conformPassword = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(S.current.please_enter_password);
-        } else if (value.isNotEmpty && password == conformPassword) {
-          removeError(S.current.password_dont_match);
-        }
         conformPassword = value;
+        checkConformPassword(value);
       },
       validator: (value) {
-        if (value!.isEmpty) {
-          addError(S.current.please_enter_password);
-          return "";
-        } else if ((password != value)) {
-          addError(S.current.password_dont_match);
-          return "";
-        }
-        return null;
+        return value == null ? "" : checkConformPassword(value);
       },
       decoration: InputDecoration(
         labelText: S.current.confirm_password,
@@ -225,5 +185,63 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
+  }
+
+  String? checkEmail(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_email);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_email);
+      isError = true;
+    }
+    if (emailValidatorRegExp.hasMatch(value) || value.isEmpty) {
+      removeError(S.current.please_enter_email_valid);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_email_valid);
+      isError = true;
+    }
+    return isError ? "" : null;
+  }
+
+  String? checkPassword(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_password);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_password);
+      isError = true;
+    }
+    if (value.length >= 6 || value.isEmpty) {
+      removeError(S.current.please_enter_password_min);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_password_min);
+      isError = true;
+    }
+    return isError ? "" : null;
+  }
+
+  String? checkConformPassword(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_conform_password);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_conform_password);
+      isError = true;
+    }
+    if (conformPassword == password || value.isEmpty) {
+      removeError(S.current.password_dont_match);
+      isError = false;
+    }
+    if (conformPassword != password) {
+      addError(S.current.password_dont_match);
+      isError = true;
+    }
+    return isError ? "" : null;
   }
 }

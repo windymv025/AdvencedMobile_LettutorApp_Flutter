@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">English LetTutor App</string>
+    <string name="facebook_app_id">609365957029045</string> 
+    <string name="fb_login_protocol_scheme">fb609365957029045</string>
+</resources>

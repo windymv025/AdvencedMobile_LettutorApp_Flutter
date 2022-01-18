@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "9927435227",
+    "project_id": "englist-lettutor",
+    "storage_bucket": "englist-lettutor.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:9927435227:android:7442737c11d8d2eb347dfe",
+        "android_client_info": {
+          "package_name": "com.windymv.english_lettutor_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "9927435227-iop0pibu2gcgd08e35i15nrg1laravht.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0c1p0pS10l4WemrizBXhI0JVreDT2HVk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "9927435227-iop0pibu2gcgd08e35i15nrg1laravht.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

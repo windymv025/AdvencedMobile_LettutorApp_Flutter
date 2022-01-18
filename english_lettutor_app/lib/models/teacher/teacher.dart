@@ -44,8 +44,8 @@ class Teacher {
   });
 
   Teacher.toProfile(Profile profile) {
-    id = profile.id;
-    name = profile.fullName;
+    id = 1;
+    name = profile.name;
     country = profile.country ?? '';
     birthday = profile.birthday;
     languages = [];

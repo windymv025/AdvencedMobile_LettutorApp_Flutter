@@ -73,6 +73,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Chưa có tài khoản?"),
         "education": MessageLookupByLibrary.simpleMessage("Học vấn"),
+        "email_is_already_in_use":
+            MessageLookupByLibrary.simpleMessage("Email đã được sử dụng"),
         "enter_OTP": MessageLookupByLibrary.simpleMessage(
             "Nhập mã OTP trong email của bạn"),
         "enter_email":
@@ -129,6 +131,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "introduction": MessageLookupByLibrary.simpleMessage("Giới thiệu"),
         "introduction_video":
             MessageLookupByLibrary.simpleMessage("Video giới thiệu bản thân"),
+        "invalid_email_or_password": MessageLookupByLibrary.simpleMessage(
+            "Tài khoản, mật khẩu không đúng hoặc chưa được kích hoạt"),
         "languages": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
         "languages_speak":
             MessageLookupByLibrary.simpleMessage("Ngôn ngữ bạn nói"),
@@ -157,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Hãy chọn ngày phù hợp"),
         "please_choose_a_date":
             MessageLookupByLibrary.simpleMessage("Hãy chọn một ngày phù hợp"),
+        "please_enter_conform_password":
+            MessageLookupByLibrary.simpleMessage("Hãy nhập lại mật khẩu"),
         "please_enter_email":
             MessageLookupByLibrary.simpleMessage("Hãy nhập email của bạn"),
         "please_enter_email_valid":
@@ -184,6 +190,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Xếp hạn và nhận xét"),
         "re_enter_your_password":
             MessageLookupByLibrary.simpleMessage("Nhập lại mật khẩu"),
+        "registor_success": MessageLookupByLibrary.simpleMessage(
+            "Đăng ký thành công, vui lòng kiểm tra email để kích hoạt tài khoản"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Lấy lại mật khẩu"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Lưu"),

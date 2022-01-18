@@ -147,5 +147,9 @@
     "previous" : "Previous",
     "next" : "Next",
     "error_loading_PDF" : "Error loading PDF",
-    "logout" : "Logout"
+    "logout" : "Logout",
+    "invalid_email_or_password" : "Invalid email or password or account is not activated",
+    "please_enter_conform_password":"Please enter conform password",
+    "email_is_already_in_use":"Email is already in use",
+    "registor_success":"Registor successfull. Please check your email to activate your account"
 }

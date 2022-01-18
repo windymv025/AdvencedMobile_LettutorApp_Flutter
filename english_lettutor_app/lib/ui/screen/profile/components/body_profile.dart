@@ -90,7 +90,7 @@ class _BodyProfileState extends State<BodyProfile> {
         Colors.white,
         BlendMode.dstATop,
       ),
-      image: AssetImage((profile.image ?? Assets.assetsImagesUserIcon)),
+      image: NetworkImage((profile.image ?? Assets.assetsImagesUserIcon)),
     );
   }
 }

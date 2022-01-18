@@ -1339,6 +1339,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Invalid email or password or account is not activated`
+  String get invalid_email_or_password {
+    return Intl.message(
+      'Invalid email or password or account is not activated',
+      name: 'invalid_email_or_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please enter conform password`
+  String get please_enter_conform_password {
+    return Intl.message(
+      'Please enter conform password',
+      name: 'please_enter_conform_password',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is already in use`
+  String get email_is_already_in_use {
+    return Intl.message(
+      'Email is already in use',
+      name: 'email_is_already_in_use',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Registor successfull. Please check your email to activate your account`
+  String get registor_success {
+    return Intl.message(
+      'Registor successfull. Please check your email to activate your account',
+      name: 'registor_success',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

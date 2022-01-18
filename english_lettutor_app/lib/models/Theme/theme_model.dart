@@ -14,8 +14,7 @@ class ThemeModel extends ChangeNotifier {
   }
 
   void _loadTheme() async {
-    var prefs = await SharedPreferences.getInstance();
-    _prefHelper = SharedPreferenceHelper(prefs);
+    _prefHelper = await SharedPreferenceHelper.instance;
 
     if (_prefHelper?.isDarkMode == true) {
       _themeMode = themeDataDark;

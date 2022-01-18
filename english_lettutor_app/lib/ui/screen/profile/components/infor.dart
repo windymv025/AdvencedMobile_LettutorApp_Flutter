@@ -36,12 +36,14 @@ class Infor extends StatelessWidget {
                       margin: EdgeInsets.only(bottom: defaultSize), //10
                       height: defaultSize * 14, //140
                       width: defaultSize * 14,
+
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         border: Border.all(
                           color: Colors.white,
                           width: defaultSize * 0.8, //8
                         ),
+                        color: Colors.white,
                         image: image,
                       ),
                     ),

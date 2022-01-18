@@ -71,6 +71,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "dont_have_account":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
         "education": MessageLookupByLibrary.simpleMessage("Education"),
+        "email_is_already_in_use":
+            MessageLookupByLibrary.simpleMessage("Email is already in use"),
         "enter_OTP":
             MessageLookupByLibrary.simpleMessage("Enter OTP in your email"),
         "enter_email": MessageLookupByLibrary.simpleMessage("Enter your email"),
@@ -126,6 +128,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "introduction": MessageLookupByLibrary.simpleMessage("Introduction"),
         "introduction_video":
             MessageLookupByLibrary.simpleMessage("Introduction video"),
+        "invalid_email_or_password": MessageLookupByLibrary.simpleMessage(
+            "Invalid email or password or account is not activated"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "languages_speak":
             MessageLookupByLibrary.simpleMessage("Languages I speak"),
@@ -153,6 +157,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "pick_date": MessageLookupByLibrary.simpleMessage("Pick your date"),
         "please_choose_a_date":
             MessageLookupByLibrary.simpleMessage("Please choose a date"),
+        "please_enter_conform_password": MessageLookupByLibrary.simpleMessage(
+            "Please enter conform password"),
         "please_enter_email":
             MessageLookupByLibrary.simpleMessage("Please enter your email"),
         "please_enter_email_valid":
@@ -180,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Rating and Comments"),
         "re_enter_your_password":
             MessageLookupByLibrary.simpleMessage("Re-enter your password"),
+        "registor_success": MessageLookupByLibrary.simpleMessage(
+            "Registor successfull. Please check your email to activate your account"),
         "reset_password":
             MessageLookupByLibrary.simpleMessage("Reset Password"),
         "save_changes": MessageLookupByLibrary.simpleMessage("Save changes"),

@@ -85,8 +85,7 @@ class MyDrawer extends StatelessWidget {
               title: S.current.setting),
           SettingsButton(
               onPress: () {
-                Navigator.restorablePopAndPushNamed(
-                    context, SignInScreen.routeName);
+                Navigator.pushReplacementNamed(context, SignInScreen.routeName);
               },
               icon: const Icon(
                 Icons.logout_rounded,
@@ -102,23 +101,34 @@ class MyDrawer extends StatelessWidget {
   }
 
   DecorationImage _buildProfileImage(ProfileProvider profile) {
-    if (profile.imageFile != null) {
+    try {
+      if (profile.imageFile != null) {
+        return DecorationImage(
+          fit: BoxFit.cover,
+          colorFilter: const ColorFilter.mode(
+            Colors.white,
+            BlendMode.dstATop,
+          ),
+          image: FileImage(profile.imageFile!),
+        );
+      }
       return DecorationImage(
         fit: BoxFit.cover,
         colorFilter: const ColorFilter.mode(
           Colors.white,
           BlendMode.dstATop,
         ),
-        image: FileImage(profile.imageFile!),
+        image: NetworkImage((profile.image ?? Assets.assetsImagesUserIcon)),
+      );
+    } catch (e) {
+      return const DecorationImage(
+        fit: BoxFit.cover,
+        colorFilter: ColorFilter.mode(
+          Colors.white,
+          BlendMode.dstATop,
+        ),
+        image: AssetImage(Assets.assetsImagesUserIcon),
       );
     }
-    return DecorationImage(
-      fit: BoxFit.cover,
-      colorFilter: const ColorFilter.mode(
-        Colors.white,
-        BlendMode.dstATop,
-      ),
-      image: AssetImage((profile.image ?? Assets.assetsImagesUserIcon)),
-    );
   }
 }

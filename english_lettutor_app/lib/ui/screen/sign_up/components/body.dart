@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                    height: 150,
+                    height: 120,
                     child: Image.asset(Assets.assetsImagesLargeLogo)),
                 const SizedBox(
                   height: 25,

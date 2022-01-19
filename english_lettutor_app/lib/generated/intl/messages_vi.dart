@@ -49,8 +49,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Trở thành giáo viên"),
         "beginner": MessageLookupByLibrary.simpleMessage("Beginner"),
         "birthday": MessageLookupByLibrary.simpleMessage("Ngày sinh"),
+        "booking": MessageLookupByLibrary.simpleMessage("Đặt lịch"),
+        "booking_fail":
+            MessageLookupByLibrary.simpleMessage("Đặt lịch thất bại"),
         "booking_now":
             MessageLookupByLibrary.simpleMessage("Đặt lịch học ngay"),
+        "booking_success":
+            MessageLookupByLibrary.simpleMessage("Đặt lịch thành công"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "check_email_str": MessageLookupByLibrary.simpleMessage(
             "Kiểm tra email của bạn để nhận mã OTP"),
@@ -161,6 +166,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "pick_a_video": MessageLookupByLibrary.simpleMessage("Chọn video"),
         "pick_date":
             MessageLookupByLibrary.simpleMessage("Hãy chọn ngày phù hợp"),
+        "pick_time": MessageLookupByLibrary.simpleMessage("Chọn thời gian"),
         "please_choose_a_date":
             MessageLookupByLibrary.simpleMessage("Hãy chọn một ngày phù hợp"),
         "please_enter_conform_password":
@@ -174,7 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_enter_password":
             MessageLookupByLibrary.simpleMessage("Hãy nhập mật khẩu của bạn"),
         "please_enter_password_min":
-            MessageLookupByLibrary.simpleMessage("Mật khẩu tối thiểu 8 ký tự"),
+            MessageLookupByLibrary.simpleMessage("Mật khẩu tối thiểu 6 ký tự"),
         "please_enter_your_name":
             MessageLookupByLibrary.simpleMessage("Hãy nhập tên của bạn"),
         "please_select_country":

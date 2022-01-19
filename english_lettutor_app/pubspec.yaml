@@ -67,6 +67,9 @@ dependencies:
   #facebook
   flutter_facebook_auth: ^4.0.1
 
+  #toast
+  fluttertoast: ^8.0.8
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

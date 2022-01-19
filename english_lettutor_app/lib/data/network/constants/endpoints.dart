@@ -27,7 +27,8 @@ class Endpoints {
   static const String becomeATeacher = "/tutor/register";
 
   // Schedule
-  static const String schedule = "/schedule/list";
+  static const String schedule = "/schedule";
+  static const String scheduleByID = "/schedule";
   static const String getBookedClasses = "/booking/list/student";
   static const String bookAClass = "/booking";
   static const String cancelBookAClass = "/booking";

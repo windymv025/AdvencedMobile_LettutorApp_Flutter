@@ -4,7 +4,6 @@ import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/home_state.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/ui/drawer/my_drawer.dart';
-import 'package:english_lettutor_app/ui/screen/home/messenger_page/messenger_body.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -69,11 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.white,
           ),
           Icon(
-            Icons.message_rounded,
-            size: 30,
-            color: Colors.white,
-          ),
-          Icon(
             Icons.schedule_rounded,
             size: 30,
             color: Colors.white,
@@ -98,16 +92,13 @@ class _HomeScreenState extends State<HomeScreen> {
       if (_children[index] == null) {
         switch (index) {
           case 1:
-            _children[1] = const MessengerBody();
+            _children[1] = const ScheduleBody();
             break;
           case 2:
-            _children[2] = const ScheduleBody();
+            _children[2] = const TeacherPage();
             break;
           case 3:
-            _children[3] = const TeacherPage();
-            break;
-          case 4:
-            _children[4] = const CoursesBody();
+            _children[3] = const CoursesBody();
             break;
           default:
             break;

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:english_lettutor_app/data/network/constants/endpoints.dart';
 import 'package:english_lettutor_app/data/sharedpref/shared_preference_helper.dart';
 

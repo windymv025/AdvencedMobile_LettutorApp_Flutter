@@ -49,7 +49,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Become a Teacher"),
         "beginner": MessageLookupByLibrary.simpleMessage("Beginner"),
         "birthday": MessageLookupByLibrary.simpleMessage("Birthday"),
+        "booking": MessageLookupByLibrary.simpleMessage("Booking"),
+        "booking_fail": MessageLookupByLibrary.simpleMessage("Booking fail"),
         "booking_now": MessageLookupByLibrary.simpleMessage("Booking now"),
+        "booking_success":
+            MessageLookupByLibrary.simpleMessage("Booking success"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "check_email_str": MessageLookupByLibrary.simpleMessage(
             "Check your email then enter the OTP code below"),
@@ -157,6 +161,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
         "pick_a_video": MessageLookupByLibrary.simpleMessage("Pick a video"),
         "pick_date": MessageLookupByLibrary.simpleMessage("Pick your date"),
+        "pick_time": MessageLookupByLibrary.simpleMessage("Pick time"),
         "please_choose_a_date":
             MessageLookupByLibrary.simpleMessage("Please choose a date"),
         "please_enter_conform_password": MessageLookupByLibrary.simpleMessage(
@@ -170,7 +175,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "please_enter_password":
             MessageLookupByLibrary.simpleMessage("Please enter your password"),
         "please_enter_password_min": MessageLookupByLibrary.simpleMessage(
-            "Please enter password minimum 8 characters"),
+            "Please enter password minimum 6 characters"),
         "please_enter_your_name":
             MessageLookupByLibrary.simpleMessage("Please enter your name"),
         "please_select_country":

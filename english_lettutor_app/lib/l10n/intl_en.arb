@@ -11,7 +11,7 @@
     "please_enter_email_valid":"Please enter valid email",
     "please_enter_password":"Please enter your password",
     "please_enter_email":"Please enter your email",
-    "please_enter_password_min":"Please enter password minimum 8 characters",
+    "please_enter_password_min":"Please enter password minimum 6 characters",
     "please_enter_your_name":"Please enter your name",
     "password_dont_match":"Password don't match",
     "please_enter_otp":"Please Enter OTP in your email",
@@ -152,5 +152,9 @@
     "please_enter_conform_password":"Please enter conform password",
     "email_is_already_in_use":"Email is already in use",
     "registor_success":"Registor successfull. Please check your email to activate your account",
-    "email_not_found":"Email not found"
+    "email_not_found":"Email not found",
+    "pick_time":"Pick time",
+    "booking":"Booking",
+    "booking_success":"Booking success",
+    "booking_fail":"Booking fail"
 }

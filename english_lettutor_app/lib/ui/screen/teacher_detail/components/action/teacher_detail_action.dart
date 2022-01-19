@@ -1,52 +1,48 @@
 import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
-import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
-import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/dialog/report_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/sheet/bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class TeacherDetailAction extends StatelessWidget {
+class TeacherDetailAction extends StatefulWidget {
   const TeacherDetailAction({Key? key, required this.teacher})
       : super(key: key);
   final Teacher teacher;
 
   @override
+  _TeacherDetailActionState createState() => _TeacherDetailActionState();
+}
+
+class _TeacherDetailActionState extends State<TeacherDetailAction> {
+  bool isLoading = false;
+  @override
   Widget build(BuildContext context) {
+    final TeacherDTO provider = context.watch<TeacherDTO>();
+
     return Column(
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: DefaultButton(
-            text: "Booking",
-            press: () {
-              showDateTimeBottomSheet(context, teacher.freeDate);
-            },
-          ),
+          child: isLoading
+              ? Center(
+                  child: CircularProgressIndicator(
+                    valueColor: const AlwaysStoppedAnimation(kMainBlueColor),
+                    backgroundColor: Colors.grey[200],
+                  ),
+                )
+              : DefaultButton(
+                  text: S.current.booking,
+                  press: () {
+                    showDateTimeBottomSheet(
+                        context, provider.getFreeDate(widget.teacher.id));
+                  },
+                ),
         ),
         const SizedBox(
           height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            //Messager
-            IconButton(
-                iconSize: 35,
-                onPressed: () {
-                  Navigator.pushNamed(context, MessengerDetailScreen.routeName,
-                      arguments: teacher);
-                },
-                icon: const Icon(
-                  Icons.message_rounded,
-                  color: kMainBlueColor,
-                )),
-            const SizedBox(
-              width: 50,
-            ),
-            //Report
-            ReportButton(teacher: teacher),
-          ],
         ),
       ],
     );

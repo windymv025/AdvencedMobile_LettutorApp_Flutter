@@ -1,3 +1,4 @@
+// ignore: file_names
 import 'package:english_lettutor_app/data/network/constants/endpoints.dart';
 
 import '../../rest_client.dart';

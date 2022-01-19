@@ -45,9 +45,10 @@ class TutorInPage {
         id: f.secondId!,
         name: f.secondInfo?.name,
         uriImage: f.secondInfo?.avatar,
-        isFavorite: false,
+        isFavorite: true,
         country: f.secondInfo!.country!,
         languages: null,
+        uriVideo: f.secondInfo?.tutorInfo?.video,
         description: f.secondInfo?.tutorInfo?.bio,
         specialties: f.secondInfo?.tutorInfo?.specialties?.split(","),
         education: f.secondInfo?.tutorInfo?.education,
@@ -355,6 +356,7 @@ class Tutors {
         experience: element.experience,
         interests: element.interests,
         profession: element.profession,
+        uriVideo: element.video,
       ));
     }
     return list;

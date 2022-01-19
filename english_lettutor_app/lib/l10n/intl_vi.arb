@@ -11,7 +11,7 @@
     "please_enter_email_valid":"Hãy nhập email hợp lệ",
     "please_enter_password":"Hãy nhập mật khẩu của bạn",
     "please_enter_email":"Hãy nhập email của bạn",
-    "please_enter_password_min":"Mật khẩu tối thiểu 8 ký tự",
+    "please_enter_password_min":"Mật khẩu tối thiểu 6 ký tự",
     "please_enter_your_name":"Hãy nhập tên của bạn",
     "password_dont_match":"Mật khẩu không khớp",
     "please_enter_otp":"Hãy nhập mã OTP đã được gởi trong email của bạn",
@@ -153,5 +153,9 @@
     "please_enter_conform_password":"Hãy nhập lại mật khẩu",
     "email_is_already_in_use":"Email đã được sử dụng",
     "registor_success":"Đăng ký thành công, vui lòng kiểm tra email để kích hoạt tài khoản",
-    "email_not_found":"Email không tồn tại"
+    "email_not_found":"Email không tồn tại",
+    "pick_time":"Chọn thời gian",
+    "booking":"Đặt lịch",
+    "booking_success":"Đặt lịch thành công",
+    "booking_fail":"Đặt lịch thất bại"
 }

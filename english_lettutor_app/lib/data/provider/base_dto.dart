@@ -33,7 +33,6 @@ abstract class BaseDTO<T> extends ChangeNotifier {
     }
 
     pagingInfo = PagingInfo(12, _items.length);
-    notifyListeners();
   }
 
   void remove(T item) {

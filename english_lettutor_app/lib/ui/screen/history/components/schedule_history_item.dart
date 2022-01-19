@@ -5,7 +5,6 @@ import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
-import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
@@ -123,22 +122,6 @@ class ScheduleHistoryItem extends StatelessWidget {
                 color: Colors.white),
             Row(
               children: [
-                Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, MessengerDetailScreen.routeName);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        S.current.send_message,
-                        style: const TextStyle(fontSize: textSizeButton),
-                      ),
-                    ),
-                    style: outlineColorButtonStyle,
-                  ),
-                ),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {},

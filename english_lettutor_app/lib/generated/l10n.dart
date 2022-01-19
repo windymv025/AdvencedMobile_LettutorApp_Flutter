@@ -160,10 +160,10 @@ class S {
     );
   }
 
-  /// `Please enter password minimum 8 characters`
+  /// `Please enter password minimum 6 characters`
   String get please_enter_password_min {
     return Intl.message(
-      'Please enter password minimum 8 characters',
+      'Please enter password minimum 6 characters',
       name: 'please_enter_password_min',
       desc: '',
       args: [],
@@ -1385,6 +1385,46 @@ class S {
     return Intl.message(
       'Email not found',
       name: 'email_not_found',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pick time`
+  String get pick_time {
+    return Intl.message(
+      'Pick time',
+      name: 'pick_time',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking`
+  String get booking {
+    return Intl.message(
+      'Booking',
+      name: 'booking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking success`
+  String get booking_success {
+    return Intl.message(
+      'Booking success',
+      name: 'booking_success',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Booking fail`
+  String get booking_fail {
+    return Intl.message(
+      'Booking fail',
+      name: 'booking_fail',
       desc: '',
       args: [],
     );

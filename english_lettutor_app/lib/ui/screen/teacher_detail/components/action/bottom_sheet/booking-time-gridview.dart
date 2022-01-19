@@ -1,25 +1,20 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/sheet/bottom_sheet.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/models/schedule/schedule-teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/no_data_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-class BookingGridView extends StatelessWidget {
-  static const typeDate = "dd-MM-yyyy";
-  static const typeTime = "HH:mm";
-  const BookingGridView(
-      {Key? key,
-      required this.size,
-      required this.items,
-      this.typeDateTime = typeDate})
+class BookingTimeGirdView extends StatelessWidget {
+  const BookingTimeGirdView({Key? key, this.items, required this.size})
       : super(key: key);
-
-  final List<String>? items;
+  final List<ScheduleDetail>? items;
   final Size size;
-  final String typeDateTime;
 
   @override
   Widget build(BuildContext context) {
@@ -46,13 +41,29 @@ class BookingGridView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    items![index],
+                    "${DateFormat(DateFormat.HOUR24_MINUTE).format(DateTime.fromMillisecondsSinceEpoch(items![index].startPeriodTimestamp!).toLocal())} - ${DateFormat(DateFormat.HOUR24_MINUTE).format(DateTime.fromMillisecondsSinceEpoch(items![index].endPeriodTimestamp!).toLocal())}",
                     style: const TextStyle(fontSize: textSizeTitle),
                   ),
                 ),
                 onPressed: () {
-                  showTimeBottomSheet(
-                      context, teacherDTO.getFreeTime(items![index]));
+                  teacherDTO.bookingTeacher(items![index].id!).then((value) {
+                    if (value) {
+                      Fluttertoast.showToast(
+                          msg: S.current.booking_success,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          fontSize: 16.0);
+                      Navigator.pop(context);
+                    } else {
+                      Fluttertoast.showToast(
+                          msg: S.current.booking_fail,
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.CENTER,
+                          timeInSecForIosWeb: 1,
+                          fontSize: 16.0);
+                    }
+                  });
                 },
                 style: outlineButtonStyle,
               ),

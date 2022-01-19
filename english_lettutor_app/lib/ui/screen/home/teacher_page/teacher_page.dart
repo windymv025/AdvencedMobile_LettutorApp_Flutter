@@ -26,10 +26,6 @@ class TeacherPageState extends State<TeacherPage> {
     teacherDTO = Provider.of<TeacherDTO>(context, listen: true);
   }
 
-  void reload() {
-    setState(() {});
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

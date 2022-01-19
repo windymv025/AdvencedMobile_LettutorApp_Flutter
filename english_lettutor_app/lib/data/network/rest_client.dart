@@ -42,6 +42,21 @@ class RestClient {
         .then(_createResponse);
   }
 
+  Future<dynamic> post2(String path,
+      {Map<String, String>? headers,
+      body,
+      encoding,
+      Map<String, String>? params}) async {
+    return http
+        .post(
+          Uri.https(Endpoints.baseUrl, path, params),
+          body: body,
+          headers: headers,
+          encoding: encoding,
+        )
+        .then(_createResponse);
+  }
+
   // Put:----------------------------------------------------------------------
   Future<dynamic> put(String path,
       {Map<String, String>? headers, body, encoding}) {

@@ -1,3 +1,5 @@
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/teacher_detail_action.dart';
@@ -7,6 +9,7 @@ import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_a
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/media/video_network_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class TeacherDetailBody extends StatefulWidget {
   const TeacherDetailBody({Key? key, required this.teacher}) : super(key: key);
@@ -17,9 +20,32 @@ class TeacherDetailBody extends StatefulWidget {
 }
 
 class _TeacherDetailBodyState extends State<TeacherDetailBody> {
+  Teacher? teacher;
+  bool isLoading = true;
+  @override
+  void initState() {
+    super.initState();
+    Teacher.loadTeacherDetail(widget.teacher.id).then((value) {
+      teacher = value;
+      TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context, listen: false);
+      teacherDTO.loadScheduleTeacher(teacher!.id).then((value) {
+        setState(() {
+          isLoading = false;
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    Teacher teacher = widget.teacher;
+    if (isLoading) {
+      return Center(
+        child: CircularProgressIndicator(
+          valueColor: const AlwaysStoppedAnimation(kMainBlueColor),
+          backgroundColor: Colors.grey[200],
+        ),
+      );
+    }
 
     return SingleChildScrollView(
       child: Column(
@@ -28,22 +54,22 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
         children: [
           //Video
           // VideoIntroduce(uri: teacher.uriVideo!),
-          VideoNetworkWidget(teacher.uriVideo),
+          VideoNetworkWidget(teacher!.uriVideo),
           // image and simple infor teacher
-          SimpleInforTeacher(teacher: teacher),
+          SimpleInforTeacher(teacher: teacher!),
           //Booking, message, report
           TeacherDetailAction(
-            teacher: teacher,
+            teacher: teacher!,
           ),
 
           //Languages
-          TitleAndTags(tags: teacher.languages, title: S.current.languages),
+          TitleAndTags(tags: teacher!.languages, title: S.current.languages),
 
           //Education
           TitleDetail(title: S.current.education),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(teacher.education ?? "",
+            child: Text(teacher!.education ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),
@@ -54,7 +80,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
             child: Text(
-              teacher.experience ?? "",
+              teacher!.experience ?? "",
               overflow: TextOverflow.clip,
               textAlign: TextAlign.justify,
             ),
@@ -64,7 +90,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           TitleDetail(title: S.current.interests),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(teacher.interests ?? "",
+            child: Text(teacher!.interests ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),
@@ -74,7 +100,7 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           TitleDetail(title: S.current.profession),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
-            child: Text(teacher.profession ?? "",
+            child: Text(teacher!.profession ?? "",
                 overflow: TextOverflow.clip,
                 softWrap: true,
                 textAlign: TextAlign.justify),
@@ -82,10 +108,10 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
 
           //Specialties
           TitleAndTags(
-              tags: teacher.specialties!, title: S.current.specialties),
+              tags: teacher!.specialties!, title: S.current.specialties),
 
           //Rating and Comment
-          RatingAndComment(teacher: teacher),
+          RatingAndComment(teacher: teacher!),
         ],
       ),
     );

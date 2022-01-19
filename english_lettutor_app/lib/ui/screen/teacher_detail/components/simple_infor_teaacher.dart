@@ -7,6 +7,8 @@ import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart'
 import 'package:flutter/material.dart';
 import 'package:provider/src/provider.dart';
 
+import 'action/dialog/report_button.dart';
+
 class SimpleInforTeacher extends StatefulWidget {
   const SimpleInforTeacher({Key? key, required this.teacher}) : super(key: key);
   final Teacher teacher;
@@ -37,7 +39,7 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: MyListTile(
-          avatar: AssetImage(teacher.uriImage ?? Assets.assetsImagesUserIcon),
+          avatar: NetworkImage(teacher.uriImage!),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -55,13 +57,18 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
             rating: teacher.ratings ?? 0,
             onRatingUpdate: () {},
           ),
-          trailing: IconButton(
-            icon: _icon,
-            onPressed: () {
-              onFavoriteClick();
-              teacherDTO.updateFavorite(teacher);
-            },
-            iconSize: 30,
+          trailing: Row(
+            children: [
+              ReportButton(teacher: teacher),
+              IconButton(
+                icon: _icon,
+                onPressed: () {
+                  onFavoriteClick();
+                  teacherDTO.updateFavorite(teacher);
+                },
+                iconSize: 30,
+              ),
+            ],
           ),
           onTap: null,
           color: Colors.white),

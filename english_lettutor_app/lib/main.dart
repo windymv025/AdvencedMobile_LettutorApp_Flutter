@@ -41,7 +41,6 @@ class _MyAppState extends State<MyApp> {
   // SharedPreferenceHelper? sharedPreferenceHelper;
   ProfileProvider profile = ProfileProvider();
   CourseDTO courseDTO = CourseDTO();
-  TeacherDTO teacherDTO = TeacherDTO();
   ScheduleDTO scheduleDTO = ScheduleDTO();
   ScheduleHistoryDTO scheduleHistoryDTO = ScheduleHistoryDTO();
 
@@ -72,7 +71,7 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider(create: (context) => profile),
         ChangeNotifierProvider(create: (context) => courseDTO),
-        ChangeNotifierProvider(create: (context) => teacherDTO),
+        ChangeNotifierProvider(create: (context) => TeacherDTO()),
         ChangeNotifierProvider(create: (context) => scheduleDTO),
         ChangeNotifierProvider(create: (context) => HomeState()),
         ChangeNotifierProvider(create: (context) => scheduleHistoryDTO),

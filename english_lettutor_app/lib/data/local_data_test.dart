@@ -5,7 +5,6 @@ import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/models/messager/conversation.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
-import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:flutter/material.dart';
 
 final teacherList = [
@@ -29,25 +28,12 @@ final List<Schedule> scheduleList = [
   Schedule.getDefault(),
 ];
 
-final List<ScheduleHistory> scheduleHistoryList = [
-  ScheduleHistory.getDefault()
-];
+final List<ScheduleHistory> scheduleHistoryList = [];
 
 // final Profile kProfile = Profile.getDefault2();
 
 void randomData() {
   var rd = Random.secure();
-
-  for (int i = 5; i <= 50; i++) {
-    int a = rd.nextInt(kSpecialities.length - 1) + 1;
-    int b = rd.nextInt(kSpecialities.length - 1) + 1;
-    teacherList.add(Teacher(
-        id: "id_$i",
-        name: 'Teacher ${rd.nextInt(100)}',
-        specialties: kSpecialities.sublist(min(a, b), max(a, b)),
-        country: "Viet nam",
-        description: ""));
-  }
 
   for (int i = 0; i < 20; i++) {
     int day = rd.nextInt(60);

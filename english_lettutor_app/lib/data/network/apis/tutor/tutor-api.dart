@@ -36,13 +36,9 @@ class TutorApi {
   }
 
   Future<dynamic> getTutorInformationById(String tutorId) async {
-    final response =
-        await _restClient.get(Endpoints.getTutorInformationById, headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${await _restClient.getToken()}'
-    }, params: {
-      'tutorId': tutorId
-    });
+    final response = await _restClient.get(
+        '${Endpoints.getTutorInformationById}/$tutorId',
+        headers: {'Authorization': 'Bearer ${await _restClient.getToken()}'});
 
     return response;
   }

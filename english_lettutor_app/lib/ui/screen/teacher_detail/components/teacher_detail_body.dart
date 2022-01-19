@@ -108,7 +108,10 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
 
           //Specialties
           TitleAndTags(
-              tags: teacher!.specialties!, title: S.current.specialties),
+              tags: teacher!.specialties!.map((e) {
+                return kMapSpecialities[e];
+              }).toList(),
+              title: S.current.specialties),
 
           //Rating and Comment
           RatingAndComment(teacher: teacher!),

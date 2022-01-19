@@ -7,7 +7,7 @@ class Conversation {
   Conversation({required this.messages, required this.teacher});
 
   Conversation.getDefault() {
-    teacher = Teacher.getDefault();
+    // teacher = Teacher.getDefault();
     messages.add(Message(
         id: 0, message: "hi", time: DateTime(2021, 10, 22, 15, 10, 50)));
     messages.add(Message(

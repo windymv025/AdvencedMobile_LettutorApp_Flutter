@@ -66,6 +66,21 @@ final kSpecialities = [
   "TOEIC",
 ];
 
+final kMapSpecialities = <String, String>{
+  kAllTeachers: kAllTeachers,
+  "english-for-kids": "English for kids",
+  "business-english": "English for Business",
+  "conversational-english": "Conversational",
+  "starters": "STARTERS",
+  "movers": "MOVERS",
+  "flyers": "FLYERS",
+  "ket": "KET",
+  "pet": "PET",
+  "ielts": "IELTS",
+  "toefl": "TOEFL",
+  "toeic": "TOEIC",
+};
+
 final kLearnTopics = [
   LearnTopic(id: 1, key: "starters", name: "STARTERS"),
   LearnTopic(id: 2, key: "movers", name: "MOVERS"),

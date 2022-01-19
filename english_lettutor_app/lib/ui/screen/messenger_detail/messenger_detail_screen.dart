@@ -12,7 +12,8 @@ class MessengerDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarMessagerDetail(
-        teacher: Teacher.getDefault(),
+        teacher: Teacher(
+            id: '', country: '', description: '', name: '', specialties: []),
       ),
       body: MessengerDetailBody(
         conversation: Conversation.getDefault(),

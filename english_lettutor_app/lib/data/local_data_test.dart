@@ -3,17 +3,16 @@ import 'dart:math';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/models/messager/conversation.dart';
-import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:flutter/material.dart';
 
 final teacherList = [
-  Teacher.getDefault(),
-  Teacher.getDefault2(),
-  Teacher.getDefault3(),
-  Teacher.getDefault4(),
+  // Teacher.getDefault(),
+  // Teacher.getDefault2(),
+  // Teacher.getDefault3(),
+  // Teacher.getDefault4(),
 ];
 
 final conversationList = [
@@ -43,7 +42,7 @@ void randomData() {
     int a = rd.nextInt(kSpecialities.length - 1) + 1;
     int b = rd.nextInt(kSpecialities.length - 1) + 1;
     teacherList.add(Teacher(
-        id: i,
+        id: "id_$i",
         name: 'Teacher ${rd.nextInt(100)}',
         specialties: kSpecialities.sublist(min(a, b), max(a, b)),
         country: "Viet nam",

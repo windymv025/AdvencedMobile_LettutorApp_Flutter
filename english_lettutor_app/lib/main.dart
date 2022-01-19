@@ -53,13 +53,13 @@ class _MyAppState extends State<MyApp> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    loadData();
+    // loadData();
   }
 
   void loadData() {
     randomData();
     courseDTO.addAll(courseList);
-    teacherDTO.addAll(teacherList);
+    // teacherDTO.addAll(teacherList);
     scheduleDTO.addAll(scheduleList);
     scheduleHistoryDTO.addAll(scheduleHistoryList);
   }

@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/network/constants/endpoints.dart';
 
 import '../../rest_client.dart';
@@ -8,6 +9,7 @@ class TutorApi {
       [int perPage = 12]) async {
     final response =
         await _restClient.get(Endpoints.getListTutorPagin, headers: {
+      'Content-Type': 'application/json',
       'Authorization': 'Bearer ${await _restClient.getToken()}'
     }, params: {
       'perPage': perPage.toString(),
@@ -21,6 +23,7 @@ class TutorApi {
       String bookingID, String userID, double rating, String content) async {
     final response =
         await _restClient.post(Endpoints.writeReviewATutor, headers: {
+      'Content-Type': 'application/json',
       'Authorization': 'Bearer ${await _restClient.getToken()}'
     }, body: {
       'bookingId': bookingID,
@@ -33,25 +36,46 @@ class TutorApi {
   }
 
   Future<dynamic> getTutorInformationById(String tutorId) async {
-    final response = await _restClient.get(Endpoints.getTutorInformationById,
-        headers: {'Authorization': 'Bearer ${await _restClient.getToken()}'},
-        params: {'tutorId': tutorId});
+    final response =
+        await _restClient.get(Endpoints.getTutorInformationById, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${await _restClient.getToken()}'
+    }, params: {
+      'tutorId': tutorId
+    });
 
     return response;
   }
 
-  Future<dynamic> searchTutor(String studentRequest) async {
-    final response = await _restClient.post(Endpoints.searchTutor,
-        headers: {'Authorization': 'Bearer ${await _restClient.getToken()}'},
-        body: {'studentRequest': studentRequest});
+  Future<dynamic> searchTutor(
+    String keySearch, {
+    int page = 1,
+    int perPage = 12,
+    List<String>? specialties,
+  }) async {
+    final response = await _restClient.post(Endpoints.searchTutor, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${await _restClient.getToken()}'
+    }, body: {
+      "page": page,
+      "perPage": perPage,
+      "filters": {
+        "specialties": specialties ?? kMapSpecialities.keys.toList().sublist(1),
+      },
+      "search": keySearch
+    });
 
     return response;
   }
 
   Future<dynamic> addATutorToFavouriteList(String tutorId) async {
-    final response = await _restClient.post(Endpoints.addATutorFavourite,
-        headers: {'Authorization': 'Bearer ${await _restClient.getToken()}'},
-        body: {'tutorId': tutorId});
+    final response =
+        await _restClient.post(Endpoints.addATutorFavourite, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${await _restClient.getToken()}'
+    }, body: {
+      'tutorId': tutorId
+    });
 
     return response;
   }

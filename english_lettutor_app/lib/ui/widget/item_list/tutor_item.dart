@@ -42,7 +42,7 @@ class _TutorItemState extends State<TutorItem> {
     } else {
       List<Tag> tags = [];
       for (var i in widget.teacher.specialties!) {
-        tags.add(Tag(label: i));
+        tags.add(Tag(label: kMapSpecialities[i]!));
       }
       return tags;
     }
@@ -76,7 +76,7 @@ class _TutorItemState extends State<TutorItem> {
                 // color: kCardColor,
                 color: Colors.white,
                 avatar: widget.teacher.uriImage != null
-                    ? AssetImage(widget.teacher.uriImage!)
+                    ? NetworkImage(widget.teacher.uriImage!)
                     : null,
                 onTap: null,
                 title: Column(
@@ -91,10 +91,13 @@ class _TutorItemState extends State<TutorItem> {
                     Text(widget.teacher.country,
                         style: const TextStyle(
                             fontSize: 14, fontStyle: FontStyle.italic)),
-                    Rating(
-                      rating: widget.teacher.ratings!,
-                      onRatingUpdate: () {},
-                    ),
+                    widget.teacher.ratings != null &&
+                            widget.teacher.ratings! > 0
+                        ? Rating(
+                            rating: widget.teacher.ratings!,
+                            onRatingUpdate: () {},
+                          )
+                        : const SizedBox.square(),
                   ],
                 ),
                 subtitle: Wrap(

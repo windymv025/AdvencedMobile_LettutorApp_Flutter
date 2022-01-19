@@ -92,4 +92,10 @@ abstract class BaseDTO<T> extends ChangeNotifier {
   void sort() {}
 
   void getAvailableItems() {}
+  void clear() {
+    _items.clear();
+    _itemsBackup.clear();
+    pagingInfo = PagingInfo(12, 0);
+    notifyListeners();
+  }
 }

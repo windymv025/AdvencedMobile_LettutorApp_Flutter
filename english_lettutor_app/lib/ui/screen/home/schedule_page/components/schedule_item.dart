@@ -20,7 +20,7 @@ class ScheduleItem extends StatelessWidget {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
     TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
     ScheduleDTO scheduleDTO = Provider.of<ScheduleDTO>(context);
-    Teacher teacher = teacherDTO.getTeacher(schedule.iDTeacher);
+    Teacher teacher = teacherDTO.getTeacher("schedule.iDTeacher");
 
     return Container(
       decoration: BoxDecoration(

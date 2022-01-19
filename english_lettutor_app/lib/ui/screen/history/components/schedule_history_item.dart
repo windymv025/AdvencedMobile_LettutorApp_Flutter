@@ -22,7 +22,8 @@ class ScheduleHistoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
     TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
-    Teacher teacher = teacherDTO.getTeacher(scheduleHistory.schedule.iDTeacher);
+    Teacher teacher =
+        teacherDTO.getTeacher("scheduleHistory.schedule.iDTeacher");
     return Container(
       decoration: BoxDecoration(
         boxShadow: isDark

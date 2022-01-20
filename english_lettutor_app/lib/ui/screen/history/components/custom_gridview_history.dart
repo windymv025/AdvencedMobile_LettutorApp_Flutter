@@ -1,5 +1,5 @@
 import 'package:english_lettutor_app/constants/constants.dart';
-import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
+import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/ui/screen/history/components/schedule_history_item.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/no_data_page.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ class CustomGridViewHistory extends StatelessWidget {
       {Key? key, required this.size, required this.items})
       : super(key: key);
 
-  final List<ScheduleHistory>? items;
+  final List<Schedule>? items;
   final Size size;
 
   @override

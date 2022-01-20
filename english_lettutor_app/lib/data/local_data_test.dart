@@ -24,9 +24,7 @@ final courseList = [
   Course.getDefault2(),
 ];
 
-final List<Schedule> scheduleList = [
-  Schedule.getDefault(),
-];
+final List<Schedule> scheduleList = [];
 
 final List<ScheduleHistory> scheduleHistoryList = [];
 
@@ -34,51 +32,4 @@ final List<ScheduleHistory> scheduleHistoryList = [];
 
 void randomData() {
   var rd = Random.secure();
-
-  for (int i = 0; i < 20; i++) {
-    int day = rd.nextInt(60);
-    int hour = rd.nextInt(24);
-    scheduleList.add(Schedule(
-        iDTeacher: rd.nextInt(50) + 1,
-        iDStudent: 1,
-        time: DateTimeRange(
-            start: DateTime.now().add(Duration(days: day, hours: hour)),
-            end: DateTime.now()
-                .add(Duration(days: day, hours: hour, minutes: 30)))));
-
-    scheduleList.add(Schedule(
-        iDTeacher: rd.nextInt(50) + 1,
-        iDStudent: 1,
-        time: DateTimeRange(
-            start: DateTime.now().add(Duration(days: day, hours: hour)),
-            end: DateTime.now().add(Duration(
-                days: day, hours: hour, minutes: rd.nextInt(60 + 1))))));
-  }
-
-  for (int i = 0; i < 30; i++) {
-    int day = rd.nextInt(365);
-    scheduleHistoryList.add(ScheduleHistory(
-        schedule: Schedule(
-            iDTeacher: rd.nextInt(50) + 1,
-            iDStudent: 1,
-            time: DateTimeRange(
-                start: DateTime.now().subtract(Duration(days: day, hours: 1)),
-                end: DateTime.now()
-                    .add(Duration(days: day, hours: 1, minutes: 30)))),
-        countTime: rd.nextInt(30000),
-        ratingComment: null));
-  }
-
-  for (int i = 0; i < 30; i++) {
-    courseList.add(
-      Course(
-        image: null,
-        name: "Course $i",
-        subtitle: "Course $i subtitle",
-        level: kLevels[rd.nextInt(kLevels.length)],
-        lessons: rd.nextInt(20) + 1,
-        topics: [for (int i = 1; i < rd.nextInt(20) + 1; i++) 'Topic $i'],
-      ),
-    );
-  }
 }

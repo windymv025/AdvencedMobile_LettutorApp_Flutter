@@ -1,28 +1,22 @@
-import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
-import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
-import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
+import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
 
 class ScheduleHistoryItem extends StatelessWidget {
   const ScheduleHistoryItem({Key? key, required this.scheduleHistory})
       : super(key: key);
-  final ScheduleHistory scheduleHistory;
+  final Schedule scheduleHistory;
 
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
-    Teacher teacher =
-        teacherDTO.getTeacher("scheduleHistory.schedule.iDTeacher");
+    Teacher teacher = scheduleHistory.teacher!;
     return Container(
       decoration: BoxDecoration(
         boxShadow: isDark
@@ -38,9 +32,7 @@ class ScheduleHistoryItem extends StatelessWidget {
         child: Column(
           children: [
             MyListTile(
-                avatar: AssetImage(teacher.uriImage != null
-                    ? teacher.uriImage!
-                    : Assets.assetsImagesUserIcon),
+                avatar: NetworkImage(teacher.uriImage!),
                 title: Text(
                   teacher.name!,
                   style: titleStyle,
@@ -63,7 +55,7 @@ class ScheduleHistoryItem extends StatelessWidget {
                         const SizedBox(width: 15),
                         Text(
                           DateFormat("EEE, dd-MM-yyyy HH:mm:ss")
-                              .format(scheduleHistory.schedule.time.start),
+                              .format(scheduleHistory.time.start),
                           style: const TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ],
@@ -80,38 +72,13 @@ class ScheduleHistoryItem extends StatelessWidget {
                         const Icon(Icons.schedule_rounded),
                         const SizedBox(width: 15),
                         Text(
-                          DateFormat("HH:mm:ss").format(
-                              DateTime.fromMillisecondsSinceEpoch(
-                                  scheduleHistory.countTime)),
+                          scheduleHistory.time.duration
+                              .toString()
+                              .split('.')[0],
                           style: const TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ],
                     ),
-                    //Rating and comment
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    scheduleHistory.ratingComment != null
-                        ? Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Rating(
-                                  onRatingUpdate: null,
-                                  rating:
-                                      scheduleHistory.ratingComment!.rating ??
-                                          0),
-                              (scheduleHistory.ratingComment!.comment == null)
-                                  ? const SizedBox.square()
-                                  : Text(
-                                      scheduleHistory.ratingComment!.comment!,
-                                      overflow: TextOverflow.clip,
-                                      style: const TextStyle(
-                                          fontWeight: FontWeight.w800),
-                                    ),
-                            ],
-                          )
-                        : Container(),
                   ],
                 ),
                 trailing: Container(),

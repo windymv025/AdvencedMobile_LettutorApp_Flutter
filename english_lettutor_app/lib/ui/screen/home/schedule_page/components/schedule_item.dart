@@ -18,9 +18,8 @@ class ScheduleItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isDark = Theme.of(context).brightness == Brightness.dark;
-    TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
     ScheduleDTO scheduleDTO = Provider.of<ScheduleDTO>(context);
-    Teacher teacher = teacherDTO.getTeacher("schedule.iDTeacher");
+    Teacher? teacher = schedule.teacher;
 
     return Container(
       decoration: BoxDecoration(
@@ -38,11 +37,11 @@ class ScheduleItem extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             MyListTile(
-                avatar: teacher.uriImage != null
-                    ? AssetImage(teacher.uriImage!)
+                avatar: teacher?.uriImage != null
+                    ? NetworkImage(teacher!.uriImage!)
                     : null,
                 title: Text(
-                  teacher.name!,
+                  teacher!.name.toString(),
                   style: titleStyle,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,

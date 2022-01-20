@@ -1,16 +1,23 @@
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
+import 'package:english_lettutor_app/ui/screen/home/schedule_page/components/schedule_item.dart';
 import 'package:flutter/material.dart';
 
 class Schedule {
-  late int iDTeacher;
-  late int? iDStudent;
-  late DateTimeRange time;
+  String? iDTeacher;
+  String? iDStudent;
+  String? scheduleDetailId;
+  DateTimeRange time;
+  Teacher? teacher;
+  String? tutorMeetingLink;
+  String? studentMeetingLink;
 
-  Schedule({required this.iDTeacher, required this.time, this.iDStudent});
-
-  Schedule.getDefault() {
-    iDTeacher = 1;
-    iDStudent = 1;
-    time = DateTimeRange(
-        start: DateTime(2021, 10, 20, 15), end: DateTime(2021, 10, 20, 15, 35));
-  }
+  Schedule({
+    this.iDTeacher,
+    required this.time,
+    this.iDStudent,
+    this.scheduleDetailId,
+    this.teacher,
+    this.studentMeetingLink,
+    this.tutorMeetingLink,
+  });
 }

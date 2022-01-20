@@ -17,55 +17,61 @@ class _ScheduleBodyState extends State<ScheduleBody> {
   @override
   Widget build(BuildContext context) {
     return Consumer<ScheduleDTO>(builder: (context, scheduleDTO, _) {
-      return CustomScrollView(
-        slivers: [
-          SliverList(
-              delegate: SliverChildListDelegate([
-            UpcomingLessionSearch(
-              schedule: scheduleDTO.getUpcomingLessionSchedule(),
+      return RefreshIndicator(
+        onRefresh: () async {
+          await scheduleDTO.loadScheduleData();
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverList(
+                delegate: SliverChildListDelegate([
+              UpcomingLessionSearch(
+                schedule: scheduleDTO.getUpcomingLessionSchedule(),
+              ),
+            ])),
+            SliverPadding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 5.0, vertical: 20),
+              sliver:
+                  CustomGridViewSchedule(items: scheduleDTO.getScheduleByDay()),
             ),
-          ])),
-          SliverPadding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 20),
-            sliver:
-                CustomGridViewSchedule(items: scheduleDTO.getScheduleByDay()),
-          ),
-          SliverList(
-            delegate: SliverChildListDelegate([
-              scheduleDTO.totalPage == 0
-                  ? Container()
-                  : Container(
-                      margin: const EdgeInsets.only(
-                          bottom: 20, left: 15, right: 15),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          scheduleDTO.totalPage == 1
-                              ? Container()
-                              : PageButton(
-                                  onPressed: () {
-                                    scheduleDTO.prevPage();
-                                  },
-                                  text: '<'),
-                          PageButton(
-                              onPressed: () {
-                                scheduleDTO.prevPage();
-                              },
-                              text:
-                                  '${scheduleDTO.currentPage} -- ${scheduleDTO.totalPage}'),
-                          scheduleDTO.totalPage == 1
-                              ? Container()
-                              : PageButton(
-                                  onPressed: () {
-                                    scheduleDTO.nextPage();
-                                  },
-                                  text: '>')
-                        ],
-                      ))
-            ]),
-          )
-        ],
+            SliverList(
+              delegate: SliverChildListDelegate([
+                scheduleDTO.totalPage == 0
+                    ? Container()
+                    : Container(
+                        margin: const EdgeInsets.only(
+                            bottom: 20, left: 15, right: 15),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            scheduleDTO.totalPage == 1
+                                ? Container()
+                                : PageButton(
+                                    onPressed: () {
+                                      scheduleDTO.prevPage();
+                                    },
+                                    text: '<'),
+                            PageButton(
+                                onPressed: () {
+                                  // scheduleDTO.prevPage();
+                                },
+                                text:
+                                    '${scheduleDTO.currentPage} -- ${scheduleDTO.totalPage}'),
+                            scheduleDTO.totalPage == 1
+                                ? Container()
+                                : PageButton(
+                                    onPressed: () {
+                                      scheduleDTO.nextPage();
+                                    },
+                                    text: '>')
+                          ],
+                        ))
+              ]),
+            )
+          ],
+        ),
       );
     });
   }

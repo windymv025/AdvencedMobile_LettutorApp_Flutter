@@ -2,7 +2,10 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/home_state.dart';
+import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
+import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/models/teacher/schedule_history.dart';
 import 'package:english_lettutor_app/ui/drawer/my_drawer.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -27,6 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
     0: const HomePage(),
   };
   late TeacherDTO teacherDTO;
+  @override
+  void initState() {
+    super.initState();
+    context.read<ScheduleDTO>().init();
+    context.read<ScheduleHistoryDTO>().init();
+  }
 
   @override
   void didChangeDependencies() {

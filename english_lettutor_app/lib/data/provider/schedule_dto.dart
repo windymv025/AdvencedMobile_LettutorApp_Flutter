@@ -1,8 +1,29 @@
+import 'package:english_lettutor_app/data/network/apis/schedule/schedule-api.dart';
 import 'package:english_lettutor_app/data/provider/base_dto.dart';
+import 'package:english_lettutor_app/models/page/paging_info.dart';
+import 'package:english_lettutor_app/models/schedule/my-schedule.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:intl/intl.dart';
 
 class ScheduleDTO extends BaseDTO<Schedule> {
+  final ScheduleApi _api = ScheduleApi();
+
+  MyScheduleList myScheduleList = MyScheduleList();
+  void init() {
+    loadScheduleData();
+  }
+
+  Future<void> loadScheduleData() async {
+    var value = await _api.getBookedClassesFull(1);
+    if (value["data"] != null) {
+      myScheduleList = MyScheduleList.fromMap(value["data"]);
+      items = myScheduleList.getScheduleList();
+      pagingInfo = PagingInfo(12, items.length);
+
+      notifyListeners();
+    }
+  }
+
   @override
   void sort() {
     items.sort((a, b) => a.time.start.compareTo(b.time.start));

@@ -22,6 +22,7 @@ class Endpoints {
   // user endpoints
   static const String changePassword = "/auth/change-password";
   static const String userInfo = "/user/info";
+  static const String userAvatar = "/user/uploadAvartar";
 
   // Become Teacher
   static const String becomeATeacher = "/tutor/register";

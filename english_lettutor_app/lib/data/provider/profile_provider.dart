@@ -19,8 +19,17 @@ class ProfileProvider extends ChangeNotifier {
   File? _imageFile;
 
   void updateProfile() {
-    profile = backupProfile;
-    _userApi.updateUserInformation(profile).then((value) {
+    if (_imageFile != null) {
+      _userApi.updateAvatar(_imageFile!).then((value) {
+        if (value["user"] != null) {
+          profile = Profile.fromMap(value["user"]);
+          backupProfile = Profile.fromMap(value["user"]);
+        }
+        _imageFile = null;
+        notifyListeners();
+      });
+    }
+    _userApi.updateUserInformation(backupProfile).then((value) {
       if (value["user"] != null) {
         profile = Profile.fromMap(value["user"]);
         backupProfile = Profile.fromMap(value["user"]);
@@ -77,21 +86,24 @@ class ProfileProvider extends ChangeNotifier {
   List<String> get wantToLearn =>
       profile.learnTopics!.map((e) => e.name).toList();
   set wantToLearn(List<String> value) {
-    backupProfile.learnTopics =
-        kTestPractices.where((e) => value.contains(e.name)).toList();
+    backupProfile.learnTopics!.clear();
+    backupProfile.learnTopics!
+        .addAll(kTestPractices.where((e) => value.contains(e.name)).toList());
     notifyListeners();
   }
 
   List<String> get testPreparations =>
       profile.testPreparations!.map((e) => e.name).toList();
   set testPreparations(List<String> value) {
-    backupProfile.testPreparations =
-        kLearnTopics.where((e) => value.contains(e.name)).toList();
+    backupProfile.testPreparations!.clear();
+    backupProfile.testPreparations!
+        .addAll(kLearnTopics.where((e) => value.contains(e.name)).toList());
     notifyListeners();
   }
 
   File? get imageFile => _imageFile;
   set imageFile(File? value) {
+    _imageFile = value;
     notifyListeners();
   }
 

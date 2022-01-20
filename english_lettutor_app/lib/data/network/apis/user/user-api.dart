@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:english_lettutor_app/data/network/constants/endpoints.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:intl/intl.dart';
@@ -40,6 +43,17 @@ class UserApi {
       "level": user.level,
       "learnTopics": learnTopic,
       "testPreparations": testPreparations,
+    });
+
+    return response;
+  }
+
+  Future<dynamic> updateAvatar(File image) async {
+    final response = await _restClient.post(Endpoints.userAvatar, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${await _restClient.getToken()}'
+    }, body: {
+      "avatar": base64Encode(image.readAsBytesSync())
     });
 
     return response;

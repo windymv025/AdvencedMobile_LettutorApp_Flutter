@@ -35,20 +35,19 @@ class _ProfileFormState extends State<ProfileForm> {
         Provider.of<ProfileProvider>(context, listen: false);
     _selectedSpecialities.addAll(profileProvider.wantToLearn);
     _selectedPreparations.addAll(profileProvider.testPreparations);
-    if (profileProvider.birthday != null) {
-      _birthday.text =
-          DateFormat("yyyy-MM-dd").format(profileProvider.birthday!);
-    }
-    if (profileProvider.country != null) {
-      _country.text = profileProvider.country!;
-    }
-
     countryCode = profileProvider.backupProfile.country;
   }
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ProfileProvider>(builder: (context, profile, _) {
+      if (profile.birthday != null) {
+        _birthday.text = DateFormat("yyyy-MM-dd").format(profile.birthday!);
+      }
+      if (profile.country != null) {
+        _country.text = profile.country!;
+      }
+
       return Form(
         key: _formKey,
         child: Column(
@@ -174,8 +173,7 @@ class _ProfileFormState extends State<ProfileForm> {
               },
               onConfirm: (values) {
                 setState(() {
-                  _selectedPreparations.clear();
-                  _selectedPreparations.addAll(values.cast());
+                  _selectedPreparations = values.cast();
                 });
               },
               onTap: (value) {
@@ -207,8 +205,7 @@ class _ProfileFormState extends State<ProfileForm> {
               },
               onConfirm: (values) {
                 setState(() {
-                  _selectedSpecialities.clear();
-                  _selectedSpecialities.addAll(values.cast());
+                  _selectedSpecialities = values.cast();
                 });
               },
               onTap: (value) {

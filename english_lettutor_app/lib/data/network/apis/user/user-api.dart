@@ -1,9 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:english_lettutor_app/data/network/constants/endpoints.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
 
 import '../../rest_client.dart';
 
@@ -48,14 +48,21 @@ class UserApi {
     return response;
   }
 
-  Future<dynamic> updateAvatar(File image) async {
-    final response = await _restClient.post(Endpoints.userAvatar, headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ${await _restClient.getToken()}'
-    }, body: {
-      "avatar": base64Encode(image.readAsBytesSync())
-    });
+  Future<bool> updateAvatar(File image) async {
+    final request = http.MultipartRequest("POST",
+        Uri.parse("https://" + Endpoints.baseUrl + Endpoints.userAvatar));
 
-    return response;
+    final img = await http.MultipartFile.fromPath("avatar", image.path);
+
+    request.files.add(img);
+    request.headers
+        .addAll({'Authorization': 'Bearer ${await _restClient.getToken()}'});
+
+    http.StreamedResponse response = await request.send();
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

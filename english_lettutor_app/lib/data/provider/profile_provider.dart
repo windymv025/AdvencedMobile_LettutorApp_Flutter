@@ -21,21 +21,24 @@ class ProfileProvider extends ChangeNotifier {
   void updateProfile() {
     if (_imageFile != null) {
       _userApi.updateAvatar(_imageFile!).then((value) {
+        _userApi.updateUserInformation(backupProfile).then((value) {
+          if (value["user"] != null) {
+            profile = Profile.fromMap(value["user"]);
+            backupProfile = Profile.fromMap(value["user"]);
+          }
+          notifyListeners();
+        });
+        _imageFile = null;
+      });
+    } else {
+      _userApi.updateUserInformation(backupProfile).then((value) {
         if (value["user"] != null) {
           profile = Profile.fromMap(value["user"]);
           backupProfile = Profile.fromMap(value["user"]);
         }
-        _imageFile = null;
         notifyListeners();
       });
     }
-    _userApi.updateUserInformation(backupProfile).then((value) {
-      if (value["user"] != null) {
-        profile = Profile.fromMap(value["user"]);
-        backupProfile = Profile.fromMap(value["user"]);
-      }
-      notifyListeners();
-    });
   }
 
   String get id => profile.id!;

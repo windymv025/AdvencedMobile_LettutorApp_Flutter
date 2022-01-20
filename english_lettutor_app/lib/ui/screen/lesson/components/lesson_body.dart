@@ -1,10 +1,15 @@
 import 'dart:async';
+import 'dart:io';
 
-import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:jitsi_meet/jitsi_meet.dart';
+import 'package:provider/src/provider.dart';
 
 class LessonBody extends StatefulWidget {
   const LessonBody({Key? key}) : super(key: key);
@@ -14,12 +19,22 @@ class LessonBody extends StatefulWidget {
 }
 
 class _LessonBodyState extends State<LessonBody> {
+  late ProfileProvider profileProvider;
+  late Schedule schedule;
+  late Timer timer;
+
   @override
   void initState() {
     super.initState();
-    Timer.periodic(const Duration(seconds: 1), (timer) {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       setState(() {});
     });
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
   }
 
   String getUntilTime(DateTime time) {
@@ -38,9 +53,24 @@ class _LessonBodyState extends State<LessonBody> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    Schedule schedule = ModalRoute.of(context)?.settings.arguments as Schedule;
-    String strTimeUntil = getUntilTime(schedule.time.start);
+    profileProvider = context.read();
+    schedule = ModalRoute.of(context)?.settings.arguments as Schedule;
 
+    String strTimeUntil = getUntilTime(schedule.time.start);
+    if (schedule.time.start.millisecondsSinceEpoch <=
+        DateTime.now().millisecondsSinceEpoch) {
+      _joinMeeting();
+
+      timer.cancel();
+    }
+
+    Fluttertoast.showToast(
+        msg:
+            "$strTimeUntil\n ${S.current.until_lesson_starts} (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 2,
+        fontSize: 16.0);
     return Container(
       color: Colors.black,
       child: Center(
@@ -48,8 +78,7 @@ class _LessonBodyState extends State<LessonBody> {
           children: [
             Center(
               child: CircleAvatar(
-                backgroundImage:
-                    const AssetImage(Assets.assetsImagesNoDataFound),
+                backgroundImage: NetworkImage(profileProvider.image!),
                 radius: size.width * 0.25,
               ),
             ),
@@ -72,5 +101,48 @@ class _LessonBodyState extends State<LessonBody> {
         ),
       ),
     );
+  }
+
+  _joinMeeting() async {
+    try {
+      Map<FeatureFlagEnum, bool> featureFlags = {
+        FeatureFlagEnum.WELCOME_PAGE_ENABLED: false,
+      };
+      if (!kIsWeb) {
+        // Here is an example, disabling features for each platform
+        if (Platform.isAndroid) {
+          // Disable ConnectionService usage on Android to avoid issues (see README)
+          featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
+        } else if (Platform.isIOS) {
+          // Disable PIP on iOS as it looks weird
+          featureFlags[FeatureFlagEnum.PIP_ENABLED] = false;
+        }
+      }
+      // featureFlags[FeatureFlagEnum.WELCOME_PAGE_ENABLED] = false;
+      featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
+
+      String? token = schedule.studentMeetingLink?.substring(13);
+      String room = schedule.scheduleDetailId!;
+      String displayName = profileProvider.fullName;
+      String? avatarUrl = profileProvider.image;
+
+      debugPrint(token);
+
+      var options = JitsiMeetingOptions(
+          room: room) // room is Required, spaces will be trimmed
+        // ..serverURL = "https://meet.tutoring.letstudy.io"
+        ..serverURL = "https://meet.lettutor.com"
+        ..userDisplayName = displayName
+        ..userAvatarURL = avatarUrl
+        ..audioOnly = false
+        ..audioMuted = false
+        ..videoMuted = false
+        ..token = token
+        ..featureFlags.addAll(featureFlags);
+
+      await JitsiMeet.joinMeeting(options);
+    } catch (error) {
+      debugPrint("error: $error");
+    }
   }
 }

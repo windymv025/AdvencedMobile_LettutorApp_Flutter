@@ -70,6 +70,9 @@ dependencies:
   #toast
   fluttertoast: ^8.0.8
 
+  #jitsi
+  jitsi_meet: ^4.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

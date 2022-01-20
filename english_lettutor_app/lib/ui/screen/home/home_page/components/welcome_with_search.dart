@@ -62,7 +62,7 @@ class _WelcomeWithSearchState extends State<WelcomeWithSearch> {
                                   ElevatedButton(
                                     style: outlineButtonStyle,
                                     onPressed: () {
-                                      homeState.pageIndex = 3;
+                                      homeState.pageIndex = 2;
                                     },
                                     child: Text(
                                       S.current.booking_now,

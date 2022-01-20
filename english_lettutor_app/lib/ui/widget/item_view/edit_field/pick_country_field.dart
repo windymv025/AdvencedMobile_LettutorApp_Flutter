@@ -9,12 +9,14 @@ class PickCountryField extends StatefulWidget {
       this.controller,
       this.initialValue,
       this.onChanged,
-      this.onSaved})
+      this.onSaved,
+      this.onCountryPressed})
       : super(key: key);
   final TextEditingController? controller;
   final String? initialValue;
   final ValueChanged<String>? onChanged;
   final FormFieldSetter<String>? onSaved;
+  final Function? onCountryPressed;
 
   @override
   _PickCountryFieldState createState() => _PickCountryFieldState();
@@ -49,6 +51,9 @@ class _PickCountryFieldState extends State<PickCountryField> {
     showCountryPicker(
       context: context,
       onSelect: (Country country) {
+        if (widget.onCountryPressed != null) {
+          widget.onCountryPressed!(country.countryCode);
+        }
         String _country = country.name;
         widget.controller?.text = _country;
         _value = _country;

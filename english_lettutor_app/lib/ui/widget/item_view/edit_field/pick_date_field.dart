@@ -71,8 +71,8 @@ class _PickDateFieldState extends State<PickDateField> {
 
     if (newDate == null) return;
     setState(() {
-      widget.controller?.text = DateFormat("dd/MM/yyyy").format(newDate);
-      _value = DateFormat("dd/MM/yyyy").format(newDate);
+      widget.controller?.text = DateFormat("yyyy-MM-dd").format(newDate);
+      _value = DateFormat("yyyy-MM-dd").format(newDate);
     });
   }
 }

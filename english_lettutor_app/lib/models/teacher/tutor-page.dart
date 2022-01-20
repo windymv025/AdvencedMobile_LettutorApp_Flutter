@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 
 class TutorInPage {
@@ -348,7 +349,7 @@ class Tutors {
         uriImage: element.avatar,
         ratings: element.getRating(),
         isFavorite: false,
-        country: element.country!,
+        country: kMapCountry[element.country] ?? "",
         languages: null,
         description: element.bio,
         specialties: element.specialties?.split(","),

@@ -17,7 +17,7 @@ class ScheduleDTO extends BaseDTO<Schedule> {
     var value = await _api.getBookedClassesFull(1);
     if (value["data"] != null) {
       myScheduleList = MyScheduleList.fromMap(value["data"]);
-      items = myScheduleList.getScheduleList();
+      addAll(myScheduleList.getScheduleList());
       pagingInfo = PagingInfo(12, items.length);
 
       notifyListeners();
@@ -65,5 +65,14 @@ class ScheduleDTO extends BaseDTO<Schedule> {
     }
 
     return result;
+  }
+
+  cancelSchedule(String scheduleDetailId) async {
+    var value = await _api.cancelAbookedClass([scheduleDetailId]);
+    if (value["statusCode"] == null) {
+      items.removeWhere(
+          (schedule) => schedule.scheduleDetailId == scheduleDetailId);
+      notifyListeners();
+    }
   }
 }

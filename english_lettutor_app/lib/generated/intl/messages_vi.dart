@@ -61,6 +61,9 @@ class MessageLookup extends MessageLookupByLibrary {
             "Kiểm tra email của bạn để nhận mã OTP"),
         "choose_language":
             MessageLookupByLibrary.simpleMessage("Chọn ngôn ngữ"),
+        "choose_learn_topics": MessageLookupByLibrary.simpleMessage("Môn học"),
+        "choose_test_practices":
+            MessageLookupByLibrary.simpleMessage("Luyện thi"),
         "choose_your_level":
             MessageLookupByLibrary.simpleMessage("Chọn cấp độ của bạn"),
         "complete_profile":
@@ -140,6 +143,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Video giới thiệu bản thân"),
         "invalid_email_or_password": MessageLookupByLibrary.simpleMessage(
             "Tài khoản, mật khẩu không đúng hoặc chưa được kích hoạt"),
+        "just_cancel_before_2_hours": MessageLookupByLibrary.simpleMessage(
+            "Bạn chỉ có thể hủy trước 2 tiếng"),
         "languages": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),
         "languages_speak":
             MessageLookupByLibrary.simpleMessage("Ngôn ngữ bạn nói"),

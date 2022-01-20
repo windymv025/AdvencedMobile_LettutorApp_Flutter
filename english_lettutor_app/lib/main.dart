@@ -57,10 +57,6 @@ class _MyAppState extends State<MyApp> {
 
   void loadData() {
     randomData();
-    courseDTO.addAll(courseList);
-    // teacherDTO.addAll(teacherList);
-    // scheduleDTO.addAll(scheduleList);
-    // scheduleHistoryDTO.addAll(scheduleHistoryList);
   }
 
   @override

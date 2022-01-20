@@ -44,4 +44,6 @@ class Endpoints {
   // Course and Ebook
   static const String getListCoursePagin = "/course";
   static const String getCourseDetailByCourseId = "/course";
+  static const String searchCourse = "/course";
+  static const String contentCategory = "/content-category";
 }

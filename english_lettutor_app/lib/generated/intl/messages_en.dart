@@ -59,6 +59,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Check your email then enter the OTP code below"),
         "choose_language":
             MessageLookupByLibrary.simpleMessage("Choose language"),
+        "choose_learn_topics":
+            MessageLookupByLibrary.simpleMessage("Choose learn topics"),
+        "choose_test_practices":
+            MessageLookupByLibrary.simpleMessage("Choose test practices"),
         "choose_your_level":
             MessageLookupByLibrary.simpleMessage("Choose your level"),
         "complete_profile":
@@ -136,6 +140,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Introduction video"),
         "invalid_email_or_password": MessageLookupByLibrary.simpleMessage(
             "Invalid email or password or account is not activated"),
+        "just_cancel_before_2_hours":
+            MessageLookupByLibrary.simpleMessage("Just cancel before 2 hours"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "languages_speak":
             MessageLookupByLibrary.simpleMessage("Languages I speak"),

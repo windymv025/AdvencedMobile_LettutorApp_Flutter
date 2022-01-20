@@ -27,8 +27,7 @@ class _PDFViewScreenState extends State<PDFViewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String url =
-        'https://cdn.syncfusion.com/content/PDFViewer/flutter-succinctly.pdf';
+    String url = ModalRoute.of(context)?.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         title: _isSearching

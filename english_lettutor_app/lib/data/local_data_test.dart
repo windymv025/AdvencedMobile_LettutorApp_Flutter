@@ -18,11 +18,7 @@ final conversationList = [
   Conversation.getDefault(),
 ];
 
-final courseList = [
-  Course.getDefault(),
-  Course.getDefault1(),
-  Course.getDefault2(),
-];
+final courseList = [];
 
 final List<Schedule> scheduleList = [];
 

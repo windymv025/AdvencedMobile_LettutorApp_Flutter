@@ -17,7 +17,7 @@ class CoursesBody extends StatefulWidget {
 }
 
 class _CoursesBodyState extends State<CoursesBody> {
-  String? _level = "All";
+  String? _level = kAll;
   final _textEditingController = TextEditingController();
 
   @override
@@ -35,6 +35,7 @@ class _CoursesBodyState extends State<CoursesBody> {
               },
               textEditingController: _textEditingController,
             ),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
               child: Text(
@@ -46,20 +47,20 @@ class _CoursesBodyState extends State<CoursesBody> {
             ),
             //Filter
             Container(
-              margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-              child: CustomDropDown(
+                margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                child: CustomDropDown(
                   icon: Icons.format_list_numbered_rounded,
                   onChanged: (newValue) {
                     setState(() {
                       _level = newValue;
-                      courseDTO.getCourseListByLevel(_level!);
+                      courseDTO.getCourseListByLevel(newValue!);
                     });
                   },
                   hint: S.current.choose_your_level,
                   value: _level,
                   title: S.current.mylevel,
-                  items: ["All"] + kLevels),
-            ),
+                  items: kLevels,
+                )),
           ],
         )),
         CustomGridViewCourse(

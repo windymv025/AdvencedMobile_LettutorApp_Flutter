@@ -94,7 +94,16 @@ class ScheduleItem extends StatelessWidget {
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () {
-                      scheduleDTO.remove(schedule);
+                      if (schedule.time.start
+                              .difference(DateTime.now())
+                              .inHours >
+                          2) {
+                        scheduleDTO.cancelSchedule(schedule.scheduleDetailId!);
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(S.current.just_cancel_before_2_hours),
+                        ));
+                      }
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),

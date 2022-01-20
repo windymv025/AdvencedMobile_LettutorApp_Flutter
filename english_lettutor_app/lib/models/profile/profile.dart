@@ -29,7 +29,7 @@ class Profile {
   String? email;
   String? name;
   String? avatar;
-  dynamic country;
+  String? country;
   String? phone;
   List<String>? roles;
   dynamic language;

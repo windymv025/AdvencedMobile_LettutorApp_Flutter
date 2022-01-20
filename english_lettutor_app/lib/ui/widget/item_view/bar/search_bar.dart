@@ -38,7 +38,7 @@ class _SearchBarState extends State<SearchBar> {
         children: <Widget>[
           Expanded(
             child: TextFormField(
-              onChanged: widget.onTextChanged,
+              onFieldSubmitted: widget.onTextChanged,
               controller: widget.textEditingController,
               decoration: InputDecoration(
                 contentPadding:

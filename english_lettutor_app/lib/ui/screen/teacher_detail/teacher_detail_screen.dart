@@ -15,9 +15,23 @@ class _TeacherDetailScreenState extends State<TeacherDetailScreen> {
   Widget build(BuildContext context) {
     Teacher teacher = ModalRoute.of(context)?.settings.arguments as Teacher;
     return Scaffold(
-      appBar: AppBar(),
-      body: TeacherDetailBody(
-        teacher: teacher,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: Stack(
+          children: [
+            TeacherDetailBody(
+              teacher: teacher,
+            ),
+            Align(
+                alignment: Alignment.topLeft,
+                child: IconButton(
+                    icon: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.grey,
+                    ),
+                    onPressed: () => Navigator.of(context).pop())),
+          ],
+        ),
       ),
     );
   }

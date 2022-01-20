@@ -156,5 +156,8 @@
     "pick_time":"Pick time",
     "booking":"Booking",
     "booking_success":"Booking success",
-    "booking_fail":"Booking fail"
+    "booking_fail":"Booking fail",
+    "just_cancel_before_2_hours":"Just cancel before 2 hours",
+    "choose_test_practices":"Choose test practices",
+    "choose_learn_topics":"Choose learn topics"
 }

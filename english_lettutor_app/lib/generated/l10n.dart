@@ -1429,6 +1429,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Just cancel before 2 hours`
+  String get just_cancel_before_2_hours {
+    return Intl.message(
+      'Just cancel before 2 hours',
+      name: 'just_cancel_before_2_hours',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose test practices`
+  String get choose_test_practices {
+    return Intl.message(
+      'Choose test practices',
+      name: 'choose_test_practices',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose learn topics`
+  String get choose_learn_topics {
+    return Intl.message(
+      'Choose learn topics',
+      name: 'choose_learn_topics',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

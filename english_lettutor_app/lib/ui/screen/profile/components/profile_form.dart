@@ -24,16 +24,22 @@ class _ProfileFormState extends State<ProfileForm> {
   final TextEditingController _country = TextEditingController();
   final TextEditingController _birthday = TextEditingController();
   List<String> _selectedSpecialities = [];
+  List<String> _selectedPreparations = [];
+
+  String? countryCode;
 
   @override
   Widget build(BuildContext context) {
     return Consumer<ProfileProvider>(builder: (context, profile, _) {
       if (profile.birthday != null) {
-        _birthday.text = DateFormat("dd/MM/yyyy").format(profile.birthday!);
+        _birthday.text = DateFormat("yyyy-MM-dd").format(profile.birthday!);
       }
       if (profile.country != null) {
         _country.text = profile.country!;
       }
+      _selectedSpecialities = profile.wantToLearn;
+      _selectedPreparations = profile.testPreparations;
+      countryCode = profile.backupProfile.country;
       return Form(
         key: _formKey,
         child: Column(
@@ -110,7 +116,7 @@ class _ProfileFormState extends State<ProfileForm> {
               label: S.current.birthday,
               hint: S.current.select_your_birthday,
               onSaved: (newValue) => newValue != null
-                  ? profile.birthday = DateFormat("dd/MM/yyyy").parse(newValue)
+                  ? profile.birthday = DateFormat("yyyy-MM-dd").parse(newValue)
                   : null,
             ),
             //Country
@@ -119,7 +125,8 @@ class _ProfileFormState extends State<ProfileForm> {
             ),
             PickCountryField(
               controller: _country,
-              onSaved: (newValue) => profile.country = newValue,
+              onSaved: (newValue) => profile.country = countryCode,
+              onCountryPressed: (country) => countryCode = country,
             ),
 
             //My level
@@ -138,16 +145,48 @@ class _ProfileFormState extends State<ProfileForm> {
                   hint: S.current.choose_your_level,
                   value: kMapLevels[profile.backupProfile.level],
                   title: S.current.mylevel,
-                  items: kLevels),
+                  items: kMapLevels.keys.map((e) => kMapLevels[e]!).toList()),
             ),
 
-            //Want to learn
+            //Test practices
             const SizedBox(
               height: 10,
             ),
 
             MultiItemSelectField(
-              items: kSpecialities.sublist(1),
+              items: kLearnTopics.map((e) => e.name).toList(),
+              initialValue: profile.testPreparations,
+              validator: (value) {
+                if (value!.isEmpty || _selectedSpecialities.isEmpty) {
+                  return S.current.err_choose_short;
+                }
+
+                return null;
+              },
+              onConfirm: (values) {
+                setState(() {
+                  _selectedPreparations = values.cast();
+                });
+              },
+              onTap: (value) {
+                setState(() {
+                  if (_selectedPreparations.contains(value)) {
+                    _selectedPreparations.remove(value);
+                  }
+                });
+              },
+              icon: Icons.book_rounded,
+              buttonText: S.current.choose_test_practices,
+              title: S.current.choose_test_practices,
+            ),
+
+            //learn topics
+            const SizedBox(
+              height: 10,
+            ),
+
+            MultiItemSelectField(
+              items: kTestPractices.map((e) => e.name).toList(),
               initialValue: profile.wantToLearn,
               validator: (value) {
                 if (value!.isEmpty || _selectedSpecialities.isEmpty) {
@@ -169,8 +208,8 @@ class _ProfileFormState extends State<ProfileForm> {
                 });
               },
               icon: Icons.book_rounded,
-              buttonText: S.current.want_to_learn,
-              title: S.current.Choose_Specialities,
+              buttonText: S.current.choose_learn_topics,
+              title: S.current.choose_learn_topics,
             ),
 
             //save
@@ -184,8 +223,8 @@ class _ProfileFormState extends State<ProfileForm> {
                 press: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    profile.backupProfile.learnTopics!.clear();
-                    profile.wantToLearn.addAll(_selectedSpecialities);
+                    profile.wantToLearn = _selectedSpecialities;
+                    profile.testPreparations = _selectedPreparations;
                     widget.onSubmit();
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text(S.current.Profile_updated),

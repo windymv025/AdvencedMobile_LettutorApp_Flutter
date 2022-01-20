@@ -63,7 +63,9 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
           ),
 
           //Languages
-          TitleAndTags(tags: teacher!.languages, title: S.current.languages),
+          TitleAndTags(
+              tags: teacher!.languages!.map((e) => kMapLanguages[e]).toList(),
+              title: S.current.languages),
 
           //Education
           TitleDetail(title: S.current.education),

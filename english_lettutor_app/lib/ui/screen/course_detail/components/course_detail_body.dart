@@ -1,5 +1,6 @@
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/models/course/course-models.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/pdf_viewer/pdf_viewer_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/title_detail.dart';
@@ -125,15 +126,16 @@ class CourseDetailBody extends StatelessWidget {
     );
   }
 
-  List<Widget> buildListTopics(BuildContext context, List<String> topics) {
+  List<Widget> buildListTopics(BuildContext context, List<Topic> topics) {
     List<Widget> result = [];
     for (var i = 0; i < topics.length; i++) {
       result.add(
         InkWell(
             onTap: () {
-              Navigator.pushNamed(context, PDFViewScreen.routeName);
+              Navigator.pushNamed(context, PDFViewScreen.routeName,
+                  arguments: topics[i].nameFile);
             },
-            child: TitleDetail(title: "${i + 1} ${topics[i]}")),
+            child: TitleDetail(title: "${i + 1} ${topics[i].name}")),
       );
     }
 

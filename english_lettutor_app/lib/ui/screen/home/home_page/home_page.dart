@@ -37,8 +37,7 @@ class _HomePageState extends State<HomePage> {
             //your teacher
             TitleAndButton(
               onPressed: () {
-                // Navigator.pushNamed(context, CoursesScreen.routeName);
-                homeState.pageIndex = 4;
+                homeState.pageIndex = 3;
               },
               title: S.current.Recommended_Course,
               textButton: S.current.More,
@@ -51,8 +50,7 @@ class _HomePageState extends State<HomePage> {
             // see all
             TitleAndButton(
               onPressed: () {
-                // Navigator.pushNamed(context, TeachersScreen.routeName);
-                homeState.pageIndex = 3;
+                homeState.pageIndex = 2;
               },
               title: S.current.Recommended_Teacher,
               textButton: S.current.More,

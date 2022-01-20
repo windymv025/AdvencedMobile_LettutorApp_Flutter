@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
 import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
@@ -48,7 +49,7 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
                 style: titleStyle,
                 overflow: TextOverflow.clip,
               ),
-              Text(widget.teacher.country,
+              Text(kMapCountry[widget.teacher.country].toString(),
                   style: const TextStyle(
                       fontSize: 14, fontStyle: FontStyle.italic)),
             ],

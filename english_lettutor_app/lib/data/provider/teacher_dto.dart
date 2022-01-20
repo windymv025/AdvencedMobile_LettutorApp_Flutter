@@ -232,4 +232,9 @@ class TeacherDTO extends BaseDTO<Teacher> {
     }
     return true;
   }
+
+  void clearSchedule() {
+    _schedule.clear();
+    _teacherSchedule.clear();
+  }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/data/network/apis/authentication/auth-api.dart';
+import 'package:english_lettutor_app/data/network/apis/user/user-api.dart';
 import 'package:english_lettutor_app/data/sharedpref/shared_preference_helper.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,13 +13,20 @@ class ProfileProvider extends ChangeNotifier {
   Profile profile = Profile();
   Profile backupProfile = Profile();
   final AuthApi _authApi = AuthApi();
+  final UserApi _userApi = UserApi();
   String? emailSave, passwordSave;
 
   File? _imageFile;
 
   void updateProfile() {
-    // profile.fromJson(backupProfile.toJson());
-    notifyListeners();
+    profile = backupProfile;
+    _userApi.updateUserInformation(profile).then((value) {
+      if (value["user"] != null) {
+        profile = Profile.fromMap(value["user"]);
+        backupProfile = Profile.fromMap(value["user"]);
+      }
+      notifyListeners();
+    });
   }
 
   String get id => profile.id!;
@@ -41,7 +49,7 @@ class ProfileProvider extends ChangeNotifier {
 
   String get email => profile.email!;
 
-  String? get country => profile.country;
+  String? get country => kMapCountry[profile.country] ?? "";
   set country(String? value) {
     backupProfile.country = value;
     notifyListeners();
@@ -61,7 +69,8 @@ class ProfileProvider extends ChangeNotifier {
 
   String? get level => profile.level;
   set level(String? value) {
-    backupProfile.level = value;
+    backupProfile.level =
+        kMapLevels.entries.firstWhere((element) => element.value == value).key;
     notifyListeners();
   }
 
@@ -69,15 +78,15 @@ class ProfileProvider extends ChangeNotifier {
       profile.learnTopics!.map((e) => e.name).toList();
   set wantToLearn(List<String> value) {
     backupProfile.learnTopics =
-        kLearnTopics.where((e) => value.contains(e.name)).toList();
+        kTestPractices.where((e) => value.contains(e.name)).toList();
     notifyListeners();
   }
 
   List<String> get testPreparations =>
       profile.testPreparations!.map((e) => e.name).toList();
   set testPreparations(List<String> value) {
-    backupProfile.learnTopics =
-        kTestPractices.where((e) => value.contains(e.name)).toList();
+    backupProfile.testPreparations =
+        kLearnTopics.where((e) => value.contains(e.name)).toList();
     notifyListeners();
   }
 
@@ -91,7 +100,6 @@ class ProfileProvider extends ChangeNotifier {
     final result = await _authApi.login(email, password);
     if (result['user'] != null) {
       profile = Profile.fromMap(result["user"]);
-      // copyProfile(profile);
       backupProfile = Profile.fromMap(result["user"]);
       saveTokens(result['tokens']!);
       return true;
@@ -128,7 +136,6 @@ class ProfileProvider extends ChangeNotifier {
     final result = await _authApi.loginByGoogle(token);
     if (result['user'] != null) {
       profile = Profile.fromMap(result["user"]);
-      // copyProfile(profile);
       backupProfile = Profile.fromMap(result["user"]);
       saveTokens(result['tokens']!);
       return true;

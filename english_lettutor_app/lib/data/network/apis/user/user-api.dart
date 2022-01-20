@@ -1,14 +1,19 @@
 import 'package:english_lettutor_app/data/network/constants/endpoints.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
+import 'package:intl/intl.dart';
 
 import '../../rest_client.dart';
 
 class UserApi {
   final RestClient _restClient = RestClient.instance;
   Future<dynamic> changePassword(String password, String newPassword) async {
-    final response = await _restClient.post(Endpoints.changePassword,
-        headers: {'Authorization': 'Bearer ${await _restClient.getToken()}'},
-        body: {"password": password, "newPassword": newPassword});
+    final response = await _restClient.post(Endpoints.changePassword, headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${await _restClient.getToken()}'
+    }, body: {
+      "password": password,
+      "newPassword": newPassword
+    });
 
     return response;
   }
@@ -21,16 +26,20 @@ class UserApi {
   }
 
   Future<dynamic> updateUserInformation(Profile user) async {
-    final response = await _restClient.post(Endpoints.changePassword, headers: {
+    var birthDay = DateFormat('yyyy-MM-dd').format(user.birthday!);
+    var learnTopic = user.learnTopics?.map((e) => e.id).toList();
+    var testPreparations = user.testPreparations?.map((e) => e.id).toList();
+    final response = await _restClient.put(Endpoints.userInfo, headers: {
+      'Content-Type': 'application/json',
       'Authorization': 'Bearer ${await _restClient.getToken()}'
     }, body: {
       "name": user.name,
       "country": user.country,
       "phone": user.phone,
-      "birthday": user.birthday,
+      "birthday": birthDay,
       "level": user.level,
-      "learnTopics": user.learnTopics ?? [],
-      "testPreparations": user.testPreparations ?? [],
+      "learnTopics": learnTopic,
+      "testPreparations": testPreparations,
     });
 
     return response;

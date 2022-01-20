@@ -96,8 +96,6 @@ class CourseItem extends StatelessWidget {
         Assets.assetsImagesCourseImage,
       );
     }
-    return Image.asset(
-      ulr,
-    );
+    return Image.network(ulr);
   }
 }

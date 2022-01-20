@@ -30,6 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
     0: const HomePage(),
   };
   late TeacherDTO teacherDTO;
+  late CourseDTO courseDTO;
   @override
   void initState() {
     super.initState();
@@ -41,7 +42,10 @@ class _HomeScreenState extends State<HomeScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     teacherDTO = Provider.of<TeacherDTO>(context);
+    courseDTO = Provider.of<CourseDTO>(context);
+
     teacherDTO.init();
+    courseDTO.init();
   }
 
   @override
@@ -49,7 +53,6 @@ class _HomeScreenState extends State<HomeScreen> {
     bool _isDark = Theme.of(context).brightness == Brightness.dark;
     HomeState homeState = Provider.of<HomeState>(context);
     TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
-    CourseDTO courseDTO = Provider.of<CourseDTO>(context);
 
     return Scaffold(
       appBar: CustomAppBar(
@@ -97,27 +100,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void loadPage(int index) {
-    setState(() {
-      if (_children[index] == null) {
-        switch (index) {
-          case 1:
-            _children[1] = const ScheduleBody();
-            break;
-          case 2:
-            _children[2] = const TeacherPage();
-            break;
-          case 3:
-            _children[3] = const CoursesBody();
-            break;
-          default:
-            break;
-        }
+    if (_children[index] == null) {
+      switch (index) {
+        case 1:
+          _children[1] = const ScheduleBody();
+          break;
+        case 2:
+          _children[2] = const TeacherPage();
+          break;
+        case 3:
+          _children[3] = const CoursesBody();
+          break;
+        default:
+          break;
       }
-    });
+    }
   }
 
   Widget getPage(int index) {
-    loadPage(index);
+    setState(() {
+      loadPage(index);
+    });
     return _children[index]!;
   }
 }

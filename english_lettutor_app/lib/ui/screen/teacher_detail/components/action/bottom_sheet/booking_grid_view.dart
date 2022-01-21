@@ -7,35 +7,69 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:provider/provider.dart';
 
-class BookingGridView extends StatelessWidget {
+class BookingGridView extends StatefulWidget {
   static const typeDate = "dd-MM-yyyy";
   static const typeTime = "HH:mm";
   const BookingGridView(
       {Key? key,
       required this.size,
-      required this.items,
+      required this.teacherId,
       this.typeDateTime = typeDate})
       : super(key: key);
 
-  final List<String>? items;
+  final String teacherId;
   final Size size;
   final String typeDateTime;
 
   @override
-  Widget build(BuildContext context) {
-    BoxConstraints dimens =
-        BoxConstraints(maxHeight: size.height, maxWidth: size.width);
-    int columnRatio = getColumRatio(context, dimens);
+  _BookingGridViewState createState() => _BookingGridViewState();
+}
 
-    if (items == null || items!.isEmpty) {
+class _BookingGridViewState extends State<BookingGridView> {
+  bool isLoading = true;
+  late TeacherDTO teacherDTO;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    teacherDTO = Provider.of<TeacherDTO>(context);
+    teacherDTO.loadScheduleTeacher(widget.teacherId).then((value) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (isLoading) {
+      return SliverList(
+        delegate: SliverChildListDelegate([
+          SizedBox(
+              height: widget.size.height * 0.5,
+              width: widget.size.width,
+              child: Center(
+                child: CircularProgressIndicator(
+                  valueColor: const AlwaysStoppedAnimation(kMainBlueColor),
+                  backgroundColor: Colors.grey[200],
+                ),
+              ))
+        ]),
+      );
+    }
+
+    BoxConstraints dimens = BoxConstraints(
+        maxHeight: widget.size.height, maxWidth: widget.size.width);
+    int columnRatio = getColumRatio(context, dimens);
+    var items = teacherDTO.getFreeDate(widget.teacherId);
+
+    if (items.isEmpty) {
       return SliverList(
         delegate: SliverChildListDelegate([
           const NoDataPage(),
         ]),
       );
     }
-
-    TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context);
 
     return SliverStaggeredGrid.countBuilder(
         crossAxisCount: 12,
@@ -46,18 +80,18 @@ class BookingGridView extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 10),
                   child: Text(
-                    items![index],
+                    items[index],
                     style: const TextStyle(fontSize: textSizeTitle),
                   ),
                 ),
                 onPressed: () {
                   showTimeBottomSheet(
-                      context, teacherDTO.getFreeTime(items![index]));
+                      context, teacherDTO.getFreeTime(items[index]));
                 },
                 style: outlineButtonStyle,
               ),
             ),
-        itemCount: items!.length);
+        itemCount: items.length);
   }
 
   int getColumRatio(context, dimens) {

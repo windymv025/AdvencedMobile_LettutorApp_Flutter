@@ -1,6 +1,10 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/data/provider/course_dto.dart';
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
+import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
+import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/screen/home/home_screen.dart';
@@ -39,6 +43,13 @@ class _SignInFormState extends State<SignInForm> {
         errors.remove(error);
       });
     }
+  }
+
+  void initData() {
+    Provider.of<ScheduleDTO>(context, listen: false).init();
+    Provider.of<TeacherDTO>(context, listen: false).init();
+    Provider.of<ScheduleHistoryDTO>(context, listen: false).init();
+    Provider.of<CourseDTO>(context, listen: false).init();
   }
 
   @override
@@ -99,6 +110,7 @@ class _SignInFormState extends State<SignInForm> {
                       KeyboardUtil.hideKeyboard(context);
                       profile.signIn(email!, password!).then((value) {
                         if (value) {
+                          initData();
                           Navigator.pushNamedAndRemoveUntil(
                               context, HomeScreen.routeName, (route) => false);
                         } else {

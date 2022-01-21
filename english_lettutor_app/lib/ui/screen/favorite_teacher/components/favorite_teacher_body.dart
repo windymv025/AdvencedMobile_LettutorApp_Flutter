@@ -16,13 +16,18 @@ class _FavoriteTeacherBodyState extends State<FavoriteTeacherBody> {
     final TeacherDTO teacherDTO =
         Provider.of<TeacherDTO>(context, listen: true);
     Size size = MediaQuery.of(context).size;
-    return CustomScrollView(
-      slivers: [
-        CustomGridView(
-          size: size,
-          items: teacherDTO.getFavoriteTeachers(),
-        ),
-      ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        teacherDTO.init();
+      },
+      child: CustomScrollView(
+        slivers: [
+          CustomGridView(
+            size: size,
+            items: teacherDTO.getFavoriteTeachers(),
+          ),
+        ],
+      ),
     );
   }
 }

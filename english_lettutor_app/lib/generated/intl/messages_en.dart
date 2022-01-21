@@ -149,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "let_start": MessageLookupByLibrary.simpleMessage("Let\'s Start!"),
         "light": MessageLookupByLibrary.simpleMessage("Light"),
         "list_topics": MessageLookupByLibrary.simpleMessage("List Topics"),
+        "login_failed": MessageLookupByLibrary.simpleMessage("Login failed"),
         "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "my_specialties_are":
             MessageLookupByLibrary.simpleMessage("My specialties are"),

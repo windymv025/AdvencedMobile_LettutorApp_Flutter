@@ -17,23 +17,28 @@ class _ScheduleHistoryBodyState extends State<ScheduleHistoryBody> {
     Size size = MediaQuery.of(context).size;
     ScheduleHistoryDTO scheduleHistoryDTO = context.watch<ScheduleHistoryDTO>();
 
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-            delegate: SliverChildListDelegate([
-          const SearchBarTitle(),
-          const SizedBox(
-            height: 20,
-          ),
-        ])),
-        CustomGridViewHistory(size: size, items: scheduleHistoryDTO.items),
-        SliverList(
-            delegate: SliverChildListDelegate([
-          const SizedBox(
-            height: 30,
-          ),
-        ])),
-      ],
+    return RefreshIndicator(
+      onRefresh: () async {
+        await scheduleHistoryDTO.init();
+      },
+      child: CustomScrollView(
+        slivers: [
+          SliverList(
+              delegate: SliverChildListDelegate([
+            const SearchBarTitle(),
+            const SizedBox(
+              height: 20,
+            ),
+          ])),
+          CustomGridViewHistory(size: size, items: scheduleHistoryDTO.items),
+          SliverList(
+              delegate: SliverChildListDelegate([
+            const SizedBox(
+              height: 30,
+            ),
+          ])),
+        ],
+      ),
     );
   }
 }

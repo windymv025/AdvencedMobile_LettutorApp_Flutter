@@ -9,8 +9,9 @@ class ScheduleHistoryDTO extends BaseDTO<Schedule> {
   final ScheduleApi _api = ScheduleApi();
 
   MyScheduleList myScheduleList = MyScheduleList();
-  void init() {
-    loadScheduleData();
+  init() async {
+    await loadScheduleData();
+    clearSearch();
   }
 
   Future<void> loadScheduleData() async {

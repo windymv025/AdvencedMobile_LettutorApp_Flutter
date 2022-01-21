@@ -1,13 +1,16 @@
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/schedule/schedule-teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/bottom_sheet/booking-time-gridview.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/components/action/bottom_sheet/booking_grid_view.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void showDateTimeBottomSheet(BuildContext context, List<String>? items,
+void showDateTimeBottomSheet(BuildContext context, String id,
     [String typeDateTime = BookingGridView.typeDate]) {
   Size size = MediaQuery.of(context).size;
+
   showModalBottomSheet(
     context: context,
     builder: (context) {
@@ -26,7 +29,7 @@ void showDateTimeBottomSheet(BuildContext context, List<String>? items,
               ),
               BookingGridView(
                 size: size,
-                items: items,
+                teacherId: id,
                 typeDateTime: typeDateTime,
               )
             ],

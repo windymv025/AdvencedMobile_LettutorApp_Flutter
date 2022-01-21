@@ -36,8 +36,7 @@ class _TeacherDetailActionState extends State<TeacherDetailAction> {
               : DefaultButton(
                   text: S.current.booking,
                   press: () {
-                    showDateTimeBottomSheet(
-                        context, provider.getFreeDate(widget.teacher.id));
+                    showDateTimeBottomSheet(context, widget.teacher.id);
                   },
                 ),
         ),

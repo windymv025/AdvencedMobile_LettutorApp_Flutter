@@ -29,6 +29,7 @@ const kHeightMinDefault = 540;
 
 const kStringDarkTheme = "Dark";
 const kStringLightTheme = "Light";
+const kStringSystemTheme = "System";
 final kThemes = [kStringDarkTheme, kStringLightTheme];
 
 const kLevels = [

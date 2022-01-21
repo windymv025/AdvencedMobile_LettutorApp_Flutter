@@ -24,83 +24,88 @@ class _CoursesBodyState extends State<CoursesBody> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     final CourseDTO courseDTO = context.watch<CourseDTO>();
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-            delegate: SliverChildListDelegate(
-          [
-            SearchBarTitle(
-              onTextChanged: (value) {
-                courseDTO.search(value);
-              },
-              textEditingController: _textEditingController,
-            ),
-            const SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
-              child: Text(
-                S.current.filter_courses,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: titleStyle,
+    return RefreshIndicator(
+      onRefresh: () async {
+        await courseDTO.init();
+      },
+      child: CustomScrollView(
+        slivers: [
+          SliverList(
+              delegate: SliverChildListDelegate(
+            [
+              SearchBarTitle(
+                onTextChanged: (value) {
+                  courseDTO.search(value);
+                },
+                textEditingController: _textEditingController,
               ),
-            ),
-            //Filter
-            Container(
-                margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
-                child: CustomDropDown(
-                  icon: Icons.format_list_numbered_rounded,
-                  onChanged: (newValue) {
-                    setState(() {
-                      _level = newValue;
-                      courseDTO.getCourseListByLevel(newValue!);
-                    });
-                  },
-                  hint: S.current.choose_your_level,
-                  value: _level,
-                  title: S.current.mylevel,
-                  items: kLevels,
-                )),
-          ],
-        )),
-        CustomGridViewCourse(
-            size: size, items: courseDTO.getItemInCurrentPage()),
-        SliverList(
-          delegate: SliverChildListDelegate([
-            courseDTO.totalPage == 0
-                ? Container()
-                : Container(
-                    margin:
-                        const EdgeInsets.only(bottom: 20, left: 15, right: 15),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        courseDTO.totalPage == 1
-                            ? Container()
-                            : PageButton(
-                                onPressed: () {
-                                  courseDTO.prevPage();
-                                },
-                                text: '<'),
-                        PageButton(
-                            onPressed: () {
-                              courseDTO.prevPage();
-                            },
-                            text:
-                                '${courseDTO.currentPage} -- ${courseDTO.totalPage}'),
-                        courseDTO.totalPage == 1
-                            ? Container()
-                            : PageButton(
-                                onPressed: () {
-                                  courseDTO.nextPage();
-                                },
-                                text: '>')
-                      ],
-                    ))
-          ]),
-        )
-      ],
+              const SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+                child: Text(
+                  S.current.filter_courses,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: titleStyle,
+                ),
+              ),
+              //Filter
+              Container(
+                  margin: const EdgeInsets.fromLTRB(15, 0, 15, 15),
+                  child: CustomDropDown(
+                    icon: Icons.format_list_numbered_rounded,
+                    onChanged: (newValue) {
+                      setState(() {
+                        _level = newValue;
+                        courseDTO.getCourseListByLevel(newValue!);
+                      });
+                    },
+                    hint: S.current.choose_your_level,
+                    value: _level,
+                    title: S.current.mylevel,
+                    items: kLevels,
+                  )),
+            ],
+          )),
+          CustomGridViewCourse(
+              size: size, items: courseDTO.getItemInCurrentPage()),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              courseDTO.totalPage == 0
+                  ? Container()
+                  : Container(
+                      margin: const EdgeInsets.only(
+                          bottom: 20, left: 15, right: 15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          courseDTO.totalPage == 1
+                              ? Container()
+                              : PageButton(
+                                  onPressed: () {
+                                    courseDTO.prevPage();
+                                  },
+                                  text: '<'),
+                          PageButton(
+                              onPressed: () {
+                                courseDTO.prevPage();
+                              },
+                              text:
+                                  '${courseDTO.currentPage} -- ${courseDTO.totalPage}'),
+                          courseDTO.totalPage == 1
+                              ? Container()
+                              : PageButton(
+                                  onPressed: () {
+                                    courseDTO.nextPage();
+                                  },
+                                  text: '>')
+                        ],
+                      ))
+            ]),
+          )
+        ],
+      ),
     );
   }
 }

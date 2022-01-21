@@ -152,6 +152,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "let_start": MessageLookupByLibrary.simpleMessage("Bắt đầu!"),
         "light": MessageLookupByLibrary.simpleMessage("Sáng"),
         "list_topics": MessageLookupByLibrary.simpleMessage("Danh sách chủ đề"),
+        "login_failed":
+            MessageLookupByLibrary.simpleMessage("Đăng nhập thất bại"),
         "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "my_specialties_are":
             MessageLookupByLibrary.simpleMessage("Chuyên môn của tôi"),

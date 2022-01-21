@@ -27,11 +27,8 @@ class _TeacherDetailBodyState extends State<TeacherDetailBody> {
     super.initState();
     Teacher.loadTeacherDetail(widget.teacher.id).then((value) {
       teacher = value;
-      TeacherDTO teacherDTO = Provider.of<TeacherDTO>(context, listen: false);
-      teacherDTO.loadScheduleTeacher(teacher!.id).then((value) {
-        setState(() {
-          isLoading = false;
-        });
+      setState(() {
+        isLoading = false;
       });
     });
   }

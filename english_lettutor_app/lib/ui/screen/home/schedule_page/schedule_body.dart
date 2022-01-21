@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
+import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/page_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,7 @@ class _ScheduleBodyState extends State<ScheduleBody> {
       return RefreshIndicator(
         onRefresh: () async {
           await scheduleDTO.loadScheduleData();
+          await Provider.of<ScheduleHistoryDTO>(context, listen: false).init();
         },
         child: CustomScrollView(
           slivers: [

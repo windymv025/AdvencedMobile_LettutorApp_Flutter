@@ -1459,6 +1459,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Login failed`
+  String get login_failed {
+    return Intl.message(
+      'Login failed',
+      name: 'login_failed',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

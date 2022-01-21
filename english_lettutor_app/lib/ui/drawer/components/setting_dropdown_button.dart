@@ -20,12 +20,13 @@ class SettingLanguageDropdownButton extends StatefulWidget {
 class _SettingLanguageDropdownButtonState
     extends State<SettingLanguageDropdownButton> {
   String _selectedLanguage = 'English';
+
   @override
   Widget build(BuildContext context) {
     final LanguageProfile languageProfile =
         Provider.of<LanguageProfile>(context);
 
-    if (languageProfile.locale.languageCode == LanguageProfile.codeEN) {
+    if (languageProfile.languageCode == LanguageProfile.codeEN) {
       _selectedLanguage = 'English';
     } else {
       _selectedLanguage = "Tiếng Việt";
@@ -98,7 +99,7 @@ class _SettingThemeDropdownButtonState
             _selectedTheme = value as String;
             if (value == kStringLightTheme) {
               themeModel.setThemeLight();
-            } else {
+            } else if (value == kStringDarkTheme) {
               themeModel.setThemeDark();
             }
           });

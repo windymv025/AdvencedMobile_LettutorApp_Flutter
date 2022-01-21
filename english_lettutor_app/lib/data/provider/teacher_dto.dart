@@ -23,9 +23,8 @@ class TeacherDTO extends BaseDTO<Teacher> {
   String keySearch = "";
 
   void init() {
-    if (keySearch.isEmpty && _specialities.isEmpty) {
-      loadTutorsInPage(1);
-    }
+    loadTutorsInPage(1);
+    clearSearch();
   }
 
   List<Teacher> getRecommendedTeachers() {

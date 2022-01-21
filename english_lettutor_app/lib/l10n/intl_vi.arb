@@ -160,5 +160,6 @@
     "booking_fail":"Đặt lịch thất bại",
     "just_cancel_before_2_hours":"Bạn chỉ có thể hủy trước 2 tiếng",
     "choose_test_practices":"Luyện thi",
-    "choose_learn_topics":"Môn học"
+    "choose_learn_topics":"Môn học",
+    "login_failed":"Đăng nhập thất bại"
 }

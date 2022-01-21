@@ -11,8 +11,9 @@ import 'base_dto.dart';
 class CourseDTO extends BaseDTO<Course> {
   final CourseApi _courseApi = CourseApi();
 
-  void init() {
-    loadCourse();
+  init() async {
+    await loadCourse();
+    clearSearch();
   }
 
   Future loadCourse() async {

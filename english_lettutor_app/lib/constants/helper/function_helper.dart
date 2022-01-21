@@ -4,7 +4,6 @@ import 'dart:io';
 
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

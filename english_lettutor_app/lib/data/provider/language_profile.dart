@@ -7,12 +7,12 @@ class LanguageProfile extends ChangeNotifier {
   static const String codeEN = 'en';
   final SharedPreferenceHelper _prefHelper = SharedPreferenceHelper.instance;
   Locale locale = const Locale(codeEN);
-
+  String get languageCode => locale.languageCode;
   LanguageProfile() {
     _loadlanguage();
   }
 
-  void _loadlanguage() async {
+  void _loadlanguage() {
     if (_prefHelper.currentLanguage == null) return;
     if (_prefHelper.currentLanguage == codeVN) {
       locale = const Locale(codeVN);

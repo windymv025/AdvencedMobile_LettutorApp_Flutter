@@ -29,23 +29,12 @@ class _HomeScreenState extends State<HomeScreen> {
   static final Map<int, Widget> _children = {
     0: const HomePage(),
   };
-  late TeacherDTO teacherDTO;
   late CourseDTO courseDTO;
-  @override
-  void initState() {
-    super.initState();
-    context.read<ScheduleDTO>().init();
-    context.read<ScheduleHistoryDTO>().init();
-  }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    teacherDTO = Provider.of<TeacherDTO>(context);
     courseDTO = Provider.of<CourseDTO>(context);
-
-    teacherDTO.init();
-    courseDTO.init();
   }
 
   @override

@@ -57,6 +57,7 @@ dependencies:
 
   #jitsi
   jitsi_meet: ^4.0.0
+  rename: ^2.0.1
 
 dev_dependencies:
   flutter_test:
@@ -67,7 +68,7 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.1
 
 flutter_icons:
-  image_path: "assets/images/large_logo.png"
+  image_path: "assets/images/app_icon.png"
   android: true
   ios: true
 

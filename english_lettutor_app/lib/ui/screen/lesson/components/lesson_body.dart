@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:english_lettutor_app/data/provider/profile_provider.dart';
@@ -27,14 +30,38 @@ class _LessonBodyState extends State<LessonBody> {
   void initState() {
     super.initState();
     timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      setState(() {});
+      if (schedule.time.start.millisecondsSinceEpoch <=
+          DateTime.now().millisecondsSinceEpoch) {
+        timer.cancel();
+      } else {
+        String strTimeUntil = getUntilTime(schedule.time.start);
+
+        showDialog(
+            context: context,
+            builder: (context) {
+              return Text(
+                "$strTimeUntil\n ${S.current.until_lesson_starts} (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+                overflow: TextOverflow.clip,
+              );
+            });
+
+        // Fluttertoast.showToast(
+        //     msg:
+        //         "$strTimeUntil\n ${S.current.until_lesson_starts} (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
+        //     toastLength: Toast.LENGTH_SHORT,
+        //     gravity: ToastGravity.CENTER,
+        //     timeInSecForIosWeb: 1,
+        //     fontSize: 16.0);
+      }
     });
   }
 
   @override
   void dispose() {
-    timer.cancel();
     super.dispose();
+    timer.cancel();
   }
 
   String getUntilTime(DateTime time) {
@@ -56,21 +83,13 @@ class _LessonBodyState extends State<LessonBody> {
     profileProvider = context.read();
     schedule = ModalRoute.of(context)?.settings.arguments as Schedule;
 
-    String strTimeUntil = getUntilTime(schedule.time.start);
     if (schedule.time.start.millisecondsSinceEpoch <=
         DateTime.now().millisecondsSinceEpoch) {
-      _joinMeeting();
-
       timer.cancel();
     }
 
-    Fluttertoast.showToast(
-        msg:
-            "$strTimeUntil\n ${S.current.until_lesson_starts} (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.CENTER,
-        timeInSecForIosWeb: 2,
-        fontSize: 16.0);
+    _joinMeeting();
+
     return Container(
       color: Colors.black,
       child: Center(
@@ -87,7 +106,7 @@ class _LessonBodyState extends State<LessonBody> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "$strTimeUntil\n ${S.current.until_lesson_starts} (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
+                      "strTimeUntil\n ${S.current.until_lesson_starts} (${DateFormat("HH:mm, dd - MM - yyyy").format(schedule.time.start)})",
                       textAlign: TextAlign.center,
                       style: const TextStyle(color: Colors.white, fontSize: 20),
                       overflow: TextOverflow.clip,
@@ -118,22 +137,14 @@ class _LessonBodyState extends State<LessonBody> {
           featureFlags[FeatureFlagEnum.PIP_ENABLED] = false;
         }
       }
-      // featureFlags[FeatureFlagEnum.WELCOME_PAGE_ENABLED] = false;
       featureFlags[FeatureFlagEnum.CALL_INTEGRATION_ENABLED] = false;
 
       String? token = schedule.studentMeetingLink?.substring(13);
-      String room = schedule.scheduleDetailId!;
-      String displayName = profileProvider.fullName;
-      String? avatarUrl = profileProvider.image;
-
-      debugPrint(token);
+      dynamic roomId = json.decode(decodeBase64(token!.split(".")[1]))["room"];
 
       var options = JitsiMeetingOptions(
-          room: room) // room is Required, spaces will be trimmed
-        // ..serverURL = "https://meet.tutoring.letstudy.io"
+          room: roomId) // room is Required, spaces will be trimmed
         ..serverURL = "https://meet.lettutor.com"
-        ..userDisplayName = displayName
-        ..userAvatarURL = avatarUrl
         ..audioOnly = false
         ..audioMuted = false
         ..videoMuted = false
@@ -144,5 +155,18 @@ class _LessonBodyState extends State<LessonBody> {
     } catch (error) {
       debugPrint("error: $error");
     }
+  }
+
+  String decodeBase64(String toDecode) {
+    String res;
+    try {
+      while (toDecode.length * 6 % 8 != 0) {
+        toDecode += "=";
+      }
+      res = utf8.decode(base64.decode(toDecode));
+    } catch (error) {
+      throw Exception("decodeBase64([toDecode=$toDecode]) \n\t\terror: $error");
+    }
+    return res;
   }
 }

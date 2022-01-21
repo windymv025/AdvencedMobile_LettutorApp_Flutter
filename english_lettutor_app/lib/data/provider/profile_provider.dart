@@ -28,7 +28,9 @@ class ProfileProvider extends ChangeNotifier {
           }
           notifyListeners();
         });
-        _imageFile = null;
+        if (value) {
+          _imageFile = null;
+        }
       });
     } else {
       _userApi.updateUserInformation(backupProfile).then((value) {

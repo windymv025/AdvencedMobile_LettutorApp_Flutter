@@ -64,6 +64,9 @@ dependencies:
   google_sign_in: ^5.2.3
   firebase_core: ^1.11.0
 
+  #google analytics
+  firebase_analytics: ^9.0.5
+
   #facebook
   flutter_facebook_auth: ^4.0.1
 

@@ -1,9 +1,9 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/constants/helper/function_helper.dart';
 import 'package:english_lettutor_app/data/provider/schedule_history_dto.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
-import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/bar/search_bar_title.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -77,8 +77,7 @@ class _UpcomingLessionSearchState extends State<UpcomingLessionSearch> {
               ? ElevatedButton(
                   style: outlineButtonStyle,
                   onPressed: () {
-                    Navigator.pushNamed(context, LessonScreen.routeName,
-                        arguments: schedule);
+                    joinJitsiMeet(context, schedule);
                   },
                   child: Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'dart:io';
 
 import 'package:english_lettutor_app/data/network/constants/endpoints.dart';
@@ -49,16 +51,20 @@ class UserApi {
   }
 
   Future<bool> updateAvatar(File image) async {
+    String? token = await _restClient.getToken();
     final request = http.MultipartRequest("POST",
         Uri.parse("https://" + Endpoints.baseUrl + Endpoints.userAvatar));
 
+    print("Image" + image.path);
+    print("https://" + Endpoints.baseUrl + Endpoints.userAvatar);
+
     final img = await http.MultipartFile.fromPath("avatar", image.path);
-
+    print(img);
     request.files.add(img);
-    request.headers
-        .addAll({'Authorization': 'Bearer ${await _restClient.getToken()}'});
-
+    request.headers.addAll({'Authorization': 'Bearer $token'});
+    print(request);
     http.StreamedResponse response = await request.send();
+    print("Respone: " + response.toString());
     if (response.statusCode == 200) {
       return true;
     } else {

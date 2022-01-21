@@ -1,11 +1,10 @@
 import 'package:english_lettutor_app/constants/constants.dart';
 import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/constants/helper/function_helper.dart';
 import 'package:english_lettutor_app/data/provider/schedule_dto.dart';
-import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
 import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
-import 'package:english_lettutor_app/ui/screen/lesson/lesson_screen.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -118,8 +117,7 @@ class ScheduleItem extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, LessonScreen.routeName,
-                          arguments: schedule);
+                      joinJitsiMeet(context, schedule);
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),

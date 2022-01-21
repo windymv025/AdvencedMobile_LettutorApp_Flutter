@@ -3,6 +3,7 @@ import 'package:english_lettutor_app/data/provider/base_dto.dart';
 import 'package:english_lettutor_app/models/page/paging_info.dart';
 import 'package:english_lettutor_app/models/schedule/my-schedule.dart';
 import 'package:english_lettutor_app/models/teacher/schedule.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:intl/intl.dart';
 
 class ScheduleDTO extends BaseDTO<Schedule> {
@@ -68,6 +69,9 @@ class ScheduleDTO extends BaseDTO<Schedule> {
   }
 
   cancelSchedule(String scheduleDetailId) async {
+    FirebaseAnalytics.instance.logEvent(name: "cancel_schedule", parameters: {
+      "schedule_detail_id": scheduleDetailId,
+    });
     var value = await _api.cancelAbookedClass([scheduleDetailId]);
     if (value["statusCode"] == null) {
       items.removeWhere(

@@ -3,6 +3,7 @@ import 'package:english_lettutor_app/data/network/apis/course-ebook/course-api.d
 import 'package:english_lettutor_app/models/course/course-models.dart';
 import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/models/page/paging_info.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:fuzzy/fuzzy.dart';
 
 import 'base_dto.dart';
@@ -46,6 +47,8 @@ class CourseDTO extends BaseDTO<Course> {
   }
 
   void search(String value) {
+    FirebaseAnalytics.instance.logSearch(searchTerm: value);
+
     if (value.isEmpty) {
       clearSearch();
       return;

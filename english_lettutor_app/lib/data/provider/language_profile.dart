@@ -1,4 +1,5 @@
 import 'package:english_lettutor_app/data/sharedpref/shared_preference_helper.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 
 class LanguageProfile extends ChangeNotifier {
@@ -28,6 +29,8 @@ class LanguageProfile extends ChangeNotifier {
       locale = const Locale(codeEN);
     }
     _prefHelper.changeLanguage(language);
+    FirebaseAnalytics.instance
+        .logEvent(name: 'change_language', parameters: {'language': language});
 
     notifyListeners();
   }

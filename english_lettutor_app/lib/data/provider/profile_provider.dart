@@ -5,6 +5,7 @@ import 'package:english_lettutor_app/data/network/apis/authentication/auth-api.d
 import 'package:english_lettutor_app/data/network/apis/user/user-api.dart';
 import 'package:english_lettutor_app/data/sharedpref/shared_preference_helper.dart';
 import 'package:english_lettutor_app/models/profile/profile.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -25,11 +26,17 @@ class ProfileProvider extends ChangeNotifier {
           if (value["user"] != null) {
             profile = Profile.fromMap(value["user"]);
             backupProfile = Profile.fromMap(value["user"]);
+            analyticsUpdate("update_profile", true);
+          } else {
+            analyticsUpdate("update_profile", false);
           }
           notifyListeners();
         });
         if (value) {
           _imageFile = null;
+          analyticsUpdate("update_avatar", true);
+        } else {
+          analyticsUpdate("update_avatar", false);
         }
       });
     } else {
@@ -37,6 +44,9 @@ class ProfileProvider extends ChangeNotifier {
         if (value["user"] != null) {
           profile = Profile.fromMap(value["user"]);
           backupProfile = Profile.fromMap(value["user"]);
+          analyticsUpdate("update_profile", true);
+        } else {
+          analyticsUpdate("update_profile", false);
         }
         notifyListeners();
       });
@@ -119,8 +129,11 @@ class ProfileProvider extends ChangeNotifier {
       profile = Profile.fromMap(result["user"]);
       backupProfile = Profile.fromMap(result["user"]);
       saveTokens(result['tokens']!);
+      analyticsLogin("Login with Email success: $email");
+
       return true;
     }
+    analyticsLogin("Login with Email failed: $email");
     return false;
   }
 
@@ -130,8 +143,10 @@ class ProfileProvider extends ChangeNotifier {
       emailSave = email;
       passwordSave = password;
       notifyListeners();
+      analyticsLogin("Sign up with Email success: ${profile.name}");
       return true;
     }
+    analyticsLogin("Sign up with Email failed: $email");
     return false;
   }
 
@@ -155,14 +170,15 @@ class ProfileProvider extends ChangeNotifier {
       profile = Profile.fromMap(result["user"]);
       backupProfile = Profile.fromMap(result["user"]);
       saveTokens(result['tokens']!);
+      analyticsLogin("Login with Google success: ${profile.name}");
       return true;
     }
+    analyticsLogin("Login with Google failed");
     return false;
   }
 
   Future<bool> signInWithFacebook() async {
     var fbAuth = await FacebookAuth.instance.login();
-
     if (fbAuth.status != LoginStatus.success) return false;
 
     var accessToken = fbAuth.accessToken;
@@ -173,8 +189,10 @@ class ProfileProvider extends ChangeNotifier {
       // copyProfile(profile);
       backupProfile = Profile.fromMap(result["user"]);
       saveTokens(result['tokens']!);
+      analyticsLogin("Login with Facebook success: ${profile.name}");
       return true;
     }
+    analyticsLogin("Login with Facebook failed");
     return false;
   }
 
@@ -184,5 +202,21 @@ class ProfileProvider extends ChangeNotifier {
       return false;
     }
     return true;
+  }
+
+  Future analyticsLogin(String nameMethod) async {
+    await FirebaseAnalytics.instance.logLogin(
+      loginMethod: nameMethod,
+    );
+  }
+
+  Future analyticsUpdate(String nameMethod, bool status) async {
+    await FirebaseAnalytics.instance.logEvent(name: nameMethod, parameters: {
+      "user_id": profile.id,
+      "user_name": profile.name,
+      "user_email": profile.email,
+      "user_avatar": profile.avatar,
+      "status": status ? "success" : "failed"
+    });
   }
 }

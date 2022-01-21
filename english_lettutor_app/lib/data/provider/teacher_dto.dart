@@ -5,6 +5,7 @@ import 'package:english_lettutor_app/models/page/paging_info.dart';
 import 'package:english_lettutor_app/models/schedule/schedule-teacher.dart';
 import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/models/teacher/tutor-page.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:intl/intl.dart';
 
 import 'base_dto.dart';
@@ -121,6 +122,12 @@ class TeacherDTO extends BaseDTO<Teacher> {
   }
 
   void updateFavorite(Teacher teacher) {
+    FirebaseAnalytics.instance.logEvent(name: "update_favorite", parameters: {
+      "teacher_id": teacher.id,
+      "teacher_name": teacher.name,
+      "is_favorite": teacher.isFavorite
+    });
+
     teacher.isFavorite = !teacher.isFavorite;
     teacher.isFavorite
         ? _favorite.add(teacher)
@@ -130,6 +137,7 @@ class TeacherDTO extends BaseDTO<Teacher> {
   }
 
   void search(String value) {
+    FirebaseAnalytics.instance.logSearch(searchTerm: "Teacher search: $value");
     keySearch = value;
     if (value.isEmpty && _specialities.isEmpty) {
       clearSearch();

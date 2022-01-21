@@ -14,8 +14,6 @@ class ScheduleHistoryDTO extends BaseDTO<Schedule> {
   }
 
   Future<void> loadScheduleData() async {
-    DateTime today =
-        DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
     var value =
         await _api.getBookedClasses(1, DateTime.now().millisecondsSinceEpoch);
     if (value["data"] != null) {

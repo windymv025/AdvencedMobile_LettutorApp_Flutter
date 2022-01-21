@@ -11,7 +11,6 @@ import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'constants/design/theme.dart';
-import 'data/local_data_test.dart';
 import 'data/provider/home_state.dart';
 import 'data/provider/schedule_dto.dart';
 import 'generated/l10n.dart';
@@ -52,11 +51,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // loadData();
-  }
-
-  void loadData() {
-    randomData();
   }
 
   @override

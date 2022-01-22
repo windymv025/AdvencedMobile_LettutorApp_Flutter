@@ -1340,10 +1340,10 @@ class S {
     );
   }
 
-  /// `Invalid email or password or account is not activated`
+  /// `Account Invalid or not activated`
   String get invalid_email_or_password {
     return Intl.message(
-      'Invalid email or password or account is not activated',
+      'Account Invalid or not activated',
       name: 'invalid_email_or_password',
       desc: '',
       args: [],

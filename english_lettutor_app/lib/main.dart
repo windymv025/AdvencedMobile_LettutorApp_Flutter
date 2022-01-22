@@ -20,7 +20,6 @@ import 'utilities/routes/routes.dart';
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  SharedPreferenceHelper.instance;
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<ThemeModel>(create: (_) => ThemeModel()),

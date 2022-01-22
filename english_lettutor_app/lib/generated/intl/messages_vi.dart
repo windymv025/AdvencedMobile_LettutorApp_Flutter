@@ -142,7 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "introduction_video":
             MessageLookupByLibrary.simpleMessage("Video giới thiệu bản thân"),
         "invalid_email_or_password": MessageLookupByLibrary.simpleMessage(
-            "Tài khoản, mật khẩu không đúng hoặc chưa được kích hoạt"),
+            "Tài khoản không đúng hoặc chưa được kích hoạt"),
         "just_cancel_before_2_hours": MessageLookupByLibrary.simpleMessage(
             "Bạn chỉ có thể hủy trước 2 tiếng"),
         "languages": MessageLookupByLibrary.simpleMessage("Ngôn ngữ"),

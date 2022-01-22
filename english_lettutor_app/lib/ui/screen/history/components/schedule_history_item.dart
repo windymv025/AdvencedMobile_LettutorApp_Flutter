@@ -1,36 +1,40 @@
-import 'package:english_lettutor_app/models/schedule_history.dart';
-import 'package:english_lettutor_app/ui/screen/messenger_detail/messenger_detail_screen.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/models/teacher/schedule.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/screen/teacher_detail/teacher_detail_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
-import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class ScheduleHistoryItem extends StatelessWidget {
   const ScheduleHistoryItem({Key? key, required this.scheduleHistory})
       : super(key: key);
-  final ScheduleHistory scheduleHistory;
+  final Schedule scheduleHistory;
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+    Teacher teacher = scheduleHistory.teacher!;
     return Container(
       decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 5,
-            color: kPrimaryColor.withOpacity(0.25),
-          ),
-        ],
+        boxShadow: isDark
+            ? null
+            : [
+                BoxShadow(
+                  blurRadius: 5,
+                  color: kPrimaryColor.withOpacity(0.25),
+                ),
+              ],
       ),
       child: Card(
         child: Column(
           children: [
             MyListTile(
-                avatar: AssetImage(scheduleHistory.schedule.teacher.uriImage!),
+                avatar: NetworkImage(teacher.uriImage!),
                 title: Text(
-                  scheduleHistory.schedule.teacher.name!,
+                  teacher.name!,
                   style: titleStyle,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -51,7 +55,7 @@ class ScheduleHistoryItem extends StatelessWidget {
                         const SizedBox(width: 15),
                         Text(
                           DateFormat("EEE, dd-MM-yyyy HH:mm:ss")
-                              .format(scheduleHistory.schedule.fromTime),
+                              .format(scheduleHistory.time.start),
                           style: const TextStyle(fontWeight: FontWeight.w800),
                         ),
                       ],
@@ -68,68 +72,31 @@ class ScheduleHistoryItem extends StatelessWidget {
                         const Icon(Icons.schedule_rounded),
                         const SizedBox(width: 15),
                         Text(
-                          DateFormat("HH:mm:ss").format(
-                              DateTime.fromMillisecondsSinceEpoch(
-                                  scheduleHistory.countTime)),
+                          scheduleHistory.time.duration
+                              .toString()
+                              .split('.')[0],
                           style: const TextStyle(fontWeight: FontWeight.w800),
                         ),
-                      ],
-                    ),
-                    //Rating and comment
-                    const SizedBox(
-                      height: 10,
-                    ),
-
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Rating(
-                            onRatingUpdate: null,
-                            rating: scheduleHistory.ratingComment.rating ?? 0),
-                        (scheduleHistory.ratingComment.comment == null)
-                            ? const SizedBox.square()
-                            : Text(
-                                scheduleHistory.ratingComment.comment!,
-                                overflow: TextOverflow.clip,
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.w800),
-                              ),
                       ],
                     ),
                   ],
                 ),
                 trailing: Container(),
                 onTap: () {
-                  Navigator.pushNamed(context, TeacherDetailScreen.routeName);
+                  Navigator.pushNamed(context, TeacherDetailScreen.routeName,
+                      arguments: teacher);
                 },
                 color: Colors.white),
             Row(
               children: [
                 Expanded(
-                  child: OutlinedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(
-                          context, MessengerDetailScreen.routeName);
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
-                      child: Text(
-                        "Send message",
-                        style: TextStyle(fontSize: textSizeButton),
-                      ),
-                    ),
-                    style: outlineColorButtonStyle,
-                  ),
-                ),
-                Expanded(
                   child: ElevatedButton(
                     onPressed: () {},
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 10),
                       child: Text(
-                        "Give Feedback",
-                        style: TextStyle(fontSize: textSizeButton),
+                        S.current.give_feedback,
+                        style: const TextStyle(fontSize: textSizeButton),
                       ),
                     ),
                     style: defaultColorButtonStyle,

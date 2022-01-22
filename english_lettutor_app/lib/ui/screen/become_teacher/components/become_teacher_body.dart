@@ -1,8 +1,11 @@
-import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1_page.dart';
-import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step2_page.dart';
-import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step3_page.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/network/apis/become-teacher/become-teacher.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step1/step1_page.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step2/step2_page.dart';
+import 'package:english_lettutor_app/ui/screen/become_teacher/components/step/step3/step3_page.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class BecomeTeacherBody extends StatefulWidget {
@@ -17,9 +20,12 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Stepper(
       currentStep: _index,
-      type: StepperType.horizontal,
+      type: size.width > kMobileBreakpoint
+          ? StepperType.horizontal
+          : StepperType.vertical,
       controlsBuilder: (context, controlsDetails) {
         return Row(
           mainAxisAlignment:
@@ -32,7 +38,8 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
                     child: OutlinedButton(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 15),
-                        child: Text(_index == 0 ? "Cancel" : "Back"),
+                        child: Text(
+                            _index == 0 ? S.current.cancel : S.current.back),
                       ),
                       style: outlineButtonStyle,
                       onPressed: controlsDetails.onStepCancel,
@@ -41,7 +48,7 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
                 width: 100,
                 child: DefaultButton(
                   press: controlsDetails.onStepContinue,
-                  text: _index < 2 ? "Continue" : "Finish",
+                  text: _index < 2 ? S.current.continue_str : S.current.submit,
                 )),
           ],
         );
@@ -74,25 +81,31 @@ class _BecomeTeacherBodyState extends State<BecomeTeacherBody> {
       steps: [
         Step(
           isActive: _index >= 0,
-          title: const Text(
-            "Complete profile",
+          title: Text(
+            S.current.complete_profile,
             style: titleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           content: const Step1Page(),
         ),
         Step(
           isActive: _index >= 1,
-          title: const Text(
-            "Video introduction",
+          title: Text(
+            S.current.video_introduction,
             style: titleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           content: const Step2Page(),
         ),
         Step(
           isActive: _index >= 2,
-          title: const Text(
-            "Approval",
+          title: Text(
+            S.current.approval,
             style: titleStyle,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
           content: const Step3Page(),
         ),

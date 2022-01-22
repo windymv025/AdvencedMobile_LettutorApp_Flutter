@@ -1,6 +1,6 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:english_lettutor_app/ui/screen/sign_up/components/sign_up_form.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/continue_with_component.dart';
-import 'package:english_lettutor_app/utilities/constants/assets.dart';
 import 'package:flutter/material.dart';
 
 import 'already_have_account.dart';
@@ -19,7 +19,7 @@ class Body extends StatelessWidget {
             child: Column(
               children: [
                 SizedBox(
-                    height: 150,
+                    height: 120,
                     child: Image.asset(Assets.assetsImagesLargeLogo)),
                 const SizedBox(
                   height: 25,

@@ -1,8 +1,14 @@
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/data/provider/teacher_dto.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
+
+import 'action/dialog/report_button.dart';
 
 class SimpleInforTeacher extends StatefulWidget {
   const SimpleInforTeacher({Key? key, required this.teacher}) : super(key: key);
@@ -28,22 +34,42 @@ class _SimpleInforTeacherState extends State<SimpleInforTeacher> {
   @override
   Widget build(BuildContext context) {
     Teacher teacher = widget.teacher;
+    TeacherDTO teacherDTO = context.watch<TeacherDTO>();
+    _icon = teacher.isFavorite ? _listIcons[1] : _listIcons[0];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10),
       child: MyListTile(
-          avatar: AssetImage(teacher.uriImage!),
-          title: Text(
-            teacher.name!,
-            style: titleStyle,
+          avatar: NetworkImage(teacher.uriImage!),
+          title: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                teacher.name!,
+                style: titleStyle,
+                overflow: TextOverflow.clip,
+              ),
+              Text(kMapCountry[widget.teacher.country].toString(),
+                  style: const TextStyle(
+                      fontSize: 14, fontStyle: FontStyle.italic)),
+            ],
           ),
           subtitle: Rating(
-            rating: teacher.ratings!,
+            rating: teacher.ratings ?? 0,
             onRatingUpdate: () {},
           ),
-          trailing: IconButton(
-            icon: _icon,
-            onPressed: onFavoriteClick,
-            iconSize: 30,
+          trailing: Row(
+            children: [
+              ReportButton(teacher: teacher),
+              IconButton(
+                icon: _icon,
+                onPressed: () {
+                  onFavoriteClick();
+                  teacherDTO.updateFavorite(teacher);
+                },
+                iconSize: 30,
+              ),
+            ],
           ),
           onTap: null,
           color: Colors.white),

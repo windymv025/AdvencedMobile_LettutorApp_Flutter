@@ -1,43 +1,44 @@
+import 'package:english_lettutor_app/constants/assets.dart';
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/models/course/course.dart';
 import 'package:english_lettutor_app/ui/screen/course_detail/course_detail_screen.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/design/styles.dart';
 import 'package:flutter/material.dart';
 
 class CourseItem extends StatelessWidget {
-  const CourseItem(
-      {Key? key,
-      required this.image,
-      required this.name,
-      required this.subTitile,
-      required this.level,
-      required this.lessons})
-      : super(key: key);
-  final Image image;
-  final String name;
-  final String subTitile;
-  final String level;
-  final int lessons;
+  const CourseItem({
+    Key? key,
+    required this.course,
+  }) : super(key: key);
+  final Course course;
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = Theme.of(context).brightness == Brightness.dark;
+
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, CourseDetailScreen.routeName);
+        Navigator.pushNamed(context, CourseDetailScreen.routeName,
+            arguments: course);
       },
       child: Container(
-        decoration: BoxDecoration(boxShadow: [
-          BoxShadow(
-            offset: const Offset(0, 10),
-            blurRadius: 20,
-            color: kPrimaryColor.withOpacity(0.23),
-          ),
-        ]),
+        decoration: BoxDecoration(
+            boxShadow: isDark
+                ? null
+                : [
+                    BoxShadow(
+                      offset: const Offset(0, 10),
+                      blurRadius: 20,
+                      color: kPrimaryColor.withOpacity(0.23),
+                    ),
+                  ]),
         height: 250,
         child: Card(
           child: Column(
             children: [
               Expanded(
-                child: image, //image
+                child: getImage(course.image), //image
               ),
               Container(
                 constraints: const BoxConstraints(maxWidth: 400),
@@ -46,7 +47,7 @@ class CourseItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(5, 10, 5, 0),
                       child: Text(
-                        name,
+                        course.name ?? '',
                         style: titleStyle,
                         maxLines: 2,
                         softWrap: true,
@@ -56,7 +57,7 @@ class CourseItem extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        subTitile,
+                        course.subtitle ?? '',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
@@ -69,9 +70,13 @@ class CourseItem extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(level),
-                          const Text(" • "),
-                          Text("$lessons Lessons")
+                          Expanded(
+                            child: Text(
+                              '${course.level ?? ''} • ${course.lessons} ${S.current.lessons}',
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
                         ],
                       ),
                     )
@@ -83,5 +88,14 @@ class CourseItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Image getImage(String? ulr) {
+    if (ulr == null) {
+      return Image.asset(
+        Assets.assetsImagesCourseImage,
+      );
+    }
+    return Image.network(ulr);
   }
 }

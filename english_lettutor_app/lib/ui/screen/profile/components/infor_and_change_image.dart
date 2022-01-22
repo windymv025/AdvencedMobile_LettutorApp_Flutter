@@ -3,15 +3,10 @@ import 'package:flutter/material.dart';
 import 'infor.dart';
 
 class InforAndChangeImage extends StatefulWidget {
-  const InforAndChangeImage(
-      {Key? key,
-      required this.email,
-      required this.name,
-      required this.image,
-      this.onTap})
+  const InforAndChangeImage({Key? key, required this.image, this.onTap})
       : super(key: key);
-  final String name, email, image;
   final GestureTapCallback? onTap;
+  final DecorationImage image;
 
   @override
   _InforAndChangeImageState createState() => _InforAndChangeImageState();
@@ -23,10 +18,9 @@ class _InforAndChangeImageState extends State<InforAndChangeImage> {
     return Stack(
       children: [
         Infor(
-            defaultSize: 10,
-            name: widget.name,
-            email: widget.email,
-            image: widget.image),
+          image: widget.image,
+          defaultSize: 10,
+        ),
         Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,

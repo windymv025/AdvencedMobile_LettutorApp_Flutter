@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:english_lettutor_app/ui/screen/sign_up/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,15 +12,15 @@ class NoAccountText extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const Text(
-          "Don’t have an account? ",
-          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
+        Text(
+          "${S.current.dont_have_account} ",
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600),
         ),
-        GestureDetector(
+        InkWell(
           onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
-          child: const Text(
-            "Sign Up",
-            style: TextStyle(
+          child: Text(
+            S.current.sign_up,
+            style: const TextStyle(
                 color: Color(0xff248EEF),
                 fontSize: 14,
                 fontWeight: FontWeight.w700),

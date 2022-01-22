@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:flutter/material.dart';
 
 class MyListTile extends StatefulWidget {
@@ -25,7 +26,7 @@ class _MyListTileState extends State<MyListTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: widget.color,
+      // color: widget.color,
       padding: const EdgeInsets.only(top: 15, bottom: 10),
       child: GestureDetector(
           onTap: widget.onTap,
@@ -35,7 +36,8 @@ class _MyListTileState extends State<MyListTile> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
-                  backgroundImage: widget.avatar!,
+                  backgroundImage: widget.avatar ??
+                      const AssetImage(Assets.assetsImagesUserIcon),
                   backgroundColor: Colors.white,
                   radius: 40,
                 ),

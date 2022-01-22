@@ -1,5 +1,7 @@
-import 'package:english_lettutor_app/models/rating_comment.dart';
-import 'package:english_lettutor_app/models/teacher.dart';
+import 'package:english_lettutor_app/constants/design/styles.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/models/teacher/rating_comment.dart';
+import 'package:english_lettutor_app/models/teacher/teacher.dart';
 import 'package:english_lettutor_app/ui/widget/item_list/my_list_tile.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/rating.dart';
 import 'package:flutter/material.dart';
@@ -11,17 +13,18 @@ class RatingAndComment extends StatelessWidget {
   const RatingAndComment({Key? key, required this.teacher}) : super(key: key);
   final Teacher teacher;
 
-  get titleStyle => null;
-
   @override
   Widget build(BuildContext context) {
+    int totalRating =
+        teacher.ratingComments != null ? teacher.ratingComments!.length : 0;
     return Column(
       children: [
-        TitleDetail(
-            title: "Rating and Comment (${teacher.ratingComments!.length})"),
-        Column(
-          children: buildCommentItems(teacher.ratingComments!),
-        ),
+        TitleDetail(title: "${S.current.rating_and_comments} ($totalRating)"),
+        teacher.ratingComments != null
+            ? Column(
+                children: buildCommentItems(teacher.ratingComments!),
+              )
+            : Container(),
         const SizedBox(
           height: 30,
         )
@@ -33,12 +36,12 @@ class RatingAndComment extends StatelessWidget {
     List<Widget> items = [];
     for (var item in list) {
       items.add(MyListTile(
-          avatar: AssetImage(item.student!.image!),
+          avatar: NetworkImage(item.student!.avatar!),
           title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                item.student!.fullName!,
+                item.student!.name!,
                 style: titleStyle,
               ),
               Rating(onRatingUpdate: null, rating: item.rating!),

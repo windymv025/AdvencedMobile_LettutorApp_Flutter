@@ -1,10 +1,13 @@
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/ui/screen/forgot_password/forgot_password_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/helper/keyboard.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/src/provider.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -19,8 +22,8 @@ class _SignUpFormState extends State<SignUpForm> {
   String? password;
   List<String> errors = [];
 
-  String? fullName;
   String? conformPassword;
+  bool isLoading = false;
 
   void addError(String error) {
     if (!errors.contains(error)) {
@@ -40,14 +43,11 @@ class _SignUpFormState extends State<SignUpForm> {
 
   @override
   Widget build(BuildContext context) {
+    ProfileProvider profileProvider = context.read<ProfileProvider>();
     return Form(
       key: _formKey,
       child: Column(
         children: [
-          buildFullNameFormField(),
-          const SizedBox(
-            height: 20,
-          ),
           buildEmailFormField(),
           const SizedBox(
             height: 20,
@@ -63,11 +63,15 @@ class _SignUpFormState extends State<SignUpForm> {
               const Spacer(),
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-                child: GestureDetector(
-                  onTap: () {},
-                  child: const Text(
-                    "Forgot Password?",
-                    style: TextStyle(
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
+                    Navigator.pushNamed(
+                        context, ForgotPasswordScreen.routeName);
+                  },
+                  child: Text(
+                    S.current.forgot_password,
+                    style: const TextStyle(
                         color: Color(0xff248EEF),
                         fontSize: 14,
                         fontWeight: FontWeight.w700),
@@ -80,46 +84,45 @@ class _SignUpFormState extends State<SignUpForm> {
           const SizedBox(
             height: 10,
           ),
-          DefaultButton(
-            text: "Sign Up",
-            press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                KeyboardUtil.hideKeyboard(context);
-                // Navigator.pushNamedAndRemoveUntil(
-                //     context, SignInScreen.routeName, (route) => false);
-                Navigator.pop(context);
-              }
-            },
-          ),
+          isLoading
+              ? CircularProgressIndicator(
+                  valueColor: const AlwaysStoppedAnimation(kMainBlueColor),
+                  backgroundColor: Colors.grey[200],
+                )
+              : DefaultButton(
+                  text: S.current.sign_up,
+                  press: () {
+                    if (_formKey.currentState!.validate()) {
+                      _formKey.currentState!.save();
+                      // if all are valid then go to success screen
+                      KeyboardUtil.hideKeyboard(context);
+                      if (email != null &&
+                          email!.isNotEmpty &&
+                          password != null &&
+                          password!.isNotEmpty &&
+                          conformPassword != null &&
+                          conformPassword!.isNotEmpty) {
+                        setState(() {
+                          isLoading = true;
+                        });
+                        profileProvider.signUp(email!, password!).then((value) {
+                          if (value) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(S.current.registor_success),
+                            ));
+                            Navigator.pop(context);
+                          } else {
+                            addError(S.current.email_is_already_in_use);
+                          }
+                          setState(() {
+                            isLoading = false;
+                          });
+                        });
+                      }
+                    }
+                  },
+                ),
         ],
-      ),
-    );
-  }
-
-  TextFormField buildFullNameFormField() {
-    return TextFormField(
-      keyboardType: TextInputType.name,
-      onSaved: (newValue) => fullName = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(kNamelNullError);
-        }
-        fullName = value;
-      },
-      validator: (value) {
-        if (value!.isEmpty) {
-          addError(kNamelNullError);
-          return "";
-        }
-        return null;
-      },
-      decoration: const InputDecoration(
-        label: Text("Full name"),
-        hintText: "Enter your name",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.person_outline_rounded),
       ),
     );
   }
@@ -129,28 +132,17 @@ class _SignUpFormState extends State<SignUpForm> {
       keyboardType: TextInputType.emailAddress,
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(kEmailNullError);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(kInvalidEmailError);
-        }
         email = value;
+        checkEmail(value);
       },
       validator: (value) {
-        if (value!.isEmpty) {
-          addError(kEmailNullError);
-          return "";
-        } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(kInvalidEmailError);
-          return "";
-        }
-        return null;
+        return value == null ? "" : checkEmail(value);
       },
-      decoration: const InputDecoration(
-        label: Text("Email"),
-        hintText: "Enter your email",
+      decoration: InputDecoration(
+        label: const Text("Email"),
+        hintText: S.current.enter_email,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.mail_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.mail_outline_rounded),
       ),
     );
   }
@@ -160,28 +152,17 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(kPassNullError);
-        } else if (value.length >= 8) {
-          removeError(kShortPassError);
-        }
         password = value;
+        checkPassword(value);
       },
       validator: (value) {
-        if (value == null || value.isEmpty) {
-          addError(kPassNullError);
-          return "";
-        } else if (value.length < 8) {
-          addError(kShortPassError);
-          return "";
-        }
-        return null;
+        return value == null ? "" : checkPassword(value);
       },
-      decoration: const InputDecoration(
-        label: Text("Password"),
-        hintText: "Enter your password",
+      decoration: InputDecoration(
+        label: Text(S.current.password),
+        hintText: S.current.enter_password,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.lock_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
   }
@@ -191,29 +172,76 @@ class _SignUpFormState extends State<SignUpForm> {
       obscureText: true,
       onSaved: (newValue) => conformPassword = newValue,
       onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(kPassNullError);
-        } else if (value.isNotEmpty && password == conformPassword) {
-          removeError(kMatchPassError);
-        }
         conformPassword = value;
+        checkConformPassword(value);
       },
       validator: (value) {
-        if (value!.isEmpty) {
-          addError(kPassNullError);
-          return "";
-        } else if ((password != value)) {
-          addError(kMatchPassError);
-          return "";
-        }
-        return null;
+        return value == null ? "" : checkConformPassword(value);
       },
-      decoration: const InputDecoration(
-        labelText: "Confirm Password",
-        hintText: "Re-enter your password",
+      decoration: InputDecoration(
+        labelText: S.current.confirm_password,
+        hintText: S.current.re_enter_your_password,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.lock_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.lock_outline_rounded),
       ),
     );
+  }
+
+  String? checkEmail(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_email);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_email);
+      isError = true;
+    }
+    if (emailValidatorRegExp.hasMatch(value) || value.isEmpty) {
+      removeError(S.current.please_enter_email_valid);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_email_valid);
+      isError = true;
+    }
+    return isError ? "" : null;
+  }
+
+  String? checkPassword(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_password);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_password);
+      isError = true;
+    }
+    if (value.length >= 6 || value.isEmpty) {
+      removeError(S.current.please_enter_password_min);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_password_min);
+      isError = true;
+    }
+    return isError ? "" : null;
+  }
+
+  String? checkConformPassword(String value) {
+    bool isError = false;
+    if (value.isNotEmpty) {
+      removeError(S.current.please_enter_conform_password);
+      isError = false;
+    } else {
+      addError(S.current.please_enter_conform_password);
+      isError = true;
+    }
+    if (conformPassword == password || value.isEmpty) {
+      removeError(S.current.password_dont_match);
+      isError = false;
+    }
+    if (conformPassword != password) {
+      addError(S.current.password_dont_match);
+      isError = true;
+    }
+    return isError ? "" : null;
   }
 }

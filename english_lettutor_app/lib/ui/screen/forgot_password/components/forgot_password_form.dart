@@ -1,10 +1,14 @@
+import 'package:english_lettutor_app/constants/constants.dart';
+import 'package:english_lettutor_app/constants/helper/keyboard.dart';
+import 'package:english_lettutor_app/data/provider/profile_provider.dart';
+import 'package:english_lettutor_app/generated/l10n.dart';
+import 'package:english_lettutor_app/ui/screen/otp_screen/otp_screen.dart';
 import 'package:english_lettutor_app/ui/screen/reset_password_screen/reset_password_screen.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/button/default_button.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/custom_suffix_icon.dart';
 import 'package:english_lettutor_app/ui/widget/item_view/components/form_error.dart';
-import 'package:english_lettutor_app/utilities/constants/constants.dart';
-import 'package:english_lettutor_app/utilities/helper/keyboard.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ForgotPasswordForm extends StatefulWidget {
   const ForgotPasswordForm({Key? key}) : super(key: key);
@@ -36,6 +40,8 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
 
   @override
   Widget build(BuildContext context) {
+    ProfileProvider profileProvider =
+        Provider.of<ProfileProvider>(context, listen: false);
     return Form(
       key: _formKey,
       child: Column(
@@ -49,13 +55,19 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
             height: 10,
           ),
           DefaultButton(
-            text: "Send",
+            text: S.current.send,
             press: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, ResetPasswordScreen.routename);
+                profileProvider.fogotPassword(email!).then((value) {
+                  if (value) {
+                    Navigator.pushNamed(context, ResetPasswordScreen.routename);
+                  } else {
+                    addError(S.current.email_not_found);
+                  }
+                });
               }
             },
           ),
@@ -70,26 +82,26 @@ class _ForgotPasswordFormState extends State<ForgotPasswordForm> {
       onSaved: (newValue) => email = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(kEmailNullError);
+          removeError(S.current.please_enter_email);
         } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(kInvalidEmailError);
+          removeError(S.current.please_enter_email_valid);
         }
       },
       validator: (value) {
         if (value!.isEmpty) {
-          addError(kEmailNullError);
+          addError(S.current.please_enter_email);
           return "";
         } else if (!emailValidatorRegExp.hasMatch(value)) {
-          addError(kInvalidEmailError);
+          addError(S.current.please_enter_email_valid);
           return "";
         }
         return null;
       },
-      decoration: const InputDecoration(
-        label: Text("Email"),
-        hintText: "Enter your email",
+      decoration: InputDecoration(
+        label: const Text("Email"),
+        hintText: S.current.enter_email,
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(icon: Icons.mail_outline_rounded),
+        suffixIcon: const CustomSurffixIcon(icon: Icons.mail_outline_rounded),
       ),
     );
   }

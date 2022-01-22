@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/constants/assets.dart';
 import 'package:flutter/material.dart';
 
 class NoDataPage extends StatelessWidget {
@@ -7,7 +8,7 @@ class NoDataPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Expanded(child: Image.asset("assets/images/no_data_found.png")),
+        child: Image.asset(Assets.assetsImagesNoDataFound),
         height: 130,
         padding: const EdgeInsets.all(10),
       ),

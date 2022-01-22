@@ -1,3 +1,4 @@
+import 'package:english_lettutor_app/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -52,9 +53,9 @@ class _RatingState extends State<Rating> {
         );
       }
     } else {
-      return const Text(
-        "No reviews yet",
-        style: TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
+      return Text(
+        S.current.no_reviews_yet,
+        style: const TextStyle(fontStyle: FontStyle.italic, fontSize: 12),
       );
     }
   }

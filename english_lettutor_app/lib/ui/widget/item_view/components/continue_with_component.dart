@@ -49,11 +49,11 @@ class _ContinueWithComponentState extends State<ContinueWithComponent> {
               press: () {
                 profileProvider.signInWithGoogle().then((value) {
                   if (value) {
-                    initData();
                     Navigator.pushReplacementNamed(
                       context,
                       HomeScreen.routeName,
                     );
+                    initData();
                   } else {
                     Fluttertoast.showToast(
                         msg: S.current.login_failed,
@@ -68,11 +68,11 @@ class _ContinueWithComponentState extends State<ContinueWithComponent> {
               press: () {
                 profileProvider.signInWithFacebook().then((value) {
                   if (value) {
-                    initData();
                     Navigator.pushReplacementNamed(
                       context,
                       HomeScreen.routeName,
                     );
+                    initData();
                   } else {
                     Fluttertoast.showToast(
                         msg: S.current.login_failed,

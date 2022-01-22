@@ -55,7 +55,7 @@
     - Responsive courses list, teacher list, schedule list and schedule history list
 2. Video Demo: https://youtu.be/080ZQti9j0g
 
-# Milestone 2: (online-app)
+# Milestone 3: (online-app)
 1. Features:
     - Update features with API
     - Login with google and facebook

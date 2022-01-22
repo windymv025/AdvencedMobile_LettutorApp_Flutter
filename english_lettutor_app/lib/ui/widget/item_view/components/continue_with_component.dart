@@ -24,6 +24,7 @@ class _ContinueWithComponentState extends State<ContinueWithComponent> {
     Provider.of<TeacherDTO>(context, listen: false).init();
     Provider.of<ScheduleHistoryDTO>(context, listen: false).init();
     Provider.of<CourseDTO>(context, listen: false).init();
+    //init data
   }
 
   @override

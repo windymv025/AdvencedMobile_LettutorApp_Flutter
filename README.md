@@ -59,4 +59,4 @@
 1. Features:
     - Update features with API
     - Login with google and facebook
-2. Video Demo: 
+2. Video Demo: https://youtu.be/fluXgh1_fZo

@@ -149,7 +149,7 @@
     "next" : "Tiếp",
     "error_loading_PDF" : "Lỗi tải PDF",
     "logout" : "Đăng xuất",
-    "invalid_email_or_password" : "Tài khoản, mật khẩu không đúng hoặc chưa được kích hoạt",
+    "invalid_email_or_password" : "Tài khoản không đúng hoặc chưa được kích hoạt",
     "please_enter_conform_password":"Hãy nhập lại mật khẩu",
     "email_is_already_in_use":"Email đã được sử dụng",
     "registor_success":"Đăng ký thành công, vui lòng kiểm tra email để kích hoạt tài khoản",

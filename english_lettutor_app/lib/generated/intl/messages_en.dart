@@ -139,7 +139,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "introduction_video":
             MessageLookupByLibrary.simpleMessage("Introduction video"),
         "invalid_email_or_password": MessageLookupByLibrary.simpleMessage(
-            "Invalid email or password or account is not activated"),
+            "Account Invalid or not activated"),
         "just_cancel_before_2_hours":
             MessageLookupByLibrary.simpleMessage("Just cancel before 2 hours"),
         "languages": MessageLookupByLibrary.simpleMessage("Languages"),

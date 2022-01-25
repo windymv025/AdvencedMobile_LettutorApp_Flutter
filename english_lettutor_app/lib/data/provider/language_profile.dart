@@ -12,9 +12,10 @@ class LanguageProfile extends ChangeNotifier {
     _loadlanguage();
   }
 
-  void _loadlanguage() {
-    if (_prefHelper.currentLanguage == null) return;
-    if (_prefHelper.currentLanguage == codeVN) {
+  _loadlanguage() async {
+    String? currentLanguage = await _prefHelper.currentLanguage;
+    if (currentLanguage == null) return;
+    if (currentLanguage == codeVN) {
       locale = const Locale(codeVN);
     } else {
       locale = const Locale(codeEN);

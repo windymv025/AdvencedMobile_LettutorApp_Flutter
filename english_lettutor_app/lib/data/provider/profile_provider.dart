@@ -129,6 +129,7 @@ class ProfileProvider extends ChangeNotifier {
       profile = Profile.fromMap(result["user"]);
       backupProfile = Profile.fromMap(result["user"]);
       saveTokens(result['tokens']!);
+      saveAccount(email, password);
       analyticsLogin("Login with Email success: $email");
 
       return true;
@@ -156,6 +157,13 @@ class ProfileProvider extends ChangeNotifier {
     String refreshToken = tokens['refresh']!['token']!;
     prefs.saveAuthToken(accessToken);
     prefs.saveRefreshToken(refreshToken);
+  }
+
+  saveAccount(String email, String password) async {
+    final prefs = SharedPreferenceHelper.instance;
+    await prefs.saveUsername(email);
+    await prefs.savePassword(password);
+    notifyListeners();
   }
 
   Future<bool> signInWithGoogle() async {
@@ -186,7 +194,6 @@ class ProfileProvider extends ChangeNotifier {
     final result = await _authApi.loginByFacebook(token);
     if (result['user'] != null) {
       profile = Profile.fromMap(result["user"]);
-      // copyProfile(profile);
       backupProfile = Profile.fromMap(result["user"]);
       saveTokens(result['tokens']!);
       analyticsLogin("Login with Facebook success: ${profile.name}");

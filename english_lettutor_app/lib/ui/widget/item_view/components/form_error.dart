@@ -12,15 +12,10 @@ class FormError extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: unnecessary_null_comparison
-    // if (errors == null || errors.isEmpty) {
-    //   return const SizedBox.shrink();
-    // } else {
     return Column(
       children: List.generate(
           errors.length, (index) => formErrorText(error: errors[index]!)),
     );
-    // }
   }
 
   Row formErrorText({required String error}) {
@@ -34,7 +29,10 @@ class FormError extends StatelessWidget {
         const SizedBox(
           width: 10,
         ),
-        Text(error),
+        Text(
+          error,
+          overflow: TextOverflow.clip,
+        ),
       ],
     );
   }

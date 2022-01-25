@@ -17,9 +17,9 @@ class ThemeModel extends ChangeNotifier {
     _loadTheme();
   }
 
-  void _loadTheme() {
+  _loadTheme() async {
     _prefHelper = SharedPreferenceHelper.instance;
-    bool? isDark = _prefHelper?.isDarkMode;
+    bool? isDark = await _prefHelper?.isDarkMode;
     if (isDark == true) {
       _themeMode = themeDataDark;
       _typeName = kStringDarkTheme;

@@ -7,5 +7,6 @@ class Preferences {
   static const String currentLanguage = "currentLanguage";
   static const String profile = 'profile';
   static const String password = 'password_key';
+  static const String username = 'username_key';
   static const String refreshToken = 'refreshToken';
 }
